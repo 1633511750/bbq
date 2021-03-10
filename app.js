@@ -20,6 +20,11 @@ App({
     })
   },
 
+  globalData: {
+    statusBarHeight: wx.getSystemInfoSync()['statusBarHeight'],//获取状态栏高度
+    school_str: '山西传媒学院'
+  },
+
   /**
    * 当小程序启动，或从后台进入前台显示，会触发 onShow
    */
@@ -39,9 +44,5 @@ App({
    */
   onError: function (msg) {
 
-  },
-
-  globalData: {
-    statusBarHeight: wx.getSystemInfoSync()['statusBarHeight']//获取状态栏高度
   }
 })

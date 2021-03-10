@@ -1,4 +1,5 @@
 .wrap {
+  overflow: auto;
   height: 100vh;
   background-color: var(--colorGray);
 }
@@ -29,7 +30,7 @@
 .wrap .top .scroll-wrap .navigator .active {
   color: #ff7e17;
 }
-.wrap .blank {
+.wrap .blank2 {
   height: 105rpx;
 }
 .wrap .item-wrap {

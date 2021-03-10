@@ -6,6 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    school_str: '',
     currentTitle_int: 0,
     statusBarHeight: app.globalData.statusBarHeight,
     topList_arr: ['全部', 'IT', '设计', '美妆', '休闲', '学习'],
@@ -43,6 +44,13 @@ Page({
     })
   },
 
+  gotoDetail_fun() {
+    wx.navigateTo({
+      url: '/pages/jobdetail/index',
+    });
+
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */
@@ -61,7 +69,9 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.setData({
+      school_str: app.globalData.school_str
+    })
   },
 
   /**

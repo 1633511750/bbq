@@ -1,5 +1,5 @@
 <view class="index-wrap" style="padding-top: {{statusBarHeight + 45}}px;">
-  <Top></Top>
+  <Top school="{{school_str}}"></Top>
   <view class="top" style="top: {{statusBarHeight + 45}}px;">
     <scroll-view show-scrollbar="{{false}}" enhanced scroll-x="true" class="scroll-wrap">
       <navigator class="navigator" bindtap="titleTap_fun" data-index="{{index}}" wx:for="{{topList_arr}}" wx:key="item">

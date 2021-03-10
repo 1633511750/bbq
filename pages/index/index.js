@@ -2,6 +2,7 @@
 var app = getApp()
 Page({
   data: {
+    school_str: app.globalData.school_str,
     // 标题栏
     statusBarHeight: app.globalData.statusBarHeight,
 
@@ -68,10 +69,6 @@ Page({
     })
   },
   showDialog_fun() {
-    // wx.setNavigationBarColor({
-    //   frontColor: '#000000', // 必写项
-    //   backgroundColor: '#ddd', // 传递的颜色值
-    // })
     wx.hideTabBar()
     this.setData({
       showDialog_bool: true
@@ -89,10 +86,6 @@ Page({
   },
   // 隐藏弹框
   hideDialog_fun() {
-    // wx.setNavigationBarColor({
-    //   frontColor: '#000000', // 必写项
-    //   backgroundColor: '#fff', // 传递的颜色值
-    // })
     this.setData({
       showDialog_bool: false
     })
@@ -127,6 +120,9 @@ Page({
 
   },
   onShow: function () {
+    this.setData({
+      school_str: app.globalData.school_str
+    })
   },
   onHide: function () {
     this.setData({ showDialog_bool: false })

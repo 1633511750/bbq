@@ -2,7 +2,7 @@
 <view class="top-title-wrap" style="height: {{45}}px;top: {{statusBarHeight}}px;">
   <navigator hover-class="none" url="/pages/school/index" class="title">
     <image src="/img/pos.png" mode="aspectFit" />
-    <text>山西传媒学院</text><text class="arrow">></text>
+    <text>{{school}}</text><text class="arrow">></text>
   </navigator>
   <navigator class="find" url="/pages/search/index">
     <image src="/img/find.png" mode="aspectFit"></image>

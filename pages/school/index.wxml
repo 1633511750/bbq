@@ -2,6 +2,6 @@
   <Search prop="请输入学校名称" text="搜索"></Search>
   <view class="find-text">搜索结果</view>
   <view class="item-wrap">
-    <view class="item" wx:for="{{list_arr}}" wx:key="*this">{{item}}</view>
+    <view class="item" bindtap="selectSchool_fun" data-item="{{item}}" wx:for="{{list_arr}}" wx:key="*this">{{item}}</view>
   </view>
 </view>

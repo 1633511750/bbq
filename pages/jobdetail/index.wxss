@@ -1,5 +1,6 @@
 page {
-  height: 100vh;
+  height: 85vh;
+  overflow: auto;
   background-color: var(--colorGray);
 }
 page .item-wrap {

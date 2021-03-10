@@ -1,6 +1,8 @@
 <view class="wrap">
-  <Top></Top>
+  <Top school="{{school_str}}"></Top>
 
+  <view class="blank" style="margin-top: {{statusBarHeight + 45}}px;"></view>
+  <view class="blank2"></view>
   <view class="top" style="top: {{statusBarHeight + 45}}px;">
     <scroll-view show-scrollbar="{{false}}" enhanced scroll-x="true" class="scroll-wrap">
       <navigator class="navigator" bindtap="titleTap_fun" data-index="{{index}}" wx:for="{{topList_arr}}" wx:key="item">
@@ -8,8 +10,7 @@
       </navigator>
     </scroll-view>    
   </view>
-  <view class="blank" style="margin-top: {{statusBarHeight + 45}}px;"></view>
-  <view class="item-wrap" wx:for="{{itemList_arr}}">
+  <view class="item-wrap" bindtap="gotoDetail_fun" wx:for="{{itemList_arr}}" wx:key="id">
     <view class="headPic"></view>
     <view class="right">
       <view class="right-top clearfix">
