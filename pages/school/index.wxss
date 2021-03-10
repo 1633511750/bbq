@@ -1,0 +1,23 @@
+.wrap {
+  height: 100vh;
+  background-color: var(--colorGray);
+}
+.wrap .find-text {
+  padding: 20rpx 0 0 35rpx;
+  background-color: white;
+  color: #808080;
+  font-size: 24rpx;
+}
+.wrap .item-wrap {
+  padding: 0 35rpx;
+  line-height: 86rpx;
+  background-color: #fff;
+}
+.wrap .item-wrap .item {
+  font-size: 32rpx;
+  color: #555;
+  border-bottom: 1px solid var(--colorGray);
+}
+.wrap .item-wrap .item:last-child {
+  border-bottom: none;
+}

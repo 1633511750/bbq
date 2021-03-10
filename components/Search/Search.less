@@ -1,0 +1,39 @@
+@paddingSide: 30rpx;
+@colorGray1: #808080;
+@colorGray2: #555;
+
+.wrap{
+  .top {
+    background-color: var(--colorGray);
+    height: 106rpx;
+    line-height: 106rpx;
+    display: flex;
+    padding-left: @paddingSide;
+    justify-content: space-between;
+    align-items: center;
+    .input {
+      width: 600rpx;
+      height: 65rpx;
+      border-radius: 32.5rpx;
+      padding-left: 80rpx;
+      background-color: #fff;
+      .placeholder-class {
+        font-size: 32rpx;
+        color: @colorGray1;
+      }
+    }
+    .find-btn {
+      font-size: 32rpx;
+      color: @colorGray2;
+      height: 100%;
+      padding: 0 @paddingSide 0 20rpx;
+    }
+  }
+  .find-pic {
+    width: 34rpx;
+    height: 34rpx;
+    position: absolute;
+    left: 50rpx;
+    top: 38rpx;
+  }
+}

@@ -1,0 +1,132 @@
+@color_gray: #4f4f4f;
+@color_icon: #aaa;
+@color_orange: #ff7e17;
+@color_blue: #489CD7;
+@font_size_28: 28;
+@font_size_36: 36;
+@font_size_45: 45;
+@font_size_48: 48;
+
+.index-wrap {
+  background-color: var(--colorGray);
+  
+  .top {
+    width: 100%;
+    height: (750rpx * 150 / 1070);
+    display: flex;
+    background-color: #fff;
+    border-top: 1rpx solid var(--colorGray);
+    border-bottom: 1px solid var(--colorGray);
+    position: fixed;
+    z-index: 1;
+    
+    .scroll-wrap {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      white-space: nowrap;
+      .navigator {
+        width: 150rpx;
+        display: inline-block;
+        line-height: (750rpx * 150 / 1070);
+        text-align: center;
+        font-size: (750rpx * 45 / 1070);
+        color: @color_gray;
+        .active {
+          color: @color_orange;
+        }
+      }
+    }
+  }
+  .blank {
+    height: 105rpx;
+  }
+  //-----------------------
+  .add {
+    width: (750rpx * 164 / 1070);
+    height: (750rpx * 164 / 1070);
+    position: fixed;
+    right: (750rpx * 80 / 1070);
+    bottom: (750rpx * 90 / 1070);
+  }
+
+  .dialog-wrap{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: -50rpx;
+    z-index: 3;
+    background-color: #0002;
+    .dialog {
+      width: 100%;
+      // box-shadow: 0 0 30rpx 5rpx @color_gray;
+      background-color: #fff;
+      position: fixed;
+      left: 0;
+      bottom: 0;
+      border-top-left-radius: 20rpx;
+      border-top-right-radius: 20rpx;
+      .up {
+        padding: (750rpx * 30 / 1070) 35rpx;
+        .headPic {
+          width: (750rpx * 118 / 1070);
+          height: (750rpx * 118 / 1070);
+          border-radius: 15rpx;
+          float: left;
+          vertical-align: middle;
+          background-size: 100% 100%;
+        }
+        .up-right{
+          float: right;
+          height: (750rpx * 118 / 1070);
+          width: 580rpx;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          .name {
+            font-size: (750rpx * 45 / 1070);
+            font-weight: bold;
+            float: left;
+            vertical-align: middle;
+          }
+          .reNew {
+            width: 40rpx;
+            height: 40rpx;
+            float: right;
+            margin-right: 20rpx;
+            vertical-align: middle;
+          }
+        }
+      }
+      .center {
+        padding: 20rpx 0;
+        background-color: var(--colorGray);
+        display: flex;
+        flex-wrap: wrap;
+        .item-wrap {
+          flex: 0 0 33.33%;
+          height: 80rpx;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          .item {
+            padding: 0 20rpx;
+            height: 48rpx;
+            line-height: 42rpx;
+            border: 1px solid @color_blue;
+            color: @color_blue;
+            border-radius: 30rpx; 
+          }
+        }
+      }
+      .bottom {
+        color: @color_icon;
+        height: 100rpx;
+        line-height: 100rpx;
+        text-align: center;
+      }
+    }
+  }
+  
+}

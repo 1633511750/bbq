@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "Item": "/components/Item/Item"
+  },
+  "navigationBarTitleText": "墙文"
+}

@@ -1,0 +1,33 @@
+<view class="index-wrap" style="padding-top: {{statusBarHeight + 45}}px;">
+  <Top></Top>
+  <view class="top" style="top: {{statusBarHeight + 45}}px;">
+    <scroll-view show-scrollbar="{{false}}" enhanced scroll-x="true" class="scroll-wrap">
+      <navigator class="navigator" bindtap="titleTap_fun" data-index="{{index}}" wx:for="{{topList_arr}}" wx:key="item">
+        <text class="{{currentTitle_int === index?'active':''}}">{{item}}</text>
+      </navigator>
+    </scroll-view>    
+  </view>
+  <view class="blank"></view>
+
+  <Item wx:for="{{commentList_arr}}" bind:zanevent="dotZan_fun" data-item="{{item}}" data-index="{{index}}" wx:key="id" item="{{item}}"></Item>  
+
+  <image class="add" bindtap="showDialog_fun" src="/img/add.png" mode="aspectFit" lazy-load="false" />
+    
+  <view class="dialog-wrap" wx:if="{{showDialog_bool}}">
+    <view class="dialog">
+      <view class="up clearfix">
+        <view class="headPic" style="background-image: url('https://i04piccdn.sogoucdn.com/0e3e409f0cf25fb3');"></view>
+        <view class="up-right">
+          <text class="name">壹只小坤</text>
+          <image class="reNew" src="/img/reFresh.png" mode="aspectFit"></image>
+        </view>
+      </view>
+      <view class="center">
+        <view class="item-wrap" wx:for="{{typeList_arr}}" wx:key="*this">
+          <view bindtap="publish_fun" data-index="{{index}}" class="item">{{item}}</view>
+        </view>
+      </view>
+      <view class="bottom" bindtap="hideDialog_fun">取消</view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,27 @@
+@paddingSide: 35rpx;
+@colorGray1: #808080;
+@colorGray2: #555;
+
+.wrap {
+  height: 100vh;
+  background-color: var(--colorGray);
+  .find-text {
+    padding: 20rpx 0 0 @paddingSide;
+    background-color: white;
+    color: @colorGray1;
+    font-size: 24rpx;
+  }
+  .item-wrap {
+    padding: 0 @paddingSide;
+    line-height: 86rpx;
+    background-color: #fff;
+    .item {
+      font-size: 32rpx;
+      color: @colorGray2;
+      border-bottom: 1px solid var(--colorGray);
+      &:last-child {
+        border-bottom: none;
+      }
+    }
+  }
+}

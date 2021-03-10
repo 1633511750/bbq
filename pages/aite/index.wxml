@@ -1,0 +1,17 @@
+<view class="wrap">
+  <Search bind:tapEvent="tap_fun" prop="请输入好友名称" bind:changeTextEvent="changeText_fun" text="{{btnText_str}}"></Search>
+
+  <view class="item-wrap">
+  <checkbox-group bindchange="selectFriends_fun">
+    <view class="item clearfix" wx:for="{{list_arr}}" wx:key="id">
+      <label>
+        <checkbox data-name="{{item.name}}" value="{{item.name}}" checked="{{item.checked}}" />
+        <view class="right">
+          <view class="headPic" style="background-image: url({{item.headPic}});"></view>
+          <text class="name">{{item.name}}</text>
+        </view>
+      </label>
+    </view>
+  </checkbox-group>
+  </view>
+</view>

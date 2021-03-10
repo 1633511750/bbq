@@ -1,0 +1,31 @@
+
+page,view,text,swiper,swiper-item,image,navigator,input,textarea{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+/*
+  主题颜色
+*/
+page{
+  /* 定义主题颜色 */
+  --themeColor: #eb4450;
+  --colorGray: #f2f2f2;
+  --colorBlue: #489CD7;
+
+  font-size: 28rpx;
+
+  /* 4类基本字体大小 */
+  --fs_28: 28rpx;
+  --fs_36: 36rpx;
+  --fs_45: 45rpx;
+  --fs_48: 48rpx;
+}
+
+.clearfix::after {
+  clear:both;
+  display: block;
+  content:'';
+}
+

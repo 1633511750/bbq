@@ -1,0 +1,113 @@
+.wrap {
+  height: 100vh;
+  background-color: var(--colorGray);
+}
+.wrap .top {
+  width: 100%;
+  height: 105rpx;
+  display: flex;
+  background-color: #fff;
+  border-top: 1rpx solid var(--colorGray);
+  border-bottom: 1px solid var(--colorGray);
+  position: fixed;
+  z-index: 1;
+}
+.wrap .top .scroll-wrap {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  white-space: nowrap;
+}
+.wrap .top .scroll-wrap .navigator {
+  width: 125rpx;
+  display: inline-block;
+  line-height: 105.14018692rpx;
+  text-align: center;
+  font-size: 31.54205607rpx;
+  color: #4f4f4f;
+}
+.wrap .top .scroll-wrap .navigator .active {
+  color: #ff7e17;
+}
+.wrap .blank {
+  height: 105rpx;
+}
+.wrap .item-wrap {
+  margin-top: 15rpx;
+  height: 214rpx;
+  background-color: #fff;
+  padding: 35rpx;
+  position: relative;
+}
+.wrap .item-wrap .headPic {
+  width: 128rpx;
+  height: 128rpx;
+  float: left;
+  border: 1px solid #ccc;
+}
+.wrap .item-wrap .right {
+  width: 525rpx;
+  float: right;
+}
+.wrap .item-wrap .right .right-top .title {
+  float: left;
+  font-size: 32rpx;
+  color: #555;
+}
+.wrap .item-wrap .right .right-top .type {
+  margin-top: 10rpx;
+  float: right;
+  font-size: 24rpx;
+  color: #797979;
+}
+.wrap .item-wrap .right .exp {
+  margin-top: 15rpx;
+  margin-right: 30rpx;
+  height: 36rpx;
+  padding: 0 12rpx;
+  float: left;
+  line-height: 34rpx;
+  font-size: 20rpx;
+  color: #7f7f7f;
+  text-align: center;
+  border: 1rpx solid #000;
+  border-top-left-radius: 18rpx;
+  border-top-right-radius: 18rpx;
+  border-bottom-right-radius: 18rpx;
+}
+.wrap .item-wrap .right .zan {
+  margin-top: 20rpx;
+  float: right;
+  position: absolute;
+  right: 30rpx;
+  bottom: 30rpx;
+}
+.wrap .item-wrap .right .zan .zan-up {
+  margin-right: 50rpx;
+  float: left;
+}
+.wrap .item-wrap .right .zan .zan-up image {
+  width: 30rpx;
+  height: 30rpx;
+  vertical-align: middle;
+}
+.wrap .item-wrap .right .zan .zan-up text {
+  margin-left: 5rpx;
+  font-size: 24rpx;
+  vertical-align: middle;
+  color: #797979;
+}
+.wrap .item-wrap .right .zan .zan-down {
+  float: left;
+}
+.wrap .item-wrap .right .zan .zan-down image {
+  width: 30rpx;
+  height: 30rpx;
+  vertical-align: middle;
+}
+.wrap .item-wrap .right .zan .zan-down text {
+  margin-left: 5rpx;
+  font-size: 24rpx;
+  vertical-align: middle;
+  color: #aaa;
+}

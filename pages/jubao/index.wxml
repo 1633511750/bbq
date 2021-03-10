@@ -1,0 +1,9 @@
+<view class="wrap">
+  <view class="item-wrap">
+    <view class="item" wx:for="{{list_arr}}" wx:key="*this">
+      {{item}}
+      <text class="right"> > </text>
+    </view>
+  </view>
+</view>
+  

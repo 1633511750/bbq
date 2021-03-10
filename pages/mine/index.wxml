@@ -1,0 +1,36 @@
+<view class="wrap">
+  <view class="top">
+    <view class="headPic" style="background-image: url('https://i04piccdn.sogoucdn.com/0e3e409f0cf25fb3');"></view>
+    <text class="name">椅子小坤</text>
+  </view>
+  <view class="item-wrapper">
+    <navigator url="/pages/mywall/index" class="item-wrap">
+      <image src="/img/wall_article.png"/>
+      <text class="item">墙文</text>
+    </navigator>
+    <navigator url="/pages/zan/index" class="item-wrap">
+      <image src="/img/dit_zan.png"/>
+      <text class="item">点赞</text>
+    </navigator>
+    <navigator url="/pages/mychat/index" class="item-wrap">
+      <image src="/img/com.png"/>
+      <text class="item">评论</text>
+    </navigator>
+  </view>
+  <view class="item-wrapper">
+    <view class="item-wrap">
+      <image src="/img/msg.png"/>
+      <text class="item">消息</text>
+    </view>
+    <navigator url="/pages/myservice/index" class="item-wrap">
+      <image src="/img/service.png"/>
+      <text class="item">客服</text>
+    </navigator>
+  </view>
+  <view class="item-wrapper">
+    <view class="item-wrap">
+      <image src="/img/shop.png"/>
+      <text class="item">店铺</text>
+    </view>
+  </view>
+</view>

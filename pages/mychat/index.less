@@ -1,0 +1,43 @@
+.wrap {
+  height: 100vh;
+  background-color: var(--colorGray);
+  overflow: auto;
+  
+  .item {
+    margin-top: 15rpx;
+    height: 152rpx;
+    background-color: #fff;
+    position: relative;
+    .headPic {
+      width: 86rpx;
+      height: 86rpx;
+      background-size: 100% 100%;
+      border-radius: 15rpx;
+      position: absolute;
+      left: 30rpx;
+      top: 50%;
+      transform: translate(0, -50%);
+    }
+    .right {
+      width: 500rpx;
+      position: absolute;
+      left: 140rpx;
+      transform: translate(0, -50%);
+      top: 50%;
+
+      .name {
+        font-weight: bold;
+      }
+      .date {
+        width: 200rpx;
+        line-height: 30rpx;
+        font-size: 20rpx;
+        position: absolute;
+        text-align: right;
+        bottom: -10rpx;
+        color: #aaa;
+        right: -70rpx;
+      }
+    }
+  }
+}

@@ -1,0 +1,78 @@
+.wrap {
+  width: 100%;
+  height: 100vh;
+  background-color: var(--colorGray);
+}
+.wrap .item-wrap {
+  padding: 15rpx 0 15rpx 0;
+  background-color: #fff;
+}
+.wrap .item-wrap .item {
+  height: 106rpx;
+  line-height: 100rpx;
+  padding: 0 0 0rpx 30rpx;
+}
+.wrap .item-wrap .item .radio {
+  width: 18px;
+  height: 18px;
+  border: 1px solid #ccc;
+  border-radius: 50%;
+  float: left;
+  vertical-align: middle;
+  margin-top: 35rpx;
+}
+.wrap .item-wrap .item .right {
+  width: 660rpx;
+  height: 106rpx;
+  padding-bottom: 5rpx;
+  border-bottom: 1rpx solid var(--colorGray);
+  float: right;
+}
+.wrap .item-wrap .item .right .headPic {
+  display: inline-block;
+  width: 80rpx;
+  height: 80rpx;
+  background-size: 100% 100%;
+  border-radius: 15rpx;
+  vertical-align: middle;
+}
+.wrap .item-wrap .item .right .name {
+  vertical-align: middle;
+  margin-left: 20rpx;
+}
+.wrap .item-wrap .item:last-of-type .right {
+  border-bottom: none;
+}
+/* 重写 checkbox 样式 */
+/* 未选中的 背景样式 */
+checkbox .wx-checkbox-input {
+  border-radius: 50%;
+  /* 圆角 */
+  width: 35rpx;
+  /* 背景的宽 */
+  height: 35rpx;
+  /* 背景的高 */
+}
+/* 选中后的 背景样式*/
+checkbox .wx-checkbox-input.wx-checkbox-input-checked {
+  border: 1rpx solid var(--colorBlue);
+  background: var(--colorBlue);
+}
+/* 选中后的 对勾样式 */
+checkbox .wx-checkbox-input.wx-checkbox-input-checked::before {
+  border-radius: 50%;
+  /* 圆角 */
+  width: 35rpx;
+  /* 选中后对勾大小，不要超过背景的尺寸 */
+  height: 35rpx;
+  /* 选中后对勾大小，不要超过背景的尺寸 */
+  line-height: 35rpx;
+  text-align: center;
+  font-size: 30rpx;
+  /* 对勾大小 30rpx */
+  color: #fff;
+  /* 对勾颜色 白色 */
+  background: transparent;
+  transform: translate(-50%, -50%) scale(1);
+  -webkit-transform: translate(-50%, -50%) scale(1);
+}

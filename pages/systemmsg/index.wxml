@@ -1,0 +1,6 @@
+<view class="wrap">
+  <view class="item">
+    <image src="/img"/>
+  </view>
+  <view class="item"></view>
+</view>

@@ -1,0 +1,117 @@
+.index-wrap {
+  background-color: var(--colorGray);
+}
+.index-wrap .top {
+  width: 100%;
+  height: 105.14018692rpx;
+  display: flex;
+  background-color: #fff;
+  border-top: 1rpx solid var(--colorGray);
+  border-bottom: 1px solid var(--colorGray);
+  position: fixed;
+  z-index: 1;
+}
+.index-wrap .top .scroll-wrap {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  white-space: nowrap;
+}
+.index-wrap .top .scroll-wrap .navigator {
+  width: 150rpx;
+  display: inline-block;
+  line-height: 105.14018692rpx;
+  text-align: center;
+  font-size: 31.54205607rpx;
+  color: #4f4f4f;
+}
+.index-wrap .top .scroll-wrap .navigator .active {
+  color: #ff7e17;
+}
+.index-wrap .blank {
+  height: 105rpx;
+}
+.index-wrap .add {
+  width: 114.95327103rpx;
+  height: 114.95327103rpx;
+  position: fixed;
+  right: 56.07476636rpx;
+  bottom: 63.08411215rpx;
+}
+.index-wrap .dialog-wrap {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: -50rpx;
+  z-index: 3;
+  background-color: #0002;
+}
+.index-wrap .dialog-wrap .dialog {
+  width: 100%;
+  background-color: #fff;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  border-top-left-radius: 20rpx;
+  border-top-right-radius: 20rpx;
+}
+.index-wrap .dialog-wrap .dialog .up {
+  padding: 21.02803738rpx 35rpx;
+}
+.index-wrap .dialog-wrap .dialog .up .headPic {
+  width: 82.71028037rpx;
+  height: 82.71028037rpx;
+  border-radius: 15rpx;
+  float: left;
+  vertical-align: middle;
+  background-size: 100% 100%;
+}
+.index-wrap .dialog-wrap .dialog .up .up-right {
+  float: right;
+  height: 82.71028037rpx;
+  width: 580rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.index-wrap .dialog-wrap .dialog .up .up-right .name {
+  font-size: 31.54205607rpx;
+  font-weight: bold;
+  float: left;
+  vertical-align: middle;
+}
+.index-wrap .dialog-wrap .dialog .up .up-right .reNew {
+  width: 40rpx;
+  height: 40rpx;
+  float: right;
+  margin-right: 20rpx;
+  vertical-align: middle;
+}
+.index-wrap .dialog-wrap .dialog .center {
+  padding: 20rpx 0;
+  background-color: var(--colorGray);
+  display: flex;
+  flex-wrap: wrap;
+}
+.index-wrap .dialog-wrap .dialog .center .item-wrap {
+  flex: 0 0 33.33%;
+  height: 80rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.index-wrap .dialog-wrap .dialog .center .item-wrap .item {
+  padding: 0 20rpx;
+  height: 48rpx;
+  line-height: 42rpx;
+  border: 1px solid #489CD7;
+  color: #489CD7;
+  border-radius: 30rpx;
+}
+.index-wrap .dialog-wrap .dialog .bottom {
+  color: #aaa;
+  height: 100rpx;
+  line-height: 100rpx;
+  text-align: center;
+}

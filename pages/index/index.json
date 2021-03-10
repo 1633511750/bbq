@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "Item": "/components/Item/Item",
+    "Top": "/components/Top/Top"
+  },
+  "navigationBarTitleText": "山西传媒学院",
+  "navigationStyle": "custom"
+}

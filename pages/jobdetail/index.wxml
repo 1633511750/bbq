@@ -1,0 +1,88 @@
+<view class="item-wrap" wx:for="{{itemList_arr}}">
+  <view class="headPic"></view>
+  <view class="right">
+    <view class="right-top clearfix">
+      <text class="title">{{item.title}}</text>
+      <text class="type">{{item.type}}</text>
+    </view>
+    <view class="exp" wx:for="{{item.tag}}" wx:key="*this" wx:for-item="item2">{{item2}}</view>
+    <view class="zan">
+      <view class="zan-up">
+        <image src="/img/zan_up_active.png" mode="aspectFit" />
+        <text>{{item.zanUp}}</text>
+      </view>
+      <view class="zan-down">
+        <image src="/img/zan_down.png" mode="aspectFit" />
+        <text>{{item.zanDown}}</text>
+      </view>
+    </view>
+  </view>
+</view>
+
+<view class="main">
+  <view class="top clearfix">
+    <view bindtap="tabClick_fun" data-index="{{0}}" class="top-item {{currentIndex === 0 ? 'active' : ''}}">商品</view>
+    <view bindtap="tabClick_fun" data-index="{{1}}" class="top-item {{currentIndex === 1 ? 'active' : ''}}">商家</view>
+  </view>
+  <view class="item">
+    <view class="headPic"></view>
+    <view class="right">
+      <view class="right-top">LOGO设计</view>
+      <view class="right-bottom">
+        原价：<text class="origin-price">300</text>
+        现价：<text class="now-price">200</text>
+      </view>
+    </view>
+  </view>
+  <view class="item">
+    <view class="headPic"></view>
+    <view class="right">
+      <view class="right-top">LOGO设计</view>
+      <view class="right-bottom">
+        原价：<text class="origin-price">300</text>
+        现价：<text class="now-price">200</text>
+      </view>
+    </view>
+  </view>
+  <view class="item">
+    <view class="headPic"></view>
+    <view class="right">
+      <view class="right-top">LOGO设计</view>
+      <view class="right-bottom">
+        原价：<text class="origin-price">300</text>
+        现价：<text class="now-price">200</text>
+      </view>
+    </view>
+  </view>
+  <view class="item">
+    <view class="headPic"></view>
+    <view class="right">
+      <view class="right-top">LOGO设计</view>
+      <view class="right-bottom">
+        原价：<text class="origin-price">300</text>
+        现价：<text class="now-price">200</text>
+      </view>
+    </view>
+  </view>
+  <view class="item">
+    <view class="headPic"></view>
+    <view class="right">
+      <view class="right-top">LOGO设计</view>
+      <view class="right-bottom">
+        原价：<text class="origin-price">300</text>
+        现价：<text class="now-price">200</text>
+      </view>
+    </view>
+  </view>
+  <view class="item">
+    <view class="headPic"></view>
+    <view class="right">
+      <view class="right-top">LOGO设计</view>
+      <view class="right-bottom">
+        原价：<text class="origin-price">300</text>
+        现价：<text class="now-price">200</text>
+      </view>
+    </view>
+  </view>
+</view>
+  

@@ -1,0 +1,18 @@
+<view class="wrap">
+  <view class="item">
+    <view class="headPic" style="background-image: url(https://i04piccdn.sogoucdn.com/0e3e409f0cf25fb3);"></view>
+    <view class="right">
+      <view class="name">只小坤</view>
+      <view class="desc">赞了你</view>
+      <view class="date">01-11 17:34</view>
+    </view>
+  </view>
+  <view class="item">
+    <view class="headPic" style="background-image: url(https://i04piccdn.sogoucdn.com/0e3e409f0cf25fb3);"></view>
+    <view class="right">
+      <view class="name">壹只小坤</view>
+      <view class="desc">你赞了只小坤</view>
+      <view class="date">01-11 17:34</view>
+    </view>
+  </view>
+</view>

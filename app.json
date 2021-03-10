@@ -1,0 +1,55 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/school/index",
+    "pages/search/index",
+    "pages/publish/index",
+    "pages/aite/index",
+    "pages/systemmsg/index",
+    "pages/detail/index",
+    "pages/jubao/index",
+    "pages/mywall/index",
+    "pages/zan/index",
+    "pages/mychat/index",
+    "pages/myservice/index",
+    "pages/job/index",
+    "pages/jobdetail/index",
+    "pages/mine/index",
+    "pages/test/index"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "Weixin",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "color": "#4f4f4f",
+    "selectedColor": "#ff7e17",
+    "backgroundColor": "",
+    "position": "bottom",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "表白墙",
+        "iconPath": "/img/wall.png",
+        "selectedIconPath": "/img/wall_active.png"
+      },
+      {
+        "pagePath": "pages/job/index",
+        "text": "创业街",
+        "iconPath": "/img/job.png",
+        "selectedIconPath": "/img/job_active.png"
+      },
+      {
+        "pagePath": "pages/mine/index",
+        "text": "我的",
+        "iconPath": "/img/mine.png",
+        "selectedIconPath": "/img/mine_active.png"
+      }
+    ]
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

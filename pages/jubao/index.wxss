@@ -1,0 +1,24 @@
+.wrap {
+  height: 100vh;
+  background-color: var(--colorGray);
+  overflow: auto;
+}
+.wrap .item-wrap {
+  margin-top: 10rpx;
+  background-color: #fff;
+  padding: 20rpx 0 0 56rpx;
+}
+.wrap .item-wrap .item {
+  height: 100rpx;
+  line-height: 100rpx;
+  font-size: 34rpx;
+  border-bottom: 1rpx solid #d0d0d0;
+}
+.wrap .item-wrap .item:last-child {
+  border-bottom: none;
+}
+.wrap .item-wrap .item .right {
+  float: right;
+  margin-right: 30rpx;
+  color: #d0d0d0;
+}

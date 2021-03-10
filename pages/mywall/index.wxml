@@ -1,0 +1,3 @@
+<view class="wrap">
+  <Item wx:for="{{commentList_arr}}" item="{{item}}"></Item>
+</view>

@@ -1,0 +1,130 @@
+page {
+  height: 100vh;
+  background-color: var(--colorGray);
+}
+page .item-wrap {
+  margin: 15rpx 0;
+  height: 214rpx;
+  background-color: #fff;
+  padding: 35rpx;
+  position: relative;
+}
+page .item-wrap .headPic {
+  width: 128rpx;
+  height: 128rpx;
+  float: left;
+  border: 1px solid #ccc;
+}
+page .item-wrap .right {
+  width: 525rpx;
+  float: right;
+}
+page .item-wrap .right .right-top .title {
+  float: left;
+  font-size: 32rpx;
+  color: #555;
+}
+page .item-wrap .right .right-top .type {
+  margin-top: 10rpx;
+  float: right;
+  font-size: 24rpx;
+  color: #797979;
+}
+page .item-wrap .right .exp {
+  margin-top: 15rpx;
+  margin-right: 30rpx;
+  height: 36rpx;
+  padding: 0 12rpx;
+  float: left;
+  line-height: 34rpx;
+  font-size: 20rpx;
+  color: #FF7E17;
+  text-align: center;
+  border: 1rpx solid #FF7E17;
+  border-top-left-radius: 18rpx;
+  border-top-right-radius: 18rpx;
+  border-bottom-right-radius: 18rpx;
+}
+page .item-wrap .right .zan {
+  margin-top: 20rpx;
+  float: right;
+  position: absolute;
+  right: 30rpx;
+  bottom: 30rpx;
+}
+page .item-wrap .right .zan .zan-up {
+  margin-right: 50rpx;
+  float: left;
+}
+page .item-wrap .right .zan .zan-up image {
+  width: 30rpx;
+  height: 30rpx;
+  vertical-align: middle;
+}
+page .item-wrap .right .zan .zan-up text {
+  margin-left: 5rpx;
+  font-size: 24rpx;
+  vertical-align: middle;
+  color: #797979;
+}
+page .item-wrap .right .zan .zan-down {
+  float: left;
+}
+page .item-wrap .right .zan .zan-down image {
+  width: 30rpx;
+  height: 30rpx;
+  vertical-align: middle;
+}
+page .item-wrap .right .zan .zan-down text {
+  margin-left: 5rpx;
+  font-size: 24rpx;
+  vertical-align: middle;
+  color: #aaa;
+}
+page .main {
+  background-color: #fff;
+  padding: 20rpx 0 0 30rpx;
+}
+page .main .top {
+  border-bottom: 1rpx solid var(--colorGary);
+  height: 70rpx;
+}
+page .main .top .top-item {
+  line-height: 67rpx;
+  font-size: 34rpx;
+  margin-right: 124rpx;
+  color: #333;
+  float: left;
+  border-bottom: 6rpx solid transparent;
+}
+page .main .top .top-item.active {
+  border-bottom-color: #FF7E17;
+}
+page .main .item {
+  height: 190rpx;
+  padding-top: 40rpx;
+}
+page .main .item .headPic {
+  float: left;
+  width: 150rpx;
+  height: 150rpx;
+  border: 1rpx solid #ccc;
+}
+page .main .item .right {
+  width: 540rpx;
+  height: 150rpx;
+  float: right;
+  font-size: 32rpx;
+  border-bottom: 1px solid var(--colorGray);
+}
+page .main .item .right .right-top {
+  color: #333;
+  margin-top: 20rpx;
+}
+page .main .item .right .right-bottom {
+  margin-top: 20rpx;
+  color: #555;
+}
+page .main .item .right .right-bottom .origin-price {
+  margin-right: 50rpx;
+}

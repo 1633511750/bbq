@@ -1,0 +1,99 @@
+.wrap {
+  height: 100vh;
+  &::before {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 15rpx;
+    background-color: var(--colorGray);
+  }
+  
+  .con {
+    padding: 30rpx;
+    textarea {
+      width: 690rpx;
+      height: 200rpx;
+      font-size: 32rpx;
+      line-height: 40rpx;
+      max-height: 500rpx;
+      // border: 1px solid var(--colorGray)
+    }
+    .item-wrap {
+      margin-top: 5rpx;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      image {
+        flex: 0 0 ((750rpx - 90) / 3);
+        width: ((750rpx - 90) / 3);
+        height: ((750rpx - 90) / 3);
+        // border: 1rpx solid #ccc;
+        margin-top: 15rpx;
+      }
+    }
+    .con-foot {
+      margin-top: 20rpx;
+      image {
+        width: 40rpx;
+        height: 40rpx;
+        vertical-align: middle;
+      }
+      .school {
+        margin-left: 10rpx;
+        font-size: 24rpx;
+        color: #aaa;
+      }
+      .fishing {
+        float: right;
+        height: 40rpx;
+        line-height: 35rpx;
+        font-size: 24rpx;
+        padding: 0 20rpx;
+        border-radius: 22rpx;
+        vertical-align: middle;
+        color: var(--colorBlue);
+        border: 1px solid var(--colorBlue);
+      }
+    }
+  }
+  .footer {
+    width: 100%;
+    height: 100rpx;
+    background-color: #fff;
+    position: fixed;
+    display: flex;
+    align-items: center;
+    &::before {
+      content: '';
+      position: absolute;
+      top: -20rpx;
+      width: 100%;
+      height: 18rpx;
+      background-color: var(--colorGray);
+    }
+    image {
+      width: 50rpx;
+      height:50rpx;
+    }
+    .img1{
+      margin-left: 30rpx;
+    }
+    .img2{
+      margin-left: 115rpx;
+    }
+    .img3{
+      margin-left: 115rpx;     
+    }
+    .btn {
+      margin-left: 200rpx;
+      text-align: center;
+      width: 100rpx;
+      height: 50rpx;
+      line-height: 48rpx;
+      font-size: 32rpx;
+      color: white;
+      background-color: #ff7e17;
+      border-radius: 10rpx;
+    }
+  }
+}

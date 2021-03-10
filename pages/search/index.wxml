@@ -1,0 +1,8 @@
+<view class="wrap">
+  <Search prop="搜索" text="{{text}}"></Search>
+  <view class="type">
+    <view class="wall">表白墙</view>
+    <view class="job">创业街</view>
+    <view class="mine">我的</view>
+  </view>
+</view>

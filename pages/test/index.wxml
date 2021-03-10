@@ -1,0 +1,9 @@
+<view class="container">
+<view class="section__title">horizontal scroll</view>
+<scroll-view class="scroll-view_H" scroll-x="true" style="width: 100%">
+<navigator url="http://www.baidu.com" id="green" class="scroll-view-item_H bc_green" style="background:green;"></navigator>
+<navigator url="http://www.baidu.com" id="red" class="scroll-view-item_H bc_red" style="background:red;"></navigator>
+<navigator url="http://www.baidu.com" id="yellow" class="scroll-view-item_H bc_yellow" style="background:yellow;"></navigator>
+<navigator url="http://www.baidu.com" id="blue" class="scroll-view-item_H bc_blue" style="background:blue;"></navigator>
+</scroll-view>
+</view>

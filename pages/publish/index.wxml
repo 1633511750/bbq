@@ -1,0 +1,19 @@
+<view class="wrap">
+  <view class="con">
+    <textarea class="textarea" value="{{text_str}}" auto-focus auto-height cursor-spacing="30" show-confirm-bar="{{false}}" bindkeyboardheightchange="keyboardheight_fun" placeholder="这一刻的想法..."></textarea>
+    <view class="item-wrap">
+      <image mode="aspectFill" src="{{item}}" wx:key="*this" wx:for="{{tempImgSrc_arr}}"/>
+    </view>
+    <view class="con-foot">
+      <image mode="aspectFit" src="/img/pos1.png" />
+      <text class="school">晋中学院</text>
+      <view class="fishing">捞人</view>
+    </view>
+  </view>
+  <view class="footer" style="bottom: {{keyHeight_int}}px;">
+    <image class="img1" bindtap="tapPic_fun" src="/img/pic.png" mode="aspectFit" />
+    <image class="img2" bindtap="tapAite_fun" src="/img/@.png" mode="aspectFit" />
+    <image class="img3" src="/img/pos1.png" mode="aspectFit" />
+    <view class="btn">发表</view>  
+  </view>
+</view>

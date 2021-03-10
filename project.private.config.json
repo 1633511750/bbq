@@ -1,0 +1,107 @@
+{
+  "setting": {},
+  "condition": {
+    "plugin": {
+      "list": []
+    },
+    "game": {
+      "list": []
+    },
+    "gamePlugin": {
+      "list": []
+    },
+    "miniprogram": {
+      "list": [
+        {
+          "name": "school",
+          "pathName": "pages/school/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "search",
+          "pathName": "pages/search/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "publish",
+          "pathName": "pages/publish/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "aite",
+          "pathName": "pages/aite/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "systemmsg",
+          "pathName": "pages/systemmsg/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "test",
+          "pathName": "pages/test/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "detail",
+          "pathName": "pages/detail/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "jubao",
+          "pathName": "pages/jubao/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "mine",
+          "pathName": "pages/mine/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "zan",
+          "pathName": "pages/zan/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "my-wall",
+          "pathName": "pages/mywall/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "mychat",
+          "pathName": "pages/mychat/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "myservice",
+          "pathName": "pages/myservice/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "job",
+          "pathName": "pages/job/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "jobdetail",
+          "pathName": "pages/jobdetail/index",
+          "scene": null
+        }
+      ]
+    }
+  }
+}

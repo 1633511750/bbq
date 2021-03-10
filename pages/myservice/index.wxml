@@ -1,0 +1,36 @@
+<view class="wrap">
+  <view class="item">
+    <view class="title">投诉箱</view>
+    <textarea maxlength="400" placeholder="亲爱的同学，如果你对工作人员或者上级主管人员有不满意的地方要告诉我们吖！投诉内容直达创始人邮箱。（我们将在一周内审核回复你投诉的内容，请耐心等待哇～）"></textarea>
+    <view class="out-box">
+      <view class="top">
+        <view class="top-item"></view>
+        <view class="top-item"></view>
+      </view>
+      <view class="bottom">
+        <view class="bottom-item"></view>
+        <view class="bottom-item"></view>
+      </view>
+    </view>
+    <view class="submit">提交</view>
+  </view>
+  <view class="item">
+  <view class="title">意见</view>
+    <textarea maxlength="400" placeholder="如果你对我们产品内容或者推广方式还有其他好的意见和建议，都可以在意见栏留言告诉我们呦～我公司坚持唯才是用原则，你的想法将直接发送至创始人邮箱。被审核试用的想法，还将获得专属奖励～"></textarea>
+    <view class="out-box">
+      <view class="top">
+        <view class="top-item"></view>
+        <view class="top-item"></view>
+      </view>
+      <view class="bottom">
+        <view class="bottom-item"></view>
+        <view class="bottom-item"></view>
+      </view>
+    </view>
+    <view class="submit">提交</view>
+  </view>
+  <view class="item">
+    <view class="title">校园经理</view>
+    <view class="ewm"></view>
+  </view>
+</view>

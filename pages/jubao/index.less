@@ -1,0 +1,26 @@
+ @fs_34: 34rpx;
+.wrap {
+  height: 100vh;
+  background-color: var(--colorGray);
+  overflow: auto;
+  
+  .item-wrap {
+    margin-top: 10rpx;
+    background-color: #fff;
+    padding: 20rpx 0 0 56rpx;
+    .item {
+      height: 100rpx;
+      line-height: 100rpx;
+      font-size: @fs_34;
+      border-bottom: 1rpx solid #d0d0d0;
+      &:last-child {
+        border-bottom: none;
+      }
+      .right {
+        float: right;
+        margin-right: 30rpx;
+        color: #d0d0d0;
+      }
+    }
+  }
+}

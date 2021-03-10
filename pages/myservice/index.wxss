@@ -1,0 +1,94 @@
+.wrap {
+  height: 100vh;
+  background-color: var(--colorGray);
+  overflow: auto;
+}
+.wrap .item {
+  margin-top: 15rpx;
+  height: 468rpx;
+  background-color: #fff;
+  position: relative;
+}
+.wrap .item .title {
+  padding-left: 30rpx;
+  height: 90rpx;
+  line-height: 90rpx;
+  font-size: 34rpx;
+  font-weight: bold;
+  border-bottom: 1rpx solid #d0d0d0;
+}
+.wrap .item textarea {
+  width: calc(100% - 60rpx);
+  margin: 30rpx 30rpx;
+  height: 150rpx;
+}
+.wrap .item .out-box {
+  width: 90rpx;
+  height: 90rpx;
+  background-color: var(--colorGray);
+  position: absolute;
+  left: 30rpx;
+  bottom: 30rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10rpx;
+}
+.wrap .item .out-box .top,
+.wrap .item .out-box .bottom {
+  display: flex;
+}
+.wrap .item .out-box .top .top-item,
+.wrap .item .out-box .bottom .top-item,
+.wrap .item .out-box .top .bottom-item,
+.wrap .item .out-box .bottom .bottom-item {
+  width: 30rpx;
+  height: 30rpx;
+  border: 1rpx solid #d0d0d0;
+}
+.wrap .item .out-box .top .top-item,
+.wrap .item .out-box .bottom .top-item {
+  border-top: none;
+}
+.wrap .item .out-box .top .top-item:first-child,
+.wrap .item .out-box .bottom .top-item:first-child {
+  border-left: none;
+}
+.wrap .item .out-box .top .top-item:last-child,
+.wrap .item .out-box .bottom .top-item:last-child {
+  border-right: none;
+}
+.wrap .item .out-box .top .bottom-item,
+.wrap .item .out-box .bottom .bottom-item {
+  border-bottom: none;
+}
+.wrap .item .out-box .top .bottom-item:first-child,
+.wrap .item .out-box .bottom .bottom-item:first-child {
+  border-left: none;
+}
+.wrap .item .out-box .top .bottom-item:last-child,
+.wrap .item .out-box .bottom .bottom-item:last-child {
+  border-right: none;
+}
+.wrap .item .submit {
+  width: 100rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+  text-align: center;
+  background-color: #7f7f7f;
+  border-radius: 10rpx;
+  color: #fff;
+  position: absolute;
+  right: 30rpx;
+  bottom: 30rpx;
+}
+.wrap .item .ewm {
+  width: 230rpx;
+  height: 230rpx;
+  position: absolute;
+  left: 50%;
+  bottom: -80rpx;
+  transform: translate(-50%, -50%);
+  border: 1rpx solid #d0d0d0;
+}

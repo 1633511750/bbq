@@ -1,0 +1,33 @@
+.wrap .top {
+  background-color: var(--colorGray);
+  height: 106rpx;
+  line-height: 106rpx;
+  display: flex;
+  padding-left: 30rpx;
+  justify-content: space-between;
+  align-items: center;
+}
+.wrap .top .input {
+  width: 600rpx;
+  height: 65rpx;
+  border-radius: 32.5rpx;
+  padding-left: 80rpx;
+  background-color: #fff;
+}
+.wrap .top .input .placeholder-class {
+  font-size: 32rpx;
+  color: #808080;
+}
+.wrap .top .find-btn {
+  font-size: 32rpx;
+  color: #555;
+  height: 100%;
+  padding: 0 30rpx 0 20rpx;
+}
+.wrap .find-pic {
+  width: 34rpx;
+  height: 34rpx;
+  position: absolute;
+  left: 50rpx;
+  top: 38rpx;
+}

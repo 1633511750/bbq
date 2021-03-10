@@ -1,0 +1,47 @@
+.top-liuhai-wrap {
+  width: 100%;
+  background-color: #fff;
+  position: fixed;
+  z-index: 2;
+}
+.top-title-wrap {
+  width: 100%;
+  background-color: #fff;
+  position: fixed;
+  z-index: 2;
+  border-bottom-left-radius: 25rpx;
+  border-bottom-right-radius: 25rpx;
+}
+.top-title-wrap .title {
+  font-size: 34rpx;
+  position: absolute;
+  left: 30rpx;
+  top: 50%;
+  transform: translate(0, -30rpx);
+}
+.top-title-wrap .title image {
+  width: 30rpx;
+  height: 30rpx;
+  vertical-align: middle;
+  margin-right: 5rpx;
+}
+.top-title-wrap .title .arrow {
+  margin-left: 5rpx;
+}
+.top-title-wrap .find {
+  width: 117.75700935rpx;
+  height: 47.6635514rpx;
+  background-color: var(--colorGray);
+  position: absolute;
+  left: 400rpx;
+  top: 50%;
+  transform: translate(0, -28rpx);
+  border-radius: 47.6635514rpx;
+}
+.top-title-wrap .find image {
+  width: 35.71428571rpx;
+  height: 35.71428571rpx;
+  position: absolute;
+  left: 10rpx;
+  top: 7rpx;
+}

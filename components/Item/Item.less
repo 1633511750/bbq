@@ -1,0 +1,128 @@
+@color_gray: #4f4f4f;
+@color_icon: #aaa;
+@color_orange: #ff7e17;
+@color_blue: #489CD7;
+@font_size_28: 28;
+@font_size_36: 36;
+@font_size_45: 45;
+@font_size_48: 48;
+
+.clearfix::after{
+  display: block;
+  content: '';
+  clear: both;
+}
+
+.comment {
+  background-color: #fff;
+  margin-top: (750rpx * 30 / 1070);
+  padding: (750rpx * 40 / 1070) 35rpx;
+  .item {
+    .headPic {
+      width: (750rpx * 118 / 1070);
+      height: (750rpx * 118 / 1070);
+      border-radius: 15rpx;
+      float: left;
+      background-size: 100% 100%;
+    }
+    .info {
+      width: calc(100% - 105rpx);
+      float: right;
+      .info-top {
+        margin-top: 8rpx;
+        .name {
+          font-size: (750rpx * 45 / 1070);
+          font-weight: bold;
+          float: left;
+        }
+        .video {
+          padding: 0 15rpx;
+          border-radius: 20rpx;
+          color: @color_blue;
+          float: right;
+          border: 2rpx solid @color_blue;
+          font-size: (750rpx * 36 / 1070);
+        }
+      }
+      .info-bottom {
+        font-size: 20rpx;
+        color: @color_icon;
+        margin-top: 5rpx;
+        .time {
+          margin-left: 10rpx;
+        }
+      }
+    }
+  }
+  .desc {
+    font-size: (750rpx * 45 / 1070);
+    margin-top: 20rpx;
+  }
+  .img {
+    margin-top: 20rpx;
+    display: flex;
+    justify-content: space-between;
+    image {
+      width: 220rpx;
+      height: 220rpx;
+    }
+  }
+  .footer {
+    margin-top: 20rpx;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: -20rpx;
+    .f1 {
+      flex: 1;
+      text-align: left;
+      image {
+        width: (750rpx * 60 / 1070);
+        height: (750rpx * 60 / 1070);
+        vertical-align: middle;
+      }
+      .heart {
+        font-size: 25rpx;
+        position: relative;
+        top: 3rpx;
+        margin-left: 8rpx;
+        color: @color_icon;
+      }
+    }
+    .f2 {
+      image {
+        flex: 1;
+        text-align: center;
+        margin-left: 25rpx;
+        width: (750rpx * 56 / 1070);
+        height: (750rpx * 56 / 1070);
+        vertical-align: middle;
+      }
+      .chat {
+        font-size: 25rpx;
+        position: relative;
+        top: 3rpx;
+        margin-left: 8rpx;
+        color: @color_icon;
+      }
+    }
+    .f3 {
+      flex: 1;
+      text-align: right;
+      padding: 15rpx;
+      padding-right: 0;
+      margin-top: -15rpx;
+      image {
+        width: (750rpx * 55 / 1070);
+        height: (750rpx * 55 / 1070);
+        vertical-align: middle;
+      }
+      .zan {
+        font-size: 25rpx;
+        position: relative;
+        top: 3rpx;
+        margin-left: 8rpx;
+        color: @color_icon;
+      }
+    }
+  }
+}
