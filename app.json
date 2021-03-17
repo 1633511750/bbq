@@ -15,6 +15,7 @@
     "pages/job/index",
     "pages/jobdetail/index",
     "pages/mine/index",
+    "pages/logodesign/index",
     "pages/test/index"
   ],
   "window": {

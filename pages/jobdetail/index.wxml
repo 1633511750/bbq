@@ -1,4 +1,4 @@
-<view class="item-wrap" wx:for="{{itemList_arr}}">
+<view class="item-wrap" wx:for="{{itemList_arr}}" wx:key="*this">
   <view class="headPic"></view>
   <view class="right">
     <view class="right-top clearfix">
@@ -24,64 +24,72 @@
     <view bindtap="tabClick_fun" data-index="{{0}}" class="top-item {{currentIndex === 0 ? 'active' : ''}}">商品</view>
     <view bindtap="tabClick_fun" data-index="{{1}}" class="top-item {{currentIndex === 1 ? 'active' : ''}}">商家</view>
   </view>
-  <view class="item">
-    <view class="headPic"></view>
-    <view class="right">
-      <view class="right-top">LOGO设计</view>
-      <view class="right-bottom">
-        原价：<text class="origin-price">300</text>
-        现价：<text class="now-price">200</text>
+  <view wx:if="{{currentIndex === 0}}" bindtap="tapItem_fun">
+    <view class="item">
+      <view class="headPic"></view>
+      <view class="right">
+        <view class="right-top">LOGO设计</view>
+        <view class="right-bottom">
+          原价：<text class="origin-price">300</text>
+          现价：<text class="now-price">200</text>
+        </view>
       </view>
     </view>
-  </view>
-  <view class="item">
-    <view class="headPic"></view>
-    <view class="right">
-      <view class="right-top">LOGO设计</view>
-      <view class="right-bottom">
-        原价：<text class="origin-price">300</text>
-        现价：<text class="now-price">200</text>
+    <view class="item">
+      <view class="headPic"></view>
+      <view class="right">
+        <view class="right-top">LOGO设计</view>
+        <view class="right-bottom">
+          原价：<text class="origin-price">300</text>
+          现价：<text class="now-price">200</text>
+        </view>
       </view>
     </view>
-  </view>
-  <view class="item">
-    <view class="headPic"></view>
-    <view class="right">
-      <view class="right-top">LOGO设计</view>
-      <view class="right-bottom">
-        原价：<text class="origin-price">300</text>
-        现价：<text class="now-price">200</text>
+    <view class="item">
+      <view class="headPic"></view>
+      <view class="right">
+        <view class="right-top">LOGO设计</view>
+        <view class="right-bottom">
+          原价：<text class="origin-price">300</text>
+          现价：<text class="now-price">200</text>
+        </view>
       </view>
     </view>
-  </view>
-  <view class="item">
-    <view class="headPic"></view>
-    <view class="right">
-      <view class="right-top">LOGO设计</view>
-      <view class="right-bottom">
-        原价：<text class="origin-price">300</text>
-        现价：<text class="now-price">200</text>
+    <view class="item">
+      <view class="headPic"></view>
+      <view class="right">
+        <view class="right-top">LOGO设计</view>
+        <view class="right-bottom">
+          原价：<text class="origin-price">300</text>
+          现价：<text class="now-price">200</text>
+        </view>
       </view>
     </view>
-  </view>
-  <view class="item">
-    <view class="headPic"></view>
-    <view class="right">
-      <view class="right-top">LOGO设计</view>
-      <view class="right-bottom">
-        原价：<text class="origin-price">300</text>
-        现价：<text class="now-price">200</text>
+    <view class="item">
+      <view class="headPic"></view>
+      <view class="right">
+        <view class="right-top">LOGO设计</view>
+        <view class="right-bottom">
+          原价：<text class="origin-price">300</text>
+          现价：<text class="now-price">200</text>
+        </view>
       </view>
-    </view>
+    </view>  
   </view>
-  <view class="item">
-    <view class="headPic"></view>
-    <view class="right">
-      <view class="right-top">LOGO设计</view>
-      <view class="right-bottom">
-        原价：<text class="origin-price">300</text>
-        现价：<text class="now-price">200</text>
+  <view wx:elif="{{currentIndex === 1}}">
+    <view class="item2">
+      <view class="school">地址：山西传媒学院</view>
+      <view class="blank"></view>
+      <view class="phone">
+        <view class="way">联系方式</view>
+        <view class="way-con">
+          <view class="way-phone">电话：13435431343</view>
+          <view class="way-wechat">微信：13435431343</view>
+          <view class="way-qq">QQ：13435431343</view>
+        </view>
       </view>
+      <view class="blank"></view>
+      <view class="bottom-desc">        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus sapien nunc eget odio. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra </view>
     </view>
   </view>
 </view>

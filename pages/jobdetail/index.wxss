@@ -129,3 +129,41 @@ page .main .item .right .right-bottom {
 page .main .item .right .right-bottom .origin-price {
   margin-right: 50rpx;
 }
+page .main .item2 {
+  border-top: 1px solid #ccc;
+  margin-top: 3rpx;
+}
+page .main .item2 .school {
+  height: 109rpx;
+  font-size: 32rpx;
+  color: #333;
+  line-height: 109rpx;
+}
+page .main .item2 .blank {
+  height: 15rpx;
+  background-color: var(--colorGray);
+  margin-left: -30rpx;
+}
+page .main .item2 .phone {
+  height: 293rpx;
+  background-color: #fff;
+}
+page .main .item2 .phone .way {
+  height: 75rpx;
+  line-height: 75rpx;
+  font-size: 32rpx;
+  color: #333;
+  border-bottom: 1px solid #cccc;
+}
+page .main .item2 .phone .way-con {
+  line-height: 73rpx;
+  font-size: 32rpx;
+  color: #333;
+}
+page .main .item2 .bottom-desc {
+  font-size: 32rpx;
+  color: #333;
+  text-indent: 2em;
+  padding: 20rpx;
+  margin-left: -20rpx;
+}

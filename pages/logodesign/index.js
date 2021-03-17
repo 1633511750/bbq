@@ -1,37 +1,11 @@
-// pages/jobdetail/index.js
+// pages/logodesign/index.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    currentIndex: 0,
-    itemList_arr: [{
-      id: 1,
-      headPic: '',
-      title: '工作设计室',
-      type: '学生店',
-      zanUp: 34,
-      zanDown: 18,
-      tag: ['3年经验']
-    }]
-  },
 
-  tabClick_fun(e) {
-    var index = e.currentTarget.dataset.index
-    this.setData({
-      currentIndex: index
-    })
-  },
-
-  tapItem_fun() {
-    wx.navigateTo({
-      url: '/pages/logodesign/index',
-      success: (result) => {
-      },
-      fail: () => { },
-      complete: () => { }
-    });
   },
 
   /**

@@ -123,6 +123,7 @@ Page({
     this.setData({
       school_str: app.globalData.school_str
     })
+    wx.showTabBar()
   },
   onHide: function () {
     this.setData({ showDialog_bool: false })

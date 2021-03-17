@@ -1,0 +1,15 @@
+<image src="/img/pic.png" mode="scaleToFill" class="lbt"></image>
+<view class="top">
+  <view class="price-wrap">
+    <text>￥300</text>
+    <view class="price">现价：200</view>
+  </view>
+  <text class="title">LOGO设计</text>
+  <view class="lianxi">联系商家</view>
+  <view class="con">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, </view>
+  <view class="bottom">
+    <view class="b1"></view>
+    <view class="b2"></view>
+    <view class="b3"></view>
+  </view>
+</view>

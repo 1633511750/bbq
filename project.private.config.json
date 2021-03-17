@@ -99,6 +99,12 @@
         {
           "name": "jobdetail",
           "pathName": "pages/jobdetail/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "logodesign",
+          "pathName": "pages/logodesign/index",
           "scene": null
         }
       ]
