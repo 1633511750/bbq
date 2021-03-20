@@ -18,7 +18,7 @@
   white-space: nowrap;
 }
 .index-wrap .top .scroll-wrap .navigator {
-  width: 150rpx;
+  padding: 0 30rpx;
   display: inline-block;
   line-height: 105.14018692rpx;
   text-align: center;
@@ -30,6 +30,13 @@
 }
 .index-wrap .blank {
   height: 105rpx;
+}
+.index-wrap .shadow {
+  width: 100%;
+  box-shadow: 0 0 5px 3px #ccc9;
+  position: fixed;
+  left: 0;
+  bottom: 0;
 }
 .index-wrap .add {
   width: 114.95327103rpx;
@@ -45,7 +52,7 @@
   left: 0;
   top: -50rpx;
   z-index: 3;
-  background-color: #0002;
+  background-color: #00000038;
 }
 .index-wrap .dialog-wrap .dialog {
   width: 100%;
@@ -114,4 +121,5 @@
   height: 100rpx;
   line-height: 100rpx;
   text-align: center;
+  font-size: 34rpx;
 }

@@ -58,6 +58,7 @@
 }
 .comment .footer {
   margin-top: 20rpx;
+  padding: 0 30rpx;
   display: flex;
   justify-content: space-between;
   margin-bottom: -20rpx;
@@ -65,6 +66,7 @@
 .comment .footer .f1 {
   flex: 1;
   text-align: left;
+  margin-bottom: 10rpx;
 }
 .comment .footer .f1 image {
   width: 42.05607477rpx;
@@ -75,13 +77,14 @@
   font-size: 25rpx;
   position: relative;
   top: 3rpx;
-  margin-left: 8rpx;
+  margin-left: 10rpx;
   color: #aaa;
 }
-.comment .footer .f2 image {
+.comment .footer .f2 {
   flex: 1;
   text-align: center;
-  margin-left: 25rpx;
+}
+.comment .footer .f2 image {
   width: 39.25233645rpx;
   height: 39.25233645rpx;
   vertical-align: middle;
@@ -90,15 +93,12 @@
   font-size: 25rpx;
   position: relative;
   top: 3rpx;
-  margin-left: 8rpx;
+  margin-left: 10rpx;
   color: #aaa;
 }
 .comment .footer .f3 {
   flex: 1;
   text-align: right;
-  padding: 15rpx;
-  padding-right: 0;
-  margin-top: -15rpx;
 }
 .comment .footer .f3 image {
   width: 38.55140187rpx;
@@ -109,6 +109,6 @@
   font-size: 25rpx;
   position: relative;
   top: 3rpx;
-  margin-left: 8rpx;
+  margin-left: 10rpx;
   color: #aaa;
 }

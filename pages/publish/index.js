@@ -21,7 +21,7 @@ Page({
   tapPic_fun: function () {
     wx.showActionSheet({
       itemList: ['拍摄', '从相册选择'],
-      itemColor: '#aaa',
+      // itemColor: '#aaa',
       success: (res) => {
         switch (res.tapIndex) {
           case 0:

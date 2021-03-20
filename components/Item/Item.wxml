@@ -4,32 +4,32 @@
       <view class="headPic" style="background-image: url({{item.headPic}})"></view>
       <view class="info">
         <view class="info-top clearfix">
-          <text class="name">{{item.name}}</text>
-          <text class="video">{{item.type}}</text>
+          <text class="name">{{item.content}}</text>
+          <text class="video">{{item.category}}</text>
         </view>
         <view class="info-bottom">
-          <text class="date">{{item.date}}</text>
-          <text class="time">{{item.time}}</text>
+          <text class="date">{{item.date_str}}</text>
+          <text class="time">{{item.time_str}}</text>
         </view>
       </view>
     </view>
-    <view class="desc">{{item.desc}}</view>
+    <view class="desc">{{item.content}}</view>
   </navigator>
   <view class="img">
     <image bindtap="previewImages_fun" data-cururl="{{item1}}" data-urls="{{item.img}}" wx:for="{{item.img}}" wx:for-item="item1" wx:key="src" src="{{item1}}"></image>
   </view>
-  <view class="footer">
+  <navigator class="footer" hover-class="none" url="/pages/detail/index">
     <view class="f1">
       <image mode="aspectFit" src="/img/hot.png"></image>
-      <text class="heart">{{item.hot}}</text>
+      <text class="heart">{{item.pageviews}}</text>
     </view>
     <view class="f2">
       <image mode="aspectFit" src="/img/chat.png"></image>
-      <text class="chat">{{item.chat}}</text>
+      <text class="chat">{{item.commentListNum_int}}</text>
     </view>
-    <view class="f3" bindtap="dotZan_fun" data-item="{{item}}">
-      <image mode="aspectFit" src="{{item.isZan ? '/img/zan_active.png' : '/img/zan.png'}}"></image>
-      <text class="zan">{{item.zan}}</text>
+    <view class="f3" catchtap="dotZan_fun" data-item="{{item}}">
+      <image mode="aspectFit" catchtap="dotZan_fun" src="{{item.isZan ? '/img/zan_active.png' : '/img/zan.png'}}"></image>
+      <text class="zan">{{item.dianzanNum_int}}</text>
     </view>
-  </view>
+  </navigator>
 </view>

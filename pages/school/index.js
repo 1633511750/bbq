@@ -15,6 +15,21 @@ Page({
 
   //options(Object)
   onLoad: function (options) {
+    wx.request({
+      url: 'http://159.75.6.154:8080/User/selectedSchool',
+      data: {
+        school: ''
+      },
+      header: { 'content-type': 'application/json' },
+      method: 'GET',
+      dataType: 'json',
+      responseType: 'text',
+      success: (result) => {
+        console.log(result);
+      },
+      fail: () => { },
+      complete: () => { }
+    });
 
   },
   onReady: function () {

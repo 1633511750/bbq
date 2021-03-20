@@ -2,14 +2,16 @@
   <Top school="{{school_str}}"></Top>
   <view class="top" style="top: {{statusBarHeight + 45}}px;">
     <scroll-view show-scrollbar="{{false}}" enhanced scroll-x="true" class="scroll-wrap">
-      <navigator class="navigator" bindtap="titleTap_fun" data-index="{{index}}" wx:for="{{topList_arr}}" wx:key="item">
+      <view class="navigator" bindtap="titleTap_fun" data-index="{{index}}" wx:for="{{topList_arr}}" wx:key="item">
         <text class="{{currentTitle_int === index?'active':''}}">{{item}}</text>
-      </navigator>
+      </view>
     </scroll-view>    
   </view>
   <view class="blank"></view>
 
-  <Item wx:for="{{commentList_arr}}" bind:zanevent="dotZan_fun" data-item="{{item}}" data-index="{{index}}" wx:key="id" item="{{item}}"></Item>  
+  <Item wx:for="{{list_arr}}" bind:zanevent="dotZan_fun" data-item="{{item}}" data-index="{{index}}" wx:key="id" item="{{item}}"></Item>  
+
+  <view class="shadow"></view>
 
   <image class="add" bindtap="showDialog_fun" src="/img/add.png" mode="aspectFit" lazy-load="false" />
     

@@ -17,7 +17,7 @@
     position: absolute;
     left: 30rpx;
     top: 50%;
-    transform: translate(0, -30rpx);
+    transform: translate(0, -50%);
     image {
       width: 30rpx;
       height: 30rpx;
@@ -26,6 +26,15 @@
     }
     .arrow {
       margin-left: 5rpx;
+      vertical-align: middle;
+    }
+    .school {
+      vertical-align: middle;
+      display: inline-block;
+      max-width: 300rpx;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
     }
   }
   .find {
@@ -35,7 +44,7 @@
     position: absolute;
     left: 410rpx;
     top: 50%;
-    transform: translate(0, -28rpx);
+    transform: translate(0, -50%);
     border-radius: (750rpx * 68 / 1070);
     image {
       width: (750rpx * 50 / 1050);
