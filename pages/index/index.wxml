@@ -9,7 +9,16 @@
   </view>
   <view class="blank"></view>
 
-  <Item wx:for="{{list_arr}}" bind:zanevent="dotZan_fun" data-item="{{item}}" data-index="{{index}}" wx:key="id" item="{{item}}"></Item>  
+  <scroll-view
+    class="scroll-view"
+    style="height: {{scrollHeight_flo}}rpx"
+    refresher-triggered="{{isPullDown_bool}}" 
+    scroll-y 
+    refresher-enabled="{{true}}" 
+    bindrefresherrefresh="pullDownRefresh_fun"
+    >
+    <Item wx:for="{{list_arr}}" bind:zanevent="dotZan_fun" data-id="{{item.id}}" wx:key="id" item="{{item}}"></Item>  
+  </scroll-view>
 
   <view class="shadow"></view>
 
@@ -18,17 +27,18 @@
   <view class="dialog-wrap" wx:if="{{showDialog_bool}}">
     <view class="dialog">
       <view class="up clearfix">
-        <view class="headPic" style="background-image: url('https://i04piccdn.sogoucdn.com/0e3e409f0cf25fb3');"></view>
+        <view class="headPic" style="background-image: url({{avatarUrl_str}});"></view>
         <view class="up-right">
-          <text class="name">壹只小坤</text>
-          <image class="reNew" src="/img/reFresh.png" mode="aspectFit"></image>
+          <text class="name">{{nickName_str}}</text>
+          <image bindtap="anonymou_fun" class="reNew" src="/img/reFresh.png" mode="aspectFit"></image>
         </view>
       </view>
       <view class="center">
         <view class="item-wrap" wx:for="{{typeList_arr}}" wx:key="*this">
-          <view bindtap="publish_fun" data-index="{{index}}" class="item">{{item}}</view>
+          <view bindtap="publish_fun" data-item="{{item}}" class="item">{{item}}</view>
         </view>
       </view>
+      <view class="blank"></view>
       <view class="bottom" bindtap="hideDialog_fun">取消</view>
     </view>
   </view>

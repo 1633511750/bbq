@@ -9,7 +9,8 @@
   display: flex;
   background-color: #fff;
   border-top: 1rpx solid var(--colorGray);
-  border-bottom: 1px solid var(--colorGray);
+  border-bottom: 1rpx solid var(--colorGray);
+  margin-bottom: 1rpx;
   position: fixed;
   z-index: 1;
 }

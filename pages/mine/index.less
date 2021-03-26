@@ -1,16 +1,18 @@
+@titleGray: #7f7f7f;
+
 .wrap {
   height: 100vh;
   background-color: var(--colorGray);
   overflow: auto;
   .top {
     margin-top: 15rpx;
-    height: 210rpx;
-    line-height: 210rpx;
+    height: 204rpx;
+    line-height: 204rpx;
     background-color: #fff;
     position: relative;
     .headPic {
       width: 108rpx;
-      height: 108rpx!important;
+      height: 108rpx;
       margin-left: 70rpx;
       vertical-align: middle;
       display: inline-block;
@@ -18,19 +20,42 @@
       background-size: 100% 100%;
     }
     .name {
-      margin-left: 43rpx;
+      position: absolute;
+      left: 210rpx;
+      top: -20rpx;
       font-size: 32rpx;
       vertical-align: middle;
       font-weight: bold;
+      display: inline-block;
+    }
+    .school {
+      position: absolute;
+      left: 210rpx;
+      top: 30rpx;
+      font-size: 28rpx;
+      color: #555;
+    }
+    .right-arrow {
+      float: right;
+      font-size: 50rpx;
+      font-weight: lighter;
+      margin-right: 70rpx;
     }
   }
   .item-wrapper {
-    height: 210rpx;
+    height: 260rpx;
     margin-top: 15rpx;
     background-color: #fff;
+    overflow: hidden;
+    .title {
+      font-size: 26rpx;
+      color: @titleGray;
+      margin-left: 46rpx;
+      margin-top: 25rpx;
+    }
     .item-wrap {
       width: 33.33%;
-      height: 210rpx;
+      height: 208rpx;
       float: left;
       display: flex;
       flex-direction: column;
@@ -55,8 +80,8 @@
         background-color: var(--colorGray);
       }
       .item {
-        font-size: 24rpx;
-        color: #808080;
+        font-size: 28rpx;
+        color: #000;
       }
     }
   }

@@ -3,3 +3,7 @@
   background-color: var(--colorGray);
   overflow: auto;
 }
+.wrap .blank {
+  text-align: center;
+  margin: 100rpx 0;
+}

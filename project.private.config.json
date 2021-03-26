@@ -51,7 +51,7 @@
         {
           "name": "detail",
           "pathName": "pages/detail/index",
-          "query": "",
+          "query": "id=2",
           "scene": null
         },
         {
@@ -105,6 +105,25 @@
         {
           "name": "logodesign",
           "pathName": "pages/logodesign/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "updateMyInfo",
+          "pathName": "pages/updateMyInfo/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "zhuti",
+          "pathName": "pages/zhuti/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "login",
+          "pathName": "pages/login/index",
+          "query": "",
           "scene": null
         }
       ]

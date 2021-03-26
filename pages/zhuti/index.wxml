@@ -1,0 +1,8 @@
+<view class="bg" style="background-color: {{bgColor_str+bgA_str}}">
+  <view class="wrap">
+    <view bindtap="changeColor_fun" style="background-color: {{conColor_str + conA_str}}" data-color="{{item.value}}" class="item" wx:for="{{colorValue_arr}}" wx:key="id">
+      <view class="item-color" style="background-color: {{item.value}}"></view>
+      <view class="item-name">{{item.name}}</view>
+    </view>{{aaa}}
+  </view>
+</view>

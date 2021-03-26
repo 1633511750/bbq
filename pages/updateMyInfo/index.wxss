@@ -1,0 +1,54 @@
+page {
+  background-color: var(--colorGray);
+}
+page .info-wrap {
+  margin-top: 15rpx;
+  height: 385rpx;
+  background-color: #fff;
+}
+page .info-wrap .item1 {
+  height: 164rpx;
+  line-height: 164rpx;
+  position: relative;
+}
+page .info-wrap .item1 .title {
+  font-size: 32rpx;
+  margin-left: 50rpx;
+}
+page .info-wrap .item1 .headPic {
+  width: 108rpx;
+  height: 108rpx;
+  background-size: 100% 100%;
+  border-radius: 20rpx;
+  position: absolute;
+  top: 25rpx;
+  right: 50rpx;
+}
+page .info-wrap .item2,
+page .info-wrap .item3 {
+  height: 110rpx;
+  line-height: 110rpx;
+}
+page .info-wrap .item2 .title,
+page .info-wrap .item3 .title {
+  font-size: 32rpx;
+  left: 50rpx;
+  position: absolute;
+}
+page .info-wrap .item2 .con,
+page .info-wrap .item3 .con {
+  font-size: 32rpx;
+  color: #555;
+  float: right;
+  position: absolute;
+  right: 50rpx;
+}
+page .btn-wrap {
+  margin-top: 15rpx;
+  height: 120rpx;
+  background-color: #fff;
+  font-size: 32rpx;
+  text-align: center;
+  line-height: 120rpx;
+  color: #333;
+}

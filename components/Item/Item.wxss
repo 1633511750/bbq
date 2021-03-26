@@ -3,31 +3,39 @@
   content: '';
   clear: both;
 }
-.comment {
+.wrapper .blank {
+  height: 15rpx;
+  background-color: transparent;
+}
+.wrapper .comment {
   background-color: #fff;
-  margin-top: 21.02803738rpx;
   padding: 28.03738318rpx 35rpx;
 }
-.comment .item .headPic {
+.wrapper .comment .item .headPic {
   width: 82.71028037rpx;
   height: 82.71028037rpx;
   border-radius: 15rpx;
   float: left;
   background-size: 100% 100%;
 }
-.comment .item .info {
+.wrapper .comment .item .info {
   width: calc(100% - 105rpx);
   float: right;
 }
-.comment .item .info .info-top {
-  margin-top: 8rpx;
+.wrapper .comment .item .info .info-top {
+  margin-top: 7rpx;
+  vertical-align: middle;
 }
-.comment .item .info .info-top .name {
+.wrapper .comment .item .info .info-top .name {
+  max-width: 450rpx;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
   font-size: 31.54205607rpx;
   font-weight: bold;
   float: left;
 }
-.comment .item .info .info-top .video {
+.wrapper .comment .item .info .info-top .video {
   padding: 0 15rpx;
   border-radius: 20rpx;
   color: #489CD7;
@@ -35,77 +43,77 @@
   border: 2rpx solid #489CD7;
   font-size: 25.23364486rpx;
 }
-.comment .item .info .info-bottom {
+.wrapper .comment .item .info .info-bottom {
   font-size: 20rpx;
   color: #aaa;
-  margin-top: 5rpx;
+  margin-top: 2rpx;
 }
-.comment .item .info .info-bottom .time {
+.wrapper .comment .item .info .info-bottom .time {
   margin-left: 10rpx;
 }
-.comment .desc {
+.wrapper .comment .desc {
   font-size: 31.54205607rpx;
   margin-top: 20rpx;
 }
-.comment .img {
+.wrapper .comment .img {
   margin-top: 20rpx;
   display: flex;
   justify-content: space-between;
 }
-.comment .img image {
+.wrapper .comment .img image {
   width: 220rpx;
   height: 220rpx;
 }
-.comment .footer {
+.wrapper .comment .footer {
   margin-top: 20rpx;
   padding: 0 30rpx;
   display: flex;
   justify-content: space-between;
   margin-bottom: -20rpx;
 }
-.comment .footer .f1 {
+.wrapper .comment .footer .f1 {
   flex: 1;
   text-align: left;
   margin-bottom: 10rpx;
 }
-.comment .footer .f1 image {
+.wrapper .comment .footer .f1 image {
   width: 42.05607477rpx;
   height: 42.05607477rpx;
   vertical-align: middle;
 }
-.comment .footer .f1 .heart {
+.wrapper .comment .footer .f1 .heart {
   font-size: 25rpx;
   position: relative;
   top: 3rpx;
   margin-left: 10rpx;
   color: #aaa;
 }
-.comment .footer .f2 {
+.wrapper .comment .footer .f2 {
   flex: 1;
   text-align: center;
 }
-.comment .footer .f2 image {
+.wrapper .comment .footer .f2 image {
   width: 39.25233645rpx;
   height: 39.25233645rpx;
   vertical-align: middle;
 }
-.comment .footer .f2 .chat {
+.wrapper .comment .footer .f2 .chat {
   font-size: 25rpx;
   position: relative;
   top: 3rpx;
   margin-left: 10rpx;
   color: #aaa;
 }
-.comment .footer .f3 {
+.wrapper .comment .footer .f3 {
   flex: 1;
   text-align: right;
 }
-.comment .footer .f3 image {
+.wrapper .comment .footer .f3 image {
   width: 38.55140187rpx;
   height: 38.55140187rpx;
   vertical-align: middle;
 }
-.comment .footer .f3 .zan {
+.wrapper .comment .footer .f3 .zan {
   font-size: 25rpx;
   position: relative;
   top: 3rpx;

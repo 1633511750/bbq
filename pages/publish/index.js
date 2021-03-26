@@ -1,4 +1,6 @@
 // pages/publish/index.js
+var app = getApp()
+const { $http } = require('../../utils/util')
 Page({
 
   /**
@@ -9,6 +11,8 @@ Page({
     tempImgSrc_arr: [],
     friendsName_arr: [],// @好友的名字
     text_str: '',//textarea的内容
+    category_str: '',// 帖子分类
+    school_str: ''
   },
 
   keyboardheight_fun: function (e) {
@@ -57,25 +61,74 @@ Page({
   tapAite_fun: function () {
     wx.navigateTo({
       url: '/pages/aite/index',
-      success: (result) => {
-
-      },
-      fail: () => { },
-      complete: () => { }
     });
-
   },
+
+  //textchange
+  textchange_fun(e) {
+    this.setData({
+      text_str: e.detail.value
+    })
+  },
+
+  // 发帖
+  publicArtical_fun() {
+    console.log(this.data.text_str);
+    if (this.data.text_str.trim() === '') {
+      wx.showToast({ title: '请输入内容', icon: 'error' })
+      return
+    }
+    wx.showModal({
+      title: '发帖',
+      content: '是否发表该帖子？',
+      showCancel: true,
+      success: (result) => {
+        if (result.confirm) {
+          $http({
+            url: '/User/publisArticle', method: 'post', data: {
+              category: this.data.category_str,
+              content: this.data.text_str.trim(),
+              school: app.globalData.school_str,
+              location: app.globalData.location_str,
+              isAnonymous: wx.getStorageSync('isAnonymous') ? 1 : 0
+            }
+          }).then(res => {
+            console.log(res);
+            if (res.data.success) {
+              wx.showToast({ title: '发帖成功' })
+              setTimeout(() => {
+                var pages = getCurrentPages()
+                var curPage = pages[pages.length - 1]
+                var url = curPage.route
+                if (url === 'pages/publish/index') {
+                  wx.navigateBack({
+                    delta: 1
+                  });
+                }
+              }, 1500);
+            } else {
+              wx.showToast({ title: '发帖失败', icon: 'error' })
+            }
+          })
+        }
+      },
+    });
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.setData({
+      category_str: options.category,
+      school_str: app.globalData.school_str
+    })
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
   },
 
   /**

@@ -1,10 +1,12 @@
+<view class="wrapper">
+  <view class="blank"></view>
 <view class="comment" item="{{item}}">
-  <navigator hover-class="none" url="/pages/detail/index">
+  <navigator hover-class="none" url="/pages/detail/index?id={{item.id}}&content={{item.content}}&category={{item.category}}&date={{item.date_str}}&time={{item.time_str}}&pageviews={{item.pageviews}}&commentListNum={{item.commentListNum_int}}&dianzanNum={{item.dianzanNum_int}}">
     <view class="item clearfix">
-      <view class="headPic" style="background-image: url({{item.headPic}})"></view>
+      <view class="headPic" style="background-image: url({{avatarUrl_str}})"></view>
       <view class="info">
         <view class="info-top clearfix">
-          <text class="name">{{item.content}}</text>
+          <text class="name">{{item.userList[0].name}}</text>
           <text class="video">{{item.category}}</text>
         </view>
         <view class="info-bottom">
@@ -32,4 +34,5 @@
       <text class="zan">{{item.dianzanNum_int}}</text>
     </view>
   </navigator>
+</view>
 </view>

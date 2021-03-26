@@ -29,11 +29,12 @@
   color: #ff7e17;
 }
 .index-wrap .blank {
-  height: 105rpx;
+  height: 104rpx;
 }
 .index-wrap .shadow {
   width: 100%;
-  box-shadow: 0 0 5px 3px #ccc9;
+  height: 0;
+  box-shadow: 0 0 10px 3px #ccc9;
   position: fixed;
   left: 0;
   bottom: 0;
@@ -115,6 +116,10 @@
   border: 1px solid #489CD7;
   color: #489CD7;
   border-radius: 30rpx;
+}
+.index-wrap .dialog-wrap .dialog .blank {
+  height: 15rpx;
+  background-color: #ddd;
 }
 .index-wrap .dialog-wrap .dialog .bottom {
   color: #aaa;

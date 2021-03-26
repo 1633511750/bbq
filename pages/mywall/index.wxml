@@ -1,3 +1,6 @@
 <view class="wrap">
-  <Item wx:for="{{commentList_arr}}" item="{{item}}"></Item>
+  <view wx:if="{{hasArtical_bool}}">
+    <Item wx:for="{{commentList_arr}}" item="{{item}}"></Item>
+  </view>
+  <view wx:else class="blank">您的帖子为空！</view>
 </view>

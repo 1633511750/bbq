@@ -1,69 +1,63 @@
 // pages/mywall/index.js
+const { $http } = require('../../utils/util')
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    commentList_arr: [{
-      id: 1,
-      name: '壹只小坤',
-      date: '01-11',
-      time: '17:34',
-      content: '安抚哈尔涂鸦而分公司德国汉莎到付哈人员阿桑的歌',
-      headPic: 'https://i04piccdn.sogoucdn.com/0e3e409f0cf25fb3',
-      desc: '安抚哈尔涂鸦而分公司德国汉莎到付哈人员阿桑的歌',
-      img: [
-        'https://i02piccdn.sogoucdn.com/fdd1e2dadbd01c8a',
-        'https://i04piccdn.sogoucdn.com/af32dcada2c5a4a9',
-        'https://i03piccdn.sogoucdn.com/089782feb3e09175'
-      ],
-      chat: 3,
-      hot: 33,
-      zan: 3433,
-      type: '游戏'
-    }, {
-      id: 2,
-      name: '壹只小坤',
-      date: '01-11',
-      time: '17:34',
-      content: '安抚哈尔涂鸦而分公司德国汉莎到付哈人员阿桑的歌',
-      headPic: 'https://i04piccdn.sogoucdn.com/0e3e409f0cf25fb3',
-      desc: '安抚哈尔涂鸦而分公司德国汉莎到付哈人员阿桑的歌',
-      img: [
-        'https://i02piccdn.sogoucdn.com/fdd1e2dadbd01c8a',
-        'https://i04piccdn.sogoucdn.com/af32dcada2c5a4a9',
-        'https://i03piccdn.sogoucdn.com/089782feb3e09175'
-      ],
-      chat: 32,
-      hot: 33,
-      zan: 34,
-      type: '捞人'
-    }, {
-      id: 3,
-      name: '壹只小坤',
-      date: '01-11',
-      time: '17:34',
-      content: '安抚哈尔涂鸦而分公司德国汉莎到付哈人员阿桑的歌',
-      headPic: 'https://i04piccdn.sogoucdn.com/0e3e409f0cf25fb3',
-      desc: '安抚哈尔涂鸦而分公司德国汉莎到付哈人员阿桑的歌',
-      img: [
-        'https://i02piccdn.sogoucdn.com/fdd1e2dadbd01c8a',
-        'https://i04piccdn.sogoucdn.com/af32dcada2c5a4a9',
-        'https://i03piccdn.sogoucdn.com/089782feb3e09175'
-      ],
-      chat: 32,
-      hot: 33,
-      zan: 34,
-      type: '找同伴'
-    }],
+    hasArtical_bool: true,
+    commentList_arr: []
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    // $http({ url: '/Article/getDianzanCountByArticId', data: { articleId: 4 } })
+    //   .then(res => {
+    //     console.log(res);
+    //   })
+  },
 
+  getAllMyArtical_fun() {
+    $http({ url: '/Article/getArticlesByFromUid' })
+      .then((res) => {
+        console.log(res);
+        if (res.data.success) {
+          var list_arr = res.data.data.articleList.reverse()
+          list_arr.forEach((item) => {
+            var temp_arr = item.createTime.split('T')
+            var t = temp_arr[0].split('-')
+            item.date_str = t[1] + '-' + t[2]
+
+            t = temp_arr[1].split(':')
+            item.time_str = t[0] + ':' + t[1]
+
+            item.commentListNum_int = item.commentList.length
+
+            if (item.dianzanUids) {
+              item.dianzanNum_int = item.dianzanUids.split(',').length
+            } else {
+              item.dianzanNum_int = 0
+            }
+          })
+          this.setData({
+            commentList_arr: list_arr,
+            hasArtical_bool: true
+          })
+        } else if (res.data.code === 205) {
+          // wx.showToast({ title: '帖子为空' });
+          this.setData({
+            hasArtical_bool: false
+          })
+        } else {
+          wx.showToast({
+            title: '获取失败',
+            icon: 'error',
+          });
+        }
+      })
   },
 
   /**
@@ -77,7 +71,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.getAllMyArtical_fun()
   },
 
   /**

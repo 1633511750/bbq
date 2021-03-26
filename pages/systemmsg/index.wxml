@@ -1,6 +1,14 @@
 <view class="wrap">
   <view class="item">
-    <image src="/img"/>
+    <image mode="aspectFit" src="/img/bell.png"/>
+    <view class="title">推送消息</view>
+    <view class="date">2020-12-1</view>
+    <view class="con">消息内容</view>
   </view>
-  <view class="item"></view>
+  <view class="item">
+    <image mode="aspectFit" src="/img/tongzhi.png"/>
+    <view class="title">系统通知</view>
+    <view class="date">2020-12-1</view>
+    <view class="con">你有XXXX消息</view>
+  </view>
 </view>

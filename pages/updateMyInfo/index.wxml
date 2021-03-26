@@ -1,0 +1,15 @@
+<view class="info-wrap">
+  <view class="item1">
+    <text class="title">头像</text>
+    <view class="headPic" style="background-image: url('https://i04piccdn.sogoucdn.com/0e3e409f0cf25fb3');"></view>
+  </view>
+  <view class="item2">
+    <text class="title">昵称</text>
+    <text class="con">一直小坤</text>
+  </view>
+  <view class="item3">
+    <text class="title">学校</text>
+    <text class="con">山西传媒学院</text>
+  </view>
+</view>
+<navigator open-type="navigateBack" class="btn-wrap">确认修改</navigator>

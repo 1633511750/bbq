@@ -1,0 +1,10 @@
+@url=http://159.75.6.154:8080
+@json=Content-Type: application/json
+
+post {{url}}/User/register
+'content-type': 'application/x-www-form-urlencoded'
+
+{
+   "wxCode": "0819oe0w3mct3W2Ch74w3bNW9619oe0H",
+    "verificationCode": "XVJAIV"
+}

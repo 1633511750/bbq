@@ -16,6 +16,9 @@
     "pages/jobdetail/index",
     "pages/mine/index",
     "pages/logodesign/index",
+    "pages/updateMyInfo/index",
+    "pages/zhuti/index",
+    "pages/login/index",
     "pages/test/index"
   ],
   "window": {

@@ -1,21 +1,21 @@
 <view class="wrap">
   <view class="blank"></view>
-  <view class="comment" wx:for="{{commentList_arr}}" wx:key="id">
+  <view class="comment">
     <view class="item clearfix">
-      <view class="headPic" style="background-image: url({{item.headPic}})"></view>
+      <view class="headPic" style="background-image: url({{avatarUrl_str}})"></view>
       <view class="info">
         <view class="info-top clearfix">
-          <text class="name">{{item.name}}</text>
+          <text class="name">{{content_str}}</text>
           <image src="/img/dot.png" mode="aspectFit" class="dot" bindtap="showActionDialog_fun"></image>
-          <text class="video">{{item.type}}</text>
+          <text class="video">{{category_str}}</text>
         </view>
         <view class="info-bottom">
-          <text class="date">{{item.date}}</text>
-          <text class="time">{{item.time}}</text>
+          <text class="date">{{date_str}}</text>
+          <text class="time">{{time_str}}</text>
         </view>
       </view>
     </view>
-    <view class="desc">{{item.desc}}</view>
+    <view class="desc">{{content_str}}</view>
     <view class="img">
       <image wx:for="{{item.img}}" bindtap="previewImage_fun" data-urls="{{item.img}}" data-cururl="{{item1}}" wx:for-item="item1" wx:key="src" src="{{item1}}"></image>
     </view>
@@ -25,43 +25,28 @@
     <view class="footer">
       <view class="f1" bindtap="showDialog_fun">
         <image mode="aspectFit" src="/img/zhuanfa.png"></image>
-        <text class="heart">{{commentList_arr[0].hot}}</text>
+        <text class="heart">{{pageviews_str}}</text>
       </view>
       <view class="f2">
         <image mode="aspectFit" src="/img/chat.png"></image>
-        <text class="chat">{{commentList_arr[0].chat}}</text>
+        <text class="chat">{{commentListNum_str}}</text>
       </view>
       <view class="f3" bindtap="dotZan_fun">
         <image mode="aspectFit" src="{{commentList_arr[0].isZan ? '/img/zan_active.png' : '/img/zan.png'}}"></image>
-        <text class="zan">{{commentList_arr[0].zan}}</text>
+        <text class="zan">{{dianzanNum_str}}</text>
       </view>
     </view>
-    <view class="pl clearfix">
-      <view class="headPic" style="background-image: url({{commentList_arr[0].headPic}});"></view>
+    <view class="pl clearfix" wx:for="{{reply_arr}}" wx:key="id">
+      <view class="headPic" style="background-image: url({{avatarUrl_str}});"></view>
       <view class="info-wrap">
         <view class="info clearfix">
-          <text class="name">{{commentList_arr[0].name}}</text>
+          <text class="name">fromUid:{{item.fromUid}}</text>
           <image mode="aspectFit" src="/img/zan_active.png"/>
           <text class="heart-num">30</text>
         </view>
-        <view class="pl-con">安抚哈尔涂鸦而分公司德国汉莎到付哈人员是的噶时光</view>
+        <view class="pl-con">{{item.content}}</view>
         <view class="pl-foot">
-          <text class="date">01-11  17:34</text>
-          <text class="reply">2回复</text>
-        </view>
-      </view>
-    </view>
-    <view class="pl clearfix">
-      <view class="headPic" style="background-image: url({{commentList_arr[0].headPic}});"></view>
-      <view class="info-wrap">
-        <view class="info clearfix">
-          <text class="name">{{commentList_arr[0].name}}</text>
-          <image mode="aspectFit" src="/img/zan_active.png"/>
-          <text class="heart-num">30</text>
-        </view>
-        <view class="pl-con">安抚哈尔涂鸦而分公司德国汉莎到付哈人员是的噶时光</view>
-        <view class="pl-foot">
-          <text class="date">01-11  17:34</text>
+          <text class="date">{{item.date_str}}  {{item.time_str}}</text>
           <text class="reply">2回复</text>
         </view>
       </view>

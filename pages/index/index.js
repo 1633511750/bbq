@@ -1,7 +1,12 @@
 //Page Object
+const { $http, aaa } = require('../../utils/util')
 var app = getApp()
 Page({
   data: {
+
+    aaa,
+    nickName_str: '',
+    avatarUrl_str: '',
     school_str: app.globalData.school_str,
     // 标题栏
     statusBarHeight: app.globalData.statusBarHeight,
@@ -61,6 +66,8 @@ Page({
     //   zan: 34,
     //   type: '找同伴'
     // }],
+    scrollHeight_flo: '',
+    isPullDown_bool: false,  // 是否已下拉
     showDialog_bool: false,
     topList_arr: ['全部', '表白', '找对象', '找同伴', '感情', '二手交易', '爱豆', '有偿求助', '失物招领', '吐槽', '游戏', '曝光', '问答', '靓仔日常', '捞人', '其他'],
     typeList_arr: ['表白', '找对象', '找同伴', '感情', '二手交易', '爱豆', '有偿求助', '失物招领', '吐槽', '游戏', '曝光', '问答', '靓仔日常', '捞人', '其他']
@@ -80,22 +87,29 @@ Page({
       list_arr: arr_arr
     })
   },
+
+  // 点击了加号
   showDialog_fun() {
     wx.hideTabBar()
+
+    var isAnonymous = wx.getStorageSync('isAnonymous') || false
     this.setData({
-      showDialog_bool: true
+      showDialog_bool: true,
+      nickName_str: isAnonymous ? '匿名' : app.globalData.nickName_str,
+      avatarUrl_str: isAnonymous ? app.globalData.anonymousAvatarUrl_str : app.globalData.avatarUrl_str
     })
   },
   // 点击了标签
   publish_fun(e) {
-    const { index } = e.currentTarget.dataset
+    const { item } = e.currentTarget.dataset
     this.setData({
       showDialog_bool: false
     })
     wx.navigateTo({
-      url: '/pages/publish/index'
+      url: '/pages/publish/index?category=' + item
     });
   },
+
   // 隐藏弹框
   hideDialog_fun() {
     this.setData({
@@ -106,75 +120,66 @@ Page({
   },
   // 触发点赞
   dotZan_fun(e) {
-    var item = e.currentTarget.dataset.item
-    var index = e.currentTarget.dataset.index
-    var arr = [...this.data.commentList_arr]
-    if (item.isZan === true) {
-      item.isZan = false
-      item.zan--
-      wx.showToast({ title: '已取消点赞', icon: 'error' })
-    } else {
-      item.isZan = true
-      item.zan++
-      wx.showToast({ title: '点赞成功' })
-    }
-    arr[index] = item
-    this.setData({
-      commentList_arr: arr
+    var id = e.currentTarget.dataset.id
+    // $http({
+    //   url: '/Article/updateDianzanToArtic', method: 'post', data: {
+    //     articId: id
+    //   }
+    // }).then(res => {
+    //   console.log(res);
+    // })
+    // $http({
+    //   hasLimit: true, url: '/Article/getDianzanCountByArticId', method: 'get', data: {
+    //     articleId: id
+    //   }
+    // })
+    //   .then(res => {
+    //     console.log(res);
+    //   })
+
+    $http({
+      url: '/Answer/getAnswersByCommentId', data: {
+        commentId: id
+      }
+    }).then(res => {
+      console.log(res);
     })
+
+
+    // var item = e.currentTarget.dataset.item
+    // var index = e.currentTarget.dataset.index
+    // var arr = [...this.data.commentList_arr]
+    // if (item.isZan === true) {
+    //   item.isZan = false
+    //   item.zan--
+    //   wx.showToast({ title: '已取消点赞', icon: 'error' })
+    // } else {
+    //   item.isZan = true
+    //   item.zan++
+    //   wx.showToast({ title: '点赞成功' })
+    // }
+    // arr[index] = item
+    // this.setData({
+    //   commentList_arr: arr
+    // })
   },
 
   //options(Object)
   onLoad: function (options) {
-    // wx.login({
-    //   timeout: 10000,
-    //   success: (result) => {
-    //     wx.request({
-    //       url: 'http://159.75.6.154:8080/User/register',
-    //       data: {
-    //         name: '..',
-    //         password: '123456',
-    //         school: 'XX学校',
-    //         phoneNumber: 18303445659,
-    //         wxCode: result.code
-    //       },
-    //       header: { 'content-type': 'application/json' },
-    //       method: 'post',
-    //       dataType: 'json',
-    //       responseType: 'text',
-    //       success: (res) => {
-    //         console.log(res);
-    //       },
-    //       fail: () => { },
-    //       complete: () => { }
-    //     });
+  },
 
-    //   },
-    //   fail: () => { },
-    //   complete: () => { }
-    // });
-    wx.showLoading({
-      title: '加载中...',
-      mask: true,
-      success: (result) => {
-      },
-      fail: () => { },
-      complete: () => { }
-    });
-
-    wx.request({
-      url: 'http://159.75.6.154:8080/Article/getArticleByKeywords',
-      data: {
-        keywords: ''
-      },
-      header: { 'content-type': 'application/json' },
-      method: 'GET',
-      dataType: 'json',
-      responseType: 'text',
-      success: (result) => {
-        const { data } = result
-        let articleList = data.data.articleList
-        console.log(articleList[0]);
+  getAllArticle_fun({ callback, isShowSuccess } = {}) {
+    // this.setData({
+    //   list_arr: this.data.commentList_arr
+    // })
+    // callback && callback()
+    // return
+    $http({ url: '/Article/getArticleByKeywords', data: { keywords: '' }, complete: () => { callback && callback() } }, true)
+      .then((res) => {
+        const { data } = res
+        console.log(res);
+        let articleList = data.data.articleList.reverse()
+        console.log(articleList);
         articleList.forEach(item => {
           var temp_arr = item.createTime.split('T')[0].split('-')
           item.date_str = temp_arr[1] + '-' + temp_arr[2]
@@ -184,7 +189,11 @@ Page({
 
           item.commentListNum_int = item.commentList.length
 
-          item.dianzanNum_int = item.dianzanUids.split(',').length
+          if (item.dianzanUids) {
+            item.dianzanNum_int = item.dianzanUids.split(',').length
+          } else {
+            item.dianzanNum_int = 0
+          }
         })
         var arr_arr = articleList.filter(item => {
           if (this.data.currentTitle_int === 0) {
@@ -197,21 +206,61 @@ Page({
           commentList_arr: articleList,
           list_arr: arr_arr
         })
-      },
-      fail: () => {
+        if (isShowSuccess) {
+          wx.showToast({
+            title: '刷新成功',
+            icon: 'success',
+          });
+        }
+      }).catch((err) => {
+        console.log(err);
         wx.showToast({
-          title: '获取失败',
+          title: '刷新失败',
           icon: 'error',
         });
-      },
-      complete: () => {
-        wx.hideLoading();
-      }
-    });
+      })
   },
+
+  // 匿名切换
+  anonymou_fun() {
+    var isAnonymous = wx.getStorageSync('isAnonymous') || false
+    isAnonymous = !isAnonymous
+    wx.setStorageSync('isAnonymous', isAnonymous)
+
+    this.setData({
+      nickName_str: isAnonymous ? '匿名' : app.globalData.nickName_str,
+      avatarUrl_str: isAnonymous ? app.globalData.anonymousAvatarUrl_str : app.globalData.avatarUrl_str
+    })
+  },
+
+  // 计算scroll-view的高度
+  scrollHeight_fun() {
+    let windowHeight = wx.getSystemInfoSync().windowHeight // 屏幕的高度
+    let windowWidth = wx.getSystemInfoSync().windowWidth // 屏幕的宽度
+    this.setData({
+      scrollHeight_flo: (windowHeight - this.data.statusBarHeight) * 750 / windowWidth - 194
+      // scrollHeight_flo: 1000
+    })
+    console.log(this.data.scrollHeight_flo);
+  },
+
+  // 下拉刷新
+  pullDownRefresh_fun() {
+    this.getAllArticle_fun({
+      callback: () => {
+        this.setData({
+          isPullDown_bool: false
+        })
+        wx.showToast({ title: '刷新成功' })
+      }
+    })
+  },
+
   onReady: function () {
+    this.scrollHeight_fun()
   },
   onShow: function () {
+    this.getAllArticle_fun()
     this.setData({
       school_str: app.globalData.school_str
     })
@@ -225,7 +274,11 @@ Page({
 
   },
   onPullDownRefresh: function () {
-
+    // this.getAllArticle_fun({
+    //   callback: () => {
+    //     wx.stopPullDownRefresh()
+    //   }, isShowSuccess: true
+    // })
   },
   onReachBottom: function () {
 

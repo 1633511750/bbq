@@ -1,9 +1,12 @@
 <view class="wrap">
-  <view class="top">
+  <navigator url="/pages/updateMyInfo/index" class="top">
     <view class="headPic" style="background-image: url('https://i04piccdn.sogoucdn.com/0e3e409f0cf25fb3');"></view>
-    <text class="name">椅子小坤</text>
-  </view>
+    <view class="name">椅子小坤</view>
+    <view class="school">山西传媒学院</view>
+    <text class="right-arrow">></text>
+  </navigator>
   <view class="item-wrapper">
+    <view class="title">表白墙</view>
     <navigator url="/pages/mywall/index" class="item-wrap">
       <image src="/img/wall_article.png"/>
       <text class="item">墙文</text>
@@ -18,19 +21,25 @@
     </navigator>
   </view>
   <view class="item-wrapper">
-    <view class="item-wrap">
-      <image src="/img/msg.png"/>
-      <text class="item">消息</text>
-    </view>
-    <navigator url="/pages/myservice/index" class="item-wrap">
-      <image src="/img/service.png"/>
-      <text class="item">客服</text>
+  <view class="title">创业街</view>
+    <navigator open-type="switchTab" url="/pages/job/index" class="item-wrap">
+      <image src="/img/shop.png"/>
+      <text class="item">店铺</text>
     </navigator>
   </view>
   <view class="item-wrapper">
-    <view class="item-wrap">
-      <image src="/img/shop.png"/>
-      <text class="item">店铺</text>
-    </view>
+  <view class="title">系统</view>
+    <navigator url="/pages/systemmsg/index" class="item-wrap">
+      <image src="/img/msg.png"/>
+      <text class="item">消息</text>
+    </navigator>
+    <navigator url="/pages/myservice/index" class="item-wrap">
+      <image src="/img/service.png"/>
+      <text class="item">帮助与反馈</text>
+    </navigator>
+    <navigator url="/pages/zhuti/index" class="item-wrap">
+      <image src="/img/zhuti.png"/>
+      <text class="item">主题</text>
+    </navigator>
   </view>
 </view>

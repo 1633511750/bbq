@@ -1,3 +1,5 @@
+const { $http } = require('./utils/util')
+
 App({
 
   /**
@@ -18,11 +20,84 @@ App({
         console.log(err);
       }
     })
+
+    // 读取用户信息
+    this.globalData.avatarUrl_str = wx.getStorageSync('avatarUrl')
+    this.globalData.nickName_str = wx.getStorageSync('nickName')
+    this.globalData.country_str = wx.getStorageSync('country')
+    this.globalData.province_str = wx.getStorageSync('province')
+    this.globalData.city_str = wx.getStorageSync('city')
+
+    this.globalData.bgColor_str = wx.getStorageSync('bgColor') || '#fff'  // 主题颜色
+
+    // isAnonymous 是否匿名
+
+    // 管理员注册的账号:
+    // name: 'coldice',
+    // password: 'abcdefg123',
+    // school: '山西大学',
+    // phoneNumber: '18000000000'
+    // JSESSIONID=FB550FDA9A5B9763F2ED87D4E9DC691E; Path=/; HttpOnly
+
+    $http({
+      hasLimit: true, url: '/User/selectedSchool', method: 'get', data: {
+        school: '山西传媒学院'
+      }
+    })
+      .then(res => {
+        console.log(res.data.data);
+      })
+
+    // wx.request({
+    //   url: 'http://159.75.6.154:8080/Admin/getNewUsersByDate',
+    //   data: { date: '2021/3/24' },
+    //   header: { 'content-type': 'application/json', 'cookie': 'JSESSIONID=FB550FDA9A5B9763F2ED87D4E9DC691E; Path=/; HttpOnly' },
+    //   method: 'GET',
+    //   dataType: 'json',
+    //   responseType: 'text',
+    //   success: (result) => {
+    //     console.log(result);
+    //   },
+    //   fail: () => { },
+    //   complete: () => { }
+    // });
+
+
+    // $http({ url: '/User/complain', method: 'post', data: { articleId: 4, category: '内容不实', content: '测试' } })
+    //   .then(res => {
+    //     console.log(res);
+    //   })
   },
 
   globalData: {
     statusBarHeight: wx.getSystemInfoSync()['statusBarHeight'],//获取状态栏高度
-    school_str: '山西传媒学院'
+
+    school_str: '山西传媒学院',
+    location: '太原',
+    avatarUrl_str: '',  // 头像
+    nickName_str: '',   // 昵称
+    country_str: '',    // 国家
+    province_str: '',   // 省份
+    city_str: '',       // 城市
+    anonymousAvatarUrl_str: '/img/mine.png', // 匿名头像
+
+    bgColor_str: '',  // 主题颜色
+    bgA_str: 'aa',
+    conColor_str: '#ffffff',
+    conA_str: '33'
+  },
+
+  // 读取主题颜色
+  getColor_fun(self) {
+    var bgColor_str = wx.getStorageSync('bgColor') || ''
+    self.setData({
+      bgColor_str: bgColor_str,
+      bgA_str: this.globalData.bgA_str,
+      conColor_str: this.globalData.conColor_str,
+      conA_str: this.globalData.conA_str
+    })
+
+    wx.setNavigationBarColor({ "frontColor": '#ffffff', 'backgroundColor': bgColor_str })
   },
 
   /**
@@ -44,5 +119,5 @@ App({
    */
   onError: function (msg) {
 
-  }
+  },
 })
