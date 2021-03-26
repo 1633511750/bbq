@@ -34,15 +34,14 @@ Page({
     //   type: '游戏'
     // }],
 
-    avatarUrl_str: app.globalData.avatarUrl_str,
-
-    commentList_arr: [],
     showDialog_bool: false,
     showPingLun_bool: false,
     keyHeight_int: 0,
     replyHeight_flo: 160,
     // item
     id_str: '',
+    name_str: '',
+    avatarUrl_str: '',
     category_str: '',
     commentListNum_str: '',
     content_str: '',
@@ -51,27 +50,45 @@ Page({
     pageviews_str: '',
     time_str: '',
     //回复数据
-    reply_arr: []
+    reply_arr: [],
+    isMy_bool: false
   },
 
   showActionDialog_fun() {
-    wx.showActionSheet({
-      itemList: ['举报', '转发', '删除'],
-      success: (result) => {
-        switch (result.tapIndex) {
-          case 0:
-            wx.navigateTo({
-              url: '/pages/jubao/index?id=' + this.data.id_str,
-            });
-            break
-          case 1:
-            break
-          case 2:
-            this.deleteArtical_fun()
-            break
-        }
-      },
-    });
+    if (this.data.isMy_bool === 'true') {
+      wx.showActionSheet({
+        itemList: ['举报', '转发', '删除'],
+        success: (result) => {
+          switch (result.tapIndex) {
+            case 0:
+              wx.navigateTo({
+                url: '/pages/jubao/index?id=' + this.data.id_str,
+              });
+              break
+            case 1:
+              break
+            case 2:
+              this.deleteArtical_fun()
+              break
+          }
+        },
+      });
+    } else {
+      wx.showActionSheet({
+        itemList: ['举报', '转发'],
+        success: (result) => {
+          switch (result.tapIndex) {
+            case 0:
+              wx.navigateTo({
+                url: '/pages/jubao/index?id=' + this.data.id_str,
+              });
+              break
+            case 1:
+              break
+          }
+        },
+      });
+    }
   },
 
   // 隐藏分享弹窗
@@ -184,7 +201,10 @@ Page({
       date_str: options.date,
       dianzanNum_str: options.dianzanNum,
       pageviews_str: options.pageviews,
-      time_str: options.time
+      time_str: options.time,
+      name_str: options.name,
+      avatarUrl_str: options.avatarUrl,
+      isMy_bool: options.isMy
     })
     this.getReply_fun(this.data.id_str - 0)
   },
@@ -251,6 +271,8 @@ Page({
         console.log(this.data.reply_arr);
       })
   },
+
+  // 分享功能
 
   /**
    * 生命周期函数--监听页面初次渲染完成

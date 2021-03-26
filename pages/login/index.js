@@ -41,17 +41,18 @@ Page({
       city_str: app.globalData.city_str
     })
     var userInfo_o = {
-      avatarUrl_str: userInfo.avatarUrl_str,
-      nickName_str: userInfo.avatarUrl_str,
-      country_str: userInfo.country_str,
-      province_str: userInfo.province_str,
-      city_str: userInfo.city_str
+      avatarUrl_str: userInfo.avatarUrl,
+      nickName_str: userInfo.avatarUrl,
+      country_str: userInfo.country,
+      province_str: userInfo.province,
+      city_str: userInfo.city
     }
     wx.setStorageSync('avatarUrl', userInfo.avatarUrl);
     wx.setStorageSync('nickName', userInfo.nickName);
     wx.setStorageSync('country', userInfo.country);
     wx.setStorageSync('province', userInfo.province);
     wx.setStorageSync('city', userInfo.city);
+    console.log(userInfo_o);
 
     this.register_fun(() => {
       setTimeout(() => {

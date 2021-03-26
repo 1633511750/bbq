@@ -17,7 +17,7 @@
     refresher-enabled="{{true}}" 
     bindrefresherrefresh="pullDownRefresh_fun"
     >
-    <Item wx:for="{{list_arr}}" bind:zanevent="dotZan_fun" data-id="{{item.id}}" wx:key="id" item="{{item}}"></Item>  
+    <Item wx:for="{{list_arr}}" bind:zanevent="dotZan_fun" data-id="{{item.id}}" wx:key="id" item="{{item}}" isMy="{{false}}"></Item>
   </scroll-view>
 
   <view class="shadow"></view>

@@ -1,18 +1,36 @@
 // pages/systemmsg/index.js
+const { $http } = require('../../utils/util')
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    msg_arr: []
+  },
 
+  getMsg() {
+    $http({
+      hasLimit: true, url: '/PrivateLetter/readPrivateLetters', method: 'get', data: {
+      }
+    })
+      .then(res => {
+        var list_arr = res.data.data.privateLetterList
+        list_arr.forEach(item => {
+          item.date_str = item.createTime.split('T')[0]
+        })
+        this.setData({
+          msg_arr: list_arr
+        })
+        console.log(this.data.msg_arr);
+      })
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.getMsg()
   },
 
   /**

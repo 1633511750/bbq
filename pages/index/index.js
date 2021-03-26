@@ -194,6 +194,14 @@ Page({
           } else {
             item.dianzanNum_int = 0
           }
+
+          if (item.isAnonymous) {
+            item.name_str = '匿名'
+            item.avatarUrl_str = app.globalData.anonymousAvatarUrl_str
+          } else {
+            item.name_str = item.userList[0].name
+            item.avatarUrl_str = app.globalData.avatarUrl_str
+          }
         })
         var arr_arr = articleList.filter(item => {
           if (this.data.currentTitle_int === 0) {

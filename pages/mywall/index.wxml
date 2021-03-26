@@ -1,6 +1,6 @@
 <view class="wrap">
   <view wx:if="{{hasArtical_bool}}">
-    <Item wx:for="{{commentList_arr}}" item="{{item}}"></Item>
+    <Item wx:for="{{commentList_arr}}" wx:key="id" item="{{item}}" isMy="{{true}}"></Item>
   </view>
   <view wx:else class="blank">您的帖子为空！</view>
 </view>

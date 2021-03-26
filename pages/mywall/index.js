@@ -1,5 +1,6 @@
 // pages/mywall/index.js
 const { $http } = require('../../utils/util')
+var app = getApp()
 Page({
 
   /**
@@ -40,6 +41,14 @@ Page({
               item.dianzanNum_int = item.dianzanUids.split(',').length
             } else {
               item.dianzanNum_int = 0
+            }
+
+            if (item.isAnonymous) {
+              item.name_str = '匿名'
+              item.avatarUrl_str = app.globalData.anonymousAvatarUrl_str
+            } else {
+              item.name_str = app.globalData.nickName_str
+              item.avatarUrl_str = app.globalData.avatarUrl_str
             }
           })
           this.setData({

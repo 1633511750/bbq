@@ -9,6 +9,9 @@ Component({
     item: {
       type: Object,
       default: {}
+    },
+    isMy: {
+      type: Boolean
     }
   },
 

@@ -5,7 +5,7 @@
       <view class="headPic" style="background-image: url({{avatarUrl_str}})"></view>
       <view class="info">
         <view class="info-top clearfix">
-          <text class="name">{{content_str}}</text>
+          <text class="name">{{name_str}}</text>
           <image src="/img/dot.png" mode="aspectFit" class="dot" bindtap="showActionDialog_fun"></image>
           <text class="video">{{category_str}}</text>
         </view>
@@ -36,21 +36,24 @@
         <text class="zan">{{dianzanNum_str}}</text>
       </view>
     </view>
-    <view class="pl clearfix" wx:for="{{reply_arr}}" wx:key="id">
-      <view class="headPic" style="background-image: url({{avatarUrl_str}});"></view>
-      <view class="info-wrap">
-        <view class="info clearfix">
-          <text class="name">fromUid:{{item.fromUid}}</text>
-          <image mode="aspectFit" src="/img/zan_active.png"/>
-          <text class="heart-num">30</text>
-        </view>
-        <view class="pl-con">{{item.content}}</view>
-        <view class="pl-foot">
-          <text class="date">{{item.date_str}}  {{item.time_str}}</text>
-          <text class="reply">2回复</text>
+    <view wx:if="{{reply_arr.length > 0}}">
+      <view class="pl clearfix" wx:for="{{reply_arr}}" wx:key="id">
+        <view class="headPic" style="background-image: url({{avatarUrl_str}});"></view>
+        <view class="info-wrap">
+          <view class="info clearfix">
+            <text class="name">fromUid:{{item.fromUid}}</text>
+            <image mode="aspectFit" src="/img/zan_active.png"/>
+            <text class="heart-num">30</text>
+          </view>
+          <view class="pl-con">{{item.content}}</view>
+          <view class="pl-foot">
+            <text class="date">{{item.date_str}}  {{item.time_str}}</text>
+            <text class="reply">2回复</text>
+          </view>
         </view>
       </view>
     </view>
+    <view wx:else class="no-reply">没有评论</view>
   </view>
 
   <view class="write-pl">
@@ -97,4 +100,3 @@
     </view>
   </view>
 </view>
-  

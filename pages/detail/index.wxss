@@ -73,7 +73,7 @@
   border-top-left-radius: 25rpx;
   border-top-right-radius: 25rpx;
   background-color: #fff;
-  padding-bottom: 150rpx;
+  padding-bottom: 50rpx;
 }
 .wrap .do .footer {
   height: 80rpx;
@@ -208,6 +208,11 @@
   font-size: 24rpx;
   border-radius: 17rpx;
   background-color: var(--colorGray);
+}
+.wrap .do .no-reply {
+  text-align: center;
+  margin-top: 20rpx;
+  color: #666;
 }
 .wrap .write-pl {
   position: fixed;
