@@ -4,30 +4,46 @@
   overflow: auto;
 }
 .wrap .comment {
-  border-radius: 25rpx;
   background-color: #fff;
-  margin-top: 21.02803738rpx;
-  padding: 28.03738318rpx 35rpx;
+  width: 718rpx;
+  margin-left: 16rpx;
+  margin-top: 16rpx;
+  margin-bottom: 16rpx;
+  padding: 18rpx 34rpx 32rpx;
+  border-radius: 10rpx;
+  position: relative;
+  box-shadow: 0 0 10rpx 0 #F2F2F2;
 }
 .wrap .comment .item .headPic {
-  width: 82.71028037rpx;
-  height: 82.71028037rpx;
-  border-radius: 15rpx;
-  float: left;
+  width: 82rpx;
+  height: 82rpx;
+  border-radius: 41rpx;
   background-size: 100% 100%;
 }
 .wrap .comment .item .info {
   width: calc(100% - 105rpx);
   float: right;
 }
-.wrap .comment .item .info .info-top {
-  margin-top: 7rpx;
-  vertical-align: middle;
-}
 .wrap .comment .item .info .info-top .name {
-  font-size: 31.54205607rpx;
+  max-width: 450rpx;
+  height: 56rpx;
+  line-height: 56rpx;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-size: 26rpx;
   font-weight: bold;
-  float: left;
+  color: #666;
+  position: absolute;
+  top: 18rpx;
+  left: 130rpx;
+}
+.wrap .comment .item .info .info-top .name image {
+  width: 30rpx;
+  height: 30rpx;
+  vertical-align: middle;
+  position: relative;
+  top: -2rpx;
 }
 .wrap .comment .item .info .info-top .dot {
   margin-top: -10rpx;
@@ -35,45 +51,109 @@
   height: 60rpx;
   padding: 10rpx;
   margin-right: 10rpx;
-  float: right;
+  position: absolute;
+  top: 28rpx;
+  right: 16rpx;
 }
 .wrap .comment .item .info .info-top .video {
-  margin-right: 30rpx;
-  padding: 0 15rpx;
-  border-radius: 20rpx;
-  color: #489CD7;
-  float: right;
-  border: 2rpx solid #489CD7;
+  height: 42rpx;
+  line-height: 40rpx;
+  padding: 0 20rpx;
+  border-radius: 21rpx;
+  color: #fff;
+  position: absolute;
+  top: 28rpx;
+  right: 96rpx;
+  background-color: #43D7B5;
   font-size: 25.23364486rpx;
 }
 .wrap .comment .item .info .info-bottom {
   font-size: 20rpx;
   color: #aaa;
-  margin-top: -5rpx;
+  position: absolute;
+  left: 130rpx;
+  top: 74rpx;
+  height: 28rpx;
+  line-height: 28rpx;
 }
 .wrap .comment .item .info .info-bottom .time {
   margin-left: 10rpx;
 }
 .wrap .comment .desc {
-  font-size: 31.54205607rpx;
-  margin-top: 20rpx;
+  line-height: 44rpx;
+  font-size: 32rpx;
+  margin-top: 28rpx;
 }
 .wrap .comment .img {
-  margin-top: 10rpx;
+  margin-top: 20rpx;
   display: flex;
-  flex-wrap: wrap;
   justify-content: space-between;
 }
 .wrap .comment .img image {
-  width: 220rpx;
-  height: 220rpx;
-  margin-top: 13rpx;
+  width: 206rpx;
+  height: 206rpx;
+  border-radius: 15rpx;
+}
+.wrap .comment .footer {
+  margin-top: 25rpx;
+  padding: 0 30rpx;
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 22rpx;
+}
+.wrap .comment .footer .f1 {
+  flex: 1;
+  text-align: left;
+}
+.wrap .comment .footer .f1 image {
+  width: 32rpx;
+  height: 32rpx;
+  vertical-align: middle;
+}
+.wrap .comment .footer .f1 .heart {
+  font-size: 28rpx;
+  position: relative;
+  top: 3rpx;
+  margin-left: 10rpx;
+  font-weight: lighter;
+}
+.wrap .comment .footer .f2 {
+  flex: 1;
+  text-align: center;
+}
+.wrap .comment .footer .f2 image {
+  width: 30rpx;
+  height: 30rpx;
+  vertical-align: middle;
+}
+.wrap .comment .footer .f2 .chat {
+  font-size: 28rpx;
+  position: relative;
+  top: 3rpx;
+  margin-left: 10rpx;
+  font-weight: lighter;
+}
+.wrap .comment .footer .f3 {
+  flex: 1;
+  text-align: right;
+}
+.wrap .comment .footer .f3 image {
+  width: 30rpx;
+  height: 30rpx;
+  vertical-align: middle;
+}
+.wrap .comment .footer .f3 .zan {
+  font-size: 28rpx;
+  position: relative;
+  top: 3rpx;
+  margin-left: 10rpx;
+  font-weight: lighter;
 }
 .wrap .do {
-  border-top-left-radius: 25rpx;
-  border-top-right-radius: 25rpx;
+  border-radius: 10rpx;
   background-color: #fff;
   padding-bottom: 50rpx;
+  margin: 0 18rpx;
 }
 .wrap .do .footer {
   height: 80rpx;

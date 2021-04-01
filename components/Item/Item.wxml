@@ -1,7 +1,7 @@
 <view class="wrapper">
   <view class="blank"></view>
 <view class="comment" item="{{item}}">
-  <navigator hover-class="none" url="/pages/detail/index?item={{JSON.stringify(item)}}&isMy={{isMy}}">
+  <navigator hover-class="none" url="/pages/detail/index?item={{item_str}}&isMy={{isMy}}">
     <view class="item clearfix">
       <view class="headPic" style="background-image: url({{item.avatarUrl_str}})"></view>
       <view class="info">
@@ -18,9 +18,9 @@
     <view class="desc">{{item.content}}</view>
   </navigator>
   <view class="img">
-    <image bindtap="previewImages_fun" data-cururl="{{item1}}" data-urls="{{item.img}}" wx:for="{{item.img}}" wx:for-item="item1" wx:key="src" src="{{item1}}"></image>
+    <image mode="aspectFill" bindtap="previewImages_fun" data-cururl="{{item1}}" data-urls="{{item.img}}" wx:for="{{item.img}}" wx:for-item="item1" wx:key="src" src="{{item1}}"></image>
   </view>
-  <navigator class="footer" hover-class="none" url="/pages/detail/index?datas=item&isMy={{isMy}}">
+  <navigator class="footer" hover-class="none" url="/pages/detail/index?item={{item_str}}&isMy={{isMy}}">
     <view class="f1">
       <image mode="aspectFit" src="/img/hot.png"></image>
       <text class="heart">{{item.pageviews}}</text>

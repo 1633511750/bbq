@@ -19,6 +19,7 @@ Component({
    * 组件的初始数据
    */
   data: {
+    item_str: '',
     avatarUrl_str: app.globalData.avatarUrl_str
   },
 
@@ -40,5 +41,22 @@ Component({
     dotZan_fun(e) {
       this.triggerEvent('zanevent')
     }
-  }
+  },
+  created: function () {
+
+  },
+  attached: function () {
+    this.setData({
+      item_str: JSON.stringify(this.properties.item)
+    })
+  },
+  ready: function () {
+
+  },
+  moved: function () {
+
+  },
+  detached: function () {
+
+  },
 })

@@ -17,7 +17,7 @@
     </view>
     <view class="desc">{{content_str}}</view>
     <view class="img">
-      <image wx:for="{{item.img}}" bindtap="previewImage_fun" data-urls="{{item.img}}" data-cururl="{{item1}}" wx:for-item="item1" wx:key="src" src="{{item1}}"></image>
+      <image mode="aspectFill" wx:for="{{img_arr}}" bindtap="previewImage_fun" data-urls="{{img_arr}}" data-cururl="{{item}}" wx:key="*this" src="{{item}}"></image>
     </view>
   </view>
 

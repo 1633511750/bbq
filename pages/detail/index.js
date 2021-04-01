@@ -43,6 +43,7 @@ Page({
     name_str: '',
     avatarUrl_str: '',
     category_str: '',
+    img_arr: [],
     commentListNum_str: '',
     content_str: '',
     date_str: '',
@@ -199,18 +200,20 @@ Page({
    */
   onLoad: function (options) {
     console.log(options);
+    var item_o = JSON.parse(options.item)
 
     this.setData({
-      id_str: options.id,
-      category_str: options.category,
-      commentListNum_str: options.commentListNum,
-      content_str: options.content,
-      date_str: options.date,
-      dianzanNum_str: options.dianzanNum,
-      pageviews_str: options.pageviews,
-      time_str: options.time,
-      name_str: options.name,
-      avatarUrl_str: options.avatarUrl,
+      id_str: item_o.id,
+      category_str: item_o.category,
+      commentListNum_str: item_o.commentListNum_int,
+      img_arr: item_o.img,
+      content_str: item_o.content,
+      date_str: item_o.date_str,
+      dianzanNum_str: item_o.dianzanNum_int,
+      pageviews_str: item_o.pageviews,
+      time_str: item_o.time_str,
+      name_str: item_o.name_str,
+      avatarUrl_str: item_o.avatarUrl_str,
       isMy_bool: options.isMy
     })
     this.getReply_fun(this.data.id_str - 0)
