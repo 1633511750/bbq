@@ -1,4 +1,3 @@
-var aaa = 'aaaaaaa'
 function $http({ url, data = {}, method = 'get', complete, hasLimit = true }, hasLoading = true) {
   return new Promise((resolve, reject) => {
     if (hasLimit) {
@@ -22,7 +21,8 @@ function $http({ url, data = {}, method = 'get', complete, hasLimit = true }, ha
       });
     }
     wx.request({
-      url: 'http://159.75.6.154:8080' + url,
+      // url: 'http://159.75.6.154:8080' + url,
+      url: 'http://www.guoer.ltd:8080/' + url,
       data,
       header,
       method,
@@ -40,6 +40,7 @@ function $http({ url, data = {}, method = 'get', complete, hasLimit = true }, ha
           wx.navigateTo({
             url: '/pages/login/index',
           });
+          wx.showToast({ title: '请先登录', icon: 'error' })
         }
       },
       fail: (res) => {
@@ -55,10 +56,39 @@ function $http({ url, data = {}, method = 'get', complete, hasLimit = true }, ha
       }
     });
   })
+}
 
+function myTime(arg) {
+  var t_arr = arg.split('.')[0].split('T')
+
+  var tt_arr = t_arr[0].split('-')
+  var year = tt_arr[0] - 0
+  var month = tt_arr[1] - 0
+  var day = tt_arr[2] - 0
+
+  tt_arr = t_arr[1].split(':')
+  var hour = tt_arr[0] - 0
+  var minute = tt_arr[1] - 0
+  var second = tt_arr[2] - 0
+
+  var d = new Date()
+  d.setFullYear(year)
+  d.setMonth(month)
+  d.setDate(day)
+  d.setHours(hour + 8)
+  d.setMinutes(minute)
+  d.setSeconds(second)
+
+  return {
+    year: d.getFullYear(),
+    month: d.getMonth() < 10 ? '0' + d.getMonth() : d.getMonth(),
+    day: d.getDate() < 10 ? '0' + d.getDate() : d.getDate(),
+    hour: d.getHours() < 10 ? '0' + d.getHours() : d.getHours(),
+    minute: d.getMinutes() < 10 ? '0' + d.getMinutes() : d.getMinutes()
+  }
 }
 
 module.exports = {
   $http,
-  aaa
+  myTime
 }

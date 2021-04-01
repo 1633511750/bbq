@@ -23,7 +23,7 @@ Page({
 
   bindGetUserInfo_fun(e) {
     var userInfo = e.detail.userInfo
-    console.log(userInfo);
+
     if (userInfo === undefined) {
       wx.showToast({ title: '已取消登录' })
       return
@@ -54,6 +54,22 @@ Page({
     wx.setStorageSync('city', userInfo.city);
     console.log(userInfo_o);
 
+    if (userInfo_o.avatarUrl_str) {
+      wx.showToast({
+        title: '登录成功',
+      });
+    }
+    setTimeout(() => {
+      var pages = getCurrentPages()
+      var curPage = pages[pages.length - 1]
+      var url = curPage.route
+      if (url === 'pages/login/index') {
+        wx.navigateBack({
+          delta: 1
+        });
+      }
+    }, 1500);
+    return
     this.register_fun(() => {
       setTimeout(() => {
         var pages = getCurrentPages()

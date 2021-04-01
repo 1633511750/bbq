@@ -12,24 +12,37 @@
     }
 
     html {
-      background: black; //html为黑色背景
+      background: black;
     }
 
     body {
-      background: red; //body为红色背景
+      background: red;
     }
 
     #item {
       width: 200px;
       height: 200px;
-      background: pink; //粉色的一个块元素，设置了margin-top
+      padding: 100px;
+      background: pink;
       margin-top: 100px;
+      position: relative;
+    }
+
+    #item1 {
+      width: 50px;
+      height: 50px;
+      background-color: green;
+      position: absolute;
+      left: 0;
+      top: 0;
     }
   </style>
 </head>
 
 <body>
-  <div id="item"></div>
+  <div id="item">
+    <div id="item1"></div>
+  </div>
 </body>
 
 </html>

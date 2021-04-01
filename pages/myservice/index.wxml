@@ -1,8 +1,11 @@
 <view class="wrap">
   <view class="item">
-    <view class="title">投诉箱</view>
-    <textarea maxlength="400" placeholder="亲爱的同学，如果你对工作人员或者上级主管人员有不满意的地方要告诉我们吖！投诉内容直达创始人邮箱。（我们将在一周内审核回复你投诉的内容，请耐心等待哇～）"></textarea>
-    <view class="out-box">
+    <view class="title">投诉</view>
+    <textarea placeholder-style="color: #ccc" maxlength="400" placeholder="亲爱的同学，如果你对工作人员或者上级主管人员有不满意的地方要告诉我们吖！投诉内容直达创始人邮箱。（我们将在一周内审核回复你投诉的内容，请耐心等待哇～）"></textarea>
+    <view class="img-wrap">
+      <image wx:for="{{img1_arr}}" mode="aspectFit" src="{{item}}" wx:key="*this"></image>
+    </view>
+    <view class="out-box" bindtap="tapPic1_fun">
       <view class="top">
         <view class="top-item"></view>
         <view class="top-item"></view>
@@ -16,8 +19,11 @@
   </view>
   <view class="item">
   <view class="title">意见</view>
-    <textarea maxlength="400" placeholder="如果你对我们产品内容或者推广方式还有其他好的意见和建议，都可以在意见栏留言告诉我们呦～我公司坚持唯才是用原则，你的想法将直接发送至创始人邮箱。被审核试用的想法，还将获得专属奖励～"></textarea>
-    <view class="out-box">
+    <textarea placeholder-style="color: #ccc" maxlength="400" placeholder="如果你对我们产品内容或者推广方式还有其他好的意见和建议，都可以在意见栏留言告诉我们呦～我公司坚持唯才是用原则，你的想法将直接发送至创始人邮箱。被审核试用的想法，还将获得专属奖励～"></textarea>
+    <view class="img-wrap">
+      <image wx:for="{{img2_arr}}" mode="aspectFit" src="{{item}}" wx:key="*this"></image>
+    </view>
+    <view class="out-box" bindtap="tapPic2_fun">
       <view class="top">
         <view class="top-item"></view>
         <view class="top-item"></view>

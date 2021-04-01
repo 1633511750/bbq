@@ -15,48 +15,66 @@
 
 .wrapper {
   .blank {
-    height: 15rpx;
+    height: 16rpx;
     background-color: transparent;
   }
   .comment {
     background-color: #fff;
-    padding: (750rpx * 40 / 1070) 35rpx;
+    width: 718rpx;
+    margin-left: 16rpx;
+    padding: 18rpx 34rpx 0;
+    border-radius: 10rpx;
+    position: relative;
+    box-shadow: 0 0 10rpx 0 #F2F2F2;
     .item {
       .headPic {
-        width: (750rpx * 118 / 1070);
-        height: (750rpx * 118 / 1070);
-        border-radius: 15rpx;
-        float: left;
+        width: 82rpx;
+        height: 82rpx;
+        border-radius: 41rpx;
         background-size: 100% 100%;
       }
       .info {
         width: calc(100% - 105rpx);
         float: right;
         .info-top {
-          margin-top: 7rpx;
-          vertical-align: middle;
           .name {
             max-width: 450rpx;
+            height: 56rpx;
+            line-height: 56rpx;
             overflow: hidden;
             white-space: nowrap;
             text-overflow: ellipsis;
-            font-size: (750rpx * 45 / 1070);
-            font-weight: bold;
-            float: left;
+            font-size: 34rpx;
+            position: absolute;
+            top: 18rpx;
+            left: 130rpx;
+            image {
+              width: 30rpx;
+              height: 30rpx;
+              vertical-align: middle;
+            }
           }
           .video {
-            padding: 0 15rpx;
-            border-radius: 20rpx;
-            color: @color_blue;
-            float: right;
-            border: 2rpx solid @color_blue;
+            height: 42rpx;
+            line-height: 40rpx;
+            padding: 0 20rpx;
+            border-radius: 21rpx;
+            color: #fff;
+            position: absolute;
+            top: 28rpx;
+            right: 36rpx;
+            background-color: #43D7B5;
             font-size: (750rpx * 36 / 1070);
           }
         }
         .info-bottom {
           font-size: 20rpx;
           color: @color_icon;
-          margin-top: 2rpx;
+          position: absolute;
+          left: 130rpx;
+          top: 74rpx;
+          height: 28rpx;
+          line-height: 28rpx;
           .time {
             margin-left: 10rpx;
           }
@@ -65,71 +83,72 @@
   
     }
     .desc {
-      font-size: (750rpx * 45 / 1070);
-      margin-top: 20rpx;
+      line-height: 44rpx;
+      font-size: 32rpx;
+      margin-top: 28rpx;
     }
     .img {
       margin-top: 20rpx;
       display: flex;
       justify-content: space-between;
       image {
-        width: 220rpx;
-        height: 220rpx;
+        width: 206rpx;
+        height: 206rpx;
+        border-radius: 15rpx;
       }
     }
     .footer {
-      margin-top: 20rpx;
+      margin-top: 25rpx;
       padding: 0 30rpx;
       display: flex;
       justify-content: space-between;
-      margin-bottom: -20rpx;
+      padding-bottom: 22rpx;
       .f1 {
         flex: 1;
         text-align: left;
-        margin-bottom: 10rpx;
         image {
-          width: (750rpx * 60 / 1070);
-          height: (750rpx * 60 / 1070);
+          width: 32rpx;
+          height: 32rpx;
           vertical-align: middle;
         }
         .heart {
-          font-size: 25rpx;
+          font-size: 28rpx;
           position: relative;
           top: 3rpx;
           margin-left: 10rpx;
-          color: @color_icon;
+          font-weight: lighter;
         }
       }
       .f2 {
         flex: 1;
         text-align: center;
         image {
-          width: (750rpx * 56 / 1070);
-          height: (750rpx * 56 / 1070);
+          width: 30rpx;
+          height: 30rpx;
           vertical-align: middle;
         }
         .chat {
-          font-size: 25rpx;
+          font-size: 28rpx;
           position: relative;
           top: 3rpx;
           margin-left: 10rpx;
-          color: @color_icon;
+          font-weight: lighter;
         }
       }
       .f3 {
         flex: 1;
         text-align: right;
         image {
-          width: (750rpx * 55 / 1070);
-          height: (750rpx * 55 / 1070);
+          width: 30rpx;
+          height: 30rpx;
           vertical-align: middle;
         }
         .zan {
-          font-size: 25rpx;
+          font-size: 28rpx;
           position: relative;
           top: 3rpx;
           margin-left: 10rpx;
-          color: @color_icon;
+          font-weight: lighter;
         }
       }
     }

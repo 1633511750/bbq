@@ -1,13 +1,11 @@
 .index-wrap {
-  background-color: var(--colorGray);
+  background-image: linear-gradient(#fff 0%, #fff 19%, #f2f2f2 34.5%, #f2f2f2 100%);
 }
 .index-wrap .top {
   width: 100%;
-  height: 105.14018692rpx;
+  height: 105rpx;
   display: flex;
   background-color: #fff;
-  border-top: 1rpx solid var(--colorGray);
-  border-bottom: 1px solid var(--colorGray);
   position: fixed;
   z-index: 1;
 }
@@ -60,16 +58,19 @@
   background-color: #fff;
   position: fixed;
   left: 0;
-  bottom: 0;
+  bottom: 0rpx;
   border-top-left-radius: 20rpx;
   border-top-right-radius: 20rpx;
 }
+.index-wrap .dialog-wrap .dialog.active {
+  bottom: 0;
+}
 .index-wrap .dialog-wrap .dialog .up {
-  padding: 21.02803738rpx 35rpx;
+  padding: 21rpx 35rpx;
 }
 .index-wrap .dialog-wrap .dialog .up .headPic {
-  width: 82.71028037rpx;
-  height: 82.71028037rpx;
+  width: 83rpx;
+  height: 83rpx;
   border-radius: 15rpx;
   float: left;
   vertical-align: middle;
@@ -77,7 +78,7 @@
 }
 .index-wrap .dialog-wrap .dialog .up .up-right {
   float: right;
-  height: 82.71028037rpx;
+  height: 83rpx;
   width: 580rpx;
   display: flex;
   justify-content: space-between;

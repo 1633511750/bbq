@@ -4,56 +4,73 @@
   clear: both;
 }
 .wrapper .blank {
-  height: 15rpx;
+  height: 16rpx;
   background-color: transparent;
 }
 .wrapper .comment {
   background-color: #fff;
-  padding: 28.03738318rpx 35rpx;
+  width: 718rpx;
+  margin-left: 16rpx;
+  padding: 18rpx 34rpx 0;
+  border-radius: 10rpx;
+  position: relative;
+  box-shadow: 0 0 10rpx 0 #F2F2F2;
 }
 .wrapper .comment .item .headPic {
-  width: 82.71028037rpx;
-  height: 82.71028037rpx;
-  border-radius: 15rpx;
-  float: left;
+  width: 82rpx;
+  height: 82rpx;
+  border-radius: 41rpx;
   background-size: 100% 100%;
 }
 .wrapper .comment .item .info {
   width: calc(100% - 105rpx);
   float: right;
 }
-.wrapper .comment .item .info .info-top {
-  margin-top: 7rpx;
-  vertical-align: middle;
-}
 .wrapper .comment .item .info .info-top .name {
   max-width: 450rpx;
+  height: 56rpx;
+  line-height: 56rpx;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
-  font-size: 31.54205607rpx;
-  font-weight: bold;
-  float: left;
+  font-size: 34rpx;
+  position: absolute;
+  top: 18rpx;
+  left: 130rpx;
+}
+.wrapper .comment .item .info .info-top .name image {
+  width: 30rpx;
+  height: 30rpx;
+  vertical-align: middle;
 }
 .wrapper .comment .item .info .info-top .video {
-  padding: 0 15rpx;
-  border-radius: 20rpx;
-  color: #489CD7;
-  float: right;
-  border: 2rpx solid #489CD7;
+  height: 42rpx;
+  line-height: 40rpx;
+  padding: 0 20rpx;
+  border-radius: 21rpx;
+  color: #fff;
+  position: absolute;
+  top: 28rpx;
+  right: 36rpx;
+  background-color: #43D7B5;
   font-size: 25.23364486rpx;
 }
 .wrapper .comment .item .info .info-bottom {
   font-size: 20rpx;
   color: #aaa;
-  margin-top: 2rpx;
+  position: absolute;
+  left: 130rpx;
+  top: 74rpx;
+  height: 28rpx;
+  line-height: 28rpx;
 }
 .wrapper .comment .item .info .info-bottom .time {
   margin-left: 10rpx;
 }
 .wrapper .comment .desc {
-  font-size: 31.54205607rpx;
-  margin-top: 20rpx;
+  line-height: 44rpx;
+  font-size: 32rpx;
+  margin-top: 28rpx;
 }
 .wrapper .comment .img {
   margin-top: 20rpx;
@@ -61,62 +78,62 @@
   justify-content: space-between;
 }
 .wrapper .comment .img image {
-  width: 220rpx;
-  height: 220rpx;
+  width: 206rpx;
+  height: 206rpx;
+  border-radius: 15rpx;
 }
 .wrapper .comment .footer {
-  margin-top: 20rpx;
+  margin-top: 25rpx;
   padding: 0 30rpx;
   display: flex;
   justify-content: space-between;
-  margin-bottom: -20rpx;
+  padding-bottom: 22rpx;
 }
 .wrapper .comment .footer .f1 {
   flex: 1;
   text-align: left;
-  margin-bottom: 10rpx;
 }
 .wrapper .comment .footer .f1 image {
-  width: 42.05607477rpx;
-  height: 42.05607477rpx;
+  width: 32rpx;
+  height: 32rpx;
   vertical-align: middle;
 }
 .wrapper .comment .footer .f1 .heart {
-  font-size: 25rpx;
+  font-size: 28rpx;
   position: relative;
   top: 3rpx;
   margin-left: 10rpx;
-  color: #aaa;
+  font-weight: lighter;
 }
 .wrapper .comment .footer .f2 {
   flex: 1;
   text-align: center;
 }
 .wrapper .comment .footer .f2 image {
-  width: 39.25233645rpx;
-  height: 39.25233645rpx;
+  width: 30rpx;
+  height: 30rpx;
   vertical-align: middle;
 }
 .wrapper .comment .footer .f2 .chat {
-  font-size: 25rpx;
+  font-size: 28rpx;
   position: relative;
   top: 3rpx;
   margin-left: 10rpx;
-  color: #aaa;
+  font-weight: lighter;
 }
 .wrapper .comment .footer .f3 {
   flex: 1;
   text-align: right;
 }
 .wrapper .comment .footer .f3 image {
-  width: 38.55140187rpx;
-  height: 38.55140187rpx;
+  width: 30rpx;
+  height: 30rpx;
   vertical-align: middle;
 }
 .wrapper .comment .footer .f3 .zan {
-  font-size: 25rpx;
+  font-size: 28rpx;
   position: relative;
   top: 3rpx;
   margin-left: 10rpx;
-  color: #aaa;
+  font-weight: lighter;
 }

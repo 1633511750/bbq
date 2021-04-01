@@ -133,6 +133,11 @@ Page({
     })
   },
 
+  // 分享
+  share_fun() {
+
+  },
+
   // 调整大小
   keyboardheight_fun: function (e) {
     this.setData({
@@ -193,6 +198,8 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    console.log(options);
+
     this.setData({
       id_str: options.id,
       category_str: options.category,
@@ -273,7 +280,12 @@ Page({
   },
 
   // 分享功能
-
+  share_fun() {
+    wx.showShareMenu({
+      withShareTicket: true,
+      menus: ['shareAppMessage', 'shareTimeline']
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

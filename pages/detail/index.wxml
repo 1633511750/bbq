@@ -66,7 +66,7 @@
         <text class="text">分享至</text>
         <view class="item-wrap">
           <view class="item">
-            <image mode="aspectFit" src="/img/wechat.png"/>
+            <image bindtap="share_fun" mode="aspectFit" src="/img/wechat.png"/>
             <text class="title">微信好友</text>
           </view>
           <view class="item">

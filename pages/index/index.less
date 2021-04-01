@@ -8,15 +8,13 @@
 @font_size_48: 48;
 
 .index-wrap {
-  background-color: var(--colorGray);
+  background-image: linear-gradient(#fff 0%, #fff 19%, #f2f2f2 34.5%, #f2f2f2 100%);
   
   .top {
     width: 100%;
-    height: (750rpx * 150 / 1070);
+    height: 105rpx;
     display: flex;
     background-color: #fff;
-    border-top: 1rpx solid var(--colorGray);
-    border-bottom: 1px solid var(--colorGray);
     position: fixed;
     z-index: 1;
     
@@ -73,18 +71,22 @@
     background-color: #00000038;
     .dialog {
       width: 100%;
-      // box-shadow: 0 0 30rpx 5rpx @color_gray;
       background-color: #fff;
       position: fixed;
       left: 0;
-      bottom: 0;
+      bottom: 0rpx;
+      // transition: bottom 0.5s;
       border-top-left-radius: 20rpx;
       border-top-right-radius: 20rpx;
+
+      &.active {
+        bottom: 0;
+      }
       .up {
-        padding: (750rpx * 30 / 1070) 35rpx;
+        padding: 21rpx 35rpx;
         .headPic {
-          width: (750rpx * 118 / 1070);
-          height: (750rpx * 118 / 1070);
+          width: 83rpx;
+          height: 83rpx;
           border-radius: 15rpx;
           float: left;
           vertical-align: middle;
@@ -92,7 +94,7 @@
         }
         .up-right{
           float: right;
-          height: (750rpx * 118 / 1070);
+          height: 83rpx;
           width: 580rpx;
           display: flex;
           justify-content: space-between;

@@ -1,41 +1,72 @@
 //Page Object
-const { $http, aaa } = require('../../utils/util')
+const { $http, myTime } = require('../../utils/util')
 var app = getApp()
 Page({
   data: {
-
-    aaa,
     nickName_str: '',
     avatarUrl_str: '',
     school_str: app.globalData.school_str,
     // 标题栏
     statusBarHeight: app.globalData.statusBarHeight,
+    windowWidth: 0,
 
     currentTitle_int: 0,
     commentList_arr: [],
     list_arr: [],
-    // commentList_arr: [{
-    //   id: 1,
-    //   name: '壹只小坤',
-    //   date: '01-11',
-    //   time: '17:34',
-    //   content: '安抚哈尔涂鸦而分公司德国汉莎到付哈人员阿桑的歌',
-    //   headPic: 'https://i04piccdn.sogoucdn.com/0e3e409f0cf25fb3',
-    //   desc: '安抚哈尔涂鸦而分公司德国汉莎到付哈人员阿桑的歌',
-    //   img: [
-    //     'https://i02piccdn.sogoucdn.com/fdd1e2dadbd01c8a',
-    //     'https://i04piccdn.sogoucdn.com/af32dcada2c5a4a9',
-    //     'https://i03piccdn.sogoucdn.com/089782feb3e09175'
-    //   ],
-    //   chat: 3,
-    //   hot: 33,
-    //   zan: 3433,
-    //   type: '游戏'
+    commentList_arr1: [{
+      id: 1,
+      name_str: '月亮',
+      date_str: '01-11',
+      time_str: '17:34',
+      content: '太理小姐姐找对象，身高175',
+      headPic: 'https://i04piccdn.sogoucdn.com/0e3e409f0cf25fb3',
+      desc: '安抚哈尔涂鸦而分公司德国汉莎到付哈人员阿桑的歌',
+      img: [
+        'http://8.140.165.170/img/1.jpg',
+        'http://8.140.165.170/img/2.jpg',
+        'http://8.140.165.170/img/3.jpg'
+      ],
+      pageviews: 3,
+      commentListNum_int: 33,
+      dianzanNum_int: 3433,
+      category: '对象',
+    }, {
+      id: 2,
+      name_str: '夏天',
+      date_str: '01-11',
+      time_str: '17:34',
+      content: '夏天来了，来了，来了',
+      headPic: 'https://i04piccdn.sogoucdn.com/0e3e409f0cf25fb3',
+      desc: '安抚哈尔涂鸦而分公司德国汉莎到付哈人员阿桑的歌',
+      img: [
+        'http://8.140.165.170/img/4.jpg',
+        'http://8.140.165.170/img/5.jpg'
+      ],
+      pageviews: 32,
+      commentListNum_int: 33,
+      dianzanNum_int: 34,
+      category: '对象'
+    }, {
+      id: 3,
+      name_str: '我认真的',
+      date_str: '01-11',
+      time_str: '17:34',
+      content: '你给我买口红 我每天还你一点。',
+      headPic: 'https://i04piccdn.sogoucdn.com/0e3e409f0cf25fb3',
+      desc: '安抚哈尔涂鸦而分公司德国汉莎到付哈人员阿桑的歌',
+      img: [
+        'http://8.140.165.170/img/6.jpg'
+      ],
+      pageviews: 32,
+      commentListNum_int: 33,
+      dianzanNum_int: 34,
+      category: '对象',
+    }],
     // }, {
-    //   id: 2,
-    //   name: '壹只小坤',
-    //   date: '01-11',
-    //   time: '17:34',
+    //   id: 4,
+    //   name_str: '壹只小坤',
+    //   date_str: '01-11',
+    //   time_str: '17:34',
     //   content: '安抚哈尔涂鸦而分公司德国汉莎到付哈人员阿桑的歌',
     //   headPic: 'https://i04piccdn.sogoucdn.com/0e3e409f0cf25fb3',
     //   desc: '安抚哈尔涂鸦而分公司德国汉莎到付哈人员阿桑的歌',
@@ -44,27 +75,10 @@ Page({
     //     'https://i04piccdn.sogoucdn.com/af32dcada2c5a4a9',
     //     'https://i03piccdn.sogoucdn.com/089782feb3e09175'
     //   ],
-    //   chat: 32,
-    //   hot: 33,
-    //   zan: 34,
-    //   type: '捞人'
-    // }, {
-    //   id: 3,
-    //   name: '壹只小坤',
-    //   date: '01-11',
-    //   time: '17:34',
-    //   content: '安抚哈尔涂鸦而分公司德国汉莎到付哈人员阿桑的歌',
-    //   headPic: 'https://i04piccdn.sogoucdn.com/0e3e409f0cf25fb3',
-    //   desc: '安抚哈尔涂鸦而分公司德国汉莎到付哈人员阿桑的歌',
-    //   img: [
-    //     'https://i02piccdn.sogoucdn.com/fdd1e2dadbd01c8a',
-    //     'https://i04piccdn.sogoucdn.com/af32dcada2c5a4a9',
-    //     'https://i03piccdn.sogoucdn.com/089782feb3e09175'
-    //   ],
-    //   chat: 32,
-    //   hot: 33,
-    //   zan: 34,
-    //   type: '找同伴'
+    //   pageviews: 32,
+    //   commentListNum_int: 33,
+    //   dianzanNum_int: 34,
+    //   category: '找同伴'
     // }],
     scrollHeight_flo: '',
     isPullDown_bool: false,  // 是否已下拉
@@ -90,13 +104,13 @@ Page({
 
   // 点击了加号
   showDialog_fun() {
-    wx.hideTabBar()
+    // wx.hideTabBar()
 
     var isAnonymous = wx.getStorageSync('isAnonymous') || false
     this.setData({
       showDialog_bool: true,
       nickName_str: isAnonymous ? '匿名' : app.globalData.nickName_str,
-      avatarUrl_str: isAnonymous ? app.globalData.anonymousAvatarUrl_str : app.globalData.avatarUrl_str
+      avatarUrl_str: isAnonymous ? app.globalData.anonymousAvatarUrl_str : 'app.globalData.avatarUrl_str'
     })
   },
   // 点击了标签
@@ -115,7 +129,7 @@ Page({
     this.setData({
       showDialog_bool: false
     })
-    wx.showTabBar()
+    // wx.showTabBar()
     wx.showToast({ title: '已取消', icon: 'error' })
   },
   // 触发点赞
@@ -137,13 +151,13 @@ Page({
     //     console.log(res);
     //   })
 
-    $http({
-      url: '/Answer/getAnswersByCommentId', data: {
-        commentId: id
-      }
-    }).then(res => {
-      console.log(res);
-    })
+    // $http({
+    //   url: '/Answer/getAnswersByCommentId', data: {
+    //     commentId: id
+    //   }
+    // }).then(res => {
+    //   console.log(res);
+    // })
 
 
     // var item = e.currentTarget.dataset.item
@@ -166,67 +180,73 @@ Page({
 
   //options(Object)
   onLoad: function (options) {
+    if (app.globalData.avatarUrl_str === '') {
+      wx.navigateTo({
+        url: '/pages/login/index',
+      });
+    }
   },
 
   getAllArticle_fun({ callback, isShowSuccess } = {}) {
-    // this.setData({
-    //   list_arr: this.data.commentList_arr
-    // })
+    this.data.commentList_arr1.forEach(item => {
+      item.avatarUrl_str = app.globalData.avatarUrl_str
+    })
+    this.setData({
+      list_arr: this.data.commentList_arr1
+    })
     // callback && callback()
     // return
-    $http({ url: '/Article/getArticleByKeywords', data: { keywords: '' }, complete: () => { callback && callback() } }, true)
-      .then((res) => {
-        const { data } = res
-        console.log(res);
-        let articleList = data.data.articleList.reverse()
-        console.log(articleList);
-        articleList.forEach(item => {
-          var temp_arr = item.createTime.split('T')[0].split('-')
-          item.date_str = temp_arr[1] + '-' + temp_arr[2]
+    // $http({ url: '/Article/getArticleByKeywords', data: { keywords: '' }, complete: () => { callback && callback() } }, true)
+    //   .then((res) => {
+    //     const { data } = res
+    //     console.log(res);
+    //     let articleList = data.data.articleList.reverse()
+    //     console.log(articleList);
+    //     articleList.forEach(item => {
+    //       item.commentListNum_int = item.commentList.length
 
-          temp_arr = item.createTime.split('T')[1].split(':')
-          item.time_str = temp_arr[0] + ':' + temp_arr[1]
+    //       var t_o = myTime(item.createTime)
+    //       item.date_str = t_o.month + '-' + t_o.day
+    //       item.time_str = t_o.hour + ':' + t_o.minute
 
-          item.commentListNum_int = item.commentList.length
+    //       if (item.dianzanUids) {
+    //         item.dianzanNum_int = item.dianzanUids.split(',').length
+    //       } else {
+    //         item.dianzanNum_int = 0
+    //       }
 
-          if (item.dianzanUids) {
-            item.dianzanNum_int = item.dianzanUids.split(',').length
-          } else {
-            item.dianzanNum_int = 0
-          }
-
-          if (item.isAnonymous) {
-            item.name_str = '匿名'
-            item.avatarUrl_str = app.globalData.anonymousAvatarUrl_str
-          } else {
-            item.name_str = item.userList[0].name
-            item.avatarUrl_str = app.globalData.avatarUrl_str
-          }
-        })
-        var arr_arr = articleList.filter(item => {
-          if (this.data.currentTitle_int === 0) {
-            return item
-          } else {
-            return item.category === this.data.topList_arr[this.currentTitle_int]
-          }
-        })
-        this.setData({
-          commentList_arr: articleList,
-          list_arr: arr_arr
-        })
-        if (isShowSuccess) {
-          wx.showToast({
-            title: '刷新成功',
-            icon: 'success',
-          });
-        }
-      }).catch((err) => {
-        console.log(err);
-        wx.showToast({
-          title: '刷新失败',
-          icon: 'error',
-        });
-      })
+    //       if (item.isAnonymous) {
+    //         item.name_str = '匿名'
+    //         item.avatarUrl_str = app.globalData.anonymousAvatarUrl_str
+    //       } else {
+    //         item.name_str = item.userList[0].name
+    //         item.avatarUrl_str = app.globalData.avatarUrl_str
+    //       }
+    //     })
+    //     var arr_arr = articleList.filter(item => {
+    //       if (this.data.currentTitle_int === 0) {
+    //         return item
+    //       } else {
+    //         return item.category === this.data.topList_arr[this.currentTitle_int]
+    //       }
+    //     })
+    //     this.setData({
+    //       commentList_arr: articleList,
+    //       list_arr: arr_arr
+    //     })
+    //     if (isShowSuccess) {
+    //       wx.showToast({
+    //         title: '刷新成功',
+    //         icon: 'success',
+    //       });
+    //     }
+    //   }).catch((err) => {
+    //     console.log(err);
+    //     wx.showToast({
+    //       title: '刷新失败',
+    //       icon: 'error',
+    //     });
+    //   })
   },
 
   // 匿名切换
@@ -246,7 +266,8 @@ Page({
     let windowHeight = wx.getSystemInfoSync().windowHeight // 屏幕的高度
     let windowWidth = wx.getSystemInfoSync().windowWidth // 屏幕的宽度
     this.setData({
-      scrollHeight_flo: (windowHeight - this.data.statusBarHeight) * 750 / windowWidth - 194
+      windowWidth,
+      scrollHeight_flo: (windowHeight - this.data.statusBarHeight) / windowWidth * 750 - 183
       // scrollHeight_flo: 1000
     })
     console.log(this.data.scrollHeight_flo);
@@ -272,7 +293,7 @@ Page({
     this.setData({
       school_str: app.globalData.school_str
     })
-    wx.showTabBar()
+    // wx.showTabBar()
   },
 
   onHide: function () {

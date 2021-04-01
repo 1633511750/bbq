@@ -89,11 +89,11 @@ Page({
               category: this.data.category_str,
               content: this.data.text_str.trim(),
               school: app.globalData.school_str,
-              location: app.globalData.location_str,
+              location: app.globalData.country_str + app.globalData.province_str + app.globalData.city_str,
               isAnonymous: wx.getStorageSync('isAnonymous') ? 1 : 0
             }
           }).then(res => {
-            console.log(res);
+            console.log(res, app.globalData.country_str + app.globalData.province_str + app.globalData.city_str);
             if (res.data.success) {
               wx.showToast({ title: '发帖成功' })
               setTimeout(() => {
@@ -109,6 +109,8 @@ Page({
             } else {
               wx.showToast({ title: '发帖失败', icon: 'error' })
             }
+          }).catch(res => {
+            wx.showToast({ title: res, icon: 'error' })
           })
         }
       },

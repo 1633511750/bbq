@@ -12,7 +12,7 @@ Component({
     },
     isMy: {
       type: Boolean
-    }
+    },
   },
 
   /**

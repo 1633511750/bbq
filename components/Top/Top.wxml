@@ -2,7 +2,7 @@
 <view class="top-title-wrap" style="height: {{45}}px;top: {{statusBarHeight}}px;">
   <navigator hover-class="none" url="/pages/school/index" class="title">
     <image src="/img/pos.png" mode="aspectFit" />
-    <text class="school">{{school}}</text><text class="arrow">></text>
+    <text class="school">{{school}}</text><image class="arrow" src="/img/right.png"></image>
   </navigator>
   <navigator class="find" url="/pages/search/index">
     <image src="/img/find.png" mode="aspectFit"></image>

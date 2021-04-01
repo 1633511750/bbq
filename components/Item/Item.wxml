@@ -1,12 +1,12 @@
 <view class="wrapper">
   <view class="blank"></view>
 <view class="comment" item="{{item}}">
-  <navigator hover-class="none" url="/pages/detail/index?id={{item.id}}&content={{item.content}}&category={{item.category}}&date={{item.date_str}}&time={{item.time_str}}&pageviews={{item.pageviews}}&commentListNum={{item.commentListNum_int}}&dianzanNum={{item.dianzanNum_int}}&name={{item.name_str}}&avatarUrl={{item.avatarUrl_str}}&isMy={{isMy}}">
+  <navigator hover-class="none" url="/pages/detail/index?item={{JSON.stringify(item)}}&isMy={{isMy}}">
     <view class="item clearfix">
       <view class="headPic" style="background-image: url({{item.avatarUrl_str}})"></view>
       <view class="info">
         <view class="info-top clearfix">
-          <text class="name">{{item.name_str}}</text>
+          <view class="name">{{item.name_str}} <image mode="aspectFit" src="/img/female.png"></image> </view>
           <text class="video">{{item.category}}</text>
         </view>
         <view class="info-bottom">
@@ -20,7 +20,7 @@
   <view class="img">
     <image bindtap="previewImages_fun" data-cururl="{{item1}}" data-urls="{{item.img}}" wx:for="{{item.img}}" wx:for-item="item1" wx:key="src" src="{{item1}}"></image>
   </view>
-  <navigator class="footer" hover-class="none" url="/pages/detail/index">
+  <navigator class="footer" hover-class="none" url="/pages/detail/index?datas=item&isMy={{isMy}}">
     <view class="f1">
       <image mode="aspectFit" src="/img/hot.png"></image>
       <text class="heart">{{item.pageviews}}</text>

@@ -1,5 +1,5 @@
 // pages/systemmsg/index.js
-const { $http } = require('../../utils/util')
+const { $http, myTime } = require('../../utils/util')
 Page({
 
   /**
@@ -17,7 +17,8 @@ Page({
       .then(res => {
         var list_arr = res.data.data.privateLetterList
         list_arr.forEach(item => {
-          item.date_str = item.createTime.split('T')[0]
+          var t_o = myTime(item.createTime)
+          item.date_str = t_o.year + '-' + t_o.month + '-' + t_o.day
         })
         this.setData({
           msg_arr: list_arr

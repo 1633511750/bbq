@@ -6,14 +6,15 @@
 }
 .top-title-wrap {
   width: 100%;
+  height: 80rpx;
+  line-height: 80rpx;
   background-color: #fff;
   position: fixed;
   z-index: 2;
-  border-bottom-left-radius: 25rpx;
-  border-bottom-right-radius: 25rpx;
 }
 .top-title-wrap .title {
   font-size: 34rpx;
+  display: inline-block;
   position: absolute;
   left: 30rpx;
   top: 50%;
@@ -26,31 +27,34 @@
   margin-right: 5rpx;
 }
 .top-title-wrap .title .arrow {
+  width: 38rpx;
+  height: 38rpx;
+  position: relative;
+  top: 5rpx;
   margin-left: 5rpx;
   vertical-align: middle;
 }
 .top-title-wrap .title .school {
   vertical-align: middle;
   display: inline-block;
-  max-width: 300rpx;
+  max-width: 330rpx;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
 }
 .top-title-wrap .find {
-  width: 117.75700935rpx;
-  height: 47.6635514rpx;
-  background-color: var(--colorGray);
+  width: 60rpx;
+  height: 60rpx;
   position: absolute;
-  left: 410rpx;
+  left: 450rpx;
   top: 50%;
   transform: translate(0, -50%);
-  border-radius: 47.6635514rpx;
 }
 .top-title-wrap .find image {
-  width: 35.71428571rpx;
-  height: 35.71428571rpx;
+  width: 36rpx;
+  height: 36rpx;
   position: absolute;
-  left: 10rpx;
-  top: 7rpx;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
 }

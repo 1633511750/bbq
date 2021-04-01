@@ -1,5 +1,5 @@
 // pages/mywall/index.js
-const { $http } = require('../../utils/util')
+const { $http, myTime } = require('../../utils/util')
 var app = getApp()
 Page({
 
@@ -28,12 +28,9 @@ Page({
         if (res.data.success) {
           var list_arr = res.data.data.articleList.reverse()
           list_arr.forEach((item) => {
-            var temp_arr = item.createTime.split('T')
-            var t = temp_arr[0].split('-')
-            item.date_str = t[1] + '-' + t[2]
-
-            t = temp_arr[1].split(':')
-            item.time_str = t[0] + ':' + t[1]
+            var t_o = myTime(item.createTime)
+            item.date_str = t_o.month + '-' + t_o.day
+            item.time_str = t_o.hour + ':' + t_o.minute
 
             item.commentListNum_int = item.commentList.length
 

@@ -1,13 +1,12 @@
-<view class="index-wrap" style="padding-top: {{statusBarHeight + 45}}px;">
+<view class="index-wrap" style="padding-top: {{statusBarHeight / windowWidth * 750 + 80 + 105}}rpx;">
   <Top school="{{school_str}}"></Top>
-  <view class="top" style="top: {{statusBarHeight + 45}}px;">
+  <view class="top" style="top: {{statusBarHeight / windowWidth * 750 + 80}}rpx;">
     <scroll-view show-scrollbar="{{false}}" enhanced scroll-x="true" class="scroll-wrap">
       <view class="navigator" bindtap="titleTap_fun" data-index="{{index}}" wx:for="{{topList_arr}}" wx:key="item">
         <text class="{{currentTitle_int === index?'active':''}}">{{item}}</text>
       </view>
     </scroll-view>    
   </view>
-  <view class="blank"></view>
 
   <scroll-view
     class="scroll-view"
@@ -25,9 +24,9 @@
   <image class="add" bindtap="showDialog_fun" src="/img/add.png" mode="aspectFit" lazy-load="false" />
     
   <view class="dialog-wrap" wx:if="{{showDialog_bool}}">
-    <view class="dialog">
+    <view class="dialog {{showDialog_bool}}">
       <view class="up clearfix">
-        <view class="headPic" style="background-image: url({{avatarUrl_str}});"></view>
+        <image src="{{avatarUrl_str}}" class="headPic"></image>
         <view class="up-right">
           <text class="name">{{nickName_str}}</text>
           <image bindtap="anonymou_fun" class="reNew" src="/img/reFresh.png" mode="aspectFit"></image>
