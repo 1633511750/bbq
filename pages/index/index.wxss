@@ -38,11 +38,11 @@
   bottom: 0;
 }
 .index-wrap .add {
-  width: 114.95327103rpx;
-  height: 114.95327103rpx;
+  width: 96rpx;
+  height: 96rpx;
   position: fixed;
-  right: 56.07476636rpx;
-  bottom: 63.08411215rpx;
+  right: 90rpx;
+  bottom: 63rpx;
 }
 .index-wrap .dialog-wrap {
   position: fixed;

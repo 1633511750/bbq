@@ -41,23 +41,23 @@
   left: 130rpx;
 }
 .wrapper .comment .item .info .info-top .name image {
-  width: 30rpx;
-  height: 30rpx;
+  width: 26rpx;
+  height: 26rpx;
   vertical-align: middle;
   position: relative;
   top: -2rpx;
 }
 .wrapper .comment .item .info .info-top .video {
-  height: 42rpx;
-  line-height: 40rpx;
+  height: 36rpx;
+  line-height: 34rpx;
   padding: 0 20rpx;
   border-radius: 21rpx;
   color: #fff;
   position: absolute;
-  top: 28rpx;
+  top: 30rpx;
   right: 36rpx;
   background-color: #43D7B5;
-  font-size: 25.23364486rpx;
+  font-size: 22rpx;
 }
 .wrapper .comment .item .info .info-bottom {
   font-size: 20rpx;
