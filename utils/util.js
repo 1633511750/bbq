@@ -22,7 +22,8 @@ function $http({ url, data = {}, method = 'get', complete, hasLimit = true }, ha
     }
     wx.request({
       // url: 'http://159.75.6.154:8080' + url,
-      url: 'http://www.guoer.ltd:8080/' + url,
+      url: 'http://www.guoer.ltd:8080/' + url, 
+      // url: 'https://www.guoer.ltd:443/' + url,
       data,
       header,
       method,

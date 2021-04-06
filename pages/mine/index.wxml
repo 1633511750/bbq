@@ -3,7 +3,7 @@
     <view class="headPic" style="background-image: url('https://i04piccdn.sogoucdn.com/0e3e409f0cf25fb3');"></view>
     <view class="name">椅子小坤</view>
     <view class="school">山西传媒学院</view>
-    <text class="right-arrow">></text>
+    <image src="/img/right.png" class="right-arrow"></image>
   </navigator>
   <view class="item-wrapper">
     <view class="title">表白墙</view>

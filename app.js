@@ -40,28 +40,16 @@ App({
     // phoneNumber: '18000000000'
     // JSESSIONID=FB550FDA9A5B9763F2ED87D4E9DC691E; Path=/; HttpOnly
 
-    // $http({
-    //   hasLimit: true, url: '/User/selectedSchool', method: 'get', data: {
-    //     school: '山西传媒学院'
-    //   }
-    // })
-    //   .then(res => {
-    //     console.log(res.data.data);
-    //   })
+    $http({
+      hasLimit: true, url: '/User/selectedSchool', method: 'get', data: {
+        school: '山西传媒学院'
+      }
+    })
+      .then(res => {
+        console.log(res.data.data);
+      })
 
-    // wx.request({
-    //   url: 'http://159.75.6.154:8080/Admin/getNewUsersByDate',
-    //   data: { date: '2021/3/24' },
-    //   header: { 'content-type': 'application/json', 'cookie': 'JSESSIONID=FB550FDA9A5B9763F2ED87D4E9DC691E; Path=/; HttpOnly' },
-    //   method: 'GET',
-    //   dataType: 'json',
-    //   responseType: 'text',
-    //   success: (result) => {
-    //     console.log(result);
-    //   },
-    //   fail: () => { },
-    //   complete: () => { }
-    // });
+    
 
 
     // $http({ url: '/User/complain', method: 'post', data: { articleId: 4, category: '内容不实', content: '测试' } })

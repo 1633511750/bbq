@@ -11,14 +11,14 @@
   background-color: #fff;
   width: 718rpx;
   margin-left: 16rpx;
-  padding: 18rpx 34rpx 0;
+  padding: 32rpx 34rpx 0;
   border-radius: 10rpx;
   position: relative;
   box-shadow: 0 0 10rpx 0 #F2F2F2;
 }
 .wrapper .comment .item .headPic {
-  width: 82rpx;
-  height: 82rpx;
+  width: 85rpx;
+  height: 85rpx;
   border-radius: 41rpx;
   background-size: 100% 100%;
 }
@@ -37,8 +37,8 @@
   font-weight: bold;
   color: #666;
   position: absolute;
-  top: 18rpx;
-  left: 130rpx;
+  top: 28rpx;
+  left: 140rpx;
 }
 .wrapper .comment .item .info .info-top .name image {
   width: 26rpx;
@@ -54,7 +54,7 @@
   border-radius: 21rpx;
   color: #fff;
   position: absolute;
-  top: 30rpx;
+  top: 40rpx;
   right: 36rpx;
   background-color: #43D7B5;
   font-size: 22rpx;
@@ -63,8 +63,8 @@
   font-size: 20rpx;
   color: #aaa;
   position: absolute;
-  left: 130rpx;
-  top: 74rpx;
+  left: 140rpx;
+  top: 84rpx;
   height: 28rpx;
   line-height: 28rpx;
 }
@@ -91,7 +91,7 @@
   padding: 0 30rpx;
   display: flex;
   justify-content: space-between;
-  padding-bottom: 22rpx;
+  padding-bottom: 25rpx;
 }
 .wrapper .comment .footer .f1 {
   flex: 1;

@@ -5,7 +5,7 @@
   background-color: var(--colorGray);
   overflow: auto;
   .top {
-    margin-top: 15rpx;
+    margin-top: 1rpx;
     height: 204rpx;
     line-height: 204rpx;
     background-color: #fff;
@@ -37,13 +37,19 @@
     }
     .right-arrow {
       float: right;
+      width: 50rpx;
+      height: 50rpx;
+      position: absolute;
+      top: 50%;
+      right: 0rpx;
+      transform: translateY(-50%);
       font-size: 50rpx;
       font-weight: lighter;
       margin-right: 70rpx;
     }
   }
   .item-wrapper {
-    height: 260rpx;
+    height: 220rpx;
     margin-top: 15rpx;
     background-color: #fff;
     overflow: hidden;
@@ -55,7 +61,7 @@
     }
     .item-wrap {
       width: 33.33%;
-      height: 208rpx;
+      height: 168rpx;
       float: left;
       display: flex;
       flex-direction: column;
@@ -63,9 +69,9 @@
       align-items: center;
       position: relative;
       image {
-        width: 52rpx;
-        height: 52rpx;
-        margin-bottom: 20rpx;
+        width: 45rpx;
+        height: 45rpx;
+        margin-bottom: 12rpx;
       }
 
       &::after {
@@ -75,7 +81,7 @@
         position: absolute;
         right: 0;
         display: block;
-        top: 80rpx;
+        top: 55rpx;
         content: "";
         background-color: var(--colorGray);
       }
