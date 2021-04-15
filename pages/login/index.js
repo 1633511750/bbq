@@ -21,13 +21,18 @@ Page({
 
   },
 
-  bindGetUserInfo_fun(e) {
-    var userInfo = e.detail.userInfo
+  getUserProfile_fun(e) {
+    // 推荐使用wx.getUserProfile获取用户信息，开发者每次通过该接口获取用户个人信息均需用户确认
+    // 开发者妥善保管用户快速填写的头像昵称，避免重复弹窗
+    wx.getUserProfile({
+      desc: '用于完善会员资料', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
+      success: (res) => {
+        this.bindGetUserInfo_fun.call(this, res.userInfo)
+      }
+    })
+  },
 
-    if (userInfo === undefined) {
-      wx.showToast({ title: '已取消登录' })
-      return
-    }
+  bindGetUserInfo_fun(userInfo) {
     app.globalData.avatarUrl_str = userInfo.avatarUrl
     app.globalData.nickName_str = userInfo.nickName
     app.globalData.country_str = userInfo.country

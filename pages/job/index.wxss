@@ -70,9 +70,9 @@
   float: left;
   line-height: 34rpx;
   font-size: 20rpx;
-  color: #FF7E17;
+  color: pink;
   text-align: center;
-  border: 1rpx solid #FF7E17;
+  border: 1rpx solid pink;
   border-top-left-radius: 18rpx;
   border-top-right-radius: 18rpx;
   border-bottom-right-radius: 18rpx;

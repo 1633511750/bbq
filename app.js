@@ -6,7 +6,6 @@ App({
    * 当小程序初始化完成时，会触发 onLaunch（全局只触发一次）
    */
   onLaunch: function () {
-
     let menuButtonObject = wx.getMenuButtonBoundingClientRect();
     wx.getSystemInfo({
       success: res => {
@@ -21,6 +20,7 @@ App({
         console.log(err);
       }
     })
+    console.log('new');
 
     // 读取用户信息
     this.globalData.avatarUrl_str = wx.getStorageSync('avatarUrl')
@@ -40,16 +40,23 @@ App({
     // phoneNumber: '18000000000'
     // JSESSIONID=FB550FDA9A5B9763F2ED87D4E9DC691E; Path=/; HttpOnly
 
-    $http({
-      hasLimit: true, url: '/User/selectedSchool', method: 'get', data: {
-        school: '山西传媒学院'
-      }
-    })
-      .then(res => {
-        console.log(res.data.data);
-      })
+    // $http({
+    //   hasLimit: true, url: '/User/selectedSchool', method: 'get', data: {
+    //     school: '山西传媒学院'
+    //   }
+    // })
+    //   .then(res => {
+    //     console.log(res.data.data);
+    //   })
 
-    
+    // wx.request({
+    //   url: 'http://119.3.155.165:3000',
+    //   success: (result) => {
+    //     console.log(result);
+    //   },
+    //   fail: (res) => { },
+    //   complete: (res) => { },
+    // })
 
 
     // $http({ url: '/User/complain', method: 'post', data: { articleId: 4, category: '内容不实', content: '测试' } })

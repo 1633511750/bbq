@@ -30,6 +30,7 @@ Page({
       commentListNum_int: 33,
       dianzanNum_int: 3433,
       category: '对象',
+      isLast: false
     }, {
       id: 2,
       name_str: '夏天',
@@ -45,7 +46,8 @@ Page({
       pageviews: 32,
       commentListNum_int: 33,
       dianzanNum_int: 34,
-      category: '对象'
+      category: '对象',
+      isLast: false
     }, {
       id: 3,
       name_str: '我认真的',
@@ -61,6 +63,7 @@ Page({
       commentListNum_int: 33,
       dianzanNum_int: 34,
       category: '对象',
+      isLast: true
     }],
     // }, {
     //   id: 4,
@@ -267,7 +270,7 @@ Page({
     let windowWidth = wx.getSystemInfoSync().windowWidth // 屏幕的宽度
     this.setData({
       windowWidth,
-      scrollHeight_flo: (windowHeight - this.data.statusBarHeight) / windowWidth * 750 - 183
+      scrollHeight_flo: (windowHeight - this.data.statusBarHeight) / windowWidth * 750 - 149
       // scrollHeight_flo: 1000
     })
     console.log(this.data.scrollHeight_flo);

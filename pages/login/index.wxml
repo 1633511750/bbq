@@ -1,1 +1,1 @@
-<button open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo_fun">授权登录</button>
+<button bindtap="getUserProfile_fun">授权登录</button>
