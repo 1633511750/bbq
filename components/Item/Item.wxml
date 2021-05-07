@@ -1,9 +1,9 @@
 <view class="wrapper">
   <view class="blank"></view>
   <view class="comment" item="{{item}}">
-    <navigator hover-class="none" url="/pages/detail/index?item={{item_str}}&isMy={{isMy}}">
+    <view hover-class="none" bindtap="gotoDetail_fun">
       <view class="item clearfix">
-        <view class="headPic" style="background-image: url({{item.avatarUrl_str}})"></view>
+        <image class="headPic" mode="aspectFit" src="{{item.avatarUrl_str}}"></image>
         <view class="info">
           <view class="info-top clearfix">
             <view class="name">{{item.name_str}} <image mode="aspectFit" src="/img/female.png"></image> </view>
@@ -15,12 +15,13 @@
           </view>
         </view>
       </view>
-      <view class="desc">{{item.content}}</view>
-    </navigator>
-    <view class="img">
-      <image mode="aspectFill" bindtap="previewImages_fun" data-cururl="{{item1}}" data-urls="{{item.img}}" wx:for="{{item.img}}" wx:for-item="item1" wx:key="src" src="{{item1}}"></image>
+      <view wx:if="{{item.content}}" class="desc">{{item.content}}</view>
     </view>
-    <navigator class="footer" hover-class="none" url="/pages/detail/index?item={{item_str}}&isMy={{isMy}}">
+    <view class="img clearfix">
+      <image mode="aspectFill" bindtap="previewImages_fun" data-cururl="{{item1}}" data-urls="{{item.imgOrg}}" wx:for="{{item.img}}" wx:for-item="item1" wx:key="src" src="{{item1}}"></image>
+      <view style="pointer-events:none" class="more-img" wx:if="{{item.imgOrg.length > 3}}">+{{item.imgOrg.length - item.img.length}}</view>
+    </view>
+    <view class="footer" hover-class="none" bindtap="gotoDetail_fun">
       <view class="f1">
         <image mode="aspectFit" src="/img/hot.png"></image>
         <text class="heart">{{item.pageviews}}</text>
@@ -33,7 +34,7 @@
         <image mode="aspectFit" catchtap="dotZan_fun" src="{{item.isZan ? '/img/zan_active.png' : '/img/zan.png'}}"></image>
         <text class="zan">{{item.dianzanNum_int}}</text>
       </view>
-    </navigator>
+    </view>
   </view>
   <view class="blank" wx:if="{{item.isLast}}"></view>
 </view>

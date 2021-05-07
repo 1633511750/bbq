@@ -1,0 +1,12 @@
+<view wx:for="{{shop_arr}}" wx:if="{{item.examined === 0 || item.examined === 1}}" wx:key="id" class="wrap">
+  <navigator url="/pages/shopsetting/index?id={{item.id}}" class="item">
+    <view>店铺</view>
+    <view>设置</view>
+  </navigator>
+  <navigator url="/pages/goods/index?id={{item.id}}" class="item">
+    <view>商品</view>
+    <view>上架</view>
+  </navigator>
+  <!--<view class="check-goods">商品审核中</view>-->
+  <view wx:if="{{item.examined !== 1}}" class="check-shop">店铺审核中</view>
+</view>

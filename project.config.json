@@ -4,7 +4,7 @@
     "ignore": []
   },
   "setting": {
-    "urlCheck": false,
+    "urlCheck": true,
     "es6": true,
     "enhance": false,
     "postcss": true,
@@ -40,7 +40,7 @@
     "minifyWXSS": true
   },
   "compileType": "miniprogram",
-  "libVersion": "2.15.0",
+  "libVersion": "2.16.1",
   "appid": "wx8c84e9f59ed23d2d",
   "projectname": "bbq",
   "debugOptions": {

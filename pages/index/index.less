@@ -1,7 +1,7 @@
 @color_gray: #4f4f4f;
 @color_icon: #aaa;
 @color_orange: #ff7e17;
-@color_blue: #489CD7;
+@color_blue: #43D7B5;
 @font_size_28: 28;
 @font_size_36: 36;
 @font_size_45: 45;
@@ -41,6 +41,18 @@
   }
 
   .scroll-view {
+    .top-msg {
+      height: 0rpx;
+      text-align: center;
+      color: #999;
+      transition: height 0.5s;
+    }
+    .bottom-msg {
+      height: 0rpx;
+      text-align: center;
+      color: #999;
+      transition: height 0.5s;
+    }
   }
 
   .shadow {
@@ -106,11 +118,12 @@
             vertical-align: middle;
           }
           .reNew {
-            width: 40rpx;
-            height: 40rpx;
+            width: 50rpx;
+            height: 50rpx;
             float: right;
-            margin-right: 20rpx;
+            margin-right: 15rpx;
             vertical-align: middle;
+            transition: transform 0.5s;
           }
         }
       }
@@ -137,7 +150,7 @@
       }
       .blank {
         height: 15rpx;
-        background-color: #ddd;
+        background-color: #e6e6e6;
       }
       .bottom {
         color: @color_icon;

@@ -19,6 +19,11 @@
     "pages/updateMyInfo/index",
     "pages/zhuti/index",
     "pages/login/index",
+    "pages/shop/index",
+    "pages/shopsetting/index",
+    "pages/openshop/index",
+    "pages/goods/index",
+    "pages/goodpublic/index",
     "pages/test/index"
   ],
   "window": {
@@ -55,5 +60,10 @@
     ]
   },
   "style": "v2",
-  "sitemapLocation": "sitemap.json"
+  "sitemapLocation": "sitemap.json",
+  "permission": {
+    "scope.userLocation": {
+      "desc": "请求获取您当前位置"
+    }
+  }
 }

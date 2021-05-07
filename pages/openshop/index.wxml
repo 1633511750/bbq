@@ -1,0 +1,67 @@
+<view class="info-wrap">
+  <view class="head-wrap">
+    <text class="head-text">店铺头像</text>
+    <image class="head-pic" src=""/>
+  </view>
+  <view class="item">
+    <text class="name">店铺名称</text>
+    <view class="value">
+      <text wx:if="{{isModify_bool}}" class="org">{{shopName_str}}</text>
+      <input bindinput="input_fun" data-value="shopName_str" wx:else value="{{shopName_str}}" class="modify"></input>
+    </view>
+  </view>
+  <view class="item">
+    <text class="name">店铺标签</text>
+    <view class="value">
+      <text wx:if="{{isModify_bool}}" class="org">{{tag_str}}</text>
+      <input bindinput="input_fun" data-value="tag_str" placeholder="多个标签用空格分隔" wx:else value="{{tag_str}}" class="modify"></input>
+    </view>
+  </view>
+  <view class="item">
+    <text class="name">店铺类别</text>
+    <view class="value">
+      <text wx:if="{{isModify_bool}}" class="org">{{category_str}}</text>
+      <input bindinput="input_fun" data-value="category_str" wx:else value="{{category_str}}" class="modify"></input>
+    </view>
+  </view>
+  <view class="item">
+    <text class="name">地址</text>
+    <view class="value">
+      <text wx:if="{{isModify_bool}}" class="org">{{address_str}}</text>
+      <input bindinput="input_fun" data-value="address_str" wx:else value="{{address_str}}" class="modify"></input>
+    </view>
+  </view>
+</view>
+
+<view class="call-wrap">
+  <view class="top">联系方式</view>
+  <view class="item">
+    <text class="name">电话</text>
+    <view class="value">
+      <text wx:if="{{isModify_bool}}" class="org">{{phone_str}}</text>
+      <input bindinput="input_fun" data-value="phone_str" wx:else value="{{phone_str}}" class="modify"></input>
+    </view>
+  </view>
+  <view class="item">
+    <text class="name">微信</text>
+    <view class="value">
+      <text wx:if="{{isModify_bool}}" class="org">{{wechat_str}}</text>
+      <input bindinput="input_fun" data-value="wechat_str" wx:else value="{{wechat_str}}" class="modify"></input>
+    </view>
+  </view>
+  <view class="item">
+    <text class="name">QQ</text>
+    <view class="value">
+      <text wx:if="{{isModify_bool}}" class="org">{{qq_str}}</text>
+      <input bindinput="input_fun" data-value="qq_str" wx:else value="{{qq_str}}" class="modify"></input>
+    </view>
+  </view>
+</view>
+
+<view class="desc-wrap">
+  <view class="top">店铺介绍</view>
+  <view wx:if="{{isModify_bool}}" class="desc">{{desc_str}}</view>
+  <textarea bindinput="input_fun" data-value="desc_str" maxlength="-1" wx:else value="{{desc_str}}" />
+</view>
+
+<view class="setting" bindtap="setting_fun">开店</view>

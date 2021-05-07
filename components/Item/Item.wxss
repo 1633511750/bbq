@@ -75,16 +75,38 @@
   line-height: 44rpx;
   font-size: 32rpx;
   margin-top: 28rpx;
+  display: -webkit-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
+  white-space: pre-line;
 }
 .wrapper .comment .img {
   margin-top: 20rpx;
-  display: flex;
-  justify-content: space-between;
+  position: relative;
 }
 .wrapper .comment .img image {
+  float: left;
+  margin-left: 10rpx;
   width: 206rpx;
   height: 206rpx;
   border-radius: 15rpx;
+  margin-top: 10rpx;
+}
+.wrapper .comment .img .more-img {
+  position: absolute;
+  right: 64rpx;
+  bottom: 50rpx;
+  color: #fff;
+  font-size: 80rpx;
+  opacity: 0.7;
+}
+.wrapper .comment .pos {
+  margin-top: 30rpx;
+  color: #999;
+  font-size: 24rpx;
 }
 .wrapper .comment .footer {
   margin-top: 25rpx;

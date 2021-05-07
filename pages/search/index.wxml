@@ -1,8 +1,16 @@
 <view class="wrap">
-  <Search prop="搜索" text="{{text}}"></Search>
+  <Search class="search" searchValue="{{searchValue_str}}" prop="搜索" bind:searchevent="getSearchValue_fun" bind:searchBtnevent="searchHandle_fun" text="{{text}}"></Search>
   <view class="type">
-    <view class="wall">表白墙</view>
-    <view class="job">创业街</view>
-    <view class="mine">我的</view>
+    <view class="wall {{typeIndex_int === 0 ? 'active' : ''}}" data-index="0" bindtap="switchType_fun">表白墙</view>
+    <view class="job {{typeIndex_int === 1 ? 'active' : ''}}" data-index="1" bindtap="switchType_fun">创业街</view>
   </view>
+
+  <scroll-view 
+    scroll-y 
+    bindscrolltolower="upPullLoadList_fun"
+    class="search-con-wrap">
+    <view style="height: {{topMsgHeight_int}}rpx" class="top-msg">{{topMsg_str}}</view>
+    <Item class="item" wx:for="{{list_arr}}" bind:zanevent="dotZan_fun" data-id="{{item.id}}" wx:key="id" item="{{item}}" isMy="{{false}}"></Item>
+    <view style="height: {{bottomMsgHeight_int}}rpx" class="bottom-msg">{{bottomMsg_str}}</view>
+  </scroll-view>
 </view>

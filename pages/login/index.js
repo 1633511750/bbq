@@ -12,13 +12,13 @@ Page({
     nickName_str: '',
     country_str: '',
     province_str: '',
+    uid_int: 0,
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
   },
 
   getUserProfile_fun(e) {
@@ -59,22 +59,22 @@ Page({
     wx.setStorageSync('city', userInfo.city);
     console.log(userInfo_o);
 
-    if (userInfo_o.avatarUrl_str) {
-      wx.showToast({
-        title: '登录成功',
-      });
-    }
-    setTimeout(() => {
-      var pages = getCurrentPages()
-      var curPage = pages[pages.length - 1]
-      var url = curPage.route
-      if (url === 'pages/login/index') {
-        wx.navigateBack({
-          delta: 1
-        });
-      }
-    }, 1500);
-    return
+    // if (userInfo_o.avatarUrl_str) {
+    //   wx.showToast({
+    //     title: '登录成功',
+    //   });
+    // }
+    // setTimeout(() => {
+    //   var pages = getCurrentPages()
+    //   var curPage = pages[pages.length - 1]
+    //   var url = curPage.route
+    //   if (url === 'pages/login/index') {
+    //     wx.navigateBack({
+    //       delta: 1
+    //     });
+    //   }
+    // }, 1500);
+
     this.register_fun(() => {
       setTimeout(() => {
         var pages = getCurrentPages()
@@ -98,9 +98,9 @@ Page({
         $http({
           url: '/User/register',
           method: 'post',
-          data: { wxCode: result.code, verificationCode: 'XVJAIV' },
+          data: { wxCode: result.code, verificationCode: 'XVJAIV', name: this.data.nickName_str },
           hasLimit: false
-        })
+        }, true)
           .then((res) => {
             console.log(res);
             if (res.data.success) {
@@ -144,7 +144,7 @@ Page({
       timeout: 10000,
       success: (result) => {
         console.log('wxCode : ' + result.code);
-        $http({ url: '/User/login', method: 'post', data: { wxCode: result.code }, hasLimit: false })
+        $http({ url: '/User/login', method: 'post', data: { wxCode: result.code }, hasLimit: false }, true)
           .then((res) => {
             console.log(res);
             if (res.data.success) {
@@ -152,8 +152,11 @@ Page({
                 title: '登录成功',
                 icon: 'success',
               });
+              app.globalData.backState_int = 1
               callback && callback()
               wx.setStorageSync('Cookie', res.data.data.sessionId);
+              app.globalData.uid_int = res.data.data.user.id - 0
+              wx.setStorageSync('uid', res.data.data.user.id)
               // console.log('login : ' + res.data.data.sessionId);
             } else if (res.data.code === 203) {
               wx.showToast({
@@ -194,7 +197,14 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    var pages = getCurrentPages()
+    var curPage = pages[pages.length - 2]
+    var url = curPage && curPage.route
+    if (url === 'pages/login/index') {
+      wx.navigateBack({
+        delta: 1
+      });
+    }
   },
 
   /**

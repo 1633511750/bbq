@@ -1,6 +1,6 @@
 <view class="wrap">
   <view class="top">
-    <input class="input" bindfocus="focus_fun" type="text" placeholder="{{prop}}"></input>
+    <input class="input" focus bindinput="input_fun" value="{{searchValue}}" bindfocus="focus_fun" type="text" placeholder="{{prop}}"></input>
     <view class="find-btn" bindtap="tap_fun">{{text}}</view>
   </view>
   <image src="/img/find.png" class="find-pic"></image>

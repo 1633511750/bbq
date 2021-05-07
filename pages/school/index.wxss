@@ -2,22 +2,35 @@
   height: 100vh;
   background-color: var(--colorGray);
 }
-.wrap .find-text {
+.wrap .search {
+  position: fixed;
+  left: 0;
+  top: 0;
+}
+.wrap .main {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  overflow-y: auto;
+  top: 106rpx;
+  background-color: #fff;
+}
+.wrap .main .find-text {
   padding: 20rpx 0 0 35rpx;
   background-color: white;
   color: #808080;
   font-size: 24rpx;
 }
-.wrap .item-wrap {
+.wrap .main .item-wrap {
   padding: 0 35rpx;
   line-height: 86rpx;
   background-color: #fff;
 }
-.wrap .item-wrap .item {
+.wrap .main .item-wrap .item {
   font-size: 32rpx;
   color: #555;
   border-bottom: 1px solid var(--colorGray);
 }
-.wrap .item-wrap .item:last-child {
+.wrap .main .item-wrap .item:last-child {
   border-bottom: none;
 }

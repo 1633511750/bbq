@@ -1,6 +1,6 @@
 page {
   height: 100vh;
-  background-color: var(--colorGray);
+  background-color: #fff;
 }
 page .lbt {
   height: 408rpx;

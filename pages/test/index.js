@@ -1,12 +1,20 @@
 
 Page({
   data: {
-    flag: true,
+    showEdit: false,
+    text: '你好，易语言'
   },
-  showMask: function () {
-    this.setData({ flag: false })
+
+  btn_fun() {
+    this.setData({
+      showEdit: !this.data.showEdit
+    })
   },
-  closeMask: function () {
-    this.setData({ flag: true })
+
+  input_fun(e) {
+    this.setData({
+      text: e.detail.value
+    })
+    console.log(this.data.text);
   }
 })

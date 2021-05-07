@@ -46,6 +46,7 @@
   height: 128rpx;
   float: left;
   border: 1px solid #ccc;
+  border-radius: 15rpx;
 }
 .wrap .item-wrap .right {
   width: 525rpx;
@@ -85,7 +86,7 @@
   bottom: 30rpx;
 }
 .wrap .item-wrap .right .zan .zan-up {
-  margin-right: 50rpx;
+  margin-right: 10rpx;
   float: left;
 }
 .wrap .item-wrap .right .zan .zan-up image {
@@ -98,18 +99,4 @@
   font-size: 24rpx;
   vertical-align: middle;
   color: #797979;
-}
-.wrap .item-wrap .right .zan .zan-down {
-  float: left;
-}
-.wrap .item-wrap .right .zan .zan-down image {
-  width: 30rpx;
-  height: 30rpx;
-  vertical-align: middle;
-}
-.wrap .item-wrap .right .zan .zan-down text {
-  margin-left: 5rpx;
-  font-size: 24rpx;
-  vertical-align: middle;
-  color: #aaa;
 }

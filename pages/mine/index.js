@@ -1,3 +1,4 @@
+let app = getApp()
 // pages/mine/index.js
 Page({
 
@@ -5,6 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    nickName_str: ''
   },
 
   /**
@@ -24,7 +26,9 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.setData({
+      nickName_str: app.globalData.nickName_str
+    })
   },
 
   /**

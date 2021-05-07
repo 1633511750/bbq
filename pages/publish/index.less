@@ -1,3 +1,5 @@
+@borderWidth: 50rpx;
+@gray: #bbb;
 .wrap {
   height: 100vh;
   &::before {
@@ -10,6 +12,7 @@
   
   .con {
     padding: 30rpx;
+    margin-bottom: 100rpx;
     textarea {
       width: 690rpx;
       height: 200rpx;
@@ -20,15 +23,71 @@
     }
     .item-wrap {
       margin-top: 5rpx;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      image {
-        flex: 0 0 ((750rpx - 90) / 3);
-        width: ((750rpx - 90) / 3);
-        height: ((750rpx - 90) / 3);
-        // border: 1rpx solid #ccc;
+      .img-wrap {
+        position: relative;
+        float: left;
+        width: 220rpx;
+        height: 220rpx;
+        margin-right: 15rpx;
         margin-top: 15rpx;
+        border: 1px solid gray;
+        image {
+          width: 100%;
+          height: 100%;
+          // border: 1rpx solid #ccc;
+        }
+        &:nth-child(3n) {
+          margin-right: 0;
+        }
+        .img-close {
+          display: block;
+          position: absolute;
+          top: 0;
+          right: 0;
+          font-size: 40rpx;
+          width: 50rpx;
+          height: 50rpx;
+          text-align: center;
+          line-height: 50rpx;
+          background-color: #fffa;
+        }
+        &:last-child {
+          border: 1px solid @gray;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          .top {
+            display: flex;
+            .left-top{
+              width: @borderWidth;
+              height: @borderWidth;
+              border-right: 1px solid @gray;
+              border-bottom: 1px solid @gray;
+            }
+            .right-top {
+              width: @borderWidth;
+              height: @borderWidth;
+              // border-left: 1px solid @gray;
+              border-bottom: 1px solid @gray;
+            }
+          }
+          .bottom {
+            display: flex;
+            .left-bottom{
+              width: @borderWidth;
+              height: @borderWidth;
+              border-right: 1px solid @gray;
+              // border-top: 1px solid @gray;
+            }
+            .right-bottom {
+              width: @borderWidth;
+              height: @borderWidth;
+              // border-left: 1px solid @gray;
+              // border-top: 1px solid @gray;
+            }
+          }
+        }
       }
     }
     .con-foot {
@@ -51,8 +110,8 @@
         padding: 0 20rpx;
         border-radius: 22rpx;
         vertical-align: middle;
-        color: var(--colorBlue);
-        border: 1px solid var(--colorBlue);
+        color: #43D7B5;
+        border: 1px solid #43D7B5;
       }
     }
   }
@@ -66,7 +125,7 @@
     &::before {
       content: '';
       position: absolute;
-      top: -20rpx;
+      top: -18rpx;
       width: 100%;
       height: 18rpx;
       background-color: var(--colorGray);

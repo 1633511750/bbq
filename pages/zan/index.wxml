@@ -1,5 +1,4 @@
-<view class="wrap">
-  <view class="item">
+  <!--<view class="item">
     <view class="headPic" style="background-image: url(https://i04piccdn.sogoucdn.com/0e3e409f0cf25fb3);"></view>
     <view class="right">
       <view class="name">只小坤</view>
@@ -14,5 +13,11 @@
       <view class="desc">你赞了只小坤</view>
       <view class="date">01-11 17:34</view>
     </view>
+  </view>-->
+
+<view class="wrap">
+  <view wx:if="{{hasArtical_bool}}">
+    <Item wx:for="{{commentList_arr}}" wx:key="id" item="{{item}}" isMy="{{true}}"></Item>
   </view>
+  <view wx:else class="blank">您还没有点赞过</view>
 </view>

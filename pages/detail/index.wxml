@@ -1,8 +1,8 @@
 <view class="wrap">
   <view class="blank"></view>
-  <view class="comment">
+  <view class="comment clearfix">
     <view class="item clearfix">
-      <view class="headPic" style="background-image: url({{avatarUrl_str}})"></view>
+      <image class="headPic" src="{{avatarUrl_str}}"></image>
       <view class="info">
         <view class="info-top clearfix">
           <text class="name">{{name_str}}</text>
@@ -15,8 +15,8 @@
         </view>
       </view>
     </view>
-    <view class="desc">{{content_str}}</view>
-    <view class="img">
+    <view class="desc" style="white-space:pre-line">{{content_str}}</view>
+    <view class="img clearfix" wx:if="{{img_arr.length > 0}}">
       <image mode="aspectFill" wx:for="{{img_arr}}" bindtap="previewImage_fun" data-urls="{{img_arr}}" data-cururl="{{item}}" wx:key="*this" src="{{item}}"></image>
     </view>
   </view>
@@ -32,70 +32,77 @@
         <text class="chat">{{commentListNum_str}}</text>
       </view>
       <view class="f3" bindtap="dotZan_fun">
-        <image mode="aspectFit" src="{{commentList_arr[0].isZan ? '/img/zan_active.png' : '/img/zan.png'}}"></image>
+        <image mode="aspectFit" src="{{isZan_bool ? '/img/zan_active.png' : '/img/zan.png'}}"></image>
         <text class="zan">{{dianzanNum_str}}</text>
       </view>
     </view>
-    <view wx:if="{{reply_arr.length > 0}}">
+    <view class="pl-wrap" wx:if="{{reply_arr.length > 0}}">
       <view class="pl clearfix" wx:for="{{reply_arr}}" wx:key="id">
-        <view class="headPic" style="background-image: url({{avatarUrl_str}});"></view>
+        <image class="headPic" src="{{avatarUrl_str}}"></image>
         <view class="info-wrap">
           <view class="info clearfix">
-            <text class="name">fromUid:{{item.fromUid}}</text>
+            <text class="name">{{item.nmId_str}}</text>
             <image mode="aspectFit" src="/img/zan_active.png"/>
             <text class="heart-num">30</text>
           </view>
           <view class="pl-con">{{item.content}}</view>
           <view class="pl-foot">
             <text class="date">{{item.date_str}}  {{item.time_str}}</text>
-            <text class="reply">2回复</text>
+            <text class="reply" data-index="{{index}}" data-id="{{item.id}}" bindtap="getCommentReply_fun">{{item.commentListNum_int}}回复</text>
+            <text class="reply-btn" data-index="{{index}}" data-id="{{item.id}}" data-nmid="{{item.nmId_str}}" bindtap="replyBtn_fun">回复{{item.nmId_str}}</text>
+          </view>
+          <view class="pl-reply-wrap">
+            <view class="pl-reply-con clearfix" wx:for="{{item.reply}}" wx:key="id">
+              <image class="reply-headPic" src="{{avatarUrl_str}}"></image>
+              <view class="reply-info-wrap">
+                <view class="reply-info clearfix">
+                  <text class="reply-name">{{item.nmId_str}}</text>
+                </view>
+                <view class="reply-pl-con">{{item.content}}</view>
+                <view class="reply-pl-foot">
+                  <text class="reply-date">{{item.date_str}}  {{item.time_str}}</text>
+                </view>
+              </view>
+            </view>
           </view>
         </view>
       </view>
     </view>
-    <view wx:else class="no-reply">没有评论</view>
+    <view wx:else class="no-reply">{{replyResult_str}}</view>
   </view>
 
   <view class="write-pl">
     <view class="input" bindtap="showPingLun_fun">写评论......</view>
   </view>
 
-  <view class="dialog-wrap" wx:if="{{showDialog_bool}}">
-    <view class="dialog">
+  <view bindtap="hideDialog_fun" class="dialog-wrap" wx:if="{{showDialog_bool}}">
+    <view class="dialog" catchtap="temp_fun">
       <view class="top">
         <text class="text">分享至</text>
         <view class="item-wrap">
-          <view class="item">
+          <button open-type="share" class="item">
             <image bindtap="share_fun" mode="aspectFit" src="/img/wechat.png"/>
             <text class="title">微信好友</text>
-          </view>
-          <view class="item">
+          </button>
+          <view class="item" bindtap="friendsCircle_fun">
             <image mode="aspectFit" src="/img/friends_circle.png"/>
             <text class="title">朋友圈</text>
           </view>
-          <view class="item">
-            <image mode="aspectFit" src="/img/qq.png"/>
-            <text class="title">QQ好友</text>
-          </view>
-          <view class="item">
-            <image mode="aspectFit" src="/img/zone.png"/>
-            <text class="title">QQ空间</text>
-          </view>
         </view>
       </view>
+      <view class="blank"></view>
       <view class="bottom" bindtap="hideDialog_fun">取消</view>
     </view>
   </view>
-
   <view wx:if="{{showPingLun_bool}}" bindtap="closePingLun_fun"  class="pinglun-wrap">
     <view class="pinglun" catchtap="empty_fun" style="bottom: {{0}}px;">
       <view class="top-wrap">
-        <textarea style="height: {{replyHeight_flo}}rpx;" cursor-spacing="{{300}}" show-confirm-bar="{{false}}" bindkeyboardheightchange="keyboardheight_fun" placeholder="回复XXX:"></textarea>
+        <textarea focus="{{replyFocus_bool}}" style="height: {{replyHeight_flo}}rpx;" cursor-spacing="{{300}}" show-confirm-bar="{{false}}" bindkeyboardheightchange="keyboardheight_fun" placeholder="{{commentPlaceholder_str}}" bindinput="setInputValue_fun"></textarea>
         <image mode="aspectFit" bindtap="extend_fun" src="/img/extend.png"></image>
       </view>
       <view class="pic-wrap">
         <image mode="aspectFit" bindtap="useCamera_fun" src="/img/pic.png" class="pic-icon"></image>
-        <text class="send">发送</text>
+        <text class="send" bindtap="chat_fun">发送</text>
       </view>
     </view>
   </view>

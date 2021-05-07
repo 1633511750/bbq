@@ -1,19 +1,15 @@
-<view class="item-wrap" wx:for="{{itemList_arr}}" wx:key="*this">
+<view class="item-wrap">
   <view class="headPic"></view>
   <view class="right">
     <view class="right-top clearfix">
-      <text class="title">{{item.title}}</text>
-      <text class="type">{{item.type}}</text>
+      <text class="title">{{name_str}}</text>
+      <text class="type">{{tag_arr}}</text>
     </view>
-    <view class="exp" wx:for="{{item.tag}}" wx:key="*this" wx:for-item="item2">{{item2}}</view>
+    <view class="exp" wx:for="{{tag}}" wx:key="*this" wx:for-item="item2">{{item2}}</view>
     <view class="zan">
       <view class="zan-up">
         <image src="/img/zan_up_active.png" mode="aspectFit" />
-        <text>{{item.zanUp}}</text>
-      </view>
-      <view class="zan-down">
-        <image src="/img/zan_down.png" mode="aspectFit" />
-        <text>{{item.zanDown}}</text>
+        <text>{{zanNum_int}}</text>
       </view>
     </view>
   </view>
@@ -24,72 +20,32 @@
     <view bindtap="tabClick_fun" data-index="{{0}}" class="top-item {{currentIndex === 0 ? 'active' : ''}}">商品</view>
     <view bindtap="tabClick_fun" data-index="{{1}}" class="top-item {{currentIndex === 1 ? 'active' : ''}}">商家</view>
   </view>
-  <view wx:if="{{currentIndex === 0}}" bindtap="tapItem_fun">
-    <view class="item">
+  <view wx:if="{{currentIndex === 0}}">
+    <view class="item" wx:for="{{itemList_arr}}" data-id="{{item.id}}" wx:key="id" bindtap="tapItem_fun">
       <view class="headPic"></view>
       <view class="right">
-        <view class="right-top">LOGO设计</view>
+        <view class="right-top">{{item.name}}</view>
         <view class="right-bottom">
-          原价：<text class="origin-price">300</text>
-          现价：<text class="now-price">200</text>
+          原价：<text class="origin-price">{{item.costPrice}}</text>
+          现价：<text class="now-price">{{item.price}}</text>
         </view>
       </view>
     </view>
-    <view class="item">
-      <view class="headPic"></view>
-      <view class="right">
-        <view class="right-top">LOGO设计</view>
-        <view class="right-bottom">
-          原价：<text class="origin-price">300</text>
-          现价：<text class="now-price">200</text>
-        </view>
-      </view>
-    </view>
-    <view class="item">
-      <view class="headPic"></view>
-      <view class="right">
-        <view class="right-top">LOGO设计</view>
-        <view class="right-bottom">
-          原价：<text class="origin-price">300</text>
-          现价：<text class="now-price">200</text>
-        </view>
-      </view>
-    </view>
-    <view class="item">
-      <view class="headPic"></view>
-      <view class="right">
-        <view class="right-top">LOGO设计</view>
-        <view class="right-bottom">
-          原价：<text class="origin-price">300</text>
-          现价：<text class="now-price">200</text>
-        </view>
-      </view>
-    </view>
-    <view class="item">
-      <view class="headPic"></view>
-      <view class="right">
-        <view class="right-top">LOGO设计</view>
-        <view class="right-bottom">
-          原价：<text class="origin-price">300</text>
-          现价：<text class="now-price">200</text>
-        </view>
-      </view>
-    </view>  
   </view>
   <view wx:elif="{{currentIndex === 1}}">
     <view class="item2">
-      <view class="school">地址：山西传媒学院</view>
+      <view class="school">地址：{{address_str}}</view>
       <view class="blank"></view>
       <view class="phone">
         <view class="way">联系方式</view>
         <view class="way-con">
-          <view class="way-phone">电话：13435431343</view>
-          <view class="way-wechat">微信：13435431343</view>
-          <view class="way-qq">QQ：13435431343</view>
+          <view class="way-phone">电话：{{phone_str}}</view>
+          <view class="way-wechat">微信：{{wechat_str}}</view>
+          <view class="way-qq">QQ：{{qq_str}}</view>
         </view>
       </view>
       <view class="blank"></view>
-      <view class="bottom-desc">        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus sapien nunc eget odio. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra </view>
+      <view class="bottom-desc">{{desc_str}}</view>
     </view>
   </view>
 </view>

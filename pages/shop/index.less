@@ -1,0 +1,40 @@
+page {
+  background-color: var(--colorGray);
+
+  .wrap {
+    margin-top: 15rpx;
+    background-color: #fff;
+    display: flex;
+    height: 188rpx;
+    align-items: center;
+    position: relative;
+    .item {
+      flex: 0 0 25%;
+      text-align: center;
+
+      &:first-child {
+        border-right: 1rpx solid #ddd;
+      }
+    }
+
+    .check-goods {
+      color: red;
+      border: 1px solid red;
+      padding: 0 10rpx;
+      border-radius: 20rpx;
+      position: absolute;
+      left: 350rpx;
+      bottom: 70rpx;
+    }
+
+    .check-shop {
+      color: red;
+      border: 1px solid red;
+      padding: 0 10rpx;
+      border-radius: 20rpx;
+      position: absolute;
+      left: 550rpx;
+      bottom: 70rpx;
+    }
+  }
+}

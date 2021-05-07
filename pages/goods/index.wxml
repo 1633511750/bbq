@@ -1,0 +1,17 @@
+<view class="top-wrap">
+  <view bindtap="goodsStateIndex_fun" data-index="0" class="item {{goodsStateIndex_int === 0 ? 'active' : ''}}">上架中</view>
+  <view bindtap="goodsStateIndex_fun" data-index="1" class="item {{goodsStateIndex_int === 1 ? 'active' : ''}}">下架中</view>
+  <view bindtap="goodsStateIndex_fun" data-index="2" class="item {{goodsStateIndex_int === 2 ? 'active' : ''}}">审核中</view>
+</view>
+
+<view wx:for="{{goods_arr}}" wx:key="id" class="item-wrap" url="/pages/goodpublic/index">
+  <image src=""/>
+  <view class="name">{{item.name}}</view>
+  <view class="price-wrap">
+    价格：<text class="now">{{item.price}}</text>
+    <text class="old"></text>
+  </view>
+  <view class="btn" catchtap="ofShelf_fun">下架</view>
+</view>
+
+<navigator url="/pages/goodpublic/index?id={{id_int}}" class="bottom-btn">添加商品</navigator>

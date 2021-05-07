@@ -1,0 +1,129 @@
+page {
+  background-color: var(--colorGray);
+  font-size: 32rpx;
+  color: #333;
+}
+page .info-wrap {
+  background-color: #fff;
+  margin-top: 15rpx;
+  padding-left: 30rpx;
+}
+page .info-wrap .head-wrap {
+  height: 180rpx;
+  position: relative;
+  border-bottom: 1rpx solid #ccc;
+}
+page .info-wrap .head-wrap .head-text {
+  position: absolute;
+  top: 80rpx;
+  left: 0;
+}
+page .info-wrap .head-wrap .head-pic {
+  width: 128rpx;
+  height: 128rpx;
+  background-color: #ddd;
+  border-radius: 10rpx;
+  position: absolute;
+  top: 36rpx;
+  right: 28rpx;
+}
+page .info-wrap .item {
+  line-height: 85rpx;
+}
+page .info-wrap .item .name {
+  display: inline-block;
+  width: 136rpx;
+  vertical-align: middle;
+}
+page .info-wrap .item .value {
+  width: 300rpx;
+  height: 85rpx;
+  margin-left: 24rpx;
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+}
+page .info-wrap .item .value .org {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+page .info-wrap .item .value .modify {
+  width: 300rpx;
+  height: 55rpx;
+  position: absolute;
+  left: 0;
+  top: 15rpx;
+  padding-left: 10rpx;
+  border: 1px solid #ccc;
+}
+page .call-wrap {
+  background-color: #fff;
+  margin-top: 15rpx;
+  padding-left: 30rpx;
+}
+page .call-wrap .top {
+  line-height: 80rpx;
+  border-bottom: 1rpx solid #ccc;
+}
+page .call-wrap .item {
+  line-height: 85rpx;
+}
+page .call-wrap .item .name {
+  display: inline-block;
+  width: 136rpx;
+  vertical-align: middle;
+}
+page .call-wrap .item .value {
+  width: 300rpx;
+  height: 85rpx;
+  margin-left: 24rpx;
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+}
+page .call-wrap .item .value .org {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+page .call-wrap .item .value .modify {
+  width: 300rpx;
+  height: 55rpx;
+  position: absolute;
+  left: 0;
+  top: 15rpx;
+  padding-left: 10rpx;
+  border: 1px solid #ccc;
+}
+page .desc-wrap {
+  background-color: #fff;
+  margin-top: 15rpx;
+  padding: 0 30rpx 20rpx;
+  margin-bottom: 143rpx;
+}
+page .desc-wrap .top {
+  line-height: 80rpx;
+  border-bottom: 1rpx solid #ccc;
+  margin-bottom: 20rpx;
+}
+page .desc-wrap .desc {
+  text-indent: 2em;
+}
+page .desc-wrap textarea {
+  width: 100%;
+  border: 1px solid #ccc;
+}
+page .setting {
+  text-align: center;
+  line-height: 128rpx;
+  position: fixed;
+  z-index: 10;
+  width: 100%;
+  bottom: 0;
+  background-color: #fff;
+}

@@ -125,6 +125,35 @@
           "pathName": "pages/login/index",
           "query": "",
           "scene": null
+        },
+        {
+          "name": "shop",
+          "pathName": "pages/shop/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "shopsetting",
+          "pathName": "pages/shopsetting/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "openshop",
+          "pathName": "pages/openshop/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "goods",
+          "pathName": "pages/goods/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "goodpublic",
+          "pathName": "pages/goodpublic/index",
+          "scene": null
         }
       ]
     }

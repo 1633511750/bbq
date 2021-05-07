@@ -7,16 +7,15 @@
   background-color: #fff;
   width: 718rpx;
   margin-left: 16rpx;
-  margin-top: 16rpx;
-  margin-bottom: 16rpx;
-  padding: 18rpx 34rpx 32rpx;
+  margin-top: 15rpx;
+  padding: 32rpx 34rpx 32rpx;
   border-radius: 10rpx;
   position: relative;
   box-shadow: 0 0 10rpx 0 #F2F2F2;
 }
 .wrap .comment .item .headPic {
-  width: 82rpx;
-  height: 82rpx;
+  width: 85rpx;
+  height: 85rpx;
   border-radius: 41rpx;
   background-size: 100% 100%;
 }
@@ -35,8 +34,8 @@
   font-weight: bold;
   color: #666;
   position: absolute;
-  top: 18rpx;
-  left: 130rpx;
+  top: 28rpx;
+  left: 140rpx;
 }
 .wrap .comment .item .info .info-top .name image {
   width: 26rpx;
@@ -46,33 +45,32 @@
   top: -2rpx;
 }
 .wrap .comment .item .info .info-top .dot {
-  margin-top: -10rpx;
-  width: 60rpx;
-  height: 60rpx;
+  width: 50rpx;
+  height: 50rpx;
   padding: 10rpx;
   margin-right: 10rpx;
   position: absolute;
-  top: 28rpx;
+  top: 34rpx;
   right: 16rpx;
 }
 .wrap .comment .item .info .info-top .video {
-  height: 42rpx;
-  line-height: 40rpx;
+  height: 36rpx;
+  line-height: 34rpx;
   padding: 0 20rpx;
   border-radius: 21rpx;
   color: #fff;
   position: absolute;
-  top: 28rpx;
-  right: 96rpx;
+  top: 40rpx;
+  right: 100rpx;
   background-color: #43D7B5;
-  font-size: 25.23364486rpx;
+  font-size: 22rpx;
 }
 .wrap .comment .item .info .info-bottom {
   font-size: 20rpx;
   color: #aaa;
   position: absolute;
-  left: 130rpx;
-  top: 74rpx;
+  left: 140rpx;
+  top: 84rpx;
   height: 28rpx;
   line-height: 28rpx;
 }
@@ -86,10 +84,11 @@
 }
 .wrap .comment .img {
   margin-top: 20rpx;
-  display: flex;
-  justify-content: space-between;
 }
 .wrap .comment .img image {
+  float: left;
+  margin-left: 10rpx;
+  margin-bottom: 10rpx;
   width: 206rpx;
   height: 206rpx;
   border-radius: 15rpx;
@@ -99,7 +98,7 @@
   padding: 0 30rpx;
   display: flex;
   justify-content: space-between;
-  padding-bottom: 22rpx;
+  padding-bottom: 25rpx;
 }
 .wrap .comment .footer .f1 {
   flex: 1;
@@ -154,12 +153,13 @@
   background-color: #fff;
   padding-bottom: 50rpx;
   margin: 0 18rpx;
+  margin-bottom: 130rpx;
 }
 .wrap .do .footer {
   height: 80rpx;
   line-height: 80rpx;
   margin-top: 20rpx;
-  padding: 0 30rpx;
+  padding: 0 65rpx;
   display: flex;
   justify-content: space-between;
   border-bottom: 1px solid var(--colorGray);
@@ -167,90 +167,79 @@
 .wrap .do .footer .f1 {
   flex: 1;
   text-align: left;
-  position: relative;
 }
 .wrap .do .footer .f1 image {
-  width: 32.24299065rpx;
-  height: 32.24299065rpx;
+  width: 28rpx;
+  height: 28rpx;
   vertical-align: middle;
 }
 .wrap .do .footer .f1 .heart {
-  font-size: 25rpx;
+  font-size: 28rpx;
   position: relative;
   top: 3rpx;
   margin-left: 10rpx;
-  color: #aaa;
-}
-.wrap .do .footer .f1::after {
-  width: 80rpx;
-  height: 80rpx;
-  content: '';
-  position: absolute;
-  left: -25rpx;
-  top: 0;
+  font-weight: lighter;
 }
 .wrap .do .footer .f2 {
   flex: 1;
   text-align: center;
-  margin-left: 25rpx;
 }
 .wrap .do .footer .f2 image {
-  width: 39.25233645rpx;
-  height: 39.25233645rpx;
+  width: 30rpx;
+  height: 30rpx;
   vertical-align: middle;
 }
 .wrap .do .footer .f2 .chat {
-  font-size: 25rpx;
+  font-size: 28rpx;
   position: relative;
   top: 3rpx;
   margin-left: 10rpx;
-  color: #aaa;
+  font-weight: lighter;
 }
 .wrap .do .footer .f3 {
   flex: 1;
   text-align: right;
-  padding-left: 20rpx;
 }
 .wrap .do .footer .f3 image {
-  width: 38.55140187rpx;
-  height: 38.55140187rpx;
+  width: 30rpx;
+  height: 30rpx;
   vertical-align: middle;
 }
 .wrap .do .footer .f3 .zan {
-  font-size: 25rpx;
+  font-size: 28rpx;
   position: relative;
   top: 3rpx;
   margin-left: 10rpx;
-  color: #aaa;
+  font-weight: lighter;
 }
-.wrap .do .pl {
+.wrap .do .pl-wrap .pl {
   padding: 30rpx 30rpx 0 30rpx;
 }
-.wrap .do .pl .headPic {
+.wrap .do .pl-wrap .pl .headPic {
   float: left;
   width: 60rpx;
   height: 60rpx;
   background-size: contain;
   border-radius: 50%;
 }
-.wrap .do .pl .info-wrap {
-  width: 600rpx;
+.wrap .do .pl-wrap .pl .info-wrap {
+  width: 570rpx;
   float: right;
 }
-.wrap .do .pl .info-wrap .info {
+.wrap .do .pl-wrap .pl .info-wrap .info {
   line-height: 60rpx;
 }
-.wrap .do .pl .info-wrap .info .name {
+.wrap .do .pl-wrap .pl .info-wrap .info .name {
   color: #aaa;
   float: left;
   font-size: 30rpx;
 }
-.wrap .do .pl .info-wrap .info .heart-num {
+.wrap .do .pl-wrap .pl .info-wrap .info .heart-num {
   float: right;
   color: #aaa;
   margin-right: 10rpx;
 }
-.wrap .do .pl .info-wrap .info image {
+.wrap .do .pl-wrap .pl .info-wrap .info image {
   margin-top: 15rpx;
   line-height: 60rpx;
   float: right;
@@ -258,19 +247,19 @@
   height: 30rpx;
   vertical-align: middle;
 }
-.wrap .do .pl .info-wrap .pl-con {
+.wrap .do .pl-wrap .pl .info-wrap .pl-con {
   margin-top: 5rpx;
   font-size: 32rpx;
 }
-.wrap .do .pl .info-wrap .pl-foot {
-  margin-top: 5rpx;
+.wrap .do .pl-wrap .pl .info-wrap .pl-foot {
+  margin-top: 10rpx;
 }
-.wrap .do .pl .info-wrap .pl-foot .date {
+.wrap .do .pl-wrap .pl .info-wrap .pl-foot .date {
   font-size: 26rpx;
   color: #aaa;
   position: relative;
 }
-.wrap .do .pl .info-wrap .pl-foot .date::after {
+.wrap .do .pl-wrap .pl .info-wrap .pl-foot .date::after {
   display: block;
   content: '';
   width: 1rpx;
@@ -280,7 +269,7 @@
   top: 5rpx;
   border-right: 1px solid #aaa;
 }
-.wrap .do .pl .info-wrap .pl-foot .reply {
+.wrap .do .pl-wrap .pl .info-wrap .pl-foot .reply {
   height: 34rpx;
   line-height: 34rpx;
   padding: 0 15rpx;
@@ -288,6 +277,62 @@
   font-size: 24rpx;
   border-radius: 17rpx;
   background-color: var(--colorGray);
+}
+.wrap .do .pl-wrap .pl .info-wrap .pl-foot .reply-btn {
+  height: 34rpx;
+  line-height: 34rpx;
+  padding: 0 15rpx;
+  margin-left: 20rpx;
+  font-size: 24rpx;
+  border-radius: 17rpx;
+  background-color: var(--colorGray);
+}
+.wrap .do .pl-wrap .pl .info-wrap .pl-reply-wrap .pl-reply-con {
+  padding: 30rpx 30rpx 0 0;
+}
+.wrap .do .pl-wrap .pl .info-wrap .pl-reply-wrap .pl-reply-con .reply-headPic {
+  float: left;
+  width: 60rpx;
+  height: 60rpx;
+  background-size: contain;
+  border-radius: 50%;
+}
+.wrap .do .pl-wrap .pl .info-wrap .pl-reply-wrap .pl-reply-con .reply-info-wrap {
+  width: 458rpx;
+  float: right;
+}
+.wrap .do .pl-wrap .pl .info-wrap .pl-reply-wrap .pl-reply-con .reply-info-wrap .reply-info {
+  line-height: 60rpx;
+}
+.wrap .do .pl-wrap .pl .info-wrap .pl-reply-wrap .pl-reply-con .reply-info-wrap .reply-info .reply-name {
+  color: #aaa;
+  float: left;
+  font-size: 30rpx;
+}
+.wrap .do .pl-wrap .pl .info-wrap .pl-reply-wrap .pl-reply-con .reply-info-wrap .reply-info .reply-heart-num {
+  float: right;
+  color: #aaa;
+  margin-right: 10rpx;
+}
+.wrap .do .pl-wrap .pl .info-wrap .pl-reply-wrap .pl-reply-con .reply-info-wrap .reply-info image {
+  margin-top: 15rpx;
+  line-height: 60rpx;
+  float: right;
+  width: 30rpx;
+  height: 30rpx;
+  vertical-align: middle;
+}
+.wrap .do .pl-wrap .pl .info-wrap .pl-reply-wrap .pl-reply-con .reply-info-wrap .reply-pl-con {
+  margin-top: 5rpx;
+  font-size: 32rpx;
+}
+.wrap .do .pl-wrap .pl .info-wrap .pl-reply-wrap .pl-reply-con .reply-info-wrap .reply-pl-foot {
+  margin-top: 10rpx;
+}
+.wrap .do .pl-wrap .pl .info-wrap .pl-reply-wrap .pl-reply-con .reply-info-wrap .reply-pl-foot .reply-date {
+  font-size: 26rpx;
+  color: #aaa;
+  position: relative;
 }
 .wrap .do .no-reply {
   text-align: center;
@@ -331,14 +376,13 @@
   position: fixed;
   left: 0;
   bottom: 0;
-  padding: 0rpx 40rpx 0;
   border-top-left-radius: 25rpx;
   border-top-right-radius: 25rpx;
 }
 .wrap .dialog-wrap .dialog .top {
+  padding: 0rpx 40rpx 0;
   height: 300rpx;
   padding-top: 35rpx;
-  border-bottom: 1rpx solid #dfdfdf;
   color: #aaa;
   text-align: center;
 }
@@ -353,9 +397,13 @@
   align-items: center;
 }
 .wrap .dialog-wrap .dialog .top .item-wrap .item {
+  font-weight: normal;
+  flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 0;
+  background-color: transparent;
 }
 .wrap .dialog-wrap .dialog .top .item-wrap .item image {
   width: 100rpx;
@@ -365,6 +413,10 @@
   margin-top: 25rpx;
   color: #747474;
   font-size: 20rpx;
+}
+.wrap .dialog-wrap .dialog .blank {
+  height: 15rpx;
+  background-color: var(--colorGray);
 }
 .wrap .dialog-wrap .dialog .bottom {
   text-align: center;
@@ -393,6 +445,7 @@
 .wrap .pinglun-wrap .pinglun .top-wrap textarea {
   width: 590rpx;
   height: 160rpx;
+  transition: height 0.5s;
   border-radius: 25rpx;
   padding: 20rpx 30rpx;
   background-color: var(--colorGray);

@@ -1,0 +1,24 @@
+<view class="img-wrap"></view>
+
+<view class="img-desc">添加展示主图</view>
+
+<view class="item-wrap">
+  <view class="name">原价</view>
+  <input value="￥{{orgPrice_flo}}" bindinput="inputValue_fun" data-name="orgPrice" />
+</view>
+<view class="item-wrap">
+  <view class="name">优惠价</view>
+  <input value="￥{{nowPrice_flo}}" bindinput="inputValue_fun" data-name="nowPrice" />
+</view>
+<view class="item-wrap last">
+  <view class="name">商品名称</view>
+  <input value="{{name_str}}" bindinput="inputValue_fun" data-name="name" />
+</view>
+
+<view class="bottom-wrap clearfix">
+  <textarea auto-height placeholder="请输入商品描述" bindinput="inputValue_fun" data-name="desc" class="desc"></textarea>
+  <view class="img"></view>
+  <view class="img"></view>
+</view>
+
+<view bindtap="submitGoods_fun" class="bottom-btn">提交审核</view>

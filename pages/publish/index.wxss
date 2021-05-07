@@ -10,6 +10,7 @@
 }
 .wrap .con {
   padding: 30rpx;
+  margin-bottom: 100rpx;
 }
 .wrap .con textarea {
   width: 690rpx;
@@ -20,15 +21,67 @@
 }
 .wrap .con .item-wrap {
   margin-top: 5rpx;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
 }
-.wrap .con .item-wrap image {
-  flex: 0 0 220rpx;
+.wrap .con .item-wrap .img-wrap {
+  position: relative;
+  float: left;
   width: 220rpx;
   height: 220rpx;
+  margin-right: 15rpx;
   margin-top: 15rpx;
+  border: 1px solid gray;
+}
+.wrap .con .item-wrap .img-wrap image {
+  width: 100%;
+  height: 100%;
+}
+.wrap .con .item-wrap .img-wrap:nth-child(3n) {
+  margin-right: 0;
+}
+.wrap .con .item-wrap .img-wrap .img-close {
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 40rpx;
+  width: 50rpx;
+  height: 50rpx;
+  text-align: center;
+  line-height: 50rpx;
+  background-color: #fffa;
+}
+.wrap .con .item-wrap .img-wrap:last-child {
+  border: 1px solid #bbb;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.wrap .con .item-wrap .img-wrap:last-child .top {
+  display: flex;
+}
+.wrap .con .item-wrap .img-wrap:last-child .top .left-top {
+  width: 50rpx;
+  height: 50rpx;
+  border-right: 1px solid #bbb;
+  border-bottom: 1px solid #bbb;
+}
+.wrap .con .item-wrap .img-wrap:last-child .top .right-top {
+  width: 50rpx;
+  height: 50rpx;
+  border-bottom: 1px solid #bbb;
+}
+.wrap .con .item-wrap .img-wrap:last-child .bottom {
+  display: flex;
+}
+.wrap .con .item-wrap .img-wrap:last-child .bottom .left-bottom {
+  width: 50rpx;
+  height: 50rpx;
+  border-right: 1px solid #bbb;
+}
+.wrap .con .item-wrap .img-wrap:last-child .bottom .right-bottom {
+  width: 50rpx;
+  height: 50rpx;
 }
 .wrap .con .con-foot {
   margin-top: 20rpx;
@@ -51,8 +104,8 @@
   padding: 0 20rpx;
   border-radius: 22rpx;
   vertical-align: middle;
-  color: var(--colorBlue);
-  border: 1px solid var(--colorBlue);
+  color: #43D7B5;
+  border: 1px solid #43D7B5;
 }
 .wrap .footer {
   width: 100%;
@@ -65,7 +118,7 @@
 .wrap .footer::before {
   content: '';
   position: absolute;
-  top: -20rpx;
+  top: -18rpx;
   width: 100%;
   height: 18rpx;
   background-color: var(--colorGray);

@@ -1,4 +1,5 @@
 // components/Item/Item.js
+import { $http } from '../../utils/util'
 var app = getApp()
 
 Component({
@@ -12,7 +13,7 @@ Component({
     },
     isMy: {
       type: Boolean
-    },
+    }
   },
 
   /**
@@ -39,17 +40,75 @@ Component({
 
     // 点赞
     dotZan_fun(e) {
-      this.triggerEvent('zanevent')
-    }
+      // $http({ url: '/getCommentsByArticleId', data: { articleId: this.properties.item.id } })
+      //   .then(res => {
+      //     console.log(res);
+      //   })
+      // if (this.properties.item.isZan) {
+      //   return
+      // }
+      $http({
+        url: '/Article/updateDianzanToArtic', method: 'post', data: {
+          articId: this.properties.item.id
+        }
+      }).then(res => {
+        console.log(res);
+        if (res.data.dianzanStatus === '1') {
+          let item_obj = this.properties.item
+          item_obj.isZan = true
+          item_obj.dianzanNum_int++
+          this.setData({
+            item: item_obj
+          })
+          this.triggerEvent('zanevent', { zanId_int: this.properties.item.id - 0 })
+        }else if (res.data.dianzanStatus === '-1') {
+          let item_obj = this.properties.item
+          item_obj.isZan = false
+          item_obj.dianzanNum_int--
+          this.setData({
+            item: item_obj
+          })
+          this.triggerEvent('zanevent', { zanId_int: this.properties.item.id - 0 })
+        } else {
+          wx.showToast({ title: '点赞失败', icon: 'error' })
+        }
+      }).catch(res => {
+        console.log(res);
+        wx.showToast({ title: '点赞失败', icon: 'error' })
+      })
+      // $http({
+      //   url: '/Article/getDianzanCountByArticId', method: 'get', data: {
+      //     articId: this.properties.item.id
+      //   }
+      // })
+      //   .then(res => {
+      //     console.log(res);
+      //   })
+      // $http({
+      //   hasLimit: true, url: '/Answer/getAnswersCountByCommentId', method: 'get', data: {
+      //     commentId: this.properties.item.id
+      //   }
+      // })
+      //   .then(res => {
+      //     console.log(res);
+      //   })
+
+    },
+
+    gotoDetail_fun() {
+      let item_str = JSON.stringify(this.properties.item)
+      wx.navigateTo({
+        url: '/pages/detail/index?item=' + item_str + '&isMy=' + this.properties.isMy,
+      });
+    },
   },
   created: function () {
-
   },
   attached: function () {
-    this.setData({
-      item_str: JSON.stringify(this.properties.item)
-    })
-    console.log(this.properties.item);
+    // this.setData({
+    //   item_str: JSON.stringify(this.properties.item)
+    // })
+    // console.log(this.properties.item);
   },
   ready: function () {
 

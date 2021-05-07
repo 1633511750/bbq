@@ -42,6 +42,7 @@ page .info-wrap .item3 .con {
   float: right;
   position: absolute;
   right: 50rpx;
+  border-bottom: 1px solid #aaa;
 }
 page .btn-wrap {
   margin-top: 15rpx;

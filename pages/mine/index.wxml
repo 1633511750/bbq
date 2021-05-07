@@ -1,7 +1,7 @@
 <view class="wrap">
   <navigator url="/pages/updateMyInfo/index" class="top">
     <view class="headPic" style="background-image: url('https://i04piccdn.sogoucdn.com/0e3e409f0cf25fb3');"></view>
-    <view class="name">椅子小坤</view>
+    <view class="name">{{nickName_str}}</view>
     <view class="school">山西传媒学院</view>
     <image src="/img/right.png" class="right-arrow"></image>
   </navigator>
@@ -22,9 +22,13 @@
   </view>
   <view class="item-wrapper">
   <view class="title">创业街</view>
-    <navigator open-type="switchTab" url="/pages/job/index" class="item-wrap">
+    <navigator url="/pages/shop/index" class="item-wrap">
       <image src="/img/shop.png"/>
-      <text class="item">店铺</text>
+      <text class="item">我的店铺</text>
+    </navigator>
+    <navigator url="/pages/openshop/index" class="item-wrap">
+      <image src="/img/shop.png"/>
+      <text class="item">我要开店</text>
     </navigator>
   </view>
   <view class="item-wrapper">

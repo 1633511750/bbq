@@ -1,9 +1,9 @@
-<view class="index-wrap" style="padding-top: {{statusBarHeight / windowWidth * 750 + 80 + 105}}rpx;">
+<view class="index-wrap" style="padding-top: {{statusBarHeight / windowWidth * 750 + 185}}rpx;">
   <Top school="{{school_str}}"></Top>
   <view class="top" style="top: {{statusBarHeight / windowWidth * 750 + 80}}rpx;">
     <scroll-view show-scrollbar="{{false}}" enhanced scroll-x="true" class="scroll-wrap">
       <view class="navigator" bindtap="titleTap_fun" data-index="{{index}}" wx:for="{{topList_arr}}" wx:key="item">
-        <text class="{{currentTitle_int === index?'active':''}}">{{item}}</text>
+        <text class="{{topListIndex_int === index?'active':''}}">{{item}}</text>
       </view>
     </scroll-view>    
   </view>
@@ -13,23 +13,27 @@
     style="height: {{scrollHeight_flo}}rpx"
     refresher-triggered="{{isPullDown_bool}}" 
     scroll-y 
+    upper-threshold="{{200}}"
     refresher-enabled="{{true}}" 
     bindrefresherrefresh="pullDownRefresh_fun"
+    bindscrolltolower="upPullLoadList_fun"
     >
-    <Item wx:for="{{list_arr}}" bind:zanevent="dotZan_fun" data-id="{{item.id}}" wx:key="id" item="{{item}}" isMy="{{false}}"></Item>
+    <view style="height: {{topMsgHeight_int}}rpx" class="top-msg">{{topMsg_str}}</view>
+    <Item wx:for="{{list_arr}}" bind:zanevent="dotZan_fun" data-id="{{item.id}}" wx:key="id" item="{{item}}" isMy="{{item.fromUid === uid_int}}"></Item>
+    <view style="height: {{bottomMsgHeight_int}}rpx" class="bottom-msg">{{bottomMsg_str}}</view>
   </scroll-view>
 
   <view class="shadow"></view>
 
   <image class="add" bindtap="showDialog_fun" src="/img/add.png" mode="aspectFit" lazy-load="false" />
     
-  <view class="dialog-wrap" wx:if="{{showDialog_bool}}">
-    <view class="dialog {{showDialog_bool}}">
+  <view class="dialog-wrap" bindtap="cancelDialog_fun" wx:if="{{showDialog_bool}}">
+    <view catchtap="temp_fun" class="dialog {{showDialog_bool}}">
       <view class="up clearfix">
         <image src="{{avatarUrl_str}}" class="headPic"></image>
         <view class="up-right">
           <text class="name">{{nickName_str}}</text>
-          <image bindtap="anonymou_fun" class="reNew" src="/img/reFresh.png" mode="aspectFit"></image>
+          <image bindtap="anonymou_fun" style="transform: rotate({{reNewRotate_int}}deg)" class="reNew" src="/img/reFresh.png" mode="aspectFit"></image>
         </view>
       </view>
       <view class="center">

@@ -6,4 +6,5 @@
 .wrap .blank {
   text-align: center;
   margin: 100rpx 0;
+  color: #999;
 }
