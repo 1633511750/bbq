@@ -9,7 +9,8 @@ Page({
   data: {
     headPicUrl_str: '',
     nickName_str: '',
-    school_str: ''
+    school_str: '',
+    imgPath_str: ''
   },
 
   // 调用相机、图库弹框
@@ -35,7 +36,14 @@ Page({
 
   // 修改个人信息
   updateMyInfo_fun() {
-    this.updateNickName_fun()
+    if (this.data.nickName_str.trim() === '') {
+      return wx.showToast({ title: '请输入昵称', icon: 'none' })
+    }
+    if (this.data.imgPath_str.trim() === '') {
+      this.updateNickName_fun()
+    } else {
+      this.uploadImgHandle_fun(this.data.imgPath_str)
+    }
   },
 
   // 修改用户头像
@@ -47,29 +55,45 @@ Page({
       success: (res) => {
         let imgPath = res.tempFilePaths[0]
         console.log(imgPath);
-        this.uploadImgHandle_fun(imgPath)
+        this.setData({
+          imgPath_str: imgPath,
+          headPicUrl_str: imgPath
+        })
       }
     })
   },
 
   uploadImgHandle_fun(imgPath) {
     var Cookie = wx.getStorageSync('Cookie');
+    let self = this
     wx.uploadFile({
       url: 'https://www.guoer.ltd/User/uploadImage',
       filePath: imgPath,
       name: 'file',
       header: {
-        "Content-Type": "application/json", "cookie": Cookie
+        "Content-Type": "multipart/form-data", "cookie": Cookie
       },
       formData: {
-        uid: 3
+        uid: app.globalData.uid_int
       },
       success(res) {
-        const data = res.data
+        const data = JSON.parse(res.data)
         console.log(data);
+        if (res.data.code === 200) {
+          wx.showToast({ title: '头像更新成功', icon: 'none' })
+        }
+        let avatar_url = app.globalData.baseUrl + data.data.filePath.slice(25)
+        self.setData({
+          headPicUrl_str: avatar_url
+        })
+        app.globalData.avatarUrl_str = avatar_url
+        wx.setStorageSync('avatarUrl', avatar_url)
+        // wx.showToast({ title: '头像更新成功', icon: 'none' })    
+        self.updateNickName_fun()
       },
       fail(res) {
         console.log(res);
+        wx.showToast({ title: '上传头像失败', icon: 'none' })
       }
     })
   },
@@ -85,7 +109,7 @@ Page({
   updateNickName_fun() {
     console.log('ok');
     if (this.data.nickName_str.trim() === '') {
-      return
+      return wx.showToast({ title: '请输入昵称', icon: 'none' })
     }
     console.log('no');
     $http({
@@ -95,9 +119,19 @@ Page({
     }).then(res => {
       console.log(res);
       if (res.data.code === 200) {
-        wx.showToast({ title: '修改昵称成功' })
+        wx.showToast({ title: '修改成功' })
         app.globalData.nickName_str = this.data.nickName_str
         wx.setStorageSync('nickName', this.data.nickName_str);
+        setTimeout(() => {
+          var pages = getCurrentPages()
+          var curPage = pages[pages.length - 1]
+          var url = curPage.route
+          if (url === 'pages/updateMyInfo/index') {
+            wx.navigateBack({
+              delta: 1
+            });
+          }
+        }, 1500);
       } else {
         wx.showToast({ title: '修改昵称失败', icon: 'error' })
       }

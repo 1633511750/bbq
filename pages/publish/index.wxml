@@ -23,9 +23,12 @@
     </view>
   </view>
   <view class="footer" style="bottom: {{keyHeight_int}}px;">
-    <image class="img1" bindtap="tapPic_fun" src="/img/pic.png" mode="aspectFit" />
-    <image class="img2" bindtap="tapAite_fun" src="/img/@.png" mode="aspectFit" />
+    <image class="avatar" mode="aspectFill" src="{{avatarUrl_str}}" />
+    <view class="btn" bindtap="publicArtical_fun" data-anonymous="0">不匿发</view>  
+    <!--<image class="img1" bindtap="tapPic_fun" src="/img/pic.png" mode="aspectFit" />-->
     <image class="img3" bindtap="getPosition_fun" src="/img/pos1.png" mode="aspectFit" />
-    <view class="btn" bindtap="publicArtical_fun">发表</view>  
+    <!--<image class="img2" bindtap="tapAite_fun" src="" mode="aspectFit" />-->
+    <image class="avatar" mode="aspectFill" src="{{anonymousAvatarUrl_str}}" />
+    <view class="btn" bindtap="publicArtical_fun" data-anonymous="1">匿发</view>  
   </view>
 </view>

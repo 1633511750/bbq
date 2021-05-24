@@ -12,9 +12,6 @@ Page({
   },
 
   input_fun(e) {
-    this.setData({
-      text: e.detail.value
-    })
-    console.log(this.data.text);
+    console.log(e.currentTarget.dataset.index);
   }
 })

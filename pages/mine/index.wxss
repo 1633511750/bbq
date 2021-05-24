@@ -22,7 +22,7 @@
 .wrap .top .name {
   position: absolute;
   left: 210rpx;
-  top: -20rpx;
+  top: 5rpx;
   font-size: 32rpx;
   vertical-align: middle;
   font-weight: bold;
@@ -48,14 +48,12 @@
   margin-right: 70rpx;
 }
 .wrap .item-wrapper {
-  height: 220rpx;
   margin-top: 15rpx;
   background-color: #fff;
   overflow: hidden;
 }
 .wrap .item-wrapper .title {
-  font-size: 26rpx;
-  color: #7f7f7f;
+  font-size: 34rpx;
   margin-left: 46rpx;
   margin-top: 25rpx;
 }
@@ -86,5 +84,5 @@
 }
 .wrap .item-wrapper .item-wrap .item {
   font-size: 28rpx;
-  color: #000;
+  color: #666;
 }

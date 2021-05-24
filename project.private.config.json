@@ -153,6 +153,12 @@
         {
           "name": "goodpublic",
           "pathName": "pages/goodpublic/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "selectpublic",
+          "pathName": "pages/selectpublic/index",
           "scene": null
         }
       ]

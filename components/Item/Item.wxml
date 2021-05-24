@@ -3,11 +3,12 @@
   <view class="comment" item="{{item}}">
     <view hover-class="none" bindtap="gotoDetail_fun">
       <view class="item clearfix">
-        <image class="headPic" mode="aspectFit" src="{{item.avatarUrl_str}}"></image>
+        <image mode="aspectFill" catchtap="previewImages_fun" data-cururl="{{item.avatarUrl_str}}" data-urls="{{[item.avatarUrl_str]}}" data-add="true" class="headPic" src="{{item.avatarUrl_str}}"></image>
+        <image mode="aspectFit" class="sex" src="{{item.sex_str === '1' ? '/img/male.png' : '/img/female.png'}}"></image>
         <view class="info">
           <view class="info-top clearfix">
-            <view class="name">{{item.name_str}} <image mode="aspectFit" src="/img/female.png"></image> </view>
-            <text class="video">{{item.category}}</text>
+            <view class="name">{{item.name_str}}  </view>
+            <text style="background-color: {{tagBg}}" class="video">{{item.category}}</text>
           </view>
           <view class="info-bottom">
             <text class="date">{{item.date_str}}</text>
@@ -31,7 +32,7 @@
         <text class="chat">{{item.commentListNum_int}}</text>
       </view>
       <view class="f3" catchtap="dotZan_fun" data-item="{{item}}">
-        <image mode="aspectFit" catchtap="dotZan_fun" src="{{item.isZan ? '/img/zan_active.png' : '/img/zan.png'}}"></image>
+        <image mode="aspectFit" src="{{item.isZan ? '/img/zan_active.png' : '/img/zan.png'}}"></image>
         <text class="zan">{{item.dianzanNum_int}}</text>
       </view>
     </view>

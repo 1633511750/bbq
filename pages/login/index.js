@@ -10,6 +10,7 @@ Page({
   data: {
     avatarUrl_str: '',
     nickName_str: '',
+    sex_str: '',
     country_str: '',
     province_str: '',
     uid_int: 0,
@@ -19,6 +20,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+
   },
 
   getUserProfile_fun(e) {
@@ -27,65 +29,79 @@ Page({
     wx.getUserProfile({
       desc: '用于完善会员资料', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
       success: (res) => {
+        console.log(res.userInfo);
         this.bindGetUserInfo_fun.call(this, res.userInfo)
       }
     })
   },
 
   bindGetUserInfo_fun(userInfo) {
-    app.globalData.avatarUrl_str = userInfo.avatarUrl
-    app.globalData.nickName_str = userInfo.nickName
-    app.globalData.country_str = userInfo.country
-    app.globalData.province_str = userInfo.province
-    app.globalData.city_str = userInfo.city
+    // app.globalData.avatarUrl_str = userInfo.avatarUrl
+    // app.globalData.nickName_str = userInfo.nickName
+    // app.globalData.country_str = userInfo.country
+    // app.globalData.province_str = userInfo.province
+    // app.globalData.city_str = userInfo.city
     this.setData({
-      avatarUrl_str: app.globalData.avatarUrl_str,
-      nickName_str: app.globalData.nickName_str,
-      country_str: app.globalData.country_str,
-      province_str: app.globalData.province_str,
-      city_str: app.globalData.city_str
-    })
-    var userInfo_o = {
       avatarUrl_str: userInfo.avatarUrl,
-      nickName_str: userInfo.avatarUrl,
-      country_str: userInfo.country,
-      province_str: userInfo.province,
-      city_str: userInfo.city
-    }
-    wx.setStorageSync('avatarUrl', userInfo.avatarUrl);
-    wx.setStorageSync('nickName', userInfo.nickName);
-    wx.setStorageSync('country', userInfo.country);
-    wx.setStorageSync('province', userInfo.province);
-    wx.setStorageSync('city', userInfo.city);
-    console.log(userInfo_o);
+      nickName_str: userInfo.nickName,
+      sex_str: userInfo.gender + ''
+      // country_str: app.globalData.country_str,
+      // province_str: app.globalData.province_str,
+      // city_str: app.globalData.city_str
+    })
 
-    // if (userInfo_o.avatarUrl_str) {
-    //   wx.showToast({
-    //     title: '登录成功',
-    //   });
+    // var userInfo_o = {
+    //   avatarUrl_str: userInfo.avatarUrl,
+    //   nickName_str: userInfo.avatarUrl,
+    //   country_str: userInfo.country,
+    //   province_str: userInfo.province,
+    //   city_str: userInfo.city
     // }
-    // setTimeout(() => {
-    //   var pages = getCurrentPages()
-    //   var curPage = pages[pages.length - 1]
-    //   var url = curPage.route
-    //   if (url === 'pages/login/index') {
-    //     wx.navigateBack({
-    //       delta: 1
-    //     });
-    //   }
-    // }, 1500);
+    // wx.setStorageSync('avatarUrl', userInfo.avatarUrl);
+    // wx.setStorageSync('nickName', userInfo.nickName);
+    // wx.setStorageSync('country', userInfo.country);
+    // wx.setStorageSync('province', userInfo.province);
+    // wx.setStorageSync('city', userInfo.city);
+    // console.log(userInfo_o);
 
-    this.register_fun(() => {
-      setTimeout(() => {
-        var pages = getCurrentPages()
-        var curPage = pages[pages.length - 1]
-        var url = curPage.route
-        if (url === 'pages/login/index') {
-          wx.navigateBack({
-            delta: 1
-          });
-        }
-      }, 1500);
+    this.login_fun()
+  },
+
+  uploadImgHandle_fun(imgPath, uid) {
+    let self = this
+    var Cookie = wx.getStorageSync('Cookie');
+    wx.uploadFile({
+      url: 'https://www.guoer.ltd/User/uploadImage',
+      filePath: imgPath,
+      name: 'file',
+      header: {
+        "Content-Type": "multipart/form-data", "cookie": Cookie
+      },
+      formData: {
+        uid
+      },
+      success(res) {
+        console.log('ok');
+        const data = JSON.parse(res.data).data
+        app.globalData.avatarUrl_str = app.globalData.baseUrl + data.filePath.slice(25)
+        wx.setStorageSync('avatarUrl', app.globalData.baseUrl + data.filePath.slice(25));
+
+        setTimeout(() => {
+          var pages = getCurrentPages()
+          var curPage = pages[pages.length - 1]
+          var url = curPage.route
+          if (url === 'pages/login/index') {
+            wx.navigateBack({
+              delta: 1
+            });
+          }
+        }, 1500);
+      },
+      fail(res) {
+        console.log('no');
+        console.log(res);
+        wx.showToast({ title: '头像上传失败', icon: 'error' })
+      }
     })
   },
 
@@ -98,7 +114,7 @@ Page({
         $http({
           url: '/User/register',
           method: 'post',
-          data: { wxCode: result.code, verificationCode: 'XVJAIV', name: this.data.nickName_str },
+          data: { wxCode: result.code, verificationCode: 'XVJAIV', name: this.data.nickName_str, sex: this.data.sex_str },
           hasLimit: false
         }, true)
           .then((res) => {
@@ -126,6 +142,7 @@ Page({
               title: '系统错误',
               icon: 'error',
             });
+            console.log(res);
           })
       },
       fail: () => {
@@ -152,17 +169,59 @@ Page({
                 title: '登录成功',
                 icon: 'success',
               });
-              app.globalData.backState_int = 1
-              callback && callback()
+
               wx.setStorageSync('Cookie', res.data.data.sessionId);
-              app.globalData.uid_int = res.data.data.user.id - 0
+              app.globalData.uid_int = res.data.data.user.id
               wx.setStorageSync('uid', res.data.data.user.id)
+              app.globalData.nickName_str = res.data.data.user.name
+              wx.setStorageSync('nickName', res.data.data.user.name)
+              app.globalData.backState_int = 1
+
+              if (!res.data.data.user.userHeadpoait || !res.data.data.user.pictureName) {
+                let self = this
+                wx.getSetting({
+                  success(res1) {
+                    wx.downloadFile({
+                      url: self.data.avatarUrl_str,
+                      success: function (res2) {
+                        self.uploadImgHandle_fun.call(self, res2.tempFilePath, res.data.data.user.id)
+                      },
+                      fail: function (err) {
+                        console.log(err);
+                      },
+                      complete(res) {
+                        console.log(res);
+                      }
+                    });
+                  }
+                })
+                app.globalData.avatarUrl_str = res2.tempFilePath
+                wx.setStorageSync('avatarUrl', res2.tempFilePath)
+              } else {
+                app.globalData.avatarUrl_str = app.globalData.baseUrl + res.data.data.user.userHeadpoait.slice(25) + '/' + res.data.data.user.pictureName
+                wx.setStorageSync('avatarUrl', app.globalData.avatarUrl_str)
+                console.log(app.globalData.avatarUrl_str);
+                setTimeout(() => {
+                  var pages = getCurrentPages()
+                  var curPage = pages[pages.length - 1]
+                  var url = curPage.route
+                  if (url === 'pages/login/index') {
+                    wx.navigateBack({
+                      delta: 1
+                    });
+                  }
+                }, 1500);
+              }
+
+              callback && callback()
+
               // console.log('login : ' + res.data.data.sessionId);
             } else if (res.data.code === 203) {
-              wx.showToast({
-                title: '用户未注册',
-                icon: 'error',
-              });
+              // wx.showToast({
+              //   title: '用户未注册',
+              //   icon: 'error',
+              // });
+              this.register_fun(() => { })
             } else {
               wx.showToast({
                 title: '登录失败',

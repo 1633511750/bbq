@@ -1,0 +1,20 @@
+<view class="dialog-wrap" bindtap="cancelDialog_fun">
+  <view catchtap="temp_fun" class="dialog {{showDialog_bool}}">
+    <!--<view class="up clearfix">
+      <image mode="aspectFill" src="{{avatarUrl_str}}" class="headPic"></image>
+      <view class="up-right">
+        <text class="name">{{nickName_str}}</text>
+        <text class="change">换身份</text>
+        <image bindtap="anonymou_fun" style="transform: rotate({{reNewRotate_int}}deg)" class="reNew" src="/img/reFresh.png" mode="aspectFit"></image>
+      </view>
+    </view>-->
+    <view class="up clearfix">请选择一个标签发布</view>
+    <view class="center">
+      <view class="item-wrap" wx:for="{{typeList_arr}}" wx:key="*this">
+        <view bindtap="publish_fun" style="color: {{tagBg_arr[index]}}; border: 1px solid {{item === '' ? 'transparent' : tagBg_arr[index]}}" data-item="{{item}}" class="item">{{item}}</view>
+      </view>
+    </view>
+    <!--<view class="blank"></view>-->
+    <!--<view class="bottom" bindtap="hideDialog_fun">取消</view>-->
+  </view>
+</view>

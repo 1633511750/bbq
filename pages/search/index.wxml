@@ -5,12 +5,22 @@
     <view class="job {{typeIndex_int === 1 ? 'active' : ''}}" data-index="1" bindtap="switchType_fun">创业街</view>
   </view>
 
-  <scroll-view 
+  <scroll-view
+    wx:if="{{typeIndex_int === 0}}"
     scroll-y 
     bindscrolltolower="upPullLoadList_fun"
     class="search-con-wrap">
     <view style="height: {{topMsgHeight_int}}rpx" class="top-msg">{{topMsg_str}}</view>
-    <Item class="item" wx:for="{{list_arr}}" bind:zanevent="dotZan_fun" data-id="{{item.id}}" wx:key="id" item="{{item}}" isMy="{{false}}"></Item>
+    <Item wx:for="{{wall_arr}}" tagBg="{{item.tagBg_str}}" bind:pageviewevent="pageview_fun" bind:zanevent="dotZan_fun" data-id="{{item.id}}" wx:key="id" item="{{item}}" isMy="{{item.fromUid === uid_int}}"></Item>
+    <view style="height: {{bottomMsgHeight_int}}rpx" class="bottom-msg">{{bottomMsg_str}}</view>
+  </scroll-view>
+  <scroll-view
+    wx:else
+    scroll-y 
+    bindscrolltolower="upPullLoadList_fun"
+    class="search-con-wrap">
+    <view style="height: {{topMsgHeight_int}}rpx" class="top-msg">{{topMsg_str}}</view>
+    <Item wx:for="{{job_arr}}" tagBg="{{item.tagBg_str}}" bind:pageviewevent="pageview_fun" bind:zanevent="dotZan_fun" data-id="{{item.id}}" wx:key="id" item="{{item}}" isMy="{{item.fromUid === uid_int}}"></Item>
     <view style="height: {{bottomMsgHeight_int}}rpx" class="bottom-msg">{{bottomMsg_str}}</view>
   </scroll-view>
 </view>

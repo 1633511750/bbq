@@ -17,7 +17,7 @@
 
 <view class="wrap">
   <view wx:if="{{hasArtical_bool}}">
-    <Item wx:for="{{commentList_arr}}" wx:key="id" item="{{item}}" isMy="{{true}}"></Item>
+    <Item wx:for="{{commentList_arr}}" bind:zanevent="dotZan_fun" data-id="{{item.id}}" bind:pageviewevent="pageview_fun" tagBg="{{item.tagBg_str}}" wx:key="id" item="{{item}}" isMy="{{item.isMy_bool}}"></Item>
   </view>
   <view wx:else class="blank">您还没有点赞过</view>
 </view>

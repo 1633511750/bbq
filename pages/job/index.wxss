@@ -25,11 +25,24 @@
   display: inline-block;
   line-height: 105.14018692rpx;
   text-align: center;
-  font-size: 31.54205607rpx;
+  font-size: 32rpx;
   color: #4f4f4f;
 }
 .wrap .top .scroll-wrap .navigator .active {
-  color: #ff7e17;
+  color: var(--colorGray1);
+  font-weight: bold;
+  position: relative;
+}
+.wrap .top .scroll-wrap .navigator .active::after {
+  display: block;
+  content: '';
+  width: 32rpx;
+  height: 5rpx;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: -28rpx;
+  background-color: var(--colorGray1);
 }
 .wrap .blank2 {
   height: 105rpx;
@@ -45,7 +58,6 @@
   width: 128rpx;
   height: 128rpx;
   float: left;
-  border: 1px solid #ccc;
   border-radius: 15rpx;
 }
 .wrap .item-wrap .right {
@@ -55,7 +67,7 @@
 .wrap .item-wrap .right .right-top .title {
   float: left;
   font-size: 32rpx;
-  color: #555;
+  color: #666;
 }
 .wrap .item-wrap .right .right-top .type {
   margin-top: 10rpx;
@@ -71,9 +83,9 @@
   float: left;
   line-height: 34rpx;
   font-size: 20rpx;
-  color: pink;
+  color: var(--colorGray1);
   text-align: center;
-  border: 1rpx solid pink;
+  border: 1rpx solid var(--colorGray1);
   border-top-left-radius: 18rpx;
   border-top-right-radius: 18rpx;
   border-bottom-right-radius: 18rpx;
@@ -82,7 +94,7 @@
   margin-top: 20rpx;
   float: right;
   position: absolute;
-  right: 30rpx;
+  right: 67rpx;
   bottom: 30rpx;
 }
 .wrap .item-wrap .right .zan .zan-up {
@@ -96,7 +108,7 @@
 }
 .wrap .item-wrap .right .zan .zan-up text {
   margin-left: 5rpx;
-  font-size: 24rpx;
+  font-size: 28rpx;
   vertical-align: middle;
   color: #797979;
 }

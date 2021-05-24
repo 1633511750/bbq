@@ -33,7 +33,7 @@ page {
         vertical-align: middle;
       }
       .value {
-        width: 300rpx;
+        width: 500rpx;
         height: 85rpx;
         margin-left: 24rpx;
         position: relative;
@@ -47,7 +47,7 @@ page {
           top: 0;
         }
         .modify {
-          width: 300rpx;
+          width: 500rpx;
           height: 55rpx;
           position: absolute;
           left: 0;
@@ -55,7 +55,51 @@ page {
           padding-left: 10rpx;
           border: 1px solid #ccc;
         }
+        image {
+          width: 50rpx;
+          height: 30rpx;
+          float: right;
+          margin-top: 10rpx;
+        }
+        .input-wrap {
+          width: 230rpx;
+          height: 55rpx;
+          margin-bottom: 10rpx;
+          position: relative;
+          top: 20rpx;
+          float: left;
+          margin-left: 10rpx;
+          &:nth-child(2n+1){
+            margin-left: 0;
+          }
+          input {
+            width: 230rpx;
+            height: 55rpx;
+            border: 1px solid #ccc;
+          }
+        }
       }
+      .info {
+        font-size: 30rpx;
+        margin-left: 160rpx;
+        color: #999;
+        margin-top: -100rpx;
+        margin-bottom: -40rpx;
+        display: inline-block;
+        vertical-align: middle;
+      }
+      .picker {
+        width: 486rpx;
+        height: 55rpx;
+        border: 1px solid #ccc;
+        line-height: 55rpx;
+        padding-left: 10rpx;
+        display: inline-block;
+        vertical-align: middle;
+      }
+    }
+    .item.tag {
+      height: 120rpx;
     }
   }
 
@@ -75,7 +119,7 @@ page {
         vertical-align: middle;
       }
       .value {
-        width: 300rpx;
+        width: 500rpx;
         height: 85rpx;
         margin-left: 24rpx;
         position: relative;
@@ -89,7 +133,7 @@ page {
           top: 0;
         }
         .modify {
-          width: 300rpx;
+          width: 500rpx;
           height: 55rpx;
           position: absolute;
           left: 0;
@@ -97,6 +141,15 @@ page {
           padding-left: 10rpx;
           border: 1px solid #ccc;
         }
+      }
+      .info {
+        font-size: 30rpx;
+        margin-left: 160rpx;
+        color: #999;
+        margin-top: -100rpx;
+        margin-bottom: -40rpx;
+        display: inline-block;
+        vertical-align: middle;
       }
     }
   }

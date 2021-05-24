@@ -1,6 +1,18 @@
-<view class="img-wrap"></view>
+<image bindtap="tapPic_fun" data-head="{{true}}" mode="aspectFit" src="{{headPic_str}}" class="img-wrap"></image>
 
-<view class="img-desc">添加展示主图</view>
+<view class="img-desc" style="pointer-events: none">
+  <view class="add">
+    <view class="up">
+      <view class="left"></view>
+      <view class="right"></view>
+    </view>
+    <view class="down">
+      <view class="left"></view>
+      <view class="right"></view>
+    </view>
+  </view>
+  <view class="text">添加展示主图</view>
+</view>
 
 <view class="item-wrap">
   <view class="name">原价</view>
@@ -12,13 +24,25 @@
 </view>
 <view class="item-wrap last">
   <view class="name">商品名称</view>
-  <input value="{{name_str}}" bindinput="inputValue_fun" data-name="name" />
+  <input placeholder="请输入商品名称" value="{{name_str}}" bindinput="inputValue_fun" data-name="name" />
 </view>
 
 <view class="bottom-wrap clearfix">
-  <textarea auto-height placeholder="请输入商品描述" bindinput="inputValue_fun" data-name="desc" class="desc"></textarea>
-  <view class="img"></view>
-  <view class="img"></view>
+  <textarea value="{{desc_str}}" auto-height placeholder="请输入商品描述" bindinput="inputValue_fun" data-name="desc" class="desc"></textarea>
+  <view class="img" wx:key="*this" wx:for="{{showPic_arr}}" wx:key="*this">
+    <image mode="aspectFill" src="{{item}}" />
+    <view class="img-close" bindtap="deleteImg_fun" data-index="{{index}}">×</view>
+  </view>
+  <view wx:if="{{showPic_arr.length < 4}}" class="img add" bindtap="tapPic_fun" data-head="{{false}}">
+    <view class="top">
+      <view class="left"></view>
+      <view class="right"></view>
+    </view>
+    <view class="bottom">
+      <view class="left"></view>
+      <view class="right"></view>
+    </view>
+  </view>
 </view>
 
 <view bindtap="submitGoods_fun" class="bottom-btn">提交审核</view>

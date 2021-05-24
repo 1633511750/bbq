@@ -41,6 +41,7 @@ Page({
     if (this.data.typeIndex_int === index_int) {
       return
     }
+
     if (index_int === 0) {
       this.setData({
         typeIndex_int: index_int,
@@ -246,6 +247,8 @@ Page({
 
       if (item.dianzanUids) {
         let dz_arr = item.dianzanUids.split(',')
+        dz_arr = dz_arr.filter(item => item !== '')
+        item.dianzan_str = dz_arr.join(',')
         item.dianzanNum_int = dz_arr.length
         if (dz_arr.includes('' + app.globalData.uid_int)) {
           item.isZan = true
@@ -254,6 +257,7 @@ Page({
         }
       } else {
         item.dianzanNum_int = 0
+        item.dianzan_str = ''
       }
 
       if (item.isAnonymous) {
@@ -332,6 +336,32 @@ Page({
     // })
   },
 
+  // 触发点赞
+  dotZan_fun(e) {
+    var id = e.currentTarget.dataset.id
+    let dz_arr = e.detail.dz_arr
+    console.log(dz_arr);
+
+    let index_int = this.data.wall_arr.findIndex(item => item.id === id)
+    if (index_int !== -1) {
+      let index = dz_arr.indexOf(app.globalData.uid_int + '')
+      if (index !== -1) {
+        this.setData({
+          ['wall_arr[' + index_int + '].dianzanNum_int']: dz_arr.length,
+          ['wall_arr[' + index_int + '].isZan']: true,
+          ['wall_arr[' + index_int + '].dianzan_str']: dz_arr.join(',')
+        })
+      } else {
+        this.setData({
+          ['wall_arr[' + index_int + '].dianzanNum_int']: dz_arr.length,
+          ['wall_arr[' + index_int + '].isZan']: false,
+          ['wall_arr[' + index_int + '].dianzan_str']: dz_arr.join(',')
+        })
+      }
+      console.log(this.data.wall_arr[index_int]);
+    }
+  },
+
   searchHandle_fun() {
     if (this.data.searchValue_str.trim() !== '') {
       this.initTemp_fun()
@@ -389,25 +419,40 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    if (app.globalData.pageviewId_int !== -1) {
-      let index_int = this.data.wall_arr.findIndex(item => item.id === app.globalData.pageviewId_int)
-      if (index_int !== -1) {
-        this.setData({
-          ['wall_arr[' + index_int + '].pageviews']: this.data.wall_arr[index_int].pageviews + 1,
-        })
-      }
-      app.globalData.pageviewId_int = -1
-    }
     if (app.globalData.zanId_int !== -1) {
       console.log(app.globalData.zanId_int);
       let index_int = this.data.wall_arr.findIndex(item => item.id === app.globalData.zanId_int)
       if (index_int !== -1) {
         this.setData({
-          ['wall_arr[' + index_int + '].dianzanNum_int']: this.data.wall_arr[index_int].dianzanNum_int + 1,
-          ['wall_arr[' + index_int + '].isZan']: true
+          // ['wall_arr[' + index_int + '].dianzanNum_int']: this.data.wall_arr[index_int].dianzanNum_int + 1,
+          ['wall_arr[' + index_int + '].dianzanNum_int']: app.globalData.zanNum_int,
+          ['wall_arr[' + index_int + '].isZan']: app.globalData.isZan_bool
         })
       }
       app.globalData.zanId_int = -1
+    }
+
+    if (app.globalData.pageviewId_int !== -1) {
+      let index_int = this.data.wall_arr.findIndex(item => item.id === app.globalData.pageviewId_int)
+      if (index_int !== -1) {
+        this.setData({
+          ['wall_arr[' + index_int + '].pageviews']: app.globalData.pageviewNum_int,
+        })
+      }
+      app.globalData.pageviewId_int = -1
+      app.globalData.pageviewNum_int = -1
+    }
+
+    if (app.globalData.commentId_int !== -1) {
+      let index_int = this.data.wall_arr.findIndex(item => item.id === app.globalData.commentId_int)
+      if (index_int !== -1) {
+        this.setData({
+          ['wall_arr[' + index_int + '].commentListNum_int']: app.globalData.commentNum_int
+        })
+      }
+      console.log(app.globalData.commentId_int, app.globalData.commentNum_int);
+      app.globalData.commentId_int = -1
+      app.globalData.commentNum_int = -1
     }
   },
 

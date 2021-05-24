@@ -22,6 +22,17 @@
   border-radius: 41rpx;
   background-size: 100% 100%;
 }
+.wrapper .comment .item .sex {
+  width: 30rpx;
+  height: 30rpx;
+  vertical-align: middle;
+  position: absolute;
+  left: 30rpx;
+  top: 30rpx;
+  background-color: #fff;
+  border-radius: 50%;
+  border: 2rpx solid #fff;
+}
 .wrapper .comment .item .info {
   width: calc(100% - 105rpx);
   float: right;
@@ -44,8 +55,9 @@
   width: 26rpx;
   height: 26rpx;
   vertical-align: middle;
-  position: relative;
-  top: -2rpx;
+  position: absolute;
+  left: 0;
+  top: 0;
 }
 .wrapper .comment .item .info .info-top .video {
   height: 36rpx;
@@ -56,7 +68,6 @@
   position: absolute;
   top: 40rpx;
   right: 36rpx;
-  background-color: #43D7B5;
   font-size: 22rpx;
 }
 .wrapper .comment .item .info .info-bottom {
@@ -130,6 +141,7 @@
   top: 3rpx;
   margin-left: 10rpx;
   font-weight: lighter;
+  color: #666;
 }
 .wrapper .comment .footer .f2 {
   flex: 1;
@@ -146,6 +158,7 @@
   top: 3rpx;
   margin-left: 10rpx;
   font-weight: lighter;
+  color: #666;
 }
 .wrapper .comment .footer .f3 {
   flex: 1;
@@ -162,4 +175,5 @@
   top: 3rpx;
   margin-left: 10rpx;
   font-weight: lighter;
+  color: #666;
 }

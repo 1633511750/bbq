@@ -15,7 +15,8 @@ Page({
       }
     })
       .then(res => {
-        var list_arr = res.data.data.privateLetterList
+        console.log(res);
+        var list_arr = res.data.data.privateLetterList ? res.data.data.privateLetterList : []
         list_arr.forEach(item => {
           var t_o = myTime(item.createTime)
           item.date_str = t_o.year + '-' + t_o.month + '-' + t_o.day

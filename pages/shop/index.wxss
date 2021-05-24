@@ -9,6 +9,15 @@ page .wrap {
   align-items: center;
   position: relative;
 }
+page .wrap .name {
+  position: absolute;
+  left: 30rpx;
+  top: 10rpx;
+  width: 320rpx;
+  text-align: center;
+  color: #489CD7;
+  font-size: 28rpx;
+}
 page .wrap .item {
   flex: 0 0 25%;
   text-align: center;
@@ -17,8 +26,8 @@ page .wrap .item:first-child {
   border-right: 1rpx solid #ddd;
 }
 page .wrap .check-goods {
-  color: red;
-  border: 1px solid red;
+  color: #489CD7;
+  border: 1px solid #489CD7;
   padding: 0 10rpx;
   border-radius: 20rpx;
   position: absolute;
@@ -26,8 +35,8 @@ page .wrap .check-goods {
   bottom: 70rpx;
 }
 page .wrap .check-shop {
-  color: red;
-  border: 1px solid red;
+  color: #489CD7;
+  border: 1px solid #489CD7;
   padding: 0 10rpx;
   border-radius: 20rpx;
   position: absolute;

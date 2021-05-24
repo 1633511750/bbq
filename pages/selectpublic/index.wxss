@@ -1,0 +1,101 @@
+page {
+  background-color: var(--colorGray);
+}
+page .dialog-wrap {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  z-index: 3;
+}
+page .dialog-wrap .dialog {
+  width: 100%;
+  position: fixed;
+  left: 0;
+  top: 0rpx;
+  border-radius: 20rpx;
+}
+page .dialog-wrap .dialog.active {
+  bottom: 0;
+}
+page .dialog-wrap .dialog .up {
+  padding: 21rpx 35rpx;
+  line-height: 60rpx;
+  color: #666;
+  font-size: 34rpx;
+  position: relative;
+  top: 200rpx;
+  text-align: center;
+}
+page .dialog-wrap .dialog .up .headPic {
+  width: 83rpx;
+  height: 83rpx;
+  border-radius: 15rpx;
+  float: left;
+  vertical-align: middle;
+  background-size: 100% 100%;
+}
+page .dialog-wrap .dialog .up .up-right {
+  float: right;
+  height: 83rpx;
+  width: 580rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+page .dialog-wrap .dialog .up .up-right .name {
+  font-size: 31.54205607rpx;
+  font-weight: bold;
+  float: left;
+  vertical-align: middle;
+}
+page .dialog-wrap .dialog .up .up-right .reNew {
+  width: 50rpx;
+  height: 50rpx;
+  float: right;
+  margin-right: 15rpx;
+  vertical-align: middle;
+  transition: transform 0.5s;
+}
+page .dialog-wrap .dialog .up .up-right .change {
+  float: right;
+  position: absolute;
+  right: 120rpx;
+  color: #aaa;
+}
+page .dialog-wrap .dialog .center {
+  padding: 20rpx 0;
+  position: relative;
+  top: 200rpx;
+  display: flex;
+  flex-wrap: wrap;
+}
+page .dialog-wrap .dialog .center .item-wrap {
+  flex: 0 0 33.33%;
+  height: 80rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+page .dialog-wrap .dialog .center .item-wrap .item {
+  padding: 0 20rpx;
+  width: 160rpx;
+  height: 48rpx;
+  text-align: center;
+  line-height: 42rpx;
+  border: 1px solid #999;
+  color: #43D7B5;
+  color: #999;
+  border-radius: 30rpx;
+}
+page .dialog-wrap .dialog .blank {
+  height: 15rpx;
+  background-color: #e6e6e6;
+}
+page .dialog-wrap .dialog .bottom {
+  color: #aaa;
+  height: 110rpx;
+  line-height: 110rpx;
+  text-align: center;
+  font-size: 34rpx;
+}

@@ -1,8 +1,8 @@
 <view class="wrap">
   <navigator url="/pages/updateMyInfo/index" class="top">
-    <view class="headPic" style="background-image: url('https://i04piccdn.sogoucdn.com/0e3e409f0cf25fb3');"></view>
+    <image mode="aspectFill" class="headPic" src="{{avatarUrl_str}}"></image>
     <view class="name">{{nickName_str}}</view>
-    <view class="school">山西传媒学院</view>
+    <!--<view class="school">山西传媒学院</view>-->
     <image src="/img/right.png" class="right-arrow"></image>
   </navigator>
   <view class="item-wrapper">
@@ -22,13 +22,13 @@
   </view>
   <view class="item-wrapper">
   <view class="title">创业街</view>
-    <navigator url="/pages/shop/index" class="item-wrap">
-      <image src="/img/shop.png"/>
-      <text class="item">我的店铺</text>
-    </navigator>
     <navigator url="/pages/openshop/index" class="item-wrap">
       <image src="/img/shop.png"/>
-      <text class="item">我要开店</text>
+      <text class="item">我要创业</text>
+    </navigator>
+    <navigator url="/pages/shop/index" class="item-wrap">
+      <image src="/img/cygl.png"/>
+      <text class="item">创业管理</text>
     </navigator>
   </view>
   <view class="item-wrapper">
@@ -41,9 +41,17 @@
       <image src="/img/service.png"/>
       <text class="item">帮助与反馈</text>
     </navigator>
-    <navigator url="/pages/zhuti/index" class="item-wrap">
+    <navigator url="/pages/schoolmanagers/index" class="item-wrap">
+      <image src="/img/xyjl.png"/>
+      <text class="item">校园经理</text>
+    </navigator>
+    <navigator url="/pages/callus/index" class="item-wrap">
+      <image src="/img/lxwm.png"/>
+      <text class="item">联系我们</text>
+    </navigator>
+    <!--<navigator url="/pages/zhuti/index" class="item-wrap">
       <image src="/img/zhuti.png"/>
       <text class="item">主题</text>
-    </navigator>
+    </navigator>-->
   </view>
 </view>

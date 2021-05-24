@@ -1,6 +1,2 @@
-<view class="wrap">
-  <view wx:if="{{!showEdit}}" class="text">{{text}}</view>
-  <input wx:else value="{{text}}" bindinput="input_fun" />
-</view>
-
-<button bindtap="btn_fun">show</button>
+<input bindinput="input_fun" data-index="{{0}}" />
+<input bindinput="input_fun" data-index="{{1}}" />

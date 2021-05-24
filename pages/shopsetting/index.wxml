@@ -1,7 +1,17 @@
 <view class="info-wrap">
   <view class="head-wrap">
     <text class="head-text">店铺头像</text>
-    <image bindtap="tapPic_fun" class="head-pic" src=""/>
+    <image mode="aspectFill" bindtap="tapPic_fun" class="head-pic" src="{{headPic_str}}"/>
+  </view>
+  <view class="item">
+    <text class="name">学校</text>
+    <view class="value">
+      <text wx:if="{{isModify_bool}}" class="org">{{school_arr[schoolIndex_int]}}</text>
+      <picker wx:else bindchange="schoolChange_fun" class="picker" value="{{schoolIndex_int}}" range="{{school_arr}}">
+        <text class="con">{{school_arr[schoolIndex_int]}}</text>
+        <image mode="aspectFit" src="/img/down.png"></image>
+      </picker>
+    </view>
   </view>
   <view class="item">
     <text class="name">店铺名称</text>
@@ -10,18 +20,32 @@
       <input bindinput="input_fun" data-value="shopName_str" wx:else value="{{shopName_str}}" class="modify"></input>
     </view>
   </view>
-  <view class="item">
+  <view class="item tag">
     <text class="name">店铺标签</text>
     <view class="value">
-      <text wx:if="{{isModify_bool}}" class="org">{{tag_arr[0]}}</text>
-      <input wx:else value="{{tag_arr[0]}}" class="modify"></input>
+      <!--<view wx:for="{{tag_arr}}" wx:key="*this" class="input-wrap">
+        <input disabled="{{isModify_bool}}" data-index="{{index}}" value="{{item}}" bindinput="taginput_fun" />
+      </view>-->
+      <text wx:if="{{isModify_bool}}" class="org">{{tag_str === '' ? '每个标签至多6字、以分号分隔' : tag_str}}</text>
+      <input bindinput="input_fun" data-value="tag_str" wx:else value="{{tag_str}}" placeholder="每个标签至多6字、以分号分隔" class="modify"></input>
     </view>
+    <view class="info">每个标签至多6字、以分号分隔</view>
   </view>
   <view class="item">
     <text class="name">店铺类别</text>
     <view class="value">
-      <text wx:if="{{isModify_bool}}" class="org">{{category_str}}</text>
-      <input bindinput="input_fun" data-value="category_str" wx:else value="{{category_str}}" class="modify"></input>
+      <text wx:if="{{isModify_bool}}" class="org">{{shopCategory_arr[shopCategoryIndex_int]}}</text>
+      <picker wx:else bindchange="categoryChange_fun" class="picker" value="{{shopCategoryIndex_int}}" range="{{shopCategory_arr}}">
+        <text class="con">{{shopCategory_arr[shopCategoryIndex_int]}}</text>
+        <image mode="aspectFit" src="/img/down.png"></image>
+      </picker>
+    </view>
+  </view>
+  <view class="item">
+    <text class="name">姓名</text>
+    <view class="value">
+      <text wx:if="{{isModify_bool}}" class="org">{{qq_str}}</text>
+      <input bindinput="input_fun" data-value="qq_str" wx:else value="{{qq_str}}" class="modify"></input>
     </view>
   </view>
   <view class="item">
@@ -47,13 +71,6 @@
     <view class="value">
       <text wx:if="{{isModify_bool}}" class="org">{{wechat_str}}</text>
       <input bindinput="input_fun" data-value="wechat_str" wx:else value="{{wechat_str}}" class="modify"></input>
-    </view>
-  </view>
-  <view class="item">
-    <text class="name">QQ</text>
-    <view class="value">
-      <text wx:if="{{isModify_bool}}" class="org">{{qq_str}}</text>
-      <input bindinput="input_fun" data-value="qq_str" wx:else value="{{qq_str}}" class="modify"></input>
     </view>
   </view>
 </view>

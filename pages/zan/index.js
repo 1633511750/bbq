@@ -8,7 +8,9 @@ Page({
    */
   data: {
     hasArtical_bool: true,
-    commentList_arr: []
+    commentList_arr: [],
+    typeList_arr: ['表白', '找对象', '找同伴', '感情', '二手交易', '爱豆', '有偿求助', '失物招领', '吐槽', '游戏', '曝光', '问答', '靓仔日常', '捞人', '其他'],
+    tagBg_arr: ['#C962E3', '#C962E3', '#C962E3', '#C962E3', '#FFCD1D', '#00B4FF', '#FFCD1D', '#FFCD1D', '#FF3434', '#00B4FF', '#FF3434', '#3DC795', '#00B4FF', '#C962E3', '#3DC795']
   },
 
   /**
@@ -18,21 +20,43 @@ Page({
     this.getAllMyArtical_fun()
   },
 
+  pageview_fun(e) {
+    var id = e.detail.pageviewId_int
+    let pageviewNum_int = e.detail.pageviewNum_int
+    console.log(id, pageviewNum_int);
+    let index_int = this.data.commentList_arr.findIndex(item => item.id === id)
+    if (index_int !== -1) {
+      this.setData({
+        ['commentList_arr[' + index_int + '].pageviews']: pageviewNum_int
+      })
+      console.log();
+    } else {
+      console.log('浏览量设置失败');
+    }
+  },
+
   getAllMyArtical_fun() {
     $http({ url: '/Article/getArticlesByDianzanUid' })
       .then((res) => {
         console.log(res);
-        if (res.data.success) {
+        if (res.data.code === 200) {
           var list_arr = res.data.data.articleList.reverse()
           list_arr.forEach((item) => {
             var t_o = myTime(item.createTime)
-            item.date_str = t_o.month + '-' + t_o.day
-            item.time_str = t_o.hour + ':' + t_o.minute
+            // item.date_str = t_o.month + '-' + t_o.day
+            // item.time_str = t_o.hour + ':' + t_o.minute
+            item.date_str = t_o.time
 
+            item.isMy_bool = app.globalData.uid_int === item.fromUid
             item.commentListNum_int = item.commentList[0].commentCount
+
+            let index_int = this.data.typeList_arr.indexOf(item.category)
+            item.tagBg_str = this.data.tagBg_arr[index_int]
 
             if (item.dianzanUids) {
               let dz_arr = item.dianzanUids.split(',')
+              dz_arr = dz_arr.filter(item => item !== '')
+              item.dianzan_str = dz_arr.join(',')
               item.dianzanNum_int = dz_arr.length
               if (dz_arr.includes('' + app.globalData.uid_int)) {
                 item.isZan = true
@@ -41,14 +65,15 @@ Page({
               }
             } else {
               item.dianzanNum_int = 0
+              item.dianzan_str = ''
             }
 
             if (item.isAnonymous) {
               item.name_str = '匿名'
               item.avatarUrl_str = app.globalData.anonymousAvatarUrl_str
             } else {
-              item.name_str = app.globalData.nickName_str
-              item.avatarUrl_str = app.globalData.avatarUrl_str
+              item.name_str = item.userList[0] && item.userList[0].name || 'unknown'
+              item.avatarUrl_str = item.userList[0] && item.userList[0].userHeadpoait && (app.globalData.baseUrl + item.userList[0].userHeadpoait.slice(25) + '/' + item.userList[0].pictureName)
             }
 
             item.imgOrg = []
@@ -66,7 +91,7 @@ Page({
             commentList_arr: list_arr,
             hasArtical_bool: true
           })
-        } else if (res.data.code === 229) {
+        } else if (res.data.code === 231) {
           this.setData({
             hasArtical_bool: false
           })
@@ -77,6 +102,32 @@ Page({
           });
         }
       })
+  },
+
+  dotZan_fun(e) {
+    var id = e.currentTarget.dataset.id
+    let dz_arr = e.detail.dz_arr
+    console.log(dz_arr);
+
+    let index_int = this.data.commentList_arr.findIndex(item => item.id === id)
+    if (index_int !== -1) {
+      let index = dz_arr.indexOf(app.globalData.uid_int + '')
+      if (index !== -1) {
+        this.setData({
+          ['commentList_arr[' + index_int + '].dianzanNum_int']: dz_arr.length,
+          ['commentList_arr[' + index_int + '].isZan']: true,
+          ['commentList_arr[' + index_int + '].dianzan_str']: dz_arr.join(',')
+        })
+      } else {
+        this.setData({
+          ['commentList_arr[' + index_int + '].dianzanNum_int']: dz_arr.length,
+          ['commentList_arr[' + index_int + '].isZan']: false,
+          ['commentList_arr[' + index_int + '].dianzan_str']: dz_arr.join(',')
+        })
+      }
+    } else {
+      console.log('no');
+    }
   },
 
   /**

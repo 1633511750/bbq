@@ -1,15 +1,15 @@
 <view class="info-wrap">
   <view class="item1">
     <text class="title">头像</text>
-    <view class="headPic" bindtap="tapPic_fun" style="background-image: url({{headPicUrl_str}});"></view>
+    <image mode="aspectFill" class="headPic" bindtap="tapPic_fun" src="{{headPicUrl_str}}"></image>
   </view>
   <view class="item2">
     <text class="title">昵称</text>
     <input class="con" bindinput="inputValue_fun" data-type="nickName" value="{{nickName_str}}"/>
   </view>
-  <view class="item3">
+  <!--<view class="item3">
     <text class="title">学校</text>
     <input class="con" value="{{school_str}}" bindinput="inputValue_fun" data-type="school"/>
-  </view>
+  </view>-->
 </view>
 <view open-type="navigateBack" bindtap="updateMyInfo_fun" class="btn-wrap">确认修改</view>

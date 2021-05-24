@@ -1,7 +1,8 @@
 <view wx:for="{{shop_arr}}" wx:if="{{item.examined === 0 || item.examined === 1}}" wx:key="id" class="wrap">
+  <view class="name">{{item.name}}</view>
   <navigator url="/pages/shopsetting/index?id={{item.id}}" class="item">
     <view>店铺</view>
-    <view>设置</view>
+    <view>修改</view>
   </navigator>
   <navigator url="/pages/goods/index?id={{item.id}}" class="item">
     <view>商品</view>

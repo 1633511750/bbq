@@ -2,12 +2,12 @@
   <view class="blank"></view>
   <view class="comment clearfix">
     <view class="item clearfix">
-      <image class="headPic" src="{{avatarUrl_str}}"></image>
+      <image mode="aspectFill" class="headPic" src="{{avatarUrl_str}}"></image>
       <view class="info">
         <view class="info-top clearfix">
           <text class="name">{{name_str}}</text>
           <image src="/img/dot.png" mode="aspectFit" class="dot" bindtap="showActionDialog_fun"></image>
-          <text class="video">{{category_str}}</text>
+          <text style="background-color: {{tagBg}}" class="video">{{category_str}}</text>
         </view>
         <view class="info-bottom">
           <text class="date">{{date_str}}</text>
@@ -15,16 +15,16 @@
         </view>
       </view>
     </view>
-    <view class="desc" style="white-space:pre-line">{{content_str}}</view>
-    <view class="img clearfix" wx:if="{{img_arr.length > 0}}">
+    <text class="desc" user-select style="white-space:pre-line">{{content_str}}</text>
+    <view mode="aspectFill" class="img clearfix" wx:if="{{img_arr.length > 0}}">
       <image mode="aspectFill" wx:for="{{img_arr}}" bindtap="previewImage_fun" data-urls="{{img_arr}}" data-cururl="{{item}}" wx:key="*this" src="{{item}}"></image>
     </view>
   </view>
 
   <view class="do">
     <view class="footer">
-      <view class="f1" bindtap="showDialog_fun">
-        <image mode="aspectFit" src="/img/zhuanfa.png"></image>
+      <view class="f1">
+        <image style="width: 32rpx;height: 32rpx;" mode="aspectFit" src="/img/hot.png"></image>
         <text class="heart">{{pageviews_str}}</text>
       </view>
       <view class="f2">
@@ -38,31 +38,48 @@
     </view>
     <view class="pl-wrap" wx:if="{{reply_arr.length > 0}}">
       <view class="pl clearfix" wx:for="{{reply_arr}}" wx:key="id">
-        <image class="headPic" src="{{avatarUrl_str}}"></image>
+        <image mode="aspectFill" class="headPic" src="{{item.avatarUrl_str}}"></image>
         <view class="info-wrap">
           <view class="info clearfix">
             <text class="name">{{item.nmId_str}}</text>
-            <image mode="aspectFit" src="/img/zan_active.png"/>
-            <text class="heart-num">30</text>
+            <!--<image mode="aspectFit" src="/img/zan_active.png"/>
+            <text class="heart-num">30</text>-->
           </view>
-          <view class="pl-con">{{item.content}}</view>
+          <text user-select class="pl-con">{{item.content}}</text>
           <view class="pl-foot">
             <text class="date">{{item.date_str}}  {{item.time_str}}</text>
-            <text class="reply" data-index="{{index}}" data-id="{{item.id}}" bindtap="getCommentReply_fun">{{item.commentListNum_int}}回复</text>
-            <text class="reply-btn" data-index="{{index}}" data-id="{{item.id}}" data-nmid="{{item.nmId_str}}" bindtap="replyBtn_fun">回复{{item.nmId_str}}</text>
+            <text class="reply" wx:if="{{!item.isExtendsReply_bool && item.commentListNum_int !== 0}}" data-index="{{index}}" data-id="{{item.id}}" bindtap="getCommentReply_fun">展开{{item.commentListNum_int}}条</text>
+            <text class="reply" wx:if="{{item.isExtendsReply_bool}}" data-index="{{index}}" data-id="{{item.id}}" bindtap="getCommentReply_fun">收起</text>
+            <text class="reply-btn" data-index="{{index}}" data-id="{{item.id}}" data-name="{{'null'}}" data-nmid="{{item.nmId_str}}" data-answerid="{{-1}}" data-anony="{{item.isAnonymous}}" data-touid="{{-1}}" bindtap="replyBtn_fun">回复</text>
+            <image class="delete" mode="aspectFit" src="/img/cha.png" bindtap="deleteComment_fun" data-item="{{item}}"></image>
           </view>
           <view class="pl-reply-wrap">
-            <view class="pl-reply-con clearfix" wx:for="{{item.reply}}" wx:key="id">
-              <image class="reply-headPic" src="{{avatarUrl_str}}"></image>
+            <view class="pl-reply-con clearfix" wx:for="{{item.reply}}" wx:for-item="item1" wx:for-index="index1" wx:key="id">
+              <image mode="aspectFill" class="reply-headPic" src="{{item1.avatarUrl_str}}"></image>
               <view class="reply-info-wrap">
                 <view class="reply-info clearfix">
-                  <text class="reply-name">{{item.nmId_str}}</text>
+                  <text class="reply-name">{{item1.nmId_str}}</text>
                 </view>
-                <view class="reply-pl-con">{{item.content}}</view>
+                <text user-select class="reply-pl-con">{{item1.content}}</text>
                 <view class="reply-pl-foot">
-                  <text class="reply-date">{{item.date_str}}  {{item.time_str}}</text>
+                  <text class="reply-date">{{item1.date_str}}  {{item1.time_str}}</text>
+                  <text class="reply-btn" data-index="{{index}}" data-id="{{item.id}}" data-answerid="{{item1.id}}" data-nmid="{{item1.nmId_str}}" data-anony="{{item1.isAnonymous}}" data-name="{{item1.realyName_str}}" data-touid="{{item1.fromUid}}" bindtap="replyBtn_fun">回复</text>
+                  <image mode="aspectFit" src="/img/cha.png" class="delete" bindtap="deleteReply_fun" data-indexz="{{index}}" data-indexo="{{index1}}" data-indext="{{-1}}" data-item="{{item1}}"></image>
                 </view>
               </view>
+              <view class="pl-rep-con clearfix" wx:for="{{item1.rep}}" wx:for-index="index2" wx:key="id" wx:for-item="item2">
+                <view class="reply-info-wrap big-width">
+                  <view class="reply-pl-con">
+                    <text class="reply-pl-toname">{{item2.nmId_str}} <text class="reply-pl-reply">回复</text> {{item2.toName_str + ' : '}}</text>
+                    <text user-select>{{item2.content}}</text>
+                  </view>
+                  <view class="reply-pl-foot">
+                    <text class="reply-date">{{item2.date_str}}  {{item2.time_str}}</text>
+                    <text class="reply-btn" data-index="{{index}}" data-id="{{item.id}}" data-answerid="{{item1.id}}" data-nmid="{{item2.nmId_str}}" data-anony="{{item2.isAnonymous}}" data-name="{{item2.realyName_str}}" data-touid="{{item2.fromUid}}" bindtap="replyBtn_fun">回复</text>
+                    <image mode="aspectFit" src="/img/cha.png" class="delete" bindtap="deleteReply_fun" data-indexz="{{index}}" data-indexo="{{index1}}" data-indext="{{index2}}" data-item="{{item2}}"></image>
+                  </view>
+                </view>
+              </view>            
             </view>
           </view>
         </view>
@@ -73,6 +90,7 @@
 
   <view class="write-pl">
     <view class="input" bindtap="showPingLun_fun">写评论......</view>
+    <image open-type="share" class="zhuanfa" bindtap="showDialog_fun" src="/img/zhuanfa.png"></image>
   </view>
 
   <view bindtap="hideDialog_fun" class="dialog-wrap" wx:if="{{showDialog_bool}}">
@@ -80,8 +98,8 @@
       <view class="top">
         <text class="text">分享至</text>
         <view class="item-wrap">
-          <button open-type="share" class="item">
-            <image bindtap="share_fun" mode="aspectFit" src="/img/wechat.png"/>
+          <button open-type="share" class="item" bindtap="share_fun">
+            <image mode="aspectFit" src="/img/wechat.png"/>
             <text class="title">微信好友</text>
           </button>
           <view class="item" bindtap="friendsCircle_fun">
@@ -97,12 +115,12 @@
   <view wx:if="{{showPingLun_bool}}" bindtap="closePingLun_fun"  class="pinglun-wrap">
     <view class="pinglun" catchtap="empty_fun" style="bottom: {{0}}px;">
       <view class="top-wrap">
-        <textarea focus="{{replyFocus_bool}}" style="height: {{replyHeight_flo}}rpx;" cursor-spacing="{{300}}" show-confirm-bar="{{false}}" bindkeyboardheightchange="keyboardheight_fun" placeholder="{{commentPlaceholder_str}}" bindinput="setInputValue_fun"></textarea>
+        <textarea focus="{{replyFocus_bool}}" style="height: {{replyHeight_flo}}rpx;" cursor-spacing="{{300}}" show-confirm-bar="{{false}}" bindkeyboardheightchange="keyboardheight_fun" placeholder="{{commentPlaceholder_str}}" value="{{comment_str}}" bindinput="setInputValue_fun"></textarea>
         <image mode="aspectFit" bindtap="extend_fun" src="/img/extend.png"></image>
       </view>
       <view class="pic-wrap">
-        <image mode="aspectFit" bindtap="useCamera_fun" src="/img/pic.png" class="pic-icon"></image>
-        <text class="send" bindtap="chat_fun">发送</text>
+        <text class="send-left" bindtap="chat_fun" data-anonymous="0">不匿发</text>
+        <text class="send" bindtap="chat_fun" data-anonymous="1">匿发</text>
       </view>
     </view>
   </view>

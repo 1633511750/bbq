@@ -6,7 +6,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    nickName_str: ''
+    nickName_str: '',
+    avatarUrl_str: ''
   },
 
   /**
@@ -27,7 +28,8 @@ Page({
    */
   onShow: function () {
     this.setData({
-      nickName_str: app.globalData.nickName_str
+      nickName_str: app.globalData.nickName_str,
+      avatarUrl_str: app.globalData.avatarUrl_str
     })
   },
 

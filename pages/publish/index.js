@@ -19,6 +19,9 @@ Page({
 
     textareaFouce_bool: false,
     tempBlur_bool: false,
+
+    avatarUrl_str: app.globalData.avatarUrl_str,
+    anonymousAvatarUrl_str: app.globalData.anonymousAvatarUrl_str
   },
 
   // 大图预览
@@ -145,7 +148,7 @@ Page({
   },
 
   // 发帖
-  publicArtical_fun() {
+  publicArtical_fun(e) {
     if (this.data.text_str.trim() === '' && this.data.tempImgSrc_arr.length === 0) {
       wx.showToast({ title: '必须有文字或图片', icon: 'none' })
       return
@@ -156,8 +159,9 @@ Page({
       showCancel: true,
       success: (result) => {
         if (result.confirm) {
+          let anonymous_int = e.currentTarget.dataset.anonymous - 0
           wx.showLoading({
-            title: '正在发帖...'
+            title: '正在发表...'
           });
           $http({
             url: '/User/publisArticle', method: 'post', data: {
@@ -165,17 +169,17 @@ Page({
               content: this.data.text_str.trim(),
               school: app.globalData.school_str,
               location: this.data.school_str === '定位中，请稍候...' ? '' : this.data.school_str,
-              isAnonymous: this.data.isNM_bool ? 1 : 0
+              // isAnonymous: this.data.isNM_bool ? 1 : 0
+              isAnonymous: anonymous_int
             }
           }, false).then(res => {
-            console.log('发帖成功');
             console.log(res);
             if (res.data.success) {
               var id = res.data.data.articleId - 0
               var p_arr = this.uploadImage_fun(id)
               Promise.all(p_arr).then(arr => {
                 wx.hideLoading();
-                wx.showToast({ title: '发帖成功' })
+                wx.showToast({ title: '发表成功' })
                 app.globalData.backState_int = 1
                 setTimeout(() => {
                   var pages = getCurrentPages()
@@ -191,10 +195,10 @@ Page({
                 console.log(err);
               })
             } else {
-              wx.showToast({ title: '发帖失败', icon: 'error' })
+              wx.showToast({ title: '发表失败', icon: 'error' })
             }
           }).catch(res => {
-            console.log('发帖错误');
+            console.log('发表错误');
             console.log(res);
             wx.showToast({ title: res, icon: 'error' })
           })

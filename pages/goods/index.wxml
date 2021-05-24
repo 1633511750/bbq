@@ -4,14 +4,15 @@
   <view bindtap="goodsStateIndex_fun" data-index="2" class="item {{goodsStateIndex_int === 2 ? 'active' : ''}}">审核中</view>
 </view>
 
-<view wx:for="{{goods_arr}}" wx:key="id" class="item-wrap" url="/pages/goodpublic/index">
-  <image src=""/>
+<view wx:for="{{goods_arr}}" wx:key="id" class="item-wrap" url="/pages/goodpublic/index?goodId={{item.id}}&shopId={{id_int}}&update=1&headPic={{item.headPic_str}}&showPic={{item.showPic_str}}">
+  <image mode="aspectFill" src="{{item.headPic_str}}"/>
   <view class="name">{{item.name}}</view>
   <view class="price-wrap">
     价格：<text class="now">{{item.price}}</text>
     <text class="old"></text>
   </view>
-  <view class="btn" catchtap="ofShelf_fun">下架</view>
+  <view wx:if="{{goodsStateIndex_int === 0}}" data-id="{{item.id}}" class="btn" catchtap="ofShelf_fun">下架</view>
+  <view wx:elif="{{goodsStateIndex_int === 1}}" data-id="{{item.id}}" class="btn" catchtap="onShelf_fun">上架</view>
 </view>
 
 <navigator url="/pages/goodpublic/index?id={{id_int}}" class="bottom-btn">添加商品</navigator>

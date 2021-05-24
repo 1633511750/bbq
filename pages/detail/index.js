@@ -65,26 +65,22 @@ Page({
 
     replyResult_str: '努力加载评论',
     // 匿名用户名称数组
-    commentUser_arr: []
+    commentUser_arr: [],
+    isAnonymous_int: 1,
+
+    fromUid_int: -1
   },
 
   showActionDialog_fun() {
     if (this.data.isMy_bool === 'true') {
       wx.showActionSheet({
-        itemList: ['置顶', '转发', '删除'],
+        itemList: ['置顶', '删除'],
         success: (result) => {
           switch (result.tapIndex) {
             case 0:
 
               break
             case 1:
-              wx.showToast({
-                title: '请点击上方按钮进行分享',
-                icon: 'none',
-                duration: 2000,
-              });
-              break
-            case 2:
               this.deleteArtical_fun()
               break
           }
@@ -92,19 +88,12 @@ Page({
       });
     } else {
       wx.showActionSheet({
-        itemList: ['举报', '转发'],
+        itemList: ['举报'],
         success: (result) => {
           switch (result.tapIndex) {
             case 0:
               wx.navigateTo({
                 url: '/pages/jubao/index?id=' + this.data.id_str,
-              });
-              break
-            case 1:
-              wx.showToast({
-                title: '请点击上方按钮进行分享',
-                icon: 'none',
-                duration: 2000,
               });
               break
           }
@@ -159,7 +148,8 @@ Page({
     })
     this.setData({
       showPingLun_bool: false,
-      isReply_bool: false
+      isReply_bool: false,
+      comment_str: ''
     })
   },
 
@@ -197,39 +187,59 @@ Page({
   previewImage_fun(e) {
     var urls = e.currentTarget.dataset.urls
     var cururl = e.currentTarget.dataset.cururl
+
     wx.previewImage({
       current: cururl, // 当前显示图片的http链接
       urls: urls // 需要预览的图片http链接列表
     })
+    this.addPageview_fun(this.data.id_str - 0)
   },
-
-
 
   // 点赞
   dotZan_fun() {
-    if (this.data.isZan_bool) {
-      return
+    // if (this.data.isZan_bool) {
+    //   return
+    // }
+    let dz_arr = this.data.dianzan_str.split(',')
+    dz_arr = dz_arr.filter(item => item !== '')
+
+    let dzIndex_int = dz_arr.indexOf(app.globalData.uid_int + '')
+    if (dzIndex_int !== -1) {
+      dz_arr.splice(dzIndex_int, 1)
+      this.setData({
+        isZan_bool: false
+      })
+    } else {
+      dz_arr.push(app.globalData.uid_int + '')
+      this.setData({
+        isZan_bool: true
+      })
     }
+    let dz_str = dz_arr.join(',')
+    this.setData({
+      dianzan_str: dz_str,
+      dianzanNum_str: dz_arr.length
+    })
+
     $http({
       url: '/Article/updateDianzanToArtic', method: 'post', data: {
-        articId: this.data.id_str - 0
+        articId: this.data.id_str - 0,
+        dianzanUids: dz_str
       }
     }).then(res => {
       console.log(res);
-      if (res.data.success) {
-        this.setData({
-          isZan_bool: true,
-          dianzanNum_str: ++this.data.dianzanNum_str
-        })
+      if (res.data.code === 200) {
         // wx.showToast({ title: '点赞成功' })
         app.globalData.zanId_int = this.data.id_str
+        app.globalData.zanNum_int = dz_arr.length
+        app.globalData.isZan_bool = this.data.isZan_bool
         // 更新点赞到首页
       } else {
-        wx.showToast({ title: '点赞失败', icon: 'error' })
+        // wx.showToast({ title: '点赞失败', icon: 'error' })
       }
     }).catch(res => {
       console.log(res);
-      wx.showToast({ title: '点赞失败', icon: 'error' })
+      // wx.showToast({ title: '点赞失败', icon: 'error' })
     })
   },
 
@@ -239,7 +249,7 @@ Page({
   onLoad: function (options) {
     console.log(options);
     var item_o = JSON.parse(options.item)
-
+    console.log(item_o);
     this.setData({
       id_str: item_o.id,
       category_str: item_o.category,
@@ -248,12 +258,16 @@ Page({
       content_str: item_o.content,
       date_str: item_o.date_str,
       dianzanNum_str: item_o.dianzanNum_int,
+      dianzan_str: item_o.dianzan_str,
       pageviews_str: item_o.pageviews,
       time_str: item_o.time_str,
       name_str: item_o.name_str,
       avatarUrl_str: item_o.avatarUrl_str,
       isZan_bool: item_o.isZan,
-      isMy_bool: options.isMy
+      isMy_bool: options.isMy,
+      tagBg: options.tagBg,
+      isAnonymous_int: item_o.isAnonymous,
+      fromUid_int: item_o.fromUid
     })
     this.addPageview_fun(this.data.id_str - 0)
     this.getReply_fun(this.data.id_str - 0)
@@ -265,23 +279,15 @@ Page({
       .then(res => {
         console.log(res);
         if (res.data.success) {
+          this.setData({
+            pageviews_str: this.data.pageviews_str - 0 + 1
+          })
           app.globalData.pageviewId_int = articleId
-        } else {
-          // wx.showToast({
-          //   title: '获取浏览量失败',
-          //   icon: 'none',
-          // });
+          app.globalData.pageviewNum_int = this.data.pageviews_str - 0
         }
       }).catch(err => {
-        // wx.showToast({
-        //   title: '获取浏览量失败',
-        //   icon: 'none',
-        // });
         console.log(err);
       })
-    this.setData({
-      pageviews_str: this.data.pageviews_str - 0 + 1
-    })
   },
 
   // 删除帖子
@@ -330,37 +336,49 @@ Page({
 
   // 获取评论
   getReply_fun(id) {
-    $http({ url: '/getCommentsByArticleId', data: { articleId: id } })
+    $http({ url: '/Comment/getCommentsByArticleId', data: { articleId: id } })
       .then(res => {
         console.log(res);
         // this.setData({
         //   commentUser_arr: []
         // })
         var arr_arr = res.data.data.commentList
+
         arr_arr.forEach(item => {
-          let nmId_int = this.data.commentUser_arr.indexOf(item.fromUid)
-          if (nmId_int === -1) {
-            let temp_arr = this.data.commentUser_arr
-            temp_arr.push(item.fromUid)
-            this.setData({
-              commentUser_arr: temp_arr
-            })
-            nmId_int = temp_arr.length
+          console.log(item.isAnonymous);
+          item.nmIndex_int = item.nmIndex_int || 0
+          item.nmIndex_int++
+
+          if (item.isAnonymous === 0) {
+            item.nmId_str = item.userList[0].name
+            item.avatarUrl_str = item.userList[0].userHeadpoait && (app.globalData.baseUrl + item.userList[0].userHeadpoait.slice(25) + '/' + item.userList[0].pictureName)
           } else {
-            nmId_int++
-          }
-          if (nmId_int < 10) {
-            item.nmId_str = '00' + nmId_int
-          } else if (nmId_int < 100) {
-            item.nmId_str = '0' + nmId_int
-          } else {
-            item.nmId_str = nmId_int
+            let nmId_int = this.data.commentUser_arr.indexOf(item.fromUid)
+            if (nmId_int === -1) {
+              let temp_arr = this.data.commentUser_arr
+              temp_arr.push(item.fromUid)
+              this.setData({
+                commentUser_arr: temp_arr
+              })
+              nmId_int = temp_arr.length
+            } else {
+              nmId_int++
+            }
+            if (nmId_int < 10) {
+              item.nmId_str = '00' + nmId_int
+            } else if (nmId_int < 100) {
+              item.nmId_str = '0' + nmId_int
+            } else {
+              item.nmId_str = nmId_int
+            }
+            item.avatarUrl_str = app.globalData.anonymousAvatarUrl_str
           }
         })
         arr_arr = arr_arr.reverse()
         arr_arr.forEach(item => {
           var t = myTime(item.createTime)
-          item.time_str = t.year + '-' + t.month + '-' + t.day + ' ' + t.hour + ':' + t.minute
+          // item.time_str = t.year + '-' + t.month + '-' + t.day + ' ' + t.hour + ':' + t.minute
+          item.time_str = t.time
         })
 
         let p_arr = []
@@ -368,8 +386,40 @@ Page({
           let p = new Promise((resolve, reject) => {
             $http({ url: '/Answer/getAnswersByCommentId', data: { commentId: item.id } })
               .then(res => {
-                console.log(res);
-                item.commentListNum_int = res.data.data.answerList.length
+                item.commentListNum_int = res.data.data.answerList.filter(item => item.toUid === 0).length
+                item.reply = res.data.data.answerList
+                item.reply.forEach(item1 => {
+                  var t = myTime(item1.createTime)
+                  // item.time_str = t.year + '-' + t.month + '-' + t.day + ' ' + t.hour + ':' + t.minute
+                  item1.time_str = t.time
+                  if (item1.isAnonymous === 0) {
+                    item1.nmId_str = item1.userList[0].name
+                    item1.avatarUrl_str = item1.userList[0].userHeadpoait && (app.globalData.baseUrl + item1.userList[0].userHeadpoait.slice(25) + '/' + item1.userList[0].pictureName)
+                  } else {
+                    item1.avatarUrl_str = app.globalData.anonymousAvatarUrl_str
+
+                    let nmId_int = this.data.commentUser_arr.indexOf(item1.fromUid)
+                    if (nmId_int === -1) {
+                      let temp_arr = this.data.commentUser_arr
+                      temp_arr.push(item1.fromUid)
+                      this.setData({
+                        commentUser_arr: temp_arr
+                      })
+                      nmId_int = temp_arr.length
+                    } else {
+                      nmId_int++
+                    }
+                    if (nmId_int < 10) {
+                      item1.nmId_str = '00' + nmId_int
+                    } else if (nmId_int < 100) {
+                      item1.nmId_str = '0' + nmId_int
+                    } else {
+                      item1.nmId_str = nmId_int
+                    }
+                  }
+                })
+                item.reply = res.data.data.answerList.reverse()
+
                 resolve()
               }).catch(err => {
                 console.log(err);
@@ -378,7 +428,13 @@ Page({
           })
           p_arr.push(p)
         })
+
+        // 添加匿名数组
+        arr_arr.commentUser_arr = []
         Promise.all(p_arr).then(res => {
+          arr_arr.forEach(item => {
+            item.reply = []
+          })
           this.setData({
             reply_arr: arr_arr,
             commentListNum_str: arr_arr.length,
@@ -405,11 +461,17 @@ Page({
     let id = e.currentTarget.dataset.id
     let nmId = e.currentTarget.dataset.nmid
     let index_int = e.currentTarget.dataset.index
+    let toUid_int = e.currentTarget.dataset.touid
+    let anony_str = e.currentTarget.dataset.anony + ''
+    let toAnswerId_int = e.currentTarget.dataset.answerid
     console.log(index_int);
     this.setData({
       commentId_int: id,
       isReply_bool: true,
+      toUid_int,
       index_int,
+      anony_str,
+      toAnswerId_int,
       commentPlaceholder_str: '回复：' + nmId,
       showPingLun_bool: true,
       replyFocus_bool: true
@@ -424,7 +486,7 @@ Page({
   },
 
   // 评论
-  chat_fun() {
+  chat_fun(e) {
     if (this.data.comment_str.trim() === '') {
       wx.showToast({
         title: '请输入内容',
@@ -432,16 +494,21 @@ Page({
       })
       return
     }
+    let isAnonymous = e.currentTarget.dataset.anonymous - 0
+    console.log(isAnonymous, 'a');
+    console.log(this.data.toAnswerId_int);
+
     if (this.data.isReply_bool) {
-      $http({ url: '/User/publisAnswer', data: { commentId: this.data.commentId_int, content: this.data.comment_str, isAnonymous: 1 } })
+      $http({
+        url: '/User/publisAnswer', data: {
+          commentId: this.data.commentId_int, content: this.data.comment_str, isAnonymous, toUid: this.data.toUid_int, toName: this.data.anony_str, toAnswerId: this.data.toAnswerId_int
+        }
+      })
         .then(res => {
           console.log(res);
           if (res.data.success) {
             wx.showToast({ title: '回复成功' })
-            wx.setNavigationBarColor({
-              frontColor: '#000000', // 必写项
-              backgroundColor: '#fff', // 传递的颜色值
-            })
+            this.closePingLun_fun()
             this.setData({
               showPingLun_bool: false,
               ['reply_arr[' + this.data.index_int + '].commentListNum_int']: this.data.reply_arr[this.data.index_int].commentListNum_int + 1
@@ -450,9 +517,16 @@ Page({
           } else {
             wx.showToast({ title: '回复失败', icon: 'error' })
           }
+          this.setData({
+            isReply_bool: false
+          })
+        }).catch(res => {
+          this.setData({
+            isReply_bool: false
+          })
         })
     } else {
-      $http({ url: '/User/publisComment', data: { articleId: this.data.id_str - 0, content: this.data.comment_str, isAnonymous: '0' } })
+      $http({ url: '/User/publisComment', data: { articleId: this.data.id_str - 0, content: this.data.comment_str, isAnonymous } })
         .then(res => {
           console.log(res);
           if (res.data.success) {
@@ -461,10 +535,7 @@ Page({
             })
             app.globalData.commentId_int = this.data.id_str - 0
 
-            wx.setNavigationBarColor({
-              frontColor: '#000000', // 必写项
-              backgroundColor: '#fff', // 传递的颜色值
-            })
+            this.closePingLun_fun()
             this.setData({
               showPingLun_bool: false
             })
@@ -486,7 +557,17 @@ Page({
       commentId_int: id,
       index_int
     })
-    this.getCommentReplyFun_fun(id)
+    if (this.data.reply_arr[index_int].isExtendsReply_bool) {
+      this.setData({
+        ['reply_arr[' + index_int + '].isExtendsReply_bool']: false,
+        ['reply_arr[' + index_int + '].reply']: []
+      })
+    } else {
+      this.setData({
+        ['reply_arr[' + index_int + '].isExtendsReply_bool']: true,
+      })
+      this.getCommentReplyFun_fun(id)
+    }
   },
 
   // 获取回复函数
@@ -496,19 +577,29 @@ Page({
         console.log(res);
         if (res.data.success) {
           let arr_arr = res.data.data.answerList
-          arr_arr.forEach(item => {
-            let nmId_int = this.data.commentUser_arr.indexOf(item.fromUid)
-            if (nmId_int === -1) {
-              let temp_arr = this.data.commentUser_arr
-              temp_arr.push(item.fromUid)
-              this.setData({
-                commentUser_arr: temp_arr
-              })
-              nmId_int = 'x'
+          arr_arr.forEach((item, index, arr) => {
+            var t = myTime(item.createTime)
+            // item.time_str = t.year + '-' + t.month + '-' + t.day + ' ' + t.hour + ':' + t.minute
+            item.time_str = t.time
+            if (item.isAnonymous === 0) {
+              item.nmId_str = item.userList[0].name
+              item.realyName_str = item.userList[0].name
+              item.avatarUrl_str = item.userList[0].userHeadpoait && (app.globalData.baseUrl + item.userList[0].userHeadpoait.slice(25) + '/' + item.userList[0].pictureName)
             } else {
-              nmId_int++
-            }
-            if (nmId_int !== 'x') {
+              item.realyName_str = 'null'
+              item.avatarUrl_str = app.globalData.anonymousAvatarUrl_str
+
+              let nmId_int = this.data.commentUser_arr.indexOf(item.fromUid)
+              if (nmId_int === -1) {
+                let temp_arr = this.data.commentUser_arr
+                temp_arr.push(item.fromUid)
+                this.setData({
+                  commentUser_arr: temp_arr
+                })
+                nmId_int = temp_arr.length
+              } else {
+                nmId_int++
+              }
               if (nmId_int < 10) {
                 item.nmId_str = '00' + nmId_int
               } else if (nmId_int < 100) {
@@ -516,17 +607,41 @@ Page({
               } else {
                 item.nmId_str = nmId_int
               }
-            } else {
-              item.nmId_str = '00X'
+            }
+
+            if (item.toUid !== 0) {
+              if (item.toName === '0') {
+                let t_o = arr.find(item1 => item.toUid === item1.fromUid && item1.isAnonymous === 0)
+                if (t_o) {
+                  item.toName_str = t_o.userList[0].name
+                } else {
+                  item.toName_str = '[delete]'
+                }
+              } else if (item.toName === '1') {
+                item.toName_str = arr.find(item1 => item.toUid === item1.fromUid && item1.isAnonymous === 1).nmId_str || 'delete'
+              }
             }
           })
-          arr_arr = arr_arr.reverse()
+          let reply_arr = arr_arr.filter(item => item.toUid === 0)
+          console.log(reply_arr);
+          reply_arr.forEach(item => item.rep = [])
+          let rep_arr = arr_arr.filter(item => item.toUid !== 0)
+          console.log(rep_arr);
+          rep_arr.forEach(item => {
+            let index_int = reply_arr.findIndex(item1 => item1.id === item.toAnswerId)
+            console.log(index_int);
+            if (index_int !== -1) {
+              reply_arr[index_int].rep.push(item)
+            }
+          })
+          // arr_arr = arr_arr.reverse()
           arr_arr.forEach(item => {
             var t = myTime(item.createTime)
-            item.time_str = t.year + '-' + t.month + '-' + t.day + ' ' + t.hour + ':' + t.minute
+            // item.time_str = t.year + '-' + t.month + '-' + t.day + ' ' + t.hour + ':' + t.minute
+            item.time_str = t.time
           })
           this.setData({
-            ['reply_arr[' + this.data.index_int + '].reply']: arr_arr
+            ['reply_arr[' + this.data.index_int + '].reply']: reply_arr
           })
         }
       }).catch(res => {
@@ -538,13 +653,153 @@ Page({
       })
   },
 
-  // 分享功能
-  // share_fun() {
-  //   wx.showShareMenu({
-  //     withShareTicket: true,
-  //     menus: ['shareAppMessage', 'shareTimeline']
-  //   })
-  // },
+  // 删除评论
+  deleteComment_fun(e) {
+    // console.log(this.data.reply_arr);
+    let item_o = e.currentTarget.dataset.item
+    let fromUid_int = item_o.fromUid
+    let id_int = item_o.id
+    console.log(id_int);
+    if (fromUid_int === app.globalData.uid_int) {
+      // 自己发表的评论
+      wx.showModal({
+        title: '删除提示',
+        content: '是否要删除该评论？',
+        showCancel: true,
+        cancelText: '取消',
+        cancelColor: '#000000',
+        confirmText: '确定',
+        confirmColor: '#3CC51F',
+        success: (result) => {
+          if (result.confirm) {
+            $http({
+              url: '/Comment/delComment', method: 'post', data: {
+                commentId: id_int
+              }
+            }).then(res => {
+              console.log(res);
+              if (res.data.code === 200) {
+                console.log('删除评论成功');
+                let index_int = this.data.reply_arr.findIndex(item => item.id === id_int)
+                if (index_int !== -1) {
+                  let t_arr = [...this.data.reply_arr]
+                  t_arr.splice(index_int, 1)
+                  this.setData({
+                    reply_arr: t_arr,
+                    commentListNum_str: this.data.commentListNum_str - 1
+                  })
+                  app.globalData.commentId_int = this.data.id_str - 0
+                  app.globalData.commentNum_int = this.data.commentListNum_str - 0
+                } else {
+                  console.log('没找到');
+                }
+              } else {
+                console.log('删除失败');
+              }
+            })
+          }
+        }
+      });
+    } else {
+      // 别人发表的评论
+      wx.showActionSheet({
+        itemList: ['举报'],
+        itemColor: '#000000',
+        success: (result) => {
+          switch (result.tapIndex) {
+            case 0:
+
+              break
+          }
+        }
+      });
+    }
+  },
+
+  // 删除回复
+  deleteReply_fun(e) {
+    let item_o = e.currentTarget.dataset.item
+    let fromUid_int = item_o.fromUid
+    let id_int = item_o.id
+
+    let index0 = e.currentTarget.dataset.indexz - 0
+    let index1 = e.currentTarget.dataset.indexo - 0
+    let index2 = e.currentTarget.dataset.indext - 0
+
+    if (fromUid_int === app.globalData.uid_int) {
+      // 自己发表的回复
+      wx.showModal({
+        title: '删除提示',
+        content: '是否要删除该回复？',
+        showCancel: true,
+        cancelText: '取消',
+        cancelColor: '#000000',
+        confirmText: '确定',
+        confirmColor: '#3CC51F',
+        success: (result) => {
+          if (result.confirm) {
+            $http({
+              url: '/Answer/delAnswer', method: 'post', data: {
+                answerId: id_int
+              }
+            }).then(res => {
+              console.log(res);
+              if (res.data.code === 200) {
+                console.log('删除回复成功');
+
+                if (index2 === -1) {
+                  let arr = this.data.reply_arr[index0].reply
+                  arr.splice(index1, 1)
+                  this.setData({
+                    ['reply_arr[' + index0 + '].reply']: arr,
+                    ['reply_arr[' + this.data.index_int + '].commentListNum_int']: this.data.reply_arr[this.data.index_int].commentListNum_int - 1
+                  })
+                } else {
+                  let arr = this.data.reply_arr[index0].reply[index1].rep
+                  arr.splice(index2, 1)
+                  this.setData({
+                    ['reply_arr[' + index0 + '].reply[' + index1 + '].rep']: arr
+                  })
+                }
+
+                // let index_int = this.data.reply_arr[replyArrIndex_int].reply.findIndex(item => item.id === id_int)
+                // if (index_int !== -1) {
+                //   let t_arr = [...this.data.reply_arr[replyArrIndex_int].reply]
+                //   t_arr.splice(index_int, 1)
+                //   this.setData({
+                //     ['reply_arr[' + replyArrIndex_int + '].reply']: t_arr,
+                //     ['reply_arr[' + this.data.index_int + '].commentListNum_int']: this.data.reply_arr[this.data.index_int].commentListNum_int - 1
+                //   })
+                // } else {
+                //   console.log('没找到');
+                // }
+              } else {
+                console.log('删除失败');
+              }
+            })
+          }
+        }
+      });
+    } else {
+      // 别人发表的回复
+      wx.showActionSheet({
+        itemList: ['举报'],
+        itemColor: '#000000',
+        success: (result) => {
+          switch (result.tapIndex) {
+            case 0:
+
+              break
+          }
+        }
+      });
+    }
+  },
+
+  // 关闭分享弹出框
+  share_fun() {
+    this.hideDialog_fun()
+  },
 
   // 分享到朋友圈
   friendsCircle_fun() {

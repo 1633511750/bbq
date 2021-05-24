@@ -50,7 +50,7 @@
   padding: 10rpx;
   margin-right: 10rpx;
   position: absolute;
-  top: 34rpx;
+  top: 52rpx;
   right: 16rpx;
 }
 .wrap .comment .item .info .info-top .video {
@@ -74,10 +74,14 @@
   height: 28rpx;
   line-height: 28rpx;
 }
+.wrap .comment .item .info .info-bottom .date {
+  font-size: 22rpx;
+}
 .wrap .comment .item .info .info-bottom .time {
   margin-left: 10rpx;
 }
 .wrap .comment .desc {
+  display: inline-block;
   line-height: 44rpx;
   font-size: 32rpx;
   margin-top: 28rpx;
@@ -248,6 +252,7 @@
   vertical-align: middle;
 }
 .wrap .do .pl-wrap .pl .info-wrap .pl-con {
+  display: inline-block;
   margin-top: 5rpx;
   font-size: 32rpx;
 }
@@ -255,9 +260,11 @@
   margin-top: 10rpx;
 }
 .wrap .do .pl-wrap .pl .info-wrap .pl-foot .date {
-  font-size: 26rpx;
+  font-size: 22rpx;
   color: #aaa;
   position: relative;
+  margin-right: 20rpx;
+  vertical-align: middle;
 }
 .wrap .do .pl-wrap .pl .info-wrap .pl-foot .date::after {
   display: block;
@@ -273,10 +280,11 @@
   height: 34rpx;
   line-height: 34rpx;
   padding: 0 15rpx;
-  margin-left: 40rpx;
+  margin-left: 20rpx;
   font-size: 24rpx;
   border-radius: 17rpx;
   background-color: var(--colorGray);
+  vertical-align: middle;
 }
 .wrap .do .pl-wrap .pl .info-wrap .pl-foot .reply-btn {
   height: 34rpx;
@@ -286,6 +294,17 @@
   font-size: 24rpx;
   border-radius: 17rpx;
   background-color: var(--colorGray);
+  vertical-align: middle;
+}
+.wrap .do .pl-wrap .pl .info-wrap .pl-foot .delete {
+  width: 35rpx;
+  height: 24rpx;
+  line-height: 24rpx;
+  float: right;
+  color: #aaa;
+  text-align: center;
+  vertical-align: middle;
+  margin-top: 10rpx;
 }
 .wrap .do .pl-wrap .pl .info-wrap .pl-reply-wrap .pl-reply-con {
   padding: 30rpx 30rpx 0 0;
@@ -323,16 +342,66 @@
   vertical-align: middle;
 }
 .wrap .do .pl-wrap .pl .info-wrap .pl-reply-wrap .pl-reply-con .reply-info-wrap .reply-pl-con {
+  display: inline-block;
   margin-top: 5rpx;
   font-size: 32rpx;
 }
+.wrap .do .pl-wrap .pl .info-wrap .pl-reply-wrap .pl-reply-con .reply-info-wrap .reply-pl-con .reply-pl-toname {
+  display: inline-block;
+  margin-top: 20rpx;
+  color: #aaa;
+  font-size: 28rpx;
+}
+.wrap .do .pl-wrap .pl .info-wrap .pl-reply-wrap .pl-reply-con .reply-info-wrap .reply-pl-con .reply-pl-toname .reply-pl-reply {
+  color: #489CD7;
+}
 .wrap .do .pl-wrap .pl .info-wrap .pl-reply-wrap .pl-reply-con .reply-info-wrap .reply-pl-foot {
-  margin-top: 10rpx;
+  margin-top: 8rpx;
 }
 .wrap .do .pl-wrap .pl .info-wrap .pl-reply-wrap .pl-reply-con .reply-info-wrap .reply-pl-foot .reply-date {
-  font-size: 26rpx;
+  font-size: 22rpx;
   color: #aaa;
   position: relative;
+  vertical-align: middle;
+}
+.wrap .do .pl-wrap .pl .info-wrap .pl-reply-wrap .pl-reply-con .reply-info-wrap .reply-pl-foot .reply-date::after {
+  display: block;
+  content: '';
+  width: 1rpx;
+  height: 26rpx;
+  position: absolute;
+  right: -20rpx;
+  top: 5rpx;
+  border-right: 1px solid #aaa;
+}
+.wrap .do .pl-wrap .pl .info-wrap .pl-reply-wrap .pl-reply-con .reply-info-wrap .reply-pl-foot .reply-btn {
+  height: 34rpx;
+  line-height: 34rpx;
+  padding: 0 15rpx;
+  margin-left: 40rpx;
+  font-size: 24rpx;
+  border-radius: 17rpx;
+  background-color: var(--colorGray);
+  vertical-align: middle;
+  position: relative;
+}
+.wrap .do .pl-wrap .pl .info-wrap .pl-reply-wrap .pl-reply-con .reply-info-wrap .reply-pl-foot .delete {
+  width: 35rpx;
+  height: 24rpx;
+  line-height: 24rpx;
+  float: right;
+  color: #aaa;
+  text-align: center;
+  vertical-align: middle;
+  margin-top: 10rpx;
+  margin-right: -30rpx;
+}
+.wrap .do .pl-wrap .pl .info-wrap .pl-reply-wrap .pl-reply-con .big-width {
+  width: 537rpx;
+}
+.wrap .do .pl-wrap .pl .info-wrap .pl-reply-wrap .pl-reply-con .big-width .reply-pl-con {
+  width: 575rpx;
+  display: inline-block;
 }
 .wrap .do .no-reply {
   text-align: center;
@@ -360,6 +429,13 @@
   border-radius: 28rpx;
   padding-left: 30rpx;
 }
+.wrap .write-pl .zhuanfa {
+  width: 35rpx;
+  height: 35rpx;
+  position: absolute;
+  right: 80rpx;
+  top: 30rpx;
+}
 .wrap .dialog-wrap {
   background-color: #0002;
   height: 100vh;
@@ -371,7 +447,7 @@
 }
 .wrap .dialog-wrap .dialog {
   width: 100vw;
-  height: 420rpx;
+  height: 427rpx;
   background-color: #fff;
   position: fixed;
   left: 0;
@@ -383,12 +459,12 @@
   padding: 0rpx 40rpx 0;
   height: 300rpx;
   padding-top: 35rpx;
-  color: #aaa;
+  color: #333;
   text-align: center;
 }
 .wrap .dialog-wrap .dialog .top .text {
   font-size: 34rpx;
-  color: #747474;
+  color: #333;
 }
 .wrap .dialog-wrap .dialog .top .item-wrap {
   margin-top: 45rpx;
@@ -410,19 +486,19 @@
   height: 100rpx;
 }
 .wrap .dialog-wrap .dialog .top .item-wrap .item .title {
-  margin-top: 25rpx;
-  color: #747474;
-  font-size: 20rpx;
+  margin-top: 20rpx;
+  color: #333;
+  font-size: 26rpx;
 }
 .wrap .dialog-wrap .dialog .blank {
-  height: 15rpx;
-  background-color: var(--colorGray);
+  height: 17rpx;
+  background-color: #f7f7f7;
 }
 .wrap .dialog-wrap .dialog .bottom {
   text-align: center;
   line-height: 120rpx;
   font-size: 34rpx;
-  color: #aaa;
+  color: #333;
 }
 .wrap .pinglun-wrap {
   height: 100vh;
@@ -468,8 +544,14 @@
 }
 .wrap .pinglun-wrap .pinglun .pic-wrap .send {
   font-size: 34rpx;
-  vertical-align: middle;
   float: right;
-  margin-right: 5px;
+  margin-right: 15px;
   color: #969696;
+}
+.wrap .pinglun-wrap .pinglun .pic-wrap .send-left {
+  font-size: 34rpx;
+  float: left;
+  margin-left: 20rpx;
+  color: #969696;
+  margin-bottom: 20rpx;
 }

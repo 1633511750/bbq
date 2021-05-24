@@ -14,7 +14,7 @@ page {
       width: 128rpx;
       height: 128rpx;
       float: left;
-      border: 1px solid #ccc;
+      border-radius: 15rpx;
     }
     .right {
       width: 525rpx;
@@ -41,9 +41,10 @@ page {
         float: left;
         line-height: 34rpx;
         font-size: 20rpx;
-        color: #FF7E17;
+        // color: #FF7E17;
+        color: var(--colorGray1);
         text-align: center;
-        border: 1rpx solid #FF7E17;
+        border: 1rpx solid var(--colorGray1);
         border-top-left-radius: 18rpx;
         border-top-right-radius: 18rpx;
         border-bottom-right-radius: 18rpx;
@@ -107,30 +108,33 @@ page {
       }
     }
 
-    .item {
-      height: 190rpx;
-      padding-top: 40rpx;
-      .headPic {
-        float: left;
-        width: 150rpx;
-        height: 150rpx;
-        border: 1rpx solid #ccc;
-      }
-      .right {
-        width: 540rpx;
-        height: 150rpx;
-        float: right;
-        font-size: 32rpx;
-        border-bottom: 1px solid var(--colorGray);
-        .right-top {
-          color: #333;
-          margin-top: 20rpx;
+    .item-wrapper{
+      padding-bottom: 40rpx;
+      .item {
+        height: 190rpx;
+        padding-top: 40rpx;
+        .headPic {
+          float: left;
+          width: 150rpx;
+          height: 150rpx;
+          border-radius: 15rpx;
         }
-        .right-bottom {
-          margin-top: 20rpx;
-          color: #555;
-          .origin-price {
-            margin-right: 50rpx;
+        .right {
+          width: 540rpx;
+          height: 150rpx;
+          float: right;
+          font-size: 32rpx;
+          border-bottom: 1px solid var(--colorGray);
+          .right-top {
+            color: #333;
+            margin-top: 20rpx;
+          }
+          .right-bottom {
+            margin-top: 20rpx;
+            color: #555;
+            .origin-price {
+              margin-right: 50rpx;
+            }
           }
         }
       }
@@ -139,11 +143,14 @@ page {
     .item2 {
       border-top: 1px solid #ccc;
       margin-top: 3rpx;
-      .school {
-        height: 109rpx;
+      .title {
+        color: #666;
+      }
+      .school, .way-qq {
+        height: 75rpx;
         font-size: 32rpx;
         color: #333;
-        line-height: 109rpx;
+        line-height: 75rpx;
       }
       .blank {
         height: 15rpx;
@@ -151,7 +158,7 @@ page {
         margin-left: -30rpx;
       }
       .phone {
-        height: 293rpx;
+        height: 225rpx;
         background-color: #fff;
 
         .way {
@@ -162,12 +169,13 @@ page {
           border-bottom: 1px solid #cccc;
         }
         .way-con {
-          line-height: (219rpx/3);
+          line-height: 75rpx;
           font-size: 32rpx;
           color: #333;
         }
       }
       .bottom-desc {
+        display: inline-block;
         font-size: 32rpx;
         color: #333;
         text-indent: 2em;

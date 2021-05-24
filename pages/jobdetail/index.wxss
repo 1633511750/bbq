@@ -14,7 +14,7 @@ page .item-wrap .headPic {
   width: 128rpx;
   height: 128rpx;
   float: left;
-  border: 1px solid #ccc;
+  border-radius: 15rpx;
 }
 page .item-wrap .right {
   width: 525rpx;
@@ -39,9 +39,9 @@ page .item-wrap .right .exp {
   float: left;
   line-height: 34rpx;
   font-size: 20rpx;
-  color: #FF7E17;
+  color: var(--colorGray1);
   text-align: center;
-  border: 1rpx solid #FF7E17;
+  border: 1rpx solid var(--colorGray1);
   border-top-left-radius: 18rpx;
   border-top-right-radius: 18rpx;
   border-bottom-right-radius: 18rpx;
@@ -101,43 +101,50 @@ page .main .top .top-item {
 page .main .top .top-item.active {
   border-bottom-color: #FF7E17;
 }
-page .main .item {
+page .main .item-wrapper {
+  padding-bottom: 40rpx;
+}
+page .main .item-wrapper .item {
   height: 190rpx;
   padding-top: 40rpx;
 }
-page .main .item .headPic {
+page .main .item-wrapper .item .headPic {
   float: left;
   width: 150rpx;
   height: 150rpx;
-  border: 1rpx solid #ccc;
+  border-radius: 15rpx;
 }
-page .main .item .right {
+page .main .item-wrapper .item .right {
   width: 540rpx;
   height: 150rpx;
   float: right;
   font-size: 32rpx;
   border-bottom: 1px solid var(--colorGray);
 }
-page .main .item .right .right-top {
+page .main .item-wrapper .item .right .right-top {
   color: #333;
   margin-top: 20rpx;
 }
-page .main .item .right .right-bottom {
+page .main .item-wrapper .item .right .right-bottom {
   margin-top: 20rpx;
   color: #555;
 }
-page .main .item .right .right-bottom .origin-price {
+page .main .item-wrapper .item .right .right-bottom .origin-price {
   margin-right: 50rpx;
 }
 page .main .item2 {
   border-top: 1px solid #ccc;
   margin-top: 3rpx;
 }
-page .main .item2 .school {
-  height: 109rpx;
+page .main .item2 .title {
+  color: #666;
+}
+page .main .item2 .school,
+page .main .item2 .way-qq {
+  height: 75rpx;
   font-size: 32rpx;
   color: #333;
-  line-height: 109rpx;
+  line-height: 75rpx;
 }
 page .main .item2 .blank {
   height: 15rpx;
@@ -145,7 +152,7 @@ page .main .item2 .blank {
   margin-left: -30rpx;
 }
 page .main .item2 .phone {
-  height: 293rpx;
+  height: 225rpx;
   background-color: #fff;
 }
 page .main .item2 .phone .way {
@@ -156,11 +163,12 @@ page .main .item2 .phone .way {
   border-bottom: 1px solid #cccc;
 }
 page .main .item2 .phone .way-con {
-  line-height: 73rpx;
+  line-height: 75rpx;
   font-size: 32rpx;
   color: #333;
 }
 page .main .item2 .bottom-desc {
+  display: inline-block;
   font-size: 32rpx;
   color: #333;
   text-indent: 2em;

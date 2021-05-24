@@ -1,4 +1,5 @@
 import { $http } from '../../utils/util'
+let app = getApp()
 // pages/logodesign/index.js
 Page({
 
@@ -10,7 +11,20 @@ Page({
     orgPrice_flo: '',
     nowPrice_flo: '',
     name_str: '',
-    desc_str: ''
+    desc_str: '',
+    headPic_str: '',
+    showPic_arr: []
+  },
+
+  // 大图预览
+  previewImages_fun(e) {
+    var urls = e.currentTarget.dataset.urls
+    var cururl = e.currentTarget.dataset.cururl
+    var add = e.currentTarget.dataset.add
+    wx.previewImage({
+      current: cururl, // 当前显示图片的http链接
+      urls // 需要预览的图片http链接列表
+    })
   },
 
   // 获取商品
@@ -29,8 +43,30 @@ Page({
           name_str: obj.name,
           desc_str: obj.introductionText
         })
+        if (obj.headSculpture && obj.headSculptureName) {
+          this.setData({
+            headPic_str: app.globalData.baseUrl + obj.headSculpture.slice(25) + '/' + obj.headSculptureName
+          })
+        }
+        if (obj.introductionPicture) {
+          let arr = []
+          obj.introductionPictureNames.forEach(item => {
+            arr.push(app.globalData.baseUrl + obj.introductionPicture.slice(25) + '/' + item)
+          })
+          this.setData({
+            showPic_arr: arr
+          })
+        }
       }
     })
+  },
+
+  // 联系商家
+  call_fun() {
+    app.globalData.call_bool = true
+    wx.navigateBack({
+      delta: 1
+    });
   },
 
   /**

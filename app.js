@@ -34,7 +34,6 @@ App({
     this.globalData.city_str = wx.getStorageSync('city')
     this.globalData.uid_int = wx.getStorageSync('uid') - 0
     this.globalData.bgColor_str = wx.getStorageSync('bgColor') || '#fff'  // 主题颜色
-
     // console.log('uid:' + this.globalData.uid_int);
     // isAnonymous 是否匿名
 
@@ -90,6 +89,8 @@ App({
     // 回到首页时的状态
     backState_int: 0,
     zanId_int: -1,
+    zanNum_int: -1,
+    isZan_bool: false,
     pageviewId_int: -1,
     commentId_int: -1,
     commentNum_int: -1,

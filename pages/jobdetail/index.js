@@ -1,4 +1,5 @@
 import { $http } from '../../utils/util'
+let app = getApp()
 // pages/jobdetail/index.js
 Page({
 
@@ -17,6 +18,7 @@ Page({
     wechat_str: '',
     qq_str: '',
     desc_str: '',
+    headPic_str: '',
 
     itemList_arr: []
     // itemList_arr: [{
@@ -28,6 +30,59 @@ Page({
     //   zanDown: 18,
     //   tag: ['3年经验']
     // }]
+  },
+
+  // 大图预览
+  previewImages_fun(e) {
+    var urls = e.currentTarget.dataset.urls
+    var cururl = e.currentTarget.dataset.cururl
+    wx.previewImage({
+      current: cururl, // 当前显示图片的http链接
+      urls // 需要预览的图片http链接列表
+    })
+  },
+
+  // 点赞
+  zan_fun() {
+    let id_int = this.data.id_int
+    $http({
+      isJson: true, method: 'post', url: '/businessStreet/getShops', data: {
+        pageNum: 1, pageSize: 10, streetShop: { id: id_int }
+      }
+    }).then(res => {
+      console.log(res);
+      if (res.data.code === 200) {
+        let dianzan_str = res.data.data.streetShops[0].dianzan
+        let dianzan_arr = JSON.parse(dianzan_str)
+
+        console.log(dianzan_arr);
+        let index_int = dianzan_arr.indexOf(app.globalData.uid_int)
+        if (index_int === -1) {
+          dianzan_arr.push(app.globalData.uid_int)
+          this.setData({
+            isZan_bool: true
+          })
+        } else {
+          dianzan_arr.splice(index_int, 1)
+          this.setData({
+            isZan_bool: false
+          })
+        }
+
+        $http({
+          isJson: true, method: 'post', url: '/businessStreet/addOrUpdateShop', data: {
+            id: id_int, dianzan: JSON.stringify(dianzan_arr)
+          }
+        }).then(res => {
+          console.log(res);
+          if (res.data.code === 200) {
+            this.setData({
+              zanNum_int: dianzan_arr.length
+            })
+          }
+        })
+      }
+    })
   },
 
   tabClick_fun(e) {
@@ -59,9 +114,16 @@ Page({
         console.log(res);
         if (res.data.code === 200) {
           let obj = res.data.data.streetShops[0]
+          if (!obj) {
+            return
+          }
+          if (obj.lable) {
+            obj.label_arr = obj.lable.split(/[;；]+/)
+          }
           this.setData({
             name_str: obj.name,
-            tag_arr: [],
+            tag_arr: obj.label_arr,
+            category_str: obj.category,
             zanNum_int: JSON.parse(obj.dianzan).length,
             address_str: obj.address,
             phone_str: obj.phone,
@@ -69,6 +131,20 @@ Page({
             qq_str: obj.qq,
             desc_str: obj.introduction
           })
+          if (obj.headSculpture && obj.headSculptureName) {
+            this.setData({
+              headPic_str: app.globalData.baseUrl + obj.headSculpture.slice(25) + '/' + obj.headSculptureName
+            })
+          }
+          if (JSON.parse(obj.dianzan).indexOf(app.globalData.uid_int) === -1) {
+            this.setData({
+              isZan_bool: false
+            })
+          } else {
+            this.setData({
+              isZan_bool: true
+            })
+          }
         }
       })
   },
@@ -82,6 +158,11 @@ Page({
     }).then(res => {
       console.log(res);
       if (res.data.code === 200) {
+        res.data.data.streetGoods.forEach(item => {
+          if (item.headSculpture && item.headSculptureName) {
+            item.headPic_str = app.globalData.baseUrl + item.headSculpture.slice(25) + '/' + item.headSculptureName
+          }
+        })
         this.setData({
           itemList_arr: res.data.data.streetGoods
         })
@@ -112,7 +193,12 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    if (app.globalData.call_bool) {
+      app.globalData.call_bool = false
+      this.setData({
+        currentIndex: 1
+      })
+    }
   },
 
   /**

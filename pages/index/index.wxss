@@ -1,5 +1,5 @@
 .index-wrap {
-  background-image: linear-gradient(#fff 0%, #fff 19%, #f2f2f2 34.5%, #f2f2f2 100%);
+  background-image: linear-gradient(#fff 0%, #fff 19%, #f7f7f7 34.5%, #f7f7f7 100%);
 }
 .index-wrap .top {
   width: 100%;
@@ -18,13 +18,26 @@
 .index-wrap .top .scroll-wrap .navigator {
   padding: 0 30rpx;
   display: inline-block;
-  line-height: 105.14018692rpx;
+  line-height: 105rpx;
   text-align: center;
-  font-size: 31.54205607rpx;
+  font-size: 32rpx;
   color: #4f4f4f;
 }
 .index-wrap .top .scroll-wrap .navigator .active {
-  color: #ff7e17;
+  font-weight: bold;
+  color: var(--colorGray1);
+  position: relative;
+}
+.index-wrap .top .scroll-wrap .navigator .active::after {
+  width: 32rpx;
+  height: 5rpx;
+  display: block;
+  content: '';
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: -30rpx;
+  position: absolute;
+  background-color: var(--colorGray1);
 }
 .index-wrap .blank {
   height: 104rpx;
@@ -55,6 +68,9 @@
   position: fixed;
   right: 90rpx;
   bottom: 63rpx;
+  background-color: #ffc273;
+  border-radius: 50%;
+  opacity: 0.7;
 }
 .index-wrap .dialog-wrap {
   position: fixed;
@@ -79,6 +95,9 @@
 }
 .index-wrap .dialog-wrap .dialog .up {
   padding: 21rpx 35rpx;
+  line-height: 60rpx;
+  color: #666;
+  text-align: center;
 }
 .index-wrap .dialog-wrap .dialog .up .headPic {
   width: 83rpx;
@@ -110,6 +129,12 @@
   vertical-align: middle;
   transition: transform 0.5s;
 }
+.index-wrap .dialog-wrap .dialog .up .up-right .change {
+  float: right;
+  position: absolute;
+  right: 120rpx;
+  color: #aaa;
+}
 .index-wrap .dialog-wrap .dialog .center {
   padding: 20rpx 0;
   background-color: var(--colorGray);
@@ -127,8 +152,9 @@
   padding: 0 20rpx;
   height: 48rpx;
   line-height: 42rpx;
-  border: 1px solid #43D7B5;
+  border: 1px solid #999;
   color: #43D7B5;
+  color: #999;
   border-radius: 30rpx;
 }
 .index-wrap .dialog-wrap .dialog .blank {
@@ -137,8 +163,8 @@
 }
 .index-wrap .dialog-wrap .dialog .bottom {
   color: #aaa;
-  height: 100rpx;
-  line-height: 100rpx;
+  height: 110rpx;
+  line-height: 110rpx;
   text-align: center;
   font-size: 34rpx;
 }

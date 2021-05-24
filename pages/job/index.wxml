@@ -6,18 +6,18 @@
   <view class="top" style="top: {{statusBarHeight + 45}}px;">
     <scroll-view show-scrollbar="{{false}}" enhanced scroll-x="true" class="scroll-wrap">
       <view class="navigator" bindtap="titleTap_fun" data-index="{{index}}" wx:for="{{topList_arr}}" wx:key="item">
-        <text class="{{currentTitle_int === index?'active':''}}">{{item}}</text>
+        <text class="{{topListIndex_int === index?'active':''}}">{{item}}</text>
       </view>
-    </scroll-view>    
+    </scroll-view>
   </view>
   <view class="item-wrap" bindtap="gotoDetail_fun" data-id="{{item.id}}" wx:for="{{itemList_arr}}" wx:key="id">
-    <view class="headPic"></view>
+    <image mode="aspectFill" src="{{item.headPic_str}}" class="headPic"></image>
     <view class="right">
       <view class="right-top clearfix">
         <text class="title">{{item.name}}</text>
         <text class="type">{{item.category}}</text>
       </view>
-      <view class="exp" wx:for="{{item.label ? item.label : ['3年经验']}}" wx:key="id" wx:for-item="item2">{{item2}}</view>
+      <view class="exp" wx:for="{{item.label_arr}}" wx:key="*this" wx:for-item="item2">{{item2}}</view>
       <view class="zan" catchtap="zan_fun" data-id="{{item.id}}" data-index="{{index}}">
         <view class="zan-up">
           <image src="{{item.isZan_bool ? '/img/zan_up_active.png' : '/img/zan_up.png'}}" mode="aspectFit" />

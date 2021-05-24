@@ -39,8 +39,9 @@ function $http({ isJson = false, url, data = {}, method = 'get', complete, hasLi
       responseType: 'text',
       success: (result) => {
         // console.log(result);
+        // console.log('+1');
         // if (result.statusCode === 200) {
-        if (result.data.code === 205) {
+        if (!isJson && result.data.code === 205) {
           wx.navigateTo({
             url: '/pages/login/index',
           });
@@ -82,45 +83,48 @@ function myTime(arg) {
   // var minute = tt_arr[1] - 0
   // var second = tt_arr[2] - 0
 
+  let time_str = ''
   var d = new Date(arg)
-  // d.setFullYear(year)
-  // d.setMonth(month - 1)
-  // d.setDate(day)
-  // d.setHours(hour + 8)
-  // d.setMinutes(minute)
-  // d.setSeconds(second)
+  let now = new Date()
+  let someTime = new Date(2020, 1, 1, 0, 0, 0)
 
-  // let now_int = Date.now()
-  // let dur_int = now_int - d.getTime()
-  // let second_int = Math.ceil(dur_int / 1000)
-  // let time_str = ''
-  // let minute_int = Math.floor(second_int / 60)
-  // let hours_int = Math.floor(minute_int / 60)
-  // let day_int = Math.floor(hours_int / 24)
+  let dayDur_int = d.getTime() - someTime.getTime()
+  let dayNowDur_int = now.getTime() - someTime.getTime()
+  let DNowDur_int = now.getTime() - d.getTime()
+  let days_int = Math.floor(dayDur_int / 1000 / 60 / 60 / 24)
+  let dayNows_int = Math.floor(dayNowDur_int / 1000 / 60 / 60 / 24)
+  let durDays = dayNows_int - days_int
+  let DNowHour_int = Math.floor(DNowDur_int / 1000 / 60 / 60)
+  let DNowMinute_int = Math.floor(DNowDur_int / 1000 / 60)
 
-  // let year = d.getFullYear()
-  // let month = d.getMonth() + 1 < 10 ? '0' + (d.getMonth() + 1) : (d.getMonth() + 1)
-  // let day = d.getDate() < 10 ? '0' + d.getDate() : d.getDate()
-  // let hour = d.getHours() < 10 ? '0' + d.getHours() : d.getHours()
-  // let minute = d.getMinutes() < 10 ? '0' + d.getMinutes() : d.getMinutes()
-  // if (day_int > 3) {
-  //   time_str = year + '-' + month + '-' + day + ' ' + hour + ':' + minute
-  // } else if (day_int !== 0) {
-  //   time_str = day_int + '天前 ' + 
-  // } else if (hours_int !== 0) {
-  //   time_str = hours_int % 24 + '小时前'
-  // } else if (minute_int !== 0) {
-  //   time_str = minute_int % 60 + '分钟前'
-  // } else {
-  //   time_str = '刚刚'
-  // }
+  let year = d.getFullYear()
+  let month = d.getMonth() + 1 < 10 ? '0' + (d.getMonth() + 1) : (d.getMonth() + 1)
+  let day = d.getDate() < 10 ? '0' + d.getDate() : d.getDate()
+  let hour = d.getHours() < 10 ? '0' + d.getHours() : d.getHours()
+  let minute = d.getMinutes() < 10 ? '0' + d.getMinutes() : d.getMinutes()
+  if (durDays > 30) {
+    time_str = year + '-' + month + '-' + day + ' ' + hour + ':' + minute
+  } else if (durDays === 1) {
+    time_str = '昨天 ' + hour + ':' + minute
+  } else if (durDays === 2) {
+    time_str = '前天 ' + hour + ':' + minute
+  } else if (durDays !== 0) {
+    time_str = durDays + '天前 ' + hour + ':' + minute
+  } else if (DNowHour_int !== 0 && DNowHour_int !== -1) {
+    time_str = DNowHour_int + '小时前'
+  } else if (DNowMinute_int !== 0 && DNowMinute_int !== -1) {
+    time_str = DNowMinute_int + '分钟前'
+  } else {
+    time_str = '刚刚'
+  }
 
   return {
     year: d.getFullYear(),
     month: d.getMonth() + 1 < 10 ? '0' + (d.getMonth() + 1) : (d.getMonth() + 1),
     day: d.getDate() < 10 ? '0' + d.getDate() : d.getDate(),
     hour: d.getHours() < 10 ? '0' + d.getHours() : d.getHours(),
-    minute: d.getMinutes() < 10 ? '0' + d.getMinutes() : d.getMinutes()
+    minute: d.getMinutes() < 10 ? '0' + d.getMinutes() : d.getMinutes(),
+    time: time_str
   }
 }
 

@@ -1,15 +1,13 @@
-<image src="/img/pic.png" mode="scaleToFill" class="lbt"></image>
+<image catchtap="previewImages_fun" data-cururl="{{headPic_str}}" data-urls="{{[headPic_str]}}" src="{{headPic_str}}" mode="aspectFit" class="lbt"></image>
 <view class="top">
   <view class="price-wrap">
     <text>￥{{orgPrice_flo}}</text>
     <view class="price">现价：{{nowPrice_flo}}</view>
   </view>
   <text class="title">{{name_str}}</text>
-  <view class="lianxi">联系商家</view>
+  <view bindtap="call_fun" class="lianxi">联系商家</view>
   <view class="con">{{desc_str}}</view>
   <view class="bottom">
-    <view class="b1"></view>
-    <view class="b2"></view>
-    <view class="b3"></view>
+    <image catchtap="previewImages_fun" data-cururl="{{item}}" data-urls="{{showPic_arr}}" mode="aspectFill" wx:for="{{showPic_arr}}" wx:key="id" src="{{item}}" class="b1"></image>
   </view>
 </view>

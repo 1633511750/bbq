@@ -3,7 +3,7 @@ page {
 }
 page .info-wrap {
   margin-top: 15rpx;
-  height: 385rpx;
+  height: 300rpx;
   background-color: #fff;
 }
 page .info-wrap .item1 {
@@ -28,6 +28,7 @@ page .info-wrap .item2,
 page .info-wrap .item3 {
   height: 110rpx;
   line-height: 110rpx;
+  position: relative;
 }
 page .info-wrap .item2 .title,
 page .info-wrap .item3 .title {
@@ -37,11 +38,13 @@ page .info-wrap .item3 .title {
 }
 page .info-wrap .item2 .con,
 page .info-wrap .item3 .con {
+  width: 300rpx;
   font-size: 32rpx;
   color: #555;
   float: right;
   position: absolute;
   right: 50rpx;
+  top: 40rpx;
   border-bottom: 1px solid #aaa;
 }
 page .btn-wrap {

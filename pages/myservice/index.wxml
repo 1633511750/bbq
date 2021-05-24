@@ -35,8 +35,8 @@
     </view>
     <view class="submit">提交</view>
   </view>
-  <view class="item">
+  <!--<view class="item">
     <view class="title">校园经理</view>
     <view class="ewm"></view>
-  </view>
+  </view>-->
 </view>

@@ -11,39 +11,29 @@ Page({
     currentTitle_int: 0,
     statusBarHeight: app.globalData.statusBarHeight,
     topList_arr: ['全部', 'IT', '设计', '美妆', '休闲', '学习'],
-    // itemList_arr: [{
-    //   id: 1,
-    //   headPic: '',
-    //   title: '工作设计室',
-    //   type: '学生店',
-    //   zanUp: 34,
-    //   zanDown: 18,
-    //   tag: ['3年经验']
-    // }, {
-    //   id: 2,
-    //   headPic: '',
-    //   title: '扭转乾坤小程序开发',
-    //   type: '企业店',
-    //   zanUp: 34,
-    //   zanDown: 18,
-    //   tag: ['案例极多', '3年极多']
-    // }, {
-    //   id: 3,
-    //   headPic: '',
-    //   title: '工作设计室',
-    //   type: '学生店',
-    //   zanUp: 34,
-    //   zanDown: 18,
-    //   tag: ['案例极多']
-    // }]
+    topListIndex_int: 0,
     itemList_arr: []
+  },
+
+  // 大图预览
+  previewImages_fun(e) {
+    var urls = e.currentTarget.dataset.urls
+    var cururl = e.currentTarget.dataset.cururl
+    wx.previewImage({
+      current: cururl, // 当前显示图片的http链接
+      urls // 需要预览的图片http链接列表
+    })
   },
 
   titleTap_fun(e) {
     var index = e.currentTarget.dataset.index
+    if (index === this.data.topListIndex_int) {
+      return
+    }
     this.setData({
-      currentTitle_int: index
+      topListIndex_int: index
     })
+    this.getShops_fun()
   },
 
   gotoDetail_fun(e) {
@@ -55,9 +45,16 @@ Page({
 
   // 获取创业街店铺
   getShops_fun() {
+    let category_str = this.data.topList_arr[this.data.topListIndex_int]
+    let streetShop_o = {}
+    if (category_str === '全部') {
+      streetShop_o = { examined: 1, business: 1, school: app.globalData.school_str }
+    } else {
+      streetShop_o = { examined: 1, business: 1, school: app.globalData.school_str, category: category_str }
+    }
     $http({
       isJson: true, url: '/businessStreet/getShops', method: 'post', data: {
-        pageNum: 1, pageSize: 50, streetShop: { examined: 1, business: 1 }
+        pageNum: 1, pageSize: 50, streetShop: streetShop_o
       }
     })
       .then(res => {
@@ -65,11 +62,21 @@ Page({
         if (res.data.code === 200) {
           let list_arr = res.data.data.streetShops
           list_arr.forEach(item => {
-            item.dianzan_int = JSON.parse(item.dianzan).length
-            if (JSON.parse(item.dianzan).indexOf(app.globalData.uid_int) === -1) {
-              item.isZan_bool = false
-            } else {
-              item.isZan_bool = true
+            if (item.dianzan) {
+              item.dianzan_int = JSON.parse(item.dianzan).length
+              if (JSON.parse(item.dianzan).indexOf(app.globalData.uid_int) === -1) {
+                item.isZan_bool = false
+              } else {
+                item.isZan_bool = true
+              }
+            }
+
+            if (item.lable) {
+              item.label_arr = item.lable.split(/[;；]+/)
+            }
+            console.log(item.lable);
+            if (item.headSculpture && item.headSculptureName) {
+              item.headPic_str = app.globalData.baseUrl + item.headSculpture.slice(25) + '/' + item.headSculptureName
             }
           })
           this.setData({

@@ -11,8 +11,11 @@ page,view,text,swiper,swiper-item,image,navigator,input,textarea{
 page{
   /* 定义主题颜色 */
   --themeColor: #eb4450;
-  --colorGray: #f2f2f2;
+  --colorGray: #f7f7f7;
   --colorBlue: #489CD7;
+  --colorBlue1: #00B4FF;
+  --colorGray1: #887676;
+  --colorOrange: #ed7b25;
 
   font-size: 28rpx;
 

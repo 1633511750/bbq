@@ -1,14 +1,14 @@
 <view class="item-wrap">
-  <view class="headPic"></view>
+  <image catchtap="previewImages_fun" data-cururl="{{headPic_str}}" data-urls="{{[headPic_str]}}" mode="aspectFill" src="{{headPic_str}}" class="headPic"></image>
   <view class="right">
     <view class="right-top clearfix">
-      <text class="title">{{name_str}}</text>
-      <text class="type">{{tag_arr}}</text>
+      <text class="title" user-select>{{name_str}}</text>
+      <text class="type">{{category_str}}</text>
     </view>
-    <view class="exp" wx:for="{{tag}}" wx:key="*this" wx:for-item="item2">{{item2}}</view>
-    <view class="zan">
+    <view class="exp" wx:for="{{tag_arr}}" wx:key="*this" wx:for-item="item2">{{item2}}</view>
+    <view class="zan" bindtap="zan_fun">
       <view class="zan-up">
-        <image src="/img/zan_up_active.png" mode="aspectFit" />
+        <image src="{{isZan_bool ? '/img/zan_up_active.png' : '/img/zan_up.png'}}" mode="aspectFit" />
         <text>{{zanNum_int}}</text>
       </view>
     </view>
@@ -20,9 +20,9 @@
     <view bindtap="tabClick_fun" data-index="{{0}}" class="top-item {{currentIndex === 0 ? 'active' : ''}}">商品</view>
     <view bindtap="tabClick_fun" data-index="{{1}}" class="top-item {{currentIndex === 1 ? 'active' : ''}}">商家</view>
   </view>
-  <view wx:if="{{currentIndex === 0}}">
+  <view wx:if="{{currentIndex === 0}}" class="item-wrapper">
     <view class="item" wx:for="{{itemList_arr}}" data-id="{{item.id}}" wx:key="id" bindtap="tapItem_fun">
-      <view class="headPic"></view>
+      <image mode="aspectFill" src="{{item.headPic_str}}" class="headPic"></image>
       <view class="right">
         <view class="right-top">{{item.name}}</view>
         <view class="right-bottom">
@@ -34,18 +34,18 @@
   </view>
   <view wx:elif="{{currentIndex === 1}}">
     <view class="item2">
-      <view class="school">地址：{{address_str}}</view>
+      <view class="way-qq"><text class="title">名字：</text><text user-select>{{qq_str}}</text></view>
+      <view class="school"><text class="title">地址：</text><text user-select>{{address_str}}</text></view>
       <view class="blank"></view>
       <view class="phone">
         <view class="way">联系方式</view>
         <view class="way-con">
-          <view class="way-phone">电话：{{phone_str}}</view>
-          <view class="way-wechat">微信：{{wechat_str}}</view>
-          <view class="way-qq">QQ：{{qq_str}}</view>
+          <view class="way-phone"><text class="title">电话：</text><text user-select>{{phone_str}}</text></view>
+          <view class="way-wechat"><text class="title">微信：</text><text user-select>{{wechat_str}}</text></view>
         </view>
       </view>
       <view class="blank"></view>
-      <view class="bottom-desc">{{desc_str}}</view>
+      <text user-select class="bottom-desc">{{desc_str}}</text>
     </view>
   </view>
 </view>

@@ -25,65 +25,16 @@ Page({
     list_arr: [],
 
     isAnonymous_bool: false,
-    // commentList_arr1: [{
-    //   id: 1,
-    //   name_str: '月亮',
-    //   date_str: '01-11',
-    //   time_str: '17:34',
-    //   content: '太理小姐姐找对象，身高175',
-    //   headPic: 'https://i04piccdn.sogoucdn.com/0e3e409f0cf25fb3',
-    //   desc: '安抚哈尔涂鸦而分公司德国汉莎到付哈人员阿桑的歌',
-    //   img: [
-    //     'http://8.140.165.170/img/1.jpg',
-    //     'http://8.140.165.170/img/2.jpg',
-    //     'http://8.140.165.170/img/3.jpg'
-    //   ],
-    //   pageviews: 3,
-    //   commentListNum_int: 33,
-    //   dianzanNum_int: 3433,
-    //   category: '对象',
-    //   isLast: false
-    // }, {
-    //   id: 2,
-    //   name_str: '夏天',
-    //   date_str: '01-11',
-    //   time_str: '17:34',
-    //   content: '夏天来了，来了，来了',
-    //   headPic: 'https://i04piccdn.sogoucdn.com/0e3e409f0cf25fb3',
-    //   desc: '安抚哈尔涂鸦而分公司德国汉莎到付哈人员阿桑的歌',
-    //   img: [
-    //     'http://8.140.165.170/img/4.jpg',
-    //     'http://8.140.165.170/img/5.jpg'
-    //   ],
-    //   pageviews: 32,
-    //   commentListNum_int: 33,
-    //   dianzanNum_int: 34,
-    //   category: '对象',
-    //   isLast: false
-    // }, {
-    //   id: 3,
-    //   name_str: '我认真的',
-    //   date_str: '01-11',
-    //   time_str: '17:34',
-    //   content: '你给我买口红 我每天还你一点。',
-    //   headPic: 'https://i04piccdn.sogoucdn.com/0e3e409f0cf25fb3',
-    //   desc: '安抚哈尔涂鸦而分公司德国汉莎到付哈人员阿桑的歌',
-    //   img: [
-    //     'http://8.140.165.170/img/6.jpg'
-    //   ],
-    //   pageviews: 32,
-    //   commentListNum_int: 33,
-    //   dianzanNum_int: 34,
-    //   category: '对象',
-    //   isLast: true
-    // }],
+
     reNewRotate_int: 0,
     scrollHeight_flo: '',
     isPullDown_bool: false,  // 是否已下拉
     showDialog_bool: false,
     topListIndex_int: 0,
     topList_arr: ['全部', '表白', '找对象', '找同伴', '感情', '二手交易', '爱豆', '有偿求助', '失物招领', '吐槽', '游戏', '曝光', '问答', '靓仔日常', '捞人', '其他'],
-    typeList_arr: ['表白', '找对象', '找同伴', '感情', '二手交易', '爱豆', '有偿求助', '失物招领', '吐槽', '游戏', '曝光', '问答', '靓仔日常', '捞人', '其他']
+    typeList_arr: ['表白', '找对象', '找同伴', '感情', '二手交易', '爱豆', '有偿求助', '失物招领', '吐槽', '游戏', '曝光', '问答', '靓仔日常', '捞人', '其他'],
+    tagBg_arr: ['#C962E3', '#C962E3', '#C962E3', '#C962E3', '#FFCD1D', '#00B4FF', '#FFCD1D', '#FFCD1D', '#FF3434', '#00B4FF', '#FF3434', '#3DC795', '#00B4FF', '#C962E3', '#3DC795'],
+    addSignBg_arr: ['#']
   },
 
   // 点击顶部分类标签
@@ -109,6 +60,10 @@ Page({
   // 点击了加号
   showDialog_fun() {
     // wx.hideTabBar()
+    wx.navigateTo({
+      url: '/pages/selectpublic/index'
+    });
+    return
 
     var isAnonymous = true
     this.setData({
@@ -140,40 +95,30 @@ Page({
   // 触发点赞
   dotZan_fun(e) {
     var id = e.currentTarget.dataset.id
+    let dz_arr = e.detail.dz_arr
+    console.log(dz_arr);
+
     let index_int = this.data.list_arr.findIndex(item => item.id === id)
     if (index_int !== -1) {
-      this.setData({
-        ['list_arr[' + index_int + '].dianzanNum_int']: this.data.list_arr[index_int].dianzanNum_int + 1,
-        ['list_arr[' + index_int + '].isZan']: true
-      })
+      let index = dz_arr.indexOf(app.globalData.uid_int + '')
+      console.log(this);
+      if (index !== -1) {
+        this.setData({
+          ['list_arr[' + index_int + '].dianzanNum_int']: dz_arr.length,
+          ['list_arr[' + index_int + '].isZan']: true,
+          ['list_arr[' + index_int + '].dianzan_str']: dz_arr.join(','),
+          ['list_arr[' + index_int + '].dianzanUids']: dz_arr.join(',')
+        })
+      } else {
+        this.setData({
+          ['list_arr[' + index_int + '].dianzanNum_int']: dz_arr.length,
+          ['list_arr[' + index_int + '].isZan']: false,
+          ['list_arr[' + index_int + '].dianzan_str']: dz_arr.join(','),
+          ['list_arr[' + index_int + '].dianzanUids']: dz_arr.join(',')
+        })
+      }
+      console.log(this.data.list_arr[index_int]);
     }
-
-
-    // $http({
-    //   url: '/Answer/getAnswersByCommentId', data: {
-    //     commentId: id
-    //   }
-    // }).then(res => {
-    //   console.log(res);
-    // })
-
-
-    // var item = e.currentTarget.dataset.item
-    // var index = e.currentTarget.dataset.index
-    // var arr = [...this.data.commentList_arr]
-    // if (item.isZan === true) {
-    //   item.isZan = false
-    //   item.zan--
-    //   wx.showToast({ title: '已取消点赞', icon: 'error' })
-    // } else {
-    //   item.isZan = true
-    //   item.zan++
-    //   wx.showToast({ title: '点赞成功' })
-    // }
-    // arr[index] = item
-    // this.setData({
-    //   commentList_arr: arr
-    // })
   },
 
   //options(Object)
@@ -261,133 +206,6 @@ Page({
         console.log(res);
       })
   },
-  initList_fun(callback, isAuto) {
-    // wx.showLoading({
-    //   title: '加载中...',
-    //   mask: true,
-    // });
-    console.log(isAuto);
-    this.setData({
-      bottomMsgHeight_int: 0,
-      bottomMsg_str: ''
-    })
-    if (isAuto) {
-      this.setData({
-        topMsg_str: '',
-        topMsgHeight_int: 0
-      })
-    } else {
-      this.setData({
-        topMsg_str: '正在努力刷新',
-        topMsgHeight_int: 50,
-      })
-    }
-    this.getAllArticle_fun({ hasLoading: false })
-      .then(res => {
-        pageTotal_int = res.total_int
-        pageNum_int = Math.ceil(res.total_int / 5)
-        if (pageNum_int > 0) {
-          return this.getAllArticle_fun({ pageNumber: pageNum_int, hasLoading: false })
-        } else {
-          return -1
-        }
-      }).then(res => {
-        console.log(res);
-        if (res === -1) {
-          return -1
-        }
-
-        this.setData({
-          list_arr: res.articleList
-        })
-        if (pageNum_int > 1) {
-          pageNum_int--
-          return this.getAllArticle_fun({ pageNumber: pageNum_int, hasLoading: false })
-        } else {
-          return -1
-        }
-      }).then(res => {
-        console.log(res);
-        if (res !== -1) {
-          var arr_arr = this.data.list_arr
-          arr_arr.push(...res.articleList)
-          this.setData({ list_arr: arr_arr })
-        }
-        // wx.hideLoading();
-        if (isAuto) {
-          this.topMsgFinish_fun()
-        } else {
-          this.topMsgFinish_fun('刷新成功')
-        }
-        callback && callback()
-      }).catch(res => {
-        // wx.hideLoading();
-        this.topMsgFinish_fun('刷新失败')
-        console.log(res);
-      })
-  },
-  initCategoryList_fun(callback, isAuto) {
-    this.setData({
-      bottomMsgHeight_int: 0,
-      bottomMsg_str: ''
-    })
-    if (isAuto) {
-      this.setData({
-        topMsg_str: '',
-        topMsgHeight_int: 0
-      })
-    } else {
-      this.setData({
-        topMsg_str: '正在努力刷新',
-        topMsgHeight_int: 50,
-      })
-    }
-    this.getCategoryArticle_fun({ category: this.data.topList_arr[this.data.topListIndex_int], hasLoading: false })
-      .then(res => {
-        pageTotal_int = res.total_int
-        pageNum_int = Math.ceil(res.total_int / 5)
-        this.setData({
-          list_arr: []
-        })
-        if (pageNum_int > 0) {
-          return this.getCategoryArticle_fun({ category: this.data.topList_arr[this.data.topListIndex_int], pageNumber: pageNum_int, hasLoading: false })
-        } else {
-          return -1
-        }
-      }).then(res => {
-        if (res === -1) {
-          return -1
-        }
-
-        this.setData({
-          list_arr: res.articleList
-        })
-        if (pageNum_int > 1) {
-          pageNum_int--
-          return this.getCategoryArticle_fun({ category: this.data.topList_arr[this.data.topListIndex_int], pageNumber: pageNum_int, hasLoading: false })
-        } else {
-          return -1
-        }
-      }).then(res => {
-        console.log(res);
-        if (res !== -1) {
-          var arr_arr = this.data.list_arr
-          arr_arr.push(...res.articleList)
-          this.setData({ list_arr: arr_arr })
-        }
-        // wx.hideLoading();
-        if (isAuto) {
-          this.topMsgFinish_fun()
-        } else {
-          this.topMsgFinish_fun('刷新成功')
-        }
-        callback && callback()
-      }).catch(res => {
-        // wx.hideLoading();
-        this.topMsgFinish_fun('刷新失败')
-        console.log(res);
-      })
-  },
   initTemp_fun(isAuto) {
     this.initArticle_fun(
       () => {
@@ -454,10 +272,10 @@ Page({
           }
           resolve({ total_int: total, articleList })
         }).catch((err) => {
-          wx.showToast({
-            title: '刷新失败',
-            icon: 'error',
-          });
+          // wx.showToast({
+          //   title: '刷新失败',
+          //   icon: 'error',
+          // });
           this.setData({
             isPullDown_bool: false
           })
@@ -476,10 +294,10 @@ Page({
           var articleList = this.handleArticleData_fun(data)
           resolve({ total_int: data.total, articleList })
         }).catch((err) => {
-          wx.showToast({
-            title: '刷新失败',
-            icon: 'error',
-          });
+          // wx.showToast({
+          //   title: '刷新失败',
+          //   icon: 'error',
+          // });
           this.setData({
             isPullDown_bool: false
           })
@@ -500,13 +318,20 @@ Page({
         item.commentListNum_int = 'x'
       }
 
+      item.sex_str = item.userList[0] && item.userList[0].sex // 0、未知，1、男，2、女
+
       var t_o = myTime(item.createTime)
+      item.date_str = t_o.time
       // item.date_str = t_o.time_str
-      item.date_str = t_o.month + '-' + t_o.day
-      item.time_str = t_o.hour + ':' + t_o.minute
+      // item.date_str = t_o.month + '-' + t_o.day
+      // item.time_str = t_o.hour + ':' + t_o.minute
+      let index_int = this.data.typeList_arr.indexOf(item.category)
+      item.tagBg_str = this.data.tagBg_arr[index_int]
 
       if (item.dianzanUids) {
         let dz_arr = item.dianzanUids.split(',')
+        dz_arr = dz_arr.filter(item => item !== '')
+        item.dianzan_str = dz_arr.join(',')
         item.dianzanNum_int = dz_arr.length
         if (dz_arr.includes('' + app.globalData.uid_int)) {
           item.isZan = true
@@ -515,6 +340,7 @@ Page({
         }
       } else {
         item.dianzanNum_int = 0
+        item.dianzan_str = ''
       }
 
       if (item.isAnonymous) {
@@ -522,7 +348,7 @@ Page({
         item.avatarUrl_str = app.globalData.anonymousAvatarUrl_str
       } else {
         item.name_str = item.userList[0] && item.userList[0].name || 'unknown'
-        item.avatarUrl_str = app.globalData.avatarUrl_str
+        item.avatarUrl_str = item.userList[0] && item.userList[0].userHeadpoait && (app.globalData.baseUrl + item.userList[0].userHeadpoait.slice(25) + '/' + item.userList[0].pictureName)
       }
 
       item.imgOrg = []
@@ -560,10 +386,10 @@ Page({
           }
           resolve({ total_int: total, articleList })
         }).catch((err) => {
-          wx.showToast({
-            title: '刷新失败',
-            icon: 'error',
-          });
+          // wx.showToast({
+          //   title: '刷新失败',
+          //   icon: 'error',
+          // });
           this.setData({
             isPullDown_bool: false
           })
@@ -684,11 +510,25 @@ Page({
     // })
   },
 
+  pageview_fun(e) {
+    var id = e.detail.pageviewId_int
+    let pageviewNum_int = e.detail.pageviewNum_int
+    console.log(id, pageviewNum_int);
+    let index_int = this.data.list_arr.findIndex(item => item.id === id)
+    if (index_int !== -1) {
+      this.setData({
+        ['list_arr[' + index_int + '].pageviews']: pageviewNum_int
+      })
+      console.log();
+    } else {
+      console.log('浏览量设置失败');
+    }
+  },
+
   onReady: function () {
     this.scrollHeight_fun()
   },
   onShow: function () {
-    // console.log(app.globalData.backState_int);
     if (app.globalData.backState_int === 1) {
       app.globalData.backState_int = 0
       this.setData({
@@ -703,8 +543,9 @@ Page({
       let index_int = this.data.list_arr.findIndex(item => item.id === app.globalData.zanId_int)
       if (index_int !== -1) {
         this.setData({
-          ['list_arr[' + index_int + '].dianzanNum_int']: this.data.list_arr[index_int].dianzanNum_int + 1,
-          ['list_arr[' + index_int + '].isZan']: true
+          // ['list_arr[' + index_int + '].dianzanNum_int']: this.data.list_arr[index_int].dianzanNum_int + 1,
+          ['list_arr[' + index_int + '].dianzanNum_int']: app.globalData.zanNum_int,
+          ['list_arr[' + index_int + '].isZan']: app.globalData.isZan_bool
         })
       }
       app.globalData.zanId_int = -1
@@ -714,10 +555,11 @@ Page({
       let index_int = this.data.list_arr.findIndex(item => item.id === app.globalData.pageviewId_int)
       if (index_int !== -1) {
         this.setData({
-          ['list_arr[' + index_int + '].pageviews']: this.data.list_arr[index_int].pageviews + 1,
+          ['list_arr[' + index_int + '].pageviews']: app.globalData.pageviewNum_int,
         })
       }
       app.globalData.pageviewId_int = -1
+      app.globalData.pageviewNum_int = -1
     }
 
     if (app.globalData.commentId_int !== -1) {

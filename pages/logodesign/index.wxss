@@ -11,7 +11,7 @@ page .top {
   height: 210rpx;
   line-height: 95rpx;
   color: #555;
-  font-size: 38rpx;
+  font-size: 32rpx;
   padding: 10rpx 40rpx;
   background-color: #fff;
 }
@@ -19,7 +19,7 @@ page .top .price-wrap {
   line-height: 105rpx;
 }
 page .top .price-wrap .price {
-  width: 224rpx;
+  padding: 0 30rpx;
   height: 64rpx;
   line-height: 64rpx;
   text-align: center;
@@ -47,10 +47,18 @@ page .top .con {
   line-height: 1.5em;
   padding: 30rpx 0;
 }
-page .top .bottom view {
-  width: 305rpx;
-  height: 305rpx;
+page .top .bottom {
+  padding-bottom: 30rpx;
+}
+page .top .bottom image {
+  width: 330rpx;
+  height: 330rpx;
   display: inline-block;
-  border: 1px solid #ccc;
-  margin-right: 30rpx;
+  margin-right: 10rpx;
+  margin-top: 10rpx;
+  vertical-align: middle;
+  border-radius: 15rpx;
+}
+page .top .bottom image:nth-child(2n) {
+  margin-right: 0;
 }

@@ -1,6 +1,6 @@
 @color_gray: #4f4f4f;
 @color_icon: #aaa;
-@color_orange: #ff7e17;
+@color_orange: #ffc273;
 @color_blue: #43D7B5;
 @font_size_28: 28;
 @font_size_36: 36;
@@ -8,7 +8,7 @@
 @font_size_48: 48;
 
 .index-wrap {
-  background-image: linear-gradient(#fff 0%, #fff 19%, #f2f2f2 34.5%, #f2f2f2 100%);
+  background-image: linear-gradient(#fff 0%, #fff 19%, #f7f7f7 34.5%, #f7f7f7 100%);
   
   .top {
     width: 100%;
@@ -26,12 +26,25 @@
       .navigator {
         padding: 0 30rpx;
         display: inline-block;
-        line-height: (750rpx * 150 / 1070);
+        line-height: 105rpx;
         text-align: center;
-        font-size: (750rpx * 45 / 1070);
+        font-size: 32rpx;
         color: @color_gray;
         .active {
-          color: @color_orange;
+          font-weight: bold;
+          color: var(--colorGray1);
+          position: relative;
+          &::after {
+            width: 32rpx;
+            height: 5rpx;
+            display: block;
+            content: '';
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: -30rpx;
+            position: absolute;
+            background-color: var(--colorGray1);
+          }
         }
       }
     }
@@ -71,6 +84,9 @@
     position: fixed;
     right: 90rpx;
     bottom: 63rpx;
+    background-color: @color_orange;
+    border-radius: 50%;
+    opacity: 0.7;
   }
 
   .dialog-wrap{
@@ -96,6 +112,9 @@
       }
       .up {
         padding: 21rpx 35rpx;
+        line-height: 60rpx;
+        color: #666;
+        text-align: center;
         .headPic {
           width: 83rpx;
           height: 83rpx;
@@ -125,6 +144,12 @@
             vertical-align: middle;
             transition: transform 0.5s;
           }
+          .change {
+            float: right;
+            position: absolute;
+            right: 120rpx;
+            color: #aaa;
+          }
         }
       }
       .center {
@@ -142,8 +167,9 @@
             padding: 0 20rpx;
             height: 48rpx;
             line-height: 42rpx;
-            border: 1px solid @color_blue;
+            border: 1px solid #999;
             color: @color_blue;
+            color: #999;
             border-radius: 30rpx; 
           }
         }
@@ -154,8 +180,8 @@
       }
       .bottom {
         color: @color_icon;
-        height: 100rpx;
-        line-height: 100rpx;
+        height: 110rpx;
+        line-height: 110rpx;
         text-align: center;
         font-size: 34rpx;
       }
