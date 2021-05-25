@@ -19,6 +19,11 @@ Page({
       .then(res => {
         console.log(res);
         if (res.data.code === 200) {
+          res.data.data.streetShops.forEach(item => {
+            if (item.headSculpture && item.headSculptureName) {
+              item.headPic_str = app.globalData.baseUrl + item.headSculpture.slice(25) + '/' + item.headSculptureName
+            }
+          })
           this.setData({
             shop_arr: res.data.data.streetShops
           })

@@ -1,4 +1,5 @@
 <view wx:for="{{shop_arr}}" wx:if="{{item.examined === 0 || item.examined === 1}}" wx:key="id" class="wrap">
+  <image mode="aspectFill" src="{{item.headPic_str}}" class="headPic"/>
   <view class="name">{{item.name}}</view>
   <navigator url="/pages/shopsetting/index?id={{item.id}}" class="item">
     <view>店铺</view>

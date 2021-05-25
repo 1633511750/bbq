@@ -1,4 +1,4 @@
-function $http({ isJson = false, url, data = {}, method = 'get', complete, hasLimit = true }, hasLoading = false) {
+function $http({ isJson = false, url, isOrgUrl = false, data = {}, method = 'get', complete, hasLimit = true }, hasLoading = false) {
   return new Promise((resolve, reject) => {
     if (hasLimit) {
       var Cookie = wx.getStorageSync('Cookie');
@@ -27,11 +27,14 @@ function $http({ isJson = false, url, data = {}, method = 'get', complete, hasLi
         mask: true,
       });
     }
+    if (!isOrgUrl) {
+      url = 'https://www.guoer.ltd' + url
+    }
     wx.request({
       // url: 'http://159.75.6.154:8080' + url,
       // url: 'http://www.coldice.top:8080' + url,
       // url: 'http://www.guoer.ltd:8080' + url,
-      url: 'https://www.guoer.ltd' + url,
+      url,
       data,
       header,
       method,
@@ -128,7 +131,17 @@ function myTime(arg) {
   }
 }
 
+// function getAccessToken_fun() {
+//   $http({
+//     isOrgUrl: true,
+//     url: 'https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=wx8c84e9f59ed23d2d&secret=4b58b9b16c626dcfa7f9b81e1b75591c'
+//   }).then(res => {
+//     console.log(res);
+//   })
+// }
+
 module.exports = {
   $http,
   myTime
+  // getAccessToken_fun
 }
