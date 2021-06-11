@@ -70,7 +70,7 @@
 <view class="desc-wrap">
   <view class="top">店铺介绍</view>
   <view wx:if="{{isModify_bool}}" class="desc">{{desc_str}}</view>
-  <textarea placeholder="请输入店铺介绍" bindinput="input_fun" data-value="desc_str" maxlength="-1" wx:else value="{{desc_str}}" />
+  <textarea placeholder="请输入店铺介绍" maxlength="200" bindinput="input_fun" data-value="desc_str" wx:else value="{{desc_str}}" />
 </view>
 
 <view class="setting" bindtap="setting_fun">开店</view>

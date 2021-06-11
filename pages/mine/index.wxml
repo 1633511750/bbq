@@ -3,52 +3,56 @@
     <image mode="aspectFill" class="headPic" src="{{avatarUrl_str}}"></image>
     <view class="name">{{nickName_str}}</view>
     <!--<view class="school">山西传媒学院</view>-->
-    <image src="/img/right.png" class="right-arrow"></image>
+    <!--<image src="/img/right.png" class="right-arrow"></image>-->
   </navigator>
   <view class="item-wrapper">
     <view class="title">表白墙</view>
     <navigator url="/pages/mywall/index" class="item-wrap">
-      <image src="/img/wall_article.png"/>
+      <image src="/img/mine_wall.jpg"/>
       <text class="item">墙文</text>
     </navigator>
     <navigator url="/pages/zan/index" class="item-wrap">
-      <image src="/img/dit_zan.png"/>
+      <image src="/img/mine_zan.jpg"/>
       <text class="item">点赞</text>
     </navigator>
     <navigator url="/pages/mychat/index" class="item-wrap">
-      <image src="/img/com.png"/>
+      <image src="/img/mine_chat.jpg"/>
       <text class="item">评论</text>
     </navigator>
   </view>
   <view class="item-wrapper">
   <view class="title">创业街</view>
     <navigator url="/pages/openshop/index" class="item-wrap">
-      <image src="/img/shop.png"/>
-      <text class="item">我要创业</text>
+      <image src="/img/mine_openshop.jpg"/>
+      <text class="item">我要开店</text>
     </navigator>
     <navigator url="/pages/shop/index" class="item-wrap">
-      <image src="/img/cygl.png"/>
-      <text class="item">创业管理</text>
+      <image src="/img/mine_shopmgr.jpg"/>
+      <text class="item">店铺管理</text>
     </navigator>
   </view>
   <view class="item-wrapper">
-  <view class="title">系统</view>
+  <view class="title">帮助与反馈</view>
     <navigator url="/pages/systemmsg/index" class="item-wrap">
-      <image src="/img/msg.png"/>
+      <image src="/img/mine_msg.jpg"/>
       <text class="item">消息</text>
     </navigator>
-    <navigator url="/pages/myservice/index" class="item-wrap">
-      <image src="/img/service.png"/>
-      <text class="item">帮助与反馈</text>
+    <!--<navigator url="/pages/myservice/index" class="item-wrap">
+      <image src="/img/mine_advice.jpg"/>
+      <text class="item">投诉与建议</text>
+    </navigator>-->
+    <navigator url="/pages/callus/index" class="item-wrap">
+      <image src="/img/mine_me.jpg"/>
+      <text class="item">关于我们</text>
     </navigator>
-    <navigator url="/pages/schoolmanagers/index" class="item-wrap">
+    <button class="kefubtn" open-type="contact" class="item-wrap">
+      <image src="/img/mine_serve.jpg"/>
+      <text class="item">客服</text>
+    </button>
+    <!--<navigator url="/pages/schoolmanagers/index" class="item-wrap">
       <image src="/img/xyjl.png"/>
       <text class="item">校园经理</text>
-    </navigator>
-    <navigator url="/pages/callus/index" class="item-wrap">
-      <image src="/img/lxwm.png"/>
-      <text class="item">联系我们</text>
-    </navigator>
+    </navigator>-->
     <!--<navigator url="/pages/zhuti/index" class="item-wrap">
       <image src="/img/zhuti.png"/>
       <text class="item">主题</text>

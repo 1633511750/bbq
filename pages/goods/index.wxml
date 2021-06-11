@@ -11,6 +11,7 @@
     价格：<text class="now">{{item.price}}</text>
     <text class="old"></text>
   </view>
+  <view wx:if="{{goodsStateIndex_int === 1 || goodsStateIndex_int === 2}}" data-id="{{item.id}}" class="del btn" catchtap="deleteGood_fun">删除</view>
   <view wx:if="{{goodsStateIndex_int === 0}}" data-id="{{item.id}}" class="btn" catchtap="ofShelf_fun">下架</view>
   <view wx:elif="{{goodsStateIndex_int === 1}}" data-id="{{item.id}}" class="btn" catchtap="onShelf_fun">上架</view>
 </view>

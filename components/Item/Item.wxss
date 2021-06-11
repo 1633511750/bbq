@@ -143,6 +143,16 @@
   font-weight: lighter;
   color: #666;
 }
+.wrapper .comment .footer .f1 .top {
+  width: 100rpx;
+  font-size: 30rpx;
+  position: absolute;
+  right: 120rpx;
+  text-align: center;
+  left: -15rpx;
+  bottom: 25rpx;
+  border-radius: 10rpx;
+}
 .wrapper .comment .footer .f2 {
   flex: 1;
   text-align: center;

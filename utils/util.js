@@ -44,7 +44,9 @@ function $http({ isJson = false, url, isOrgUrl = false, data = {}, method = 'get
         // console.log(result);
         // console.log('+1');
         // if (result.statusCode === 200) {
+        console.log(result.data.code);
         if (!isJson && result.data.code === 205) {
+          console.log('to-login-page');
           wx.navigateTo({
             url: '/pages/login/index',
           });

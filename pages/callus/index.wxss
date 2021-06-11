@@ -1,1 +1,20 @@
-/* pages/callus/index.wxss */
+page {
+  background-color: var(--colorGray);
+}
+page .main {
+  background-color: #fff;
+  padding: 30rpx;
+  white-space: pre-line;
+}
+page .main .title {
+  text-align: center;
+  font-size: 32rpx;
+  font-weight: bold;
+}
+page .main .small-title {
+  font-size: 28rpx;
+  font-weight: bold;
+}
+page .main .con {
+  text-indent: 2em;
+}

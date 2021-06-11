@@ -50,6 +50,12 @@ page .info-wrap .item .value .org {
   left: 0;
   top: 0;
 }
+page .info-wrap .item .value .org.tag {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+}
 page .info-wrap .item .value .modify {
   width: 500rpx;
   height: 55rpx;
@@ -166,6 +172,7 @@ page .desc-wrap .top {
 }
 page .desc-wrap .desc {
   text-indent: 2em;
+  overflow-wrap: break-word;
 }
 page .desc-wrap textarea {
   width: 100%;
@@ -178,5 +185,6 @@ page .setting {
   z-index: 10;
   width: 100%;
   bottom: 0;
-  background-color: #fff;
+  color: #fff;
+  background-color: #02A7F0;
 }

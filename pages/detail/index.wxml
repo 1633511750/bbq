@@ -2,7 +2,8 @@
   <view class="blank"></view>
   <view class="comment clearfix">
     <view class="item clearfix">
-      <image mode="aspectFill" class="headPic" src="{{avatarUrl_str}}"></image>
+      <image mode="aspectFill" catchtap="previewImage_fun" data-anonymous="{{isAnonymous_int}}" data-cururl="{{avatarUrl_str}}" data-urls="{{[avatarUrl_str]}}" data-add="true" class="headPic" src="{{avatarUrl_str}}"></image>
+      <image mode="aspectFit" class="sex" src="{{sex_str === '1' ? '/img/male.png' : '/img/female.png'}}"></image>
       <view class="info">
         <view class="info-top clearfix">
           <text class="name">{{name_str}}</text>
@@ -15,7 +16,9 @@
         </view>
       </view>
     </view>
-    <text class="desc" user-select style="white-space:pre-line">{{content_str}}</text>
+    <view class="desc" user-select>{{content_str}}</view>
+    <view wx:if="{{content_str && img_arr.length > 0}}" class="desc-blank"></view>
+    <!--<view class="pos">{{location_str}}</view>-->
     <view mode="aspectFill" class="img clearfix" wx:if="{{img_arr.length > 0}}">
       <image mode="aspectFill" wx:for="{{img_arr}}" bindtap="previewImage_fun" data-urls="{{img_arr}}" data-cururl="{{item}}" wx:key="*this" src="{{item}}"></image>
     </view>
@@ -25,15 +28,17 @@
     <view class="footer">
       <view class="f1">
         <image style="width: 32rpx;height: 32rpx;" mode="aspectFit" src="/img/hot.png"></image>
-        <text class="heart">{{pageviews_str}}</text>
+        <text class="heart">{{pageviews_str === 0 ? '' : pageviews_str}}</text>
+        
+        <view wx:if="{{isTop_bool}}" class="top">🔥</view>
       </view>
       <view class="f2">
         <image mode="aspectFit" src="/img/chat.png"></image>
-        <text class="chat">{{commentListNum_str}}</text>
+        <text class="chat">{{commentListNum_str === 0 ? '' : commentListNum_str}}</text>
       </view>
       <view class="f3" bindtap="dotZan_fun">
         <image mode="aspectFit" src="{{isZan_bool ? '/img/zan_active.png' : '/img/zan.png'}}"></image>
-        <text class="zan">{{dianzanNum_str}}</text>
+        <text class="zan">{{dianzanNum_str === 0 ? '' : dianzanNum_str}}</text>
       </view>
     </view>
     <view class="pl-wrap" wx:if="{{reply_arr.length > 0}}">
@@ -42,6 +47,7 @@
         <view class="info-wrap">
           <view class="info clearfix">
             <text class="name">{{item.nmId_str}}</text>
+            <view wx:if="{{item.fromUid === fromUid_int && item.isAnonymous === isAnonymous_int}}" class="house big">作者</view>
             <!--<image mode="aspectFit" src="/img/zan_active.png"/>
             <text class="heart-num">30</text>-->
           </view>
@@ -59,6 +65,7 @@
               <view class="reply-info-wrap">
                 <view class="reply-info clearfix">
                   <text class="reply-name">{{item1.nmId_str}}</text>
+                  <view wx:if="{{item1.fromUid === fromUid_int && item1.isAnonymous === isAnonymous_int}}" class="house big">作者</view>
                 </view>
                 <text user-select class="reply-pl-con">{{item1.content}}</text>
                 <view class="reply-pl-foot">
@@ -70,8 +77,8 @@
               <view class="pl-rep-con clearfix" wx:for="{{item1.rep}}" wx:for-index="index2" wx:key="id" wx:for-item="item2">
                 <view class="reply-info-wrap big-width">
                   <view class="reply-pl-con">
-                    <text class="reply-pl-toname">{{item2.nmId_str}} <text class="reply-pl-reply">回复</text> {{item2.toName_str + ' : '}}</text>
-                    <text user-select>{{item2.content}}</text>
+                    <text class="reply-pl-toname">{{item2.nmId_str}}<text wx:if="{{item2.fromUid === fromUid_int && item2.isAnonymous === isAnonymous_int}}" class="house">作者</text><text class="reply-pl-reply"> 回复 </text>{{item2.toName_str}}<text wx:if="{{item2.toUid === fromUid_int && item2.toName - 0 === isAnonymous_int}}" class="house">作者</text>{{' ： '}}</text>
+                    <text user-select class="rep-pl-con"> {{item2.content}}</text>
                   </view>
                   <view class="reply-pl-foot">
                     <text class="reply-date">{{item2.date_str}}  {{item2.time_str}}</text>
@@ -115,12 +122,23 @@
   <view wx:if="{{showPingLun_bool}}" bindtap="closePingLun_fun"  class="pinglun-wrap">
     <view class="pinglun" catchtap="empty_fun" style="bottom: {{0}}px;">
       <view class="top-wrap">
-        <textarea focus="{{replyFocus_bool}}" style="height: {{replyHeight_flo}}rpx;" cursor-spacing="{{300}}" show-confirm-bar="{{false}}" bindkeyboardheightchange="keyboardheight_fun" placeholder="{{commentPlaceholder_str}}" value="{{comment_str}}" bindinput="setInputValue_fun"></textarea>
+        <!--focus="{{replyFocus_bool}}"-->
+        <textarea style="height: {{replyHeight_flo}}rpx;" cursor-spacing="{{300}}" show-confirm-bar="{{false}}" bindkeyboardheightchange="keyboardheight_fun" placeholder="{{commentPlaceholder_str}}" value="{{comment_str}}" bindinput="setInputValue_fun"></textarea>
         <image mode="aspectFit" bindtap="extend_fun" src="/img/extend.png"></image>
       </view>
       <view class="pic-wrap">
-        <text class="send-left" bindtap="chat_fun" data-anonymous="0">不匿发</text>
-        <text class="send" bindtap="chat_fun" data-anonymous="1">匿发</text>
+        <!--<text class="send-left" bindtap="chat_fun" data-anonymous="0">发表</text>
+        <text class="send" bindtap="chat_fun" data-anonymous="1">发表</text>
+        <image class="aavatar" mode="aspectFill" src="{{anonymousAvatarUrl_str}}" />
+        <image class="avatar" mode="aspectFill" src="{{avatarUrl_str}}" />-->
+        <view class="left" bindtap="chat_fun" data-anonymous="1">
+          <!--<image class="avatar" mode="aspectFill" src="{{userAvatarUrl_str}}" />
+          <view class="btn send">发表</view>-->
+        </view>
+        <view class="right" bindtap="chat_fun" data-anonymous="0">
+          <!--<image class="avatar" mode="aspectFill" src="{{anonymousAvatarUrl_str}}" />-->
+          <view class="btn send">发表</view>
+        </view>
       </view>
     </view>
   </view>

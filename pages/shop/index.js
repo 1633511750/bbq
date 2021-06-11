@@ -1,5 +1,6 @@
 let app = getApp()
 import { $http } from '../../utils/util'
+import $street from '../../utils/businessStreet'
 // pages/shop/index.js
 Page({
 
@@ -7,7 +8,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    shop_arr: []
+    shop_arr: [],
+    shopState_str: '店铺加载中...'
   },
 
   getShops_fun() {
@@ -28,8 +30,37 @@ Page({
             shop_arr: res.data.data.streetShops
           })
           console.log(this.data.shop_arr);
+          if (this.data.shop_arr.length === 0) {
+            this.setData({ shopState_str: '暂无店铺' })
+          } else {
+            this.setData({ shopState_str: '加载成功' })
+          }
         }
       })
+  },
+
+  delete_fun(e) {
+    wx.showModal({
+      title: '删除提示',
+      content: '是否永久删除该店铺？',
+      showCancel: true,
+      cancelText: '取消',
+      cancelColor: '#000000',
+      confirmText: '确定',
+      confirmColor: '#3CC51F',
+      success: (result) => {
+        if (result.confirm) {
+          let id_int = e.currentTarget.dataset.id
+          $street.deleteShop_fun(id_int, () => {
+            wx.showToast({ title: '删除成功' })
+            this.getShops_fun()
+          })
+        }
+      },
+      fail: () => { },
+      complete: () => { }
+    });
+
   },
 
   /**

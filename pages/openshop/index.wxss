@@ -145,5 +145,7 @@ page .setting {
   z-index: 10;
   width: 100%;
   bottom: 0;
-  background-color: #fff;
+  color: #fff;
+  font-size: 36rpx;
+  background-color: #02A7F0;
 }

@@ -150,7 +150,7 @@ Page({
   // 发帖
   publicArtical_fun(e) {
     if (this.data.text_str.trim() === '' && this.data.tempImgSrc_arr.length === 0) {
-      wx.showToast({ title: '必须有文字或图片', icon: 'none' })
+      wx.showToast({ title: '请添加图片或文字', icon: 'none' })
       return
     }
     wx.showModal({
@@ -193,6 +193,11 @@ Page({
                 }, 1500);
               }).catch(err => {
                 console.log(err);
+              })
+            } else if (res.data.code === 214) {
+              wx.showToast({
+                title: '您已被禁言',
+                icon: 'error'
               })
             } else {
               wx.showToast({ title: '发表失败', icon: 'error' })
@@ -250,8 +255,9 @@ Page({
             let province_str = res.result.address_component.province//当前位置省会
             let city_str = res.result.address_component.city//当前位置城市
             let district_str = res.result.address_component.district//当前位置区域
+            let street_str = res.result.address_component.street
             this.setData({
-              school_str: province_str + ' ' + city_str + ' ' + district_str
+              school_str: province_str + ' ' + city_str + ' ' + district_str + ' ' + street_str
             })
           },
           fail: err => {
@@ -274,9 +280,11 @@ Page({
       school_str: '',
       // school_str: app.globalData.country_str + ' ' + app.globalData.province_str + ' ' + app.globalData.city_str,
       category_str: options.category,
-      isNM_bool: options.isNM === 'true' ? true : false
+      isNM_bool: options.isNM === 'true' ? true : false,
+      avatarUrl_str: app.globalData.avatarUrl_str
     })
     console.log(options.isNM);
+    console.log(app.globalData.avatarUrl_str);
   },
 
   /**

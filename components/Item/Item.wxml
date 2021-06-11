@@ -22,18 +22,20 @@
       <image mode="aspectFill" bindtap="previewImages_fun" data-cururl="{{item1}}" data-urls="{{item.imgOrg}}" wx:for="{{item.img}}" wx:for-item="item1" wx:key="src" src="{{item1}}"></image>
       <view style="pointer-events:none" class="more-img" wx:if="{{item.imgOrg.length > 3}}">+{{item.imgOrg.length - item.img.length}}</view>
     </view>
+    <view class="pos">{{item.location}}</view>
     <view class="footer" hover-class="none" bindtap="gotoDetail_fun">
       <view class="f1">
         <image mode="aspectFit" src="/img/hot.png"></image>
-        <text class="heart">{{item.pageviews}}</text>
+        <text class="heart">{{item.pageviews === 0 ? '' : item.pageviews}}</text>
+        <image wx:if="{{item.isTop_bool}}" mode="aspectFit" src="/img/top.png" class="top">🔥</image>
       </view>
       <view class="f2">
         <image mode="aspectFit" src="/img/chat.png"></image>
-        <text class="chat">{{item.commentListNum_int}}</text>
+        <text class="chat">{{item.commentListNum_int === 0 ? '' : item.commentListNum_int}}</text>
       </view>
       <view class="f3" catchtap="dotZan_fun" data-item="{{item}}">
         <image mode="aspectFit" src="{{item.isZan ? '/img/zan_active.png' : '/img/zan.png'}}"></image>
-        <text class="zan">{{item.dianzanNum_int}}</text>
+        <text class="zan">{{item.dianzanNum_int === 0 ? '' : item.dianzanNum_int}}</text>
       </view>
     </view>
   </view>

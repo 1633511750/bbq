@@ -1,1 +1,5 @@
-<button bindtap="getUserProfile_fun">授权登录</button>
+<button bindtap="getUserProfile_fun">微信登录</button>
+
+<view class="bottom">
+  登录代表您已同意 <text bindtap="userXY_fun">用户协议、隐私协议</text>
+</view>

@@ -8,7 +8,7 @@ Page({
    */
   data: {
     isModify_bool: true,
-    setting_str: '设置',
+    setting_str: '修改',
     shopName_str: '',
     tag_str: '美食;家具',
     tag_arr: ['美食饮品文具', '家具生活办公', '美食饮品文具', '家具生活办公', '美食饮品文具', '家具生活办公'],
@@ -28,6 +28,7 @@ Page({
 
     schoolIndex_int: 0,
     school_arr: [
+      '全部',
       '山西大学',
       '太原科技大学',
       '中北大学',
@@ -173,7 +174,7 @@ Page({
               console.log(obj);
               wx.showToast({ title: '店铺更新成功' })
               self.setData({
-                setting_str: '设置',
+                setting_str: '修改',
                 isModify_bool: true
               })
             }
@@ -186,7 +187,7 @@ Page({
   },
 
   setting_fun() {
-    if (this.data.setting_str === '设置') {
+    if (this.data.setting_str === '修改') {
       this.setData({
         setting_str: '完成',
         isModify_bool: false
@@ -194,10 +195,12 @@ Page({
     } else {
       let tag_arr
       if (this.data.tag_str) {
-        tag_arr = this.data.tag_str.split(/[;；]+/)
+        tag_arr = this.data.tag_str.split(/[;；,，、。.!！：:]+/)
       } else {
         tag_arr = []
       }
+      tag_arr = tag_arr.slice(0, 6)
+      tag_arr = tag_arr.filter(item => item)
       tag_arr = tag_arr.map(item => item.length > 6 ? item.slice(0, 6) : item)
 
       let tag_str = tag_arr.join(';')
@@ -225,7 +228,7 @@ Page({
           } else {
             wx.showToast({ title: '店铺更新成功' })
             this.setData({
-              setting_str: '设置',
+              setting_str: '修改',
               isModify_bool: true
             })
           }

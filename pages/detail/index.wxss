@@ -19,6 +19,17 @@
   border-radius: 41rpx;
   background-size: 100% 100%;
 }
+.wrap .comment .item .sex {
+  width: 30rpx;
+  height: 30rpx;
+  vertical-align: middle;
+  position: absolute;
+  left: 30rpx;
+  top: 30rpx;
+  background-color: #fff;
+  border-radius: 50%;
+  border: 2rpx solid #fff;
+}
 .wrap .comment .item .info {
   width: calc(100% - 105rpx);
   float: right;
@@ -81,13 +92,24 @@
   margin-left: 10rpx;
 }
 .wrap .comment .desc {
-  display: inline-block;
   line-height: 44rpx;
   font-size: 32rpx;
   margin-top: 28rpx;
+  display: -webkit-box;
+  word-wrap: break-word;
+  -webkit-box-orient: vertical;
+  white-space: pre-line;
+}
+.wrap .comment .desc-blank {
+  height: 25rpx;
+}
+.wrap .comment .pos {
+  margin-top: 30rpx;
+  color: #999;
+  font-size: 24rpx;
 }
 .wrap .comment .img {
-  margin-top: 20rpx;
+  margin-top: 10rpx;
 }
 .wrap .comment .img image {
   float: left;
@@ -171,6 +193,7 @@
 .wrap .do .footer .f1 {
   flex: 1;
   text-align: left;
+  position: relative;
 }
 .wrap .do .footer .f1 image {
   width: 28rpx;
@@ -183,6 +206,16 @@
   top: 3rpx;
   margin-left: 10rpx;
   font-weight: lighter;
+}
+.wrap .do .footer .f1 .top {
+  width: 100rpx;
+  font-size: 30rpx;
+  position: absolute;
+  right: 120rpx;
+  text-align: center;
+  left: -80rpx;
+  top: -1rpx;
+  border-radius: 10rpx;
 }
 .wrap .do .footer .f2 {
   flex: 1;
@@ -327,6 +360,7 @@
   color: #aaa;
   float: left;
   font-size: 30rpx;
+  vertical-align: middle;
 }
 .wrap .do .pl-wrap .pl .info-wrap .pl-reply-wrap .pl-reply-con .reply-info-wrap .reply-info .reply-heart-num {
   float: right;
@@ -348,6 +382,7 @@
 }
 .wrap .do .pl-wrap .pl .info-wrap .pl-reply-wrap .pl-reply-con .reply-info-wrap .reply-pl-con .reply-pl-toname {
   display: inline-block;
+  vertical-align: middle;
   margin-top: 20rpx;
   color: #aaa;
   font-size: 28rpx;
@@ -402,6 +437,33 @@
 .wrap .do .pl-wrap .pl .info-wrap .pl-reply-wrap .pl-reply-con .big-width .reply-pl-con {
   width: 575rpx;
   display: inline-block;
+  margin-top: 20rpx;
+}
+.wrap .do .pl-wrap .pl .info-wrap .pl-reply-wrap .pl-reply-con .big-width .reply-pl-con .reply-pl-toname {
+  margin-top: 0;
+  vertical-align: middle;
+}
+.wrap .do .pl-wrap .pl .info-wrap .pl-reply-wrap .pl-reply-con .big-width .reply-pl-con .rep-pl-con {
+  margin-top: 20rpx;
+  vertical-align: middle;
+}
+.wrap .do .pl-wrap .house {
+  height: 32rpx;
+  line-height: 32rpx;
+  padding: 0 15rpx;
+  margin-left: 20rpx;
+  font-size: 24rpx;
+  color: #02A7F0;
+  background-color: var(--colorGray);
+  margin-left: 5rpx;
+  display: inline-block;
+  position: relative;
+  top: -4.5rpx;
+  border-radius: 15rpx;
+  vertical-align: middle;
+}
+.wrap .do .pl-wrap .house.big {
+  margin-left: 15rpx;
 }
 .wrap .do .no-reply {
   text-align: center;
@@ -536,22 +598,44 @@
 .wrap .pinglun-wrap .pinglun .pic-wrap {
   padding-top: 20rpx;
   margin-bottom: 20rpx;
+  display: flex;
+  justify-content: space-between;
+}
+.wrap .pinglun-wrap .pinglun .pic-wrap .left,
+.wrap .pinglun-wrap .pinglun .pic-wrap .right {
+  display: flex;
 }
 .wrap .pinglun-wrap .pinglun .pic-wrap image {
   width: 40rpx;
   height: 40rpx;
   vertical-align: middle;
 }
+.wrap .pinglun-wrap .pinglun .pic-wrap image:first-of-type {
+  margin-left: 20rpx;
+}
 .wrap .pinglun-wrap .pinglun .pic-wrap .send {
   font-size: 34rpx;
-  float: right;
   margin-right: 15px;
   color: #969696;
 }
 .wrap .pinglun-wrap .pinglun .pic-wrap .send-left {
   font-size: 34rpx;
-  float: left;
-  margin-left: 20rpx;
   color: #969696;
-  margin-bottom: 20rpx;
+}
+.wrap .pinglun-wrap .pinglun .pic-wrap .left {
+  margin-left: 10rpx;
+}
+.wrap .pinglun-wrap .pinglun .pic-wrap .avatar {
+  width: 60rpx;
+  height: 60rpx;
+  border-radius: 50%;
+  display: inline-block;
+  vertical-align: middle;
+}
+.wrap .pinglun-wrap .pinglun .pic-wrap .btn {
+  height: 60rpx;
+  line-height: 60rpx;
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 10rpx;
 }

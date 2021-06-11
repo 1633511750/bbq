@@ -1,5 +1,6 @@
 let app = getApp()
 import { $http } from '../../utils/util'
+import $street from '../../utils/businessStreet'
 // pages/goods/index.js
 Page({
 
@@ -14,6 +15,10 @@ Page({
 
   goodsStateIndex_fun(e) {
     let index_int = e.currentTarget.dataset.index - 0
+    if (index_int === this.data.goodsStateIndex_int) {
+      return
+    }
+    this.setData({ goods_arr: [] })
     this.setData({
       goodsStateIndex_int: index_int
     })
@@ -186,6 +191,31 @@ Page({
     })
   },
 
+  // 删除商品
+  deleteGood_fun(e) {
+    wx.showModal({
+      title: '是否永久删除该商品？',
+      content: '',
+      showCancel: true,
+      cancelText: '取消',
+      cancelColor: '#000000',
+      confirmText: '确定',
+      confirmColor: '#3CC51F',
+      success: (result) => {
+        if (result.confirm) {
+          let id_int = e.currentTarget.dataset.id
+          $street.deleteGood1_fun(id_int, () => {
+            wx.showToast({ title: '删除成功' })
+            this.getGoods_fun(this.data.id_int)
+          })
+        }
+      },
+      fail: () => { },
+      complete: () => { }
+    });
+
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */
@@ -207,6 +237,12 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    if (app.globalData.good_examined_bool) {
+      app.globalData.good_examined_bool = false
+      this.setData({
+        goodsStateIndex_int: 2
+      })
+    }
     this.getGoods_fun(this.data.id_int)
   },
 

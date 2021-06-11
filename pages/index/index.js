@@ -1,5 +1,5 @@
 //Page Object
-const { $http, myTime } = require('../../utils/util')
+const { $http, isLogin = true, myTime } = require('../../utils/util')
 var app = getApp()
 var pageNum_int = 1
 var pageTotal_int = 0
@@ -31,9 +31,9 @@ Page({
     isPullDown_bool: false,  // 是否已下拉
     showDialog_bool: false,
     topListIndex_int: 0,
-    topList_arr: ['全部', '表白', '找对象', '找同伴', '感情', '二手交易', '爱豆', '有偿求助', '失物招领', '吐槽', '游戏', '曝光', '问答', '靓仔日常', '捞人', '其他'],
-    typeList_arr: ['表白', '找对象', '找同伴', '感情', '二手交易', '爱豆', '有偿求助', '失物招领', '吐槽', '游戏', '曝光', '问答', '靓仔日常', '捞人', '其他'],
-    tagBg_arr: ['#C962E3', '#C962E3', '#C962E3', '#C962E3', '#FFCD1D', '#00B4FF', '#FFCD1D', '#FFCD1D', '#FF3434', '#00B4FF', '#FF3434', '#3DC795', '#00B4FF', '#C962E3', '#3DC795'],
+    topList_arr: ['全部', '表白', '找对象', '感情', '找同伴', '捞人', '游戏', '靓仔日常', '爱豆', '有偿求助', '失物招领', '二手交易', '吐槽', '曝光', '问答', '其他'],
+    typeList_arr: ['表白', '找对象', '感情', '找同伴', '捞人', '游戏', '靓仔日常', '爱豆', '有偿求助', '失物招领', '二手交易', '吐槽', '曝光', '问答', '其他'],
+    tagBg_arr: ['#C962E3', '#C962E3', '#C962E3', '#C962E3', '#C962E3', '#00B4FF', '#00B4FF', '#00B4FF', '#FFCD1D', '#FFCD1D', '#FFCD1D', '#FF3434', '#FF3434', '#3DC795', '#3DC795'],
     addSignBg_arr: ['#']
   },
 
@@ -57,20 +57,47 @@ Page({
       })
   },
 
+  // 获取置顶帖子
+  getTopArticle_fun(callback = () => { }) {
+    $http({ url: '/Article/getTopArticle' }).then(res => {
+      console.log(res);
+      if (res.data.code === 205) {
+        wx.navigateTo({
+          url: '/pages/index/index',
+        });
+        this.setData({
+          topMsg_str: '请下拉刷新后登录',
+          isPullDown_bool: false
+        })
+        return
+      }
+      if (res.data.code === 200) {
+        var list_arr1 = res.data.data
+        list_arr1.articles.forEach(item => {
+          item.isTop_bool = true
+        })
+        list_arr1 = this.handleArticleData_fun(list_arr1, true)
+        console.log(list_arr1);
+        list_arr1.forEach(item => {
+          item.isLast = false
+        })
+        this.setData({
+          list_arr: list_arr1
+        })
+      } else if (res.data.code === 205) {
+        console.log('用户未登录');
+      } else {
+        console.log('error');
+      }
+      callback()
+    })
+  },
+
   // 点击了加号
   showDialog_fun() {
     // wx.hideTabBar()
     wx.navigateTo({
       url: '/pages/selectpublic/index'
-    });
-    return
-
-    var isAnonymous = true
-    this.setData({
-      isAnonymous_bool: isAnonymous,
-      showDialog_bool: true,
-      nickName_str: isAnonymous ? '匿名' : app.globalData.nickName_str,
-      avatarUrl_str: isAnonymous ? app.globalData.anonymousAvatarUrl_str : app.globalData.avatarUrl_str
     })
   },
   // 点击了标签
@@ -141,7 +168,8 @@ Page({
   initArticle_fun(callback, isAuto) {
     this.setData({
       bottomMsgHeight_int: 0,
-      bottomMsg_str: ''
+      bottomMsg_str: '',
+      list_arr: []
     })
     if (isAuto) {
       this.setData({
@@ -154,57 +182,69 @@ Page({
         topMsgHeight_int: 50,
       })
     }
-    let category_str = this.data.topList_arr[this.data.topListIndex_int]
-    if (this.data.topListIndex_int === 0) {
-      category_str = 'all'
-    }
-    this.getArticle_fun({ category: category_str, hasLoading: false })
-      .then(res => {
-        console.log(res);
-        pageTotal_int = res.total_int
-        pageNum_int = Math.ceil(res.total_int / 5)
-        this.setData({
-          list_arr: []
-        })
-        if (pageNum_int > 0) {
-          return this.getArticle_fun({ category: category_str, pageNumber: pageNum_int, hasLoading: false })
-        } else {
-          return -1
-        }
-      }).then(res => {
-        if (res === -1) {
-          return -1
-        }
+    function temp_fun(self) {
+      let category_str = self.data.topList_arr[self.data.topListIndex_int]
+      if (self.data.topListIndex_int === 0) {
+        category_str = 'all'
+      }
+      self.getArticle_fun({ category: category_str, hasLoading: false })
+        .then(res => {
+          console.log(res);
+          pageTotal_int = res.total_int
+          pageNum_int = Math.ceil(res.total_int / 5)
 
-        this.setData({
-          list_arr: res.articleList
+          if (pageNum_int > 0) {
+            return self.getArticle_fun({ category: category_str, pageNumber: pageNum_int, hasLoading: false })
+          } else {
+            return -1
+          }
+        }).then(res => {
+          console.log(res);
+          if (res === -1) {
+            return -1
+          }
+          console.log(res);
+          res.articleList = res.articleList.filter(item => item.isTop !== 2)
+          self.setData({
+            list_arr: self.data.list_arr.concat(res.articleList)
+          })
+          if (pageNum_int > 1) {
+            pageNum_int--
+            return self.getArticle_fun({ category: category_str, pageNumber: pageNum_int, hasLoading: false })
+          } else {
+            return -2
+          }
+        }).then(res => {
+          console.log(res);
+          if (res !== -1 && res !== -2) {
+            res.articleList = res.articleList && res.articleList.filter(item => item.isTop !== 2)
+            if (res !== -1 && res !== -2) {
+              var arr_arr = self.data.list_arr
+              arr_arr.push(...res.articleList)
+              self.setData({ list_arr: arr_arr })
+            }
+          }
+          // wx.hideLoading();
+          if (isAuto || res === -1) {
+            self.topMsgFinish_fun()
+          } else {
+            self.topMsgFinish_fun('刷新成功')
+            // self.topMsgFinish_fun()
+          }
+          callback && callback()
+        }).catch(res => {
+          // wx.hideLoading();
+          self.topMsgFinish_fun('刷新失败')
+          console.log(res);
         })
-        if (pageNum_int > 1) {
-          pageNum_int--
-          return this.getArticle_fun({ category: category_str, pageNumber: pageNum_int, hasLoading: false })
-        } else {
-          return -2
-        }
-      }).then(res => {
-        console.log(res);
-        if (res !== -1 && res !== -2) {
-          var arr_arr = this.data.list_arr
-          arr_arr.push(...res.articleList)
-          this.setData({ list_arr: arr_arr })
-        }
-        // wx.hideLoading();
-        if (isAuto || res === -1) {
-          this.topMsgFinish_fun()
-        } else {
-          this.topMsgFinish_fun('刷新成功')
-          // this.topMsgFinish_fun()
-        }
-        callback && callback()
-      }).catch(res => {
-        // wx.hideLoading();
-        this.topMsgFinish_fun('刷新失败')
-        console.log(res);
+    }
+    if (this.data.topListIndex_int === 0) {
+      this.getTopArticle_fun(() => {
+        temp_fun(this)
       })
+    } else {
+      temp_fun(this)
+    }
   },
   initTemp_fun(isAuto) {
     this.initArticle_fun(
@@ -218,9 +258,15 @@ Page({
           // }
         } else {
           // wx.showToast({ icon: 'error', title: '帖子为空' })
-          this.setData({
-            bottomMsg_str: '无内容'
-          })
+          if (this.data.topListIndex_int === 0) {
+            this.setData({
+              bottomMsg_str: ''
+            })
+          } else {
+            this.setData({
+              bottomMsg_str: '无内容'
+            })
+          }
         }
       }, isAuto
     )
@@ -308,9 +354,13 @@ Page({
   },
 
   // 初步处理获取到帖子的数据
-  handleArticleData_fun(data) {
+  handleArticleData_fun(data, isTop_bool = false) {
     console.log(data);
-    let articleList = data.articleList && data.articleList.list.reverse() || []
+    if (isTop_bool) {
+      var articleList = data.articles && data.articles.reverse() || []
+    } else {
+      var articleList = data.articleList && data.articleList.list.reverse() || []
+    }
     articleList.forEach(item => {
       if (item.commentList.length > 0) {
         item.commentListNum_int = item.commentList[0].commentCount
@@ -318,6 +368,7 @@ Page({
         item.commentListNum_int = 'x'
       }
 
+      item.idd = item.id + item.isTop_bool
       item.sex_str = item.userList[0] && item.userList[0].sex // 0、未知，1、男，2、女
 
       var t_o = myTime(item.createTime)
@@ -344,7 +395,7 @@ Page({
       }
 
       if (item.isAnonymous) {
-        item.name_str = '匿名'
+        item.name_str = '用户'
         item.avatarUrl_str = app.globalData.anonymousAvatarUrl_str
       } else {
         item.name_str = item.userList[0] && item.userList[0].name || 'unknown'
@@ -399,7 +450,7 @@ Page({
     })
   },
 
-  // 匿名切换
+  // 用户切换
   anonymou_fun() {
     var isAnonymous = this.data.isAnonymous_bool
     isAnonymous = !isAnonymous
@@ -408,7 +459,7 @@ Page({
     this.setData({
       isAnonymous_bool: isAnonymous,
       reNewRotate_int: this.data.reNewRotate_int + 360,
-      nickName_str: isAnonymous ? '匿名' : app.globalData.nickName_str,
+      nickName_str: isAnonymous ? '用户' : app.globalData.nickName_str,
       avatarUrl_str: isAnonymous ? app.globalData.anonymousAvatarUrl_str : app.globalData.avatarUrl_str
     })
   },
@@ -466,7 +517,7 @@ Page({
       }, pageNumber: pageNum_int, category: category_str
     }).then(res => {
       var arr_arr = this.data.list_arr
-
+      res.articleList = res.articleList.filter(item => item.isTop !== 2)
       arr_arr.push(...res.articleList)
       this.setData({
         list_arr: arr_arr

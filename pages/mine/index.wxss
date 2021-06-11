@@ -66,10 +66,11 @@
   justify-content: center;
   align-items: center;
   position: relative;
+  background-color: transparent;
 }
 .wrap .item-wrapper .item-wrap image {
-  width: 45rpx;
-  height: 45rpx;
+  width: 60rpx;
+  height: 60rpx;
   margin-bottom: 12rpx;
 }
 .wrap .item-wrapper .item-wrap::after {
@@ -85,4 +86,5 @@
 .wrap .item-wrapper .item-wrap .item {
   font-size: 28rpx;
   color: #666;
+  font-weight: normal;
 }

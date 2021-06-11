@@ -18,14 +18,14 @@
     bindrefresherrefresh="pullDownRefresh_fun"
     bindscrolltolower="upPullLoadList_fun"
     >
-    <view style="height: {{topMsgHeight_int}}rpx" class="top-msg">{{topMsg_str}}</view>
-    <Item wx:for="{{list_arr}}" tagBg="{{item.tagBg_str}}" bind:pageviewevent="pageview_fun" bind:zanevent="dotZan_fun" data-id="{{item.id}}" wx:key="id" item="{{item}}" isMy="{{item.fromUid === uid_int}}"></Item>
+    <view style="height: {{topMsgHeight_int}}rpx;line-height: {{topMsgHeight_int+15}}rpx" class="top-msg">{{topMsg_str}}</view>
+    <Item wx:for="{{list_arr}}" tagBg="{{item.tagBg_str}}" bind:pageviewevent="pageview_fun" bind:zanevent="dotZan_fun" data-id="{{item.id}}" wx:key="idd" item="{{item}}" isMy="{{item.fromUid === uid_int}}"></Item>
     <view style="height: {{bottomMsgHeight_int}}rpx" class="bottom-msg">{{bottomMsg_str}}</view>
   </scroll-view>
 
   <view class="shadow"></view>
 
-  <image class="add" bindtap="showDialog_fun" src="/img/add_sign.png" mode="aspectFit" lazy-load="false" />
+  <image class="add" bindtap="showDialog_fun" src="/img/add.png" mode="aspectFit" lazy-load="false" />
     
   <view class="dialog-wrap" bindtap="cancelDialog_fun" wx:if="{{showDialog_bool}}">
     <view catchtap="temp_fun" class="dialog {{showDialog_bool}}">

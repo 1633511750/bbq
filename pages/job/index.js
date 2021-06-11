@@ -1,4 +1,5 @@
 import { $http } from '../../utils/util'
+import $street_mod from '../../utils/businessStreet'
 // pages/job/index.js
 var app = getApp()
 Page({
@@ -52,38 +53,43 @@ Page({
     } else {
       streetShop_o = { examined: 1, business: 1, school: app.globalData.school_str, category: category_str }
     }
-    $http({
-      isJson: true, url: '/businessStreet/getShops', method: 'post', data: {
-        pageNum: 1, pageSize: 50, streetShop: streetShop_o
+
+
+    // $http({
+    //   isJson: true, url: '/businessStreet/getShops', method: 'post', data: {
+    //     pageNum: 1, pageSize: 50, streetShop: streetShop_o
+    //   }
+    // })
+    $street_mod.getShops_fun({
+      shop_obj: streetShop_o, success_fun: (res) => {
+        console.log(res);
+        let list_arr = res
+        list_arr.forEach(item => {
+          if (item.dianzan) {
+            item.dianzan_int = JSON.parse(item.dianzan).length
+            if (JSON.parse(item.dianzan).indexOf(app.globalData.uid_int) === -1) {
+              item.isZan_bool = false
+            } else {
+              item.isZan_bool = true
+            }
+          }
+
+          if (item.lable) {
+            item.label_arr = item.lable.split(/[;；]+/)
+          }
+          console.log(item.lable);
+          if (item.headSculpture && item.headSculptureName) {
+            item.headPic_str = app.globalData.baseUrl + item.headSculpture.slice(25) + '/' + item.headSculptureName
+          }
+        })
+        this.setData({
+          itemList_arr: list_arr
+        })
       }
     })
-      .then(res => {
-        console.log(res);
-        if (res.data.code === 200) {
-          let list_arr = res.data.data.streetShops
-          list_arr.forEach(item => {
-            if (item.dianzan) {
-              item.dianzan_int = JSON.parse(item.dianzan).length
-              if (JSON.parse(item.dianzan).indexOf(app.globalData.uid_int) === -1) {
-                item.isZan_bool = false
-              } else {
-                item.isZan_bool = true
-              }
-            }
+    // .then(res => {
 
-            if (item.lable) {
-              item.label_arr = item.lable.split(/[;；]+/)
-            }
-            console.log(item.lable);
-            if (item.headSculpture && item.headSculptureName) {
-              item.headPic_str = app.globalData.baseUrl + item.headSculpture.slice(25) + '/' + item.headSculptureName
-            }
-          })
-          this.setData({
-            itemList_arr: list_arr
-          })
-        }
-      })
+    // })
   },
 
   // 新增/更新店铺信息
@@ -100,13 +106,18 @@ Page({
 
   // 获取创业街店铺商品
   getGoods_fun() {
-    $http({
-      isJson: true, method: 'post', url: '/businessStreet/getGoods', data: {
-        pageNum: 1, pageSize: 10, streetGoods: { business: '1', examined: '1' }
+    $street_mod.getGoods_fun({
+      good_obj: { business: '1', examined: '1' }, success_fun: (res) => {
+        console.log(res);
       }
-    }).then(res => {
-      console.log(res);
     })
+    // $http({
+    //   isJson: true, method: 'post', url: '/businessStreet/getGoods', data: {
+    //     pageNum: 1, pageSize: 10, streetGoods: { business: '1', examined: '1' }
+    //   }
+    // }).then(res => {
+    //   console.log(res);
+    // })
   },
 
   // 点赞
@@ -157,7 +168,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    // this.getGoods_fun()
   },
 
   /**

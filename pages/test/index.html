@@ -5,61 +5,38 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
-  <style type="text/css">
+  <style>
     * {
       margin: 0;
       padding: 0;
     }
 
-    html {
-      background: black;
+    .box {
+      vertical-align: middle;
+      display: inline-block;
+      /* font-size: 50px; */
     }
 
-    body {
-      background: red;
+    .box span {
+      font-size: 30px;
+      vertical-align: inherit;
     }
 
-    #item {
-      width: 200px;
-      height: 200px;
-      padding: 100px;
-      background: pink;
-      margin-top: 100px;
-      position: relative;
+    .box span:first-child {
+      font-size: 20px;
     }
 
-    #item1 {
-      width: 50px;
-      height: 50px;
-      margin: 0 auto;
-      background-color: #fff;
+    .box1 {
+      vertical-align: middle;
+      display: inline-block;
+      font-size: 20px;
     }
   </style>
 </head>
 
 <body>
-  <div id="item">
-    <div id="item1"></div>
-  </div>
-  <script>
-    var p1 = new Promise((resolve, reject) => {
-      setTimeout(() => {
-        resolve('success')
-      }, 1000);
-    })
-    var p2 = new Promise((resolve, reject) => {
-      setTimeout(() => {
-        resolve('successss')
-      }, 500);
-    })
-    Promise.all([p1, p2])
-      .then(arr => {
-        console.log(arr);
-      })
-      .catch(err => {
-        console.log(err);
-      })
-  </script>
+  <div class="box"><span>a</span><span>onef</span></div>
+  <div class="box1">fff</div>
 </body>
 
 </html>

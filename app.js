@@ -19,7 +19,6 @@ App({
         console.log(err);
       }
     })
-
     // 读取用户信息
     if (wx.getStorageSync('school')) {
       this.globalData.school_str = wx.getStorageSync('school')
@@ -27,14 +26,14 @@ App({
       wx.setStorageSync('historySchool', [this.globalData.school_str]);
     }
     // this.globalData.avatarUrl_str = wx.getStorageSync('avatarUrl')
-    this.globalData.avatarUrl_str = wx.getStorageSync('avatarUrl') || this.globalData.avatarUrl_str
+    this.globalData.avatarUrl_str = wx.getStorageSync('avatarUrl')
     this.globalData.nickName_str = wx.getStorageSync('nickName')
     this.globalData.country_str = wx.getStorageSync('country')
     this.globalData.province_str = wx.getStorageSync('province')
     this.globalData.city_str = wx.getStorageSync('city')
     this.globalData.uid_int = wx.getStorageSync('uid') - 0
     this.globalData.bgColor_str = wx.getStorageSync('bgColor') || '#fff'  // 主题颜色
-    // console.log('uid:' + this.globalData.uid_int);
+    console.log('uid:' + this.globalData.uid_int);
     // isAnonymous 是否匿名
 
     // 管理员注册的账号:
@@ -44,14 +43,6 @@ App({
     // phoneNumber: '18000000000'
     // JSESSIONID=FB550FDA9A5B9763F2ED87D4E9DC691E; Path=/; HttpOnly
 
-    // $http({
-    //   hasLimit: true, url: '/User/selectedSchool', method: 'get', data: {
-    //     school: '山西传媒学院'
-    //   }
-    // })
-    //   .then(res => {
-    //     console.log(res.data.data);
-    //   })
     // $http({
     //   isJson: true, method: 'post', url: '/businessStreet/addOrUpdateGoods', data: {
     //     shopId: 14,
@@ -79,7 +70,17 @@ App({
     //   },
     //   fail: (res) => { },
     //   complete: (res) => { },
-    // })
+    // // })
+
+    // wx.reLaunch({
+    //   url: '/pages/index/i',
+    //   success: (result) => {
+
+    //   },
+    //   fail: () => {},
+    //   complete: () => {}
+    // });
+
   },
 
   globalData: {

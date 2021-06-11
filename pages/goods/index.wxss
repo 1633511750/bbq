@@ -62,6 +62,10 @@ page .item-wrap .btn {
   text-align: center;
   border-radius: 10rpx;
 }
+page .item-wrap .btn.del {
+  top: 40rpx;
+  background-color: red;
+}
 page .bottom-btn {
   width: 100%;
   height: 120rpx;

@@ -7,6 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    disabledBtn_bool: false,
     isModify_bool: false,
     shopName_str: '',
     tag_str: '',
@@ -23,6 +24,7 @@ Page({
 
     schoolIndex_int: 0,
     school_arr: [
+      '全部',
       '山西大学',
       '太原科技大学',
       '中北大学',
@@ -132,12 +134,14 @@ Page({
       success(res) {
         console.log(res.data);
         wx.showToast({ title: '开店提交成功，审核中', icon: 'none' })
+        wx.hideLoading();
+        self.setData({ disabledBtn_bool: true })
         setTimeout(() => {
           var pages = getCurrentPages()
           var curPage = pages[pages.length - 1]
           var url = curPage.route
           if (url === 'pages/openshop/index') {
-            wx.navigateTo({
+            wx.redirectTo({
               url: '/pages/shop/index',
             });
           }
@@ -146,12 +150,15 @@ Page({
       fail(res) {
         console.log(res);
         wx.showToast({ title: '图片上传失败', icon: 'error' })
+        wx.hideLoading();
+        self.setData({ disabledBtn_bool: true })
       }
     })
   },
 
   // 开店请求
   setting_fun() {
+    if (this.data.disabledBtn_bool) return
     if (this.data.headPic_str.trim() === '') {
       return wx.showToast({ title: '请上传店铺头像', icon: 'none' })
     }
@@ -159,9 +166,16 @@ Page({
       return wx.showToast({ title: '请填写完整信息后再提交', icon: 'none' })
     }
 
-    let tag_arr = this.data.tag_str.split(/[;；]+/)
-    tag_arr = tag_arr.filter(item => item.length > 6 ? item.slice(0, 6) : item)
+    let tag_arr = this.data.tag_str.split(/[;；,，、。.!！:：]+/)
+    tag_arr = tag_arr.slice(0, 6)
+    tag_arr = tag_arr.filter(item => item)
+    tag_arr = tag_arr.map(item => item.length > 6 ? item.slice(0, 6) : item)
     let tag_str = tag_arr.join(';')
+
+    wx.showLoading({
+      title: '提交中...',
+      mask: true
+    });
 
     $http({
       isJson: true, url: '/businessStreet/addOrUpdateShop', method: 'post', data: {
@@ -184,7 +198,13 @@ Page({
         this.uploadImgHandle_fun(this.data.headPic_str, res.data.data.streetShopId)
       } else {
         wx.showToast({ title: '开店提交失败', icon: 'error' })
+        wx.hideLoading();
+        this.setData({ disabledBtn_bool: true })
       }
+    }).catch(err => {
+      console.log(err);
+      wx.hideLoading();
+      this.setData({ disabledBtn_bool: true })
     })
   },
 

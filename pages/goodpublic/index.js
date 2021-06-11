@@ -15,7 +15,8 @@ Page({
     goodId_int: 0,
     isUpdate_bool: false,
     headPic_str: '',
-    showPic_arr: []
+    showPic_arr: [],
+    disabledBtn_bool: false
   },
 
   // 调用相机、图库弹框
@@ -215,6 +216,7 @@ Page({
 
   // 提交商品审核
   submitGoods_fun() {
+    if (this.data.disabledBtn_bool) return
     // console.log(this.data.headPic_str, this.data.showPic_arr);
     let self = this
     if (this.data.orgPrice_flo.trim() === '' || this.data.nowPrice_flo.trim() === '' || this.data.name_str.trim() === '') {
@@ -236,8 +238,8 @@ Page({
     }
     console.log(orgPrice_flo, this.data.desc_str.trim(), this.data.id_int);
     wx.showModal({
-      title: '审核提示',
-      content: '是否提交审核？',
+      title: '提示',
+      content: '是否确认提交？',
       showCancel: true,
       cancelText: '取消',
       cancelColor: '#000000',
@@ -334,6 +336,11 @@ Page({
               }
             })
           } else {
+            wx.showLoading({
+              title: '提交中...',
+              mask: true,
+            });
+
             $http({
               isJson: true, method: 'post', url: '/businessStreet/addOrUpdateGoods', data: {
                 shopId: self.data.id_int,
@@ -363,7 +370,10 @@ Page({
                       }))
                     })
                     Promise.all(arr_arr).then(res => {
+                      wx.hideLoading()
+                      self.setData({ disabledBtn_bool: true })
                       wx.showToast({ title: '提交审核成功' })
+                      app.globalData.good_examined_bool = true
                       setTimeout(() => {
                         var pages = getCurrentPages()
                         var curPage = pages[pages.length - 1]
@@ -375,12 +385,15 @@ Page({
                         }
                       }, 1500);
                     }).catch(err => {
+                      wx.hideLoading()
                       console.log(err);
                     })
                   })
                 }
               } else {
                 wx.showToast({ title: '提交失败', icon: 'error' })
+                // this.setData({disabledBtn_bool: true})
+                wx.hideLoading();
               }
             })
           }

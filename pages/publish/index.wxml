@@ -1,6 +1,6 @@
 <view class="wrap">
   <view class="con">
-    <textarea bindfocus="focus_fun" bindblur="blur_fun" maxlength="600" bindinput="textchange_fun" class="textarea" value="{{text_str}}" adjust-position="{{false}}" focus auto-height cursor-spacing="200" show-confirm-bar="{{false}}" placeholder="这一刻的想法..."></textarea>
+    <textarea bindfocus="focus_fun" bindblur="blur_fun" maxlength="600" bindinput="textchange_fun" class="textarea" value="{{text_str}}" adjust-position="{{false}}" auto-height cursor-spacing="200" show-confirm-bar="{{false}}" placeholder="这一刻的想法..."></textarea>
     <view class="item-wrap clearfix">
       <view class="img-wrap" wx:key="*this" wx:for="{{tempImgSrc_arr}}">
         <image mode="aspectFill" bindtap="previewImages_fun" src="{{item}}" data-urls="{{tempImgSrc_arr}}" data-cururl="{{item}}"/>
@@ -23,12 +23,12 @@
     </view>
   </view>
   <view class="footer" style="bottom: {{keyHeight_int}}px;">
-    <image class="avatar" mode="aspectFill" src="{{avatarUrl_str}}" />
-    <view class="btn" bindtap="publicArtical_fun" data-anonymous="0">不匿发</view>  
-    <!--<image class="img1" bindtap="tapPic_fun" src="/img/pic.png" mode="aspectFit" />-->
+    <!--<image class="avatar" mode="aspectFill" src="{{avatarUrl_str}}" />
+    <view class="btn" bindtap="publicArtical_fun" data-anonymous="1">发表</view>-->
+
     <image class="img3" bindtap="getPosition_fun" src="/img/pos1.png" mode="aspectFit" />
     <!--<image class="img2" bindtap="tapAite_fun" src="" mode="aspectFit" />-->
-    <image class="avatar" mode="aspectFill" src="{{anonymousAvatarUrl_str}}" />
-    <view class="btn" bindtap="publicArtical_fun" data-anonymous="1">匿发</view>  
+    <!--<image class="avatar" mode="aspectFill" src="{{anonymousAvatarUrl_str}}" />-->
+    <view class="btn" bindtap="publicArtical_fun" data-anonymous="0">发表</view>  
   </view>
 </view>

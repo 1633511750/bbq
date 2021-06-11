@@ -30,7 +30,6 @@
       "outputPath": ""
     },
     "enableEngineNative": false,
-    "bundle": false,
     "useIsolateContext": true,
     "useCompilerModule": true,
     "userConfirmedUseCompilerModuleSwitch": false,
@@ -41,7 +40,7 @@
   },
   "compileType": "miniprogram",
   "libVersion": "2.16.1",
-  "appid": "wx8c84e9f59ed23d2d",
+  "appid": "wx2b0c42bdd3e1821c",
   "projectname": "bbq",
   "debugOptions": {
     "hidedInDevtools": []

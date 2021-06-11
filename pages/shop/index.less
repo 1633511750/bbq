@@ -11,16 +11,17 @@ page {
     
     .name {
       position: absolute;
-      left: 160rpx;
+      left: 150rpx;
       top: 10rpx;
-      width: 320rpx;
+      width: 390rpx;
       text-align: center;
       // color: #aaa;
+      // background-color: red;
       color: #489CD7;
       font-size: 28rpx;
     }
     .item {
-      flex: 0 0 25%;
+      flex: 0 0 19%;
       text-align: center;
 
       &:first-child {
@@ -45,7 +46,7 @@ page {
       bottom: 70rpx;
     }
 
-    .check-shop {
+    .check-shop, .open-shop {
       color: #489CD7;
       border: 1px solid #489CD7;
       padding: 0 10rpx;
@@ -53,6 +54,22 @@ page {
       position: absolute;
       left: 550rpx;
       bottom: 70rpx;
+    }
+    .open-shop {
+      margin-left: 50rpx;
+      color: green;
+      border: 1px solid green;
+    }
+  }
+
+  .nodata{
+    text-align: center;
+    margin: 100rpx 0;
+    color: #999;
+
+    navigator {
+      display: inline;
+      color: var(--colorBlue);
     }
   }
 }

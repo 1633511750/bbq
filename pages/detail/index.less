@@ -15,12 +15,24 @@
     border-radius: 10rpx;
     position: relative;
     box-shadow: 0 0 10rpx 0 #F2F2F2;
+    
     .item {
       .headPic {
         width: 85rpx;
         height: 85rpx;
         border-radius: 41rpx;
         background-size: 100% 100%;
+      }
+      .sex {
+        width: 30rpx;
+        height: 30rpx;
+        vertical-align: middle;
+        position: absolute;
+        left: 30rpx;
+        top: 30rpx;
+        background-color: #fff;
+        border-radius: 50%;
+        border: 2rpx solid #fff;
       }
       .info {
         width: calc(100% - 105rpx);
@@ -88,13 +100,27 @@
   
     }
     .desc {
-      display: inline-block;
       line-height: 44rpx;
       font-size: 32rpx;
       margin-top: 28rpx;
+      display: -webkit-box;
+      // margin-bottom: 30rpx;
+
+      word-wrap: break-word;
+      -webkit-box-orient: vertical;
+
+      white-space: pre-line;
+    }
+    .desc-blank {
+      height: 25rpx;
+    }
+    .pos {
+      margin-top: 30rpx;
+      color: #999;
+      font-size: 24rpx;
     }
     .img {
-      margin-top: 20rpx;
+      margin-top: 10rpx;
       image {
         float: left;
         margin-left: 10rpx;
@@ -178,6 +204,7 @@
       .f1 {
         flex: 1;
         text-align: left;
+        position: relative;
         image {
           width: 28rpx;
           height: 28rpx;
@@ -189,6 +216,18 @@
           top: 3rpx;
           margin-left: 10rpx;
           font-weight: lighter;
+        }
+        .top {
+          width: 100rpx;
+          font-size: 30rpx;
+          position: absolute;
+          right: 120rpx;
+          text-align: center;
+          left: -80rpx;
+          top: -1rpx;
+          // border: 1rpx solid red;
+          // color: red;
+          border-radius: 10rpx;
         }
       }
       .f2 {
@@ -332,6 +371,7 @@
                     color: @color_icon;
                     float: left;
                     font-size: 30rpx;
+                    vertical-align: middle;
                   }
                   .reply-heart-num {
                     float: right;
@@ -354,6 +394,7 @@
                   // vertical-align: middle;
                   .reply-pl-toname {
                     display: inline-block;
+                    vertical-align: middle;
                     margin-top: 20rpx;
                     color: @color_icon;
                     font-size: 28rpx;
@@ -410,11 +451,39 @@
                 .reply-pl-con {
                   width: 575rpx;
                   display: inline-block;
+                  margin-top: 20rpx;
+                  .reply-pl-toname {
+                    margin-top: 0;
+                    vertical-align: middle;
+                  }
+                  .rep-pl-con {
+                    margin-top: 20rpx;
+                    vertical-align: middle;
+                  }
                 }
               }
             }
           }
         }
+      }
+
+      .house {
+        height: 32rpx;
+        line-height: 32rpx;
+        padding: 0 15rpx;
+        margin-left: 20rpx;
+        font-size: 24rpx;
+        color: #02A7F0;
+        background-color: var(--colorGray);
+        margin-left: 5rpx;
+        display: inline-block;
+        position: relative;
+        top: -4.5rpx;
+        border-radius: 15rpx;
+        vertical-align: middle;
+      }
+      .house.big {
+        margin-left: 15rpx;
       }
     }
     .no-reply {
@@ -556,23 +625,46 @@
       .pic-wrap {
         padding-top: 20rpx;
         margin-bottom: 20rpx;
+        display: flex;
+        justify-content: space-between;
+        .left, .right {
+          display: flex;
+        }
         image {
           width: 40rpx;
           height: 40rpx;
           vertical-align: middle;
         }
+        image:first-of-type {
+          margin-left: 20rpx;
+        }
         .send {
           font-size: 34rpx;
-          float: right;
           margin-right: 15px;
           color: #969696;
         }
         .send-left {
           font-size: 34rpx;
-          float: left;
-          margin-left: 20rpx;
           color: #969696;
-          margin-bottom: 20rpx;
+        }
+        .left {
+          margin-left: 10rpx;
+        }
+        .avatar {
+          width: 60rpx;
+          height: 60rpx;
+          border-radius: 50%;
+          display: inline-block;
+          vertical-align: middle;
+        }
+        .btn {
+          height: 60rpx;
+          line-height: 60rpx;
+          display: inline-block;
+          vertical-align: middle;
+          margin-left: 10rpx;
+          // position: relative;
+          // top: 6rpx;
         }
       }
     }

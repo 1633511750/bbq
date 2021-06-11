@@ -1,0 +1,11 @@
+page {
+  padding: 0 30rpx 30rpx;
+}
+page .title {
+  text-align: center;
+  font-weight: bold;
+}
+page .main {
+  background-color: #fff;
+  white-space: pre-line;
+}

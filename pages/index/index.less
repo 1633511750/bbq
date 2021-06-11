@@ -8,15 +8,17 @@
 @font_size_48: 48;
 
 .index-wrap {
-  background-image: linear-gradient(#fff 0%, #fff 19%, #f7f7f7 34.5%, #f7f7f7 100%);
+  //background-image: linear-gradient(#fff 0%, #fff 19%, var(--colorGray) 34.5%, var(--colorGray) 100%);
+  // background-color: var(--colorGray);
   
   .top {
     width: 100%;
     height: 105rpx;
     display: flex;
-    background-color: #fff;
+    background-color: var(--colorTop);
     position: fixed;
     z-index: 1;
+    border-bottom: 1rpx solid var(--colorGray);
     
     .scroll-wrap {
       width: 100%;
@@ -29,10 +31,12 @@
         line-height: 105rpx;
         text-align: center;
         font-size: 32rpx;
-        color: @color_gray;
+        // color: @color_gray;
+        color: #fff;
         .active {
           font-weight: bold;
-          color: var(--colorGray1);
+          // color: var(--colorGray1);
+          color: #fff;
           position: relative;
           &::after {
             width: 32rpx;
@@ -54,6 +58,7 @@
   }
 
   .scroll-view {
+    background-color: var(--colorGray);
     .top-msg {
       height: 0rpx;
       text-align: center;
@@ -84,9 +89,9 @@
     position: fixed;
     right: 90rpx;
     bottom: 63rpx;
-    background-color: @color_orange;
+    // background-color: @color_orange;
     border-radius: 50%;
-    opacity: 0.7;
+    // opacity: 0.7;
   }
 
   .dialog-wrap{

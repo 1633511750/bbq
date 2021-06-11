@@ -113,8 +113,8 @@
   background-color: #fff;
   position: fixed;
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
 }
 .wrap .footer::before {
   content: '';
@@ -129,7 +129,7 @@
   height: 50rpx;
 }
 .wrap .footer .img3 {
-  margin: 0 100rpx;
+  margin-right: 400rpx;
 }
 .wrap .footer .btn {
   text-align: center;

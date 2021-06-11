@@ -9,30 +9,6 @@ Page({
    */
   data: {
     commentList_arr: [],
-    //   id: 1,
-    //   name: '壹只小坤',
-    //   date: '01-11',
-    //   time: '17:34',
-    //   content: '安抚哈尔涂鸦而分公司德国汉莎到付哈人员阿桑的歌',
-    //   headPic: 'https://i04piccdn.sogoucdn.com/0e3e409f0cf25fb3',
-    //   desc: '安抚哈尔涂鸦而分公司德国汉莎到付哈人员阿桑的歌',
-    //   img: [
-    //     'https://i02piccdn.sogoucdn.com/fdd1e2dadbd01c8a',
-    //     'https://i04piccdn.sogoucdn.com/af32dcada2c5a4a9',
-    //     'https://i03piccdn.sogoucdn.com/089782feb3e09175',
-    //     'https://i02piccdn.sogoucdn.com/fdd1e2dadbd01c8a',
-    //     'https://i04piccdn.sogoucdn.com/af32dcada2c5a4a9',
-    //     'https://i03piccdn.sogoucdn.com/089782feb3e09175',
-    //     'https://i02piccdn.sogoucdn.com/fdd1e2dadbd01c8a',
-    //     'https://i04piccdn.sogoucdn.com/af32dcada2c5a4a9',
-    //     'https://i03piccdn.sogoucdn.com/089782feb3e09175'
-    //   ],
-    //   isZan: false,
-    //   chat: 3,
-    //   hot: 33,
-    //   zan: 34,
-    //   type: '游戏'
-    // }],
 
     showDialog_bool: false,
     showPingLun_bool: false,
@@ -74,13 +50,15 @@ Page({
   showActionDialog_fun() {
     if (this.data.isMy_bool === 'true') {
       wx.showActionSheet({
-        itemList: ['置顶', '删除'],
+        itemList: ['请推广到全部学校', '请置顶', '删除'],
         success: (result) => {
           switch (result.tapIndex) {
             case 0:
-
+              this.toTop_fun()
               break
             case 1:
+              break
+            case 2:
               this.deleteArtical_fun()
               break
           }
@@ -104,7 +82,24 @@ Page({
 
   // 置顶请求
   toTop_fun() {
+    if (this.data.isTop_bool || this.data.isTop_int === 2) {
+      wx.showToast({
+        title: '您已上热榜',
+        icon: 'none'
+      });
 
+      return
+    }
+    $http({
+      url: '/User/articleTopRequest', method: 'post', data: {
+        articleId: this.data.id_str - 0
+      }
+    }).then(res => {
+      console.log(res);
+      if (res.data.code === 200) {
+        wx.showToast({ title: '请求成功' })
+      }
+    })
   },
 
   // 隐藏分享弹窗
@@ -185,14 +180,22 @@ Page({
 
   // 大图预览功能
   previewImage_fun(e) {
+    var add = e.currentTarget.dataset.add
+    var anonymous = e.currentTarget.dataset.anonymous
+    console.log(add, anonymous);
+    if (anonymous === 1 && add === 'true') {
+      return
+    }
+
     var urls = e.currentTarget.dataset.urls
     var cururl = e.currentTarget.dataset.cururl
-
     wx.previewImage({
       current: cururl, // 当前显示图片的http链接
-      urls: urls // 需要预览的图片http链接列表
+      urls // 需要预览的图片http链接列表
     })
-    this.addPageview_fun(this.data.id_str - 0)
+    if (add !== 'true') {
+      this.addPageview_fun()
+    }
   },
 
   // 点赞
@@ -252,6 +255,10 @@ Page({
     console.log(item_o);
     this.setData({
       id_str: item_o.id,
+      isTop_int: item_o.isTop,
+      isTop_bool: item_o.isTop_bool,
+      sex_str: item_o.sex_str,
+      location_str: item_o.location,
       category_str: item_o.category,
       commentListNum_str: item_o.commentListNum_int,
       img_arr: item_o.imgOrg,
@@ -267,7 +274,9 @@ Page({
       isMy_bool: options.isMy,
       tagBg: options.tagBg,
       isAnonymous_int: item_o.isAnonymous,
-      fromUid_int: item_o.fromUid
+      fromUid_int: item_o.fromUid,
+      userAvatarUrl_str: app.globalData.avatarUrl_str,
+      anonymousAvatarUrl_str: app.globalData.anonymousAvatarUrl_str
     })
     this.addPageview_fun(this.data.id_str - 0)
     this.getReply_fun(this.data.id_str - 0)

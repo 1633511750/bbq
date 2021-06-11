@@ -27,7 +27,8 @@
     "pages/goodpublic/index",
     "pages/test/index",
     "pages/schoolmanagers/index",
-    "pages/callus/index"
+    "pages/callus/index",
+    "pages/userXY/index"
   ],
   "window": {
     "backgroundTextStyle": "light",

@@ -2,3 +2,8 @@ page {
   background-color: var(--colorGray);
   overflow: auto;
 }
+page .blank {
+  text-align: center;
+  margin: 100rpx 0;
+  color: #999;
+}

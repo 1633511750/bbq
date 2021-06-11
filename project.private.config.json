@@ -159,6 +159,19 @@
         {
           "name": "selectpublic",
           "pathName": "pages/selectpublic/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/callus/index",
+          "pathName": "pages/callus/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/userXY/index",
+          "pathName": "pages/userXY/index",
+          "query": "",
           "scene": null
         }
       ]

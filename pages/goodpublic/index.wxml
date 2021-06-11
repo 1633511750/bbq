@@ -28,7 +28,7 @@
 </view>
 
 <view class="bottom-wrap clearfix">
-  <textarea value="{{desc_str}}" auto-height placeholder="请输入商品描述" bindinput="inputValue_fun" data-name="desc" class="desc"></textarea>
+  <textarea value="{{desc_str}}" maxlength="200" auto-height placeholder="请输入商品描述" bindinput="inputValue_fun" data-name="desc" class="desc"></textarea>
   <view class="img" wx:key="*this" wx:for="{{showPic_arr}}" wx:key="*this">
     <image mode="aspectFill" src="{{item}}" />
     <view class="img-close" bindtap="deleteImg_fun" data-index="{{index}}">×</view>
@@ -45,4 +45,4 @@
   </view>
 </view>
 
-<view bindtap="submitGoods_fun" class="bottom-btn">提交审核</view>
+<view bindtap="submitGoods_fun" class="bottom-btn">发布</view>
