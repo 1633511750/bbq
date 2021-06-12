@@ -16,7 +16,8 @@ page{
   --colorBlue1: #00B4FF;
   --colorGray1: #887676;
   --colorOrange: #ed7b25;
-  --colorTop: #ffc273;
+  --colorOrange1: #ff7e17;
+  --colorTop: #fff;
 
   font-size: 28rpx;
 

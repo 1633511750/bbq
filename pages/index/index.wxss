@@ -19,11 +19,11 @@
   line-height: 105rpx;
   text-align: center;
   font-size: 32rpx;
-  color: #fff;
+  color: #4f4f4f;
 }
 .index-wrap .top .scroll-wrap .navigator .active {
   font-weight: bold;
-  color: #fff;
+  color: var(--colorGray1);
   position: relative;
 }
 .index-wrap .top .scroll-wrap .navigator .active::after {

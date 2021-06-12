@@ -1,4 +1,4 @@
-import { $http } from '../../utils/util'
+import { $http, $getAllJobLabel } from '../../utils/util'
 import $street_mod from '../../utils/businessStreet'
 // pages/job/index.js
 var app = getApp()
@@ -11,7 +11,7 @@ Page({
     school_str: '',
     currentTitle_int: 0,
     statusBarHeight: app.globalData.statusBarHeight,
-    topList_arr: ['全部', 'IT', '设计', '美妆', '休闲', '学习'],
+    topList_arr: $getAllJobLabel(true),
     topListIndex_int: 0,
     itemList_arr: []
   },

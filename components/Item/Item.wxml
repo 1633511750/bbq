@@ -1,6 +1,6 @@
 <view class="wrapper">
   <view class="blank"></view>
-  <view class="comment" item="{{item}}">
+  <view class="comment">
     <view hover-class="none" bindtap="gotoDetail_fun">
       <view class="item clearfix">
         <image mode="aspectFill" catchtap="previewImages_fun" data-cururl="{{item.avatarUrl_str}}" data-urls="{{[item.avatarUrl_str]}}" data-add="true" class="headPic" src="{{item.avatarUrl_str}}"></image>
@@ -27,7 +27,7 @@
       <view class="f1">
         <image mode="aspectFit" src="/img/hot.png"></image>
         <text class="heart">{{item.pageviews === 0 ? '' : item.pageviews}}</text>
-        <image wx:if="{{item.isTop_bool}}" mode="aspectFit" src="/img/top.png" class="top">🔥</image>
+        <image wx:if="{{item.isTop_bool}}" mode="aspectFit" src="/img/top1.png" class="top">🔥</image>
       </view>
       <view class="f2">
         <image mode="aspectFit" src="/img/chat.png"></image>

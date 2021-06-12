@@ -21,15 +21,15 @@
   white-space: nowrap;
 }
 .wrap .top .scroll-wrap .navigator {
-  width: 125rpx;
+  padding: 0 30rpx;
   display: inline-block;
   line-height: 105.14018692rpx;
   text-align: center;
   font-size: 32rpx;
-  color: #fff;
+  color: #4f4f4f;
 }
 .wrap .top .scroll-wrap .navigator .active {
-  color: #fff;
+  color: var(--colorGray1);
   font-weight: bold;
   position: relative;
 }

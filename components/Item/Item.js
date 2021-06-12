@@ -150,7 +150,6 @@ Component({
     // this.setData({
     //   item_str: JSON.stringify(this.properties.item)
     // })
-    // console.log(this.properties.item);
   },
   ready: function () {
 
