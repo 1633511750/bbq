@@ -232,8 +232,8 @@ Page({
                 app.globalData.avatarUrl_str = app.globalData.baseUrl + res.data.data.user.userHeadpoait.slice(25) + '/' + res.data.data.user.pictureName
                 wx.setStorageSync('avatarUrl', app.globalData.avatarUrl_str)
                 console.log('头像地址' + app.globalData.avatarUrl_str);
-                callback()
               }
+              callback()
 
               // console.log('login : ' + res.data.data.sessionId);
             } else if (res.data.code === 203) {

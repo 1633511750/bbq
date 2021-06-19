@@ -3,7 +3,9 @@
   <view class="main">
     <view class="find-text">{{info_str}}</view>
     <view class="item-wrap">
-      <view class="item" bindtap="selectSchool_fun" data-item="{{item}}" wx:for="{{school_arr}}" wx:key="*this">{{item}}</view>
+      <view class="item" bindtap="selectSchool_fun" data-item="{{item}}" wx:for="{{school_arr}}" wx:key="*this">{{item.school}}
+      <view wx:if="{{item.nums > 0}}" class="dot">{{item.nums}}</view>
+      </view>
     </view>
   </view>
 </view>

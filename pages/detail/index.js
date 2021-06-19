@@ -1,5 +1,5 @@
 // pages/detail/index.js
-const { $http, myTime } = require('../../utils/util')
+const { $http, myTime, getRndName_fun } = require('../../utils/util')
 var app = getApp()
 
 Page({
@@ -49,21 +49,98 @@ Page({
 
   showActionDialog_fun() {
     if (this.data.isMy_bool === 'true') {
-      wx.showActionSheet({
-        itemList: ['请推广到全部学校', '请置顶', '删除'],
-        success: (result) => {
-          switch (result.tapIndex) {
-            case 0:
-              this.toTop_fun()
-              break
-            case 1:
-              break
-            case 2:
-              this.deleteArtical_fun()
-              break
-          }
-        },
-      });
+      console.log(this.data.isTop_int);
+      switch (this.data.isTop_int) {
+        case 0:
+          wx.showActionSheet({
+            itemList: ['匿名此贴', '请推广到全部学校', '请置顶', '删除'],
+            success: (result) => {
+              switch (result.tapIndex) {
+                case 0:
+                  this.toAnonymous_fun()
+                  break
+                case 1:
+                  this.toTop_fun(3)
+                  break
+                case 2:
+                  this.toTop_fun(1)
+                  break
+                case 3:
+                  this.deleteArtical_fun()
+                  break
+              }
+            },
+          });
+          break
+        case 1:
+          wx.showActionSheet({
+            itemList: ['请推广到全部学校', '取消置顶', '删除'],
+            success: (result) => {
+              switch (result.tapIndex) {
+                case 0:
+                  this.toTop_fun(3)
+                  break
+                case 1:
+                  this.toTop_fun(0)
+                  break
+                case 2:
+                  this.deleteArtical_fun()
+                  break
+              }
+            },
+          });
+          break
+        case 3:
+          wx.showActionSheet({
+            itemList: ['取消推广到全部学校', '请置顶', '删除'],
+            success: (result) => {
+              switch (result.tapIndex) {
+                case 0:
+                  this.toTop_fun(0)
+                  break
+                case 1:
+                  this.toTop_fun(1)
+                  break
+                case 2:
+                  this.deleteArtical_fun()
+                  break
+              }
+            },
+          });
+          break
+        case 2:
+          // 已置顶
+          wx.showActionSheet({
+            itemList: ['取消置顶', '删除'],
+            success: (result) => {
+              switch (result.tapIndex) {
+                case 0:
+                  this.toTop_fun(0)
+                  break
+                case 1:
+                  this.deleteArtical_fun()
+                  break
+              }
+            },
+          });
+          break
+        case 4:
+          // 已推广到全部学校
+          wx.showActionSheet({
+            itemList: ['取消推广到全部学校', '删除'],
+            success: (result) => {
+              switch (result.tapIndex) {
+                case 0:
+                  this.toTop_fun(0)
+                  break
+                case 1:
+                  this.deleteArtical_fun()
+                  break
+              }
+            },
+          });
+          break
+      }
     } else {
       wx.showActionSheet({
         itemList: ['举报'],
@@ -80,26 +157,67 @@ Page({
     }
   },
 
-  // 置顶请求
-  toTop_fun() {
-    if (this.data.isTop_bool || this.data.isTop_int === 2) {
-      wx.showToast({
-        title: '您已上热榜',
-        icon: 'none'
-      });
-
-      return
-    }
+  // 匿名此贴
+  toAnonymous_fun() {
+    console.log(this.data.id_str - 0);
     $http({
-      url: '/User/articleTopRequest', method: 'post', data: {
+      url: '/Article/setIsAnonymous', method: 'post', data: {
+        isAnonymous: 1,
         articleId: this.data.id_str - 0
       }
     }).then(res => {
       console.log(res);
       if (res.data.code === 200) {
-        wx.showToast({ title: '请求成功' })
+        wx.showToast({
+          title: '匿名成功',
+        });
+      } else {
+        wx.showToast({ title: '匿名失败', icon: 'error' })
       }
     })
+  },
+
+  // 置顶请求
+  toTop_fun(type) {
+    let self = this
+    wx.showModal({
+      title: '提示',
+      content: '确认操作？',
+      showCancel: true,
+      cancelText: '取消',
+      cancelColor: '#000000',
+      confirmText: '确定',
+      confirmColor: '#3CC51F',
+      success: (result) => {
+        if (result.confirm) {
+          $http({
+            url: '/User/articleTopRequest', method: 'post', data: {
+              articleId: self.data.id_str - 0, status: type
+            }
+          }).then(res => {
+            console.log(res);
+            if (res.data.code === 200) {
+              switch (type) {
+                case 0:
+                case 2:
+                case 4:
+                  wx.showToast({ title: '取消成功', icon: 'none' })
+                  break
+                case 1:
+                case 3:
+                  wx.showToast({ title: '请求成功，审核中', icon: 'none' })
+                  break
+              }
+              self.setData({
+                isTop_int: type
+              })
+            } else {
+              wx.showToast({ title: '操作失败', icon: 'error' })
+            }
+          })
+        }
+      },
+    });
   },
 
   // 隐藏分享弹窗
@@ -251,7 +369,19 @@ Page({
    */
   onLoad: function (options) {
     console.log(options);
-    var item_o = JSON.parse(options.item)
+    var item_o = JSON.parse(decodeURIComponent(options.item))
+    let ext = JSON.parse(item_o.wxExtension)
+    if (ext) {
+      this.setData({
+        wxTitle_str: ext.title,
+        wxExtension_arr: ext.arr
+      })
+    } else {
+      this.setData({
+        wxTitle_str: '',
+        wxExtension_arr: []
+      })
+    }
     console.log(item_o);
     this.setData({
       id_str: item_o.id,
@@ -481,7 +611,8 @@ Page({
       index_int,
       anony_str,
       toAnswerId_int,
-      commentPlaceholder_str: '回复：' + nmId,
+      commentPlaceholder_str: '回复：',
+      // commentPlaceholder_str: '回复：' + nmId,
       showPingLun_bool: true,
       replyFocus_bool: true
     })
@@ -510,7 +641,8 @@ Page({
     if (this.data.isReply_bool) {
       $http({
         url: '/User/publisAnswer', data: {
-          commentId: this.data.commentId_int, content: this.data.comment_str, isAnonymous, toUid: this.data.toUid_int, toName: this.data.anony_str, toAnswerId: this.data.toAnswerId_int
+          commentId: this.data.commentId_int, content: this.data.comment_str, isAnonymous, toUid: this.data.toUid_int,
+          toName: this.data.anony_str, toAnswerId: this.data.toAnswerId_int
         }
       })
         .then(res => {
@@ -523,6 +655,8 @@ Page({
               ['reply_arr[' + this.data.index_int + '].commentListNum_int']: this.data.reply_arr[this.data.index_int].commentListNum_int + 1
             })
             this.getCommentReplyFun_fun(this.data.commentId_int)
+          } else if (res.data.code === 214) {
+            wx.showToast({ title: '您已被禁言', icon: 'error' })
           } else {
             wx.showToast({ title: '回复失败', icon: 'error' })
           }
@@ -549,6 +683,8 @@ Page({
               showPingLun_bool: false
             })
             this.getReply_fun(this.data.id_str - 0)
+          } else if (res.data.code === 214) {
+            wx.showToast({ title: '您已被禁言', icon: 'error' })
           } else {
             wx.showToast({
               title: '评论失败',
@@ -609,6 +745,7 @@ Page({
               } else {
                 nmId_int++
               }
+
               if (nmId_int < 10) {
                 item.nmId_str = '00' + nmId_int
               } else if (nmId_int < 100) {
@@ -617,6 +754,8 @@ Page({
                 item.nmId_str = nmId_int
               }
             }
+
+            // item.nmId_str = item.name
 
             if (item.toUid !== 0) {
               if (item.toName === '0') {
@@ -872,14 +1011,28 @@ Page({
    */
   onShareAppMessage: function () {
     console.log('abcdd');
-    return {
-      title: this.data.content_str
+    if (this.data.img_arr.length > 0) {
+      return {
+        title: this.data.content_str,
+        imageUrl: this.data.img_arr[0]
+      }
+    } else {
+      return {
+        title: this.data.content_str
+      }
     }
   },
 
   onShareTimeline() {
-    return {
-      title: this.data.content_str
+    if (this.data.img_arr.length > 0) {
+      return {
+        title: this.data.content_str,
+        imageUrl: this.data.img_arr[0]
+      }
+    } else {
+      return {
+        title: this.data.content_str,
+      }
     }
   }
 })

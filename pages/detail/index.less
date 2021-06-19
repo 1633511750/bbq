@@ -20,8 +20,12 @@
       .headPic {
         width: 85rpx;
         height: 85rpx;
-        border-radius: 41rpx;
+        border-radius: 50%;
         background-size: 100% 100%;
+
+        &.gray {
+          background-color: var(--colorGray);
+        }
       }
       .sex {
         width: 30rpx;
@@ -191,7 +195,7 @@
     background-color: #fff;
     padding-bottom: 50rpx;
     margin: 0 18rpx;
-    margin-bottom: 130rpx;
+    margin-bottom: 20rpx;
    
     .footer {
       height: 80rpx;
@@ -272,14 +276,20 @@
           height: 60rpx;
           background-size: contain;
           border-radius: 50%;
+
+          &.gray {
+            background-color: var(--colorGray);
+          }
         }
         .info-wrap {
-          width: 570rpx;
+          width: 630rpx;
           float: right;
           .info {
             line-height: 60rpx;
             .name {
-              color: @color_icon;
+              // color: @color_icon;
+              color: #666;
+              font-weight: bold;
               float: left;
               font-size: 30rpx;
             }
@@ -361,9 +371,13 @@
                 height: 60rpx;
                 background-size: contain;
                 border-radius: 50%;
+
+                &.gray {
+                  background-color: var(--colorGray);
+                }
               }
               .reply-info-wrap {
-                width: 458rpx;
+                width: 518rpx;
                 float: right;
                 .reply-info {
                   line-height: 60rpx;
@@ -491,6 +505,28 @@
       margin-top: 20rpx;
       color: #666
     }
+  }
+  .wx-extension {
+    border-radius: 10rpx;
+    background-color: #fff;
+    padding-bottom: 50rpx;
+    margin: 0 18rpx;
+    margin-bottom: 140rpx;
+    
+    .big-v-title {
+      display: inline-block;
+      padding: 50rpx 30rpx 10rpx;
+      text-align: center;
+      color: #999;
+      // white-space: pre-line;
+    }
+    .big-v-con {
+      color: #999;
+      text-align: center;
+    }
+  }
+  .extension-bottom {
+    height: 140rpx;
   }
   .write-pl {
     position: fixed;

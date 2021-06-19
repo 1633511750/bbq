@@ -168,11 +168,14 @@ page .main .item2 .phone .way-con {
   color: #333;
 }
 page .main .item2 .bottom-desc {
+  width: 690rpx;
+  line-height: 44rpx;
   display: block;
   font-size: 32rpx;
   color: #333;
   text-indent: 2em;
-  padding: 20rpx;
-  margin-left: -20rpx;
+  padding: 30rpx 0;
+  margin-left: -60rpx;
   overflow-wrap: break-word;
+  white-space: pre-line;
 }

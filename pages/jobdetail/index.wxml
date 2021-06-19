@@ -45,7 +45,7 @@
         </view>
       </view>
       <view class="blank"></view>
-      <view class="bottom-desc">{{desc_str}}</view>
+      <text user-select class="bottom-desc">{{desc_str}}</text>
     </view>
   </view>
 </view>

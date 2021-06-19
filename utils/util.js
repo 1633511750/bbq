@@ -44,7 +44,6 @@ function $http({ isJson = false, url, isOrgUrl = false, data = {}, method = 'get
         // console.log(result);
         // console.log('+1');
         // if (result.statusCode === 200) {
-        console.log(result.data.code);
         if (!isJson && result.data.code === 205) {
           console.log('to-login-page');
           wx.navigateTo({
@@ -107,12 +106,25 @@ function myTime(arg) {
   let day = d.getDate() < 10 ? '0' + d.getDate() : d.getDate()
   let hour = d.getHours() < 10 ? '0' + d.getHours() : d.getHours()
   let minute = d.getMinutes() < 10 ? '0' + d.getMinutes() : d.getMinutes()
-  if (durDays > 30) {
-    time_str = year + '-' + month + '-' + day + ' ' + hour + ':' + minute
+  // if (durDays > 30) {
+  //   time_str = year + '-' + month + '-' + day + ' ' + hour + ':' + minute
+  // } else if (durDays === 1) {
+  //   time_str = '昨天 ' + hour + ':' + minute
+  // } else if (durDays === 2) {
+  //   time_str = '前天 ' + hour + ':' + minute
+  // } else if (durDays !== 0) {
+  //   time_str = durDays + '天前 ' + hour + ':' + minute
+  // } else if (DNowHour_int !== 0 && DNowHour_int !== -1) {
+  //   time_str = DNowHour_int + '小时前'
+  // } else if (DNowMinute_int !== 0 && DNowMinute_int !== -1) {
+  //   time_str = DNowMinute_int + '分钟前'
+  // } else {
+  //   time_str = '刚刚'
+  // }
+  if (durDays > 1) {
+    time_str = month + '-' + day + ' ' + hour + ':' + minute
   } else if (durDays === 1) {
     time_str = '昨天 ' + hour + ':' + minute
-  } else if (durDays === 2) {
-    time_str = '前天 ' + hour + ':' + minute
   } else if (durDays !== 0) {
     time_str = durDays + '天前 ' + hour + ':' + minute
   } else if (DNowHour_int !== 0 && DNowHour_int !== -1) {
@@ -224,13 +236,25 @@ function $getAllSchool(isHasAll) {
 }
 
 function $getAllJobLabel(isHasAll) {
-  let label = ['IT', '设计', '美妆', '休闲', '学习', '艺术', '代劳', '自主创业', '兴趣', '其他']
+  let label = ['美妆', '服饰', '休闲', '学习', '艺术', '代劳', '自主创业', 'IT', '兴趣', '其他']
   if (isHasAll) {
     label.unshift('全部')
   }
   return label
 }
 
+let name_s = '康星翰晸建家致树炎德行时泰盛雄琛钧士以若鸣朋斌梁栋维启克伦翔旭鹏泽朗伯昮晋晟诚先敬震振壮会思群豪心邦承乐宏言旲旻昊光天达安岩中茂进林有坚和彪博泰盛振挺掣明永健世广志义兴良海山仁波宁行时志忠思绍功松善厚庆磊民友裕河哲江超炎德彰征律晨辰士以建家致煜煊炎波宁贵福生龙元全国胜学祥才发武新利清飞彬富顺信子杰涛昌成康星光天达安岩中茂进林有坚和彪博诚先敬震振壮会思群豪心邦承乐绍功松善厚庆磊民友裕河哲江超浩亮政谦亨奇固之轮翰朗伯宏言若鸣朋斌梁栋维启克伦翔旭鹏泽晨辰容儒彰昭逸冠耀意钊易代敬贵璟利彦福谱钢茵瑞梁襦诚为凤以涓英佚钧河筠高崇飒炎缜驹镇哲颜俊军彤宜艺瑾隆正晷垒焘社圣谚森佳万晋鹏诤琛晟涛承频卿瀚兴俯豪毅谊章理凌星靖海恬澔锦鑫珺登聪睿亨罡桦弓禅迅超达茹之稹阔丞砂韦科固胜大苓纲骏来亿沧珑康瀛迎奕浦聚政盈畅歌益雄帝立韩殿庆舱凯广若励淇全弛谦臻善朕采波光合升国照竣乔征鹰喆震滢劭澎颔真华基振景锐生钦菁礼泉义刚增尧巩功榕翰富铠斌骅山绮辅议力溢亦进亮吉铖朗融展寒博驰部澉候珂佩玮诗韵藻敏慧欣宜云雪菲洋冉瑞静颖韶爱姿惠娇媛妩萱安蓝春语彤晴瑜瑶瑾璇璐璟惠慧敏旭春晴曼宁欣凡佳勤雪琳晗玉萍红娥玲芬芳燕彩露瑶珍贞莉兰琳素云莲真环雪荣爱妹霞瑞凡佳嘉琼娅琦晶妍茜秋珊莎锦薇亭瀚桓东滢恬瑾眉君琴仙伊叶宝容芸妮娜承民智棠胜荷丹蓉晓欢霄娅瑞凡嘉琼勤蓓纨珍贞莉菲淑澜依毓悦昭冰爽琬茗羽希怡婵欣飘育富泽新恩羽旭维家琰韵晴晶妍茜秋珊莎锦黛青倩'
+
+function getRndName_fun() {
+  let num = Math.floor(Math.random() * 3) + 2
+  let len = name_s.length
+  let str = ''
+  for (let i = 0; i < num; i++) {
+    let rnd = Math.floor(Math.random() * len)
+    str += name_s[rnd]
+  }
+  return str
+}
 // function getAccessToken_fun() {
 //   $http({
 //     isOrgUrl: true,
@@ -244,6 +268,7 @@ module.exports = {
   $http,
   myTime,
   $getAllSchool,
-  $getAllJobLabel
+  $getAllJobLabel,
+  getRndName_fun
   // getAccessToken_fun
 }

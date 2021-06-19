@@ -52,6 +52,7 @@
   height: 214rpx;
   background-color: #fff;
   padding: 35rpx;
+  padding-right: 0;
   position: relative;
 }
 .wrap .item-wrap .headPic {
@@ -61,8 +62,11 @@
   border-radius: 15rpx;
 }
 .wrap .item-wrap .right {
-  width: 525rpx;
+  width: 560rpx;
   float: right;
+}
+.wrap .item-wrap .right .right-top {
+  padding-right: 35rpx;
 }
 .wrap .item-wrap .right .right-top .title {
   float: left;

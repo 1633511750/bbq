@@ -50,10 +50,10 @@ page .info-wrap .item3 .con {
 page .btn-wrap {
   margin-top: 15rpx;
   height: 120rpx;
-  background-color: var(--colorOrange1);
-  font-size: 40rpx;
+  background-color: #fff;
+  font-size: 32rpx;
   font-weight: bold;
   text-align: center;
   line-height: 120rpx;
-  color: #fff;
+  color: var(--colorBlue);
 }

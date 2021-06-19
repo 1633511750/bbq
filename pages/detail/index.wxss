@@ -16,8 +16,11 @@
 .wrap .comment .item .headPic {
   width: 85rpx;
   height: 85rpx;
-  border-radius: 41rpx;
+  border-radius: 50%;
   background-size: 100% 100%;
+}
+.wrap .comment .item .headPic.gray {
+  background-color: var(--colorGray);
 }
 .wrap .comment .item .sex {
   width: 30rpx;
@@ -179,7 +182,7 @@
   background-color: #fff;
   padding-bottom: 50rpx;
   margin: 0 18rpx;
-  margin-bottom: 130rpx;
+  margin-bottom: 20rpx;
 }
 .wrap .do .footer {
   height: 80rpx;
@@ -259,15 +262,19 @@
   background-size: contain;
   border-radius: 50%;
 }
+.wrap .do .pl-wrap .pl .headPic.gray {
+  background-color: var(--colorGray);
+}
 .wrap .do .pl-wrap .pl .info-wrap {
-  width: 570rpx;
+  width: 630rpx;
   float: right;
 }
 .wrap .do .pl-wrap .pl .info-wrap .info {
   line-height: 60rpx;
 }
 .wrap .do .pl-wrap .pl .info-wrap .info .name {
-  color: #aaa;
+  color: #666;
+  font-weight: bold;
   float: left;
   font-size: 30rpx;
 }
@@ -349,8 +356,11 @@
   background-size: contain;
   border-radius: 50%;
 }
+.wrap .do .pl-wrap .pl .info-wrap .pl-reply-wrap .pl-reply-con .reply-headPic.gray {
+  background-color: var(--colorGray);
+}
 .wrap .do .pl-wrap .pl .info-wrap .pl-reply-wrap .pl-reply-con .reply-info-wrap {
-  width: 458rpx;
+  width: 518rpx;
   float: right;
 }
 .wrap .do .pl-wrap .pl .info-wrap .pl-reply-wrap .pl-reply-con .reply-info-wrap .reply-info {
@@ -469,6 +479,26 @@
   text-align: center;
   margin-top: 20rpx;
   color: #666;
+}
+.wrap .wx-extension {
+  border-radius: 10rpx;
+  background-color: #fff;
+  padding-bottom: 50rpx;
+  margin: 0 18rpx;
+  margin-bottom: 140rpx;
+}
+.wrap .wx-extension .big-v-title {
+  display: inline-block;
+  padding: 50rpx 30rpx 10rpx;
+  text-align: center;
+  color: #999;
+}
+.wrap .wx-extension .big-v-con {
+  color: #999;
+  text-align: center;
+}
+.wrap .extension-bottom {
+  height: 140rpx;
 }
 .wrap .write-pl {
   position: fixed;

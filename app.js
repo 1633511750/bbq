@@ -5,20 +5,6 @@ App({
    * 当小程序初始化完成时，会触发 onLaunch（全局只触发一次）
    */
   onLaunch: function () {
-    let menuButtonObject = wx.getMenuButtonBoundingClientRect();
-    wx.getSystemInfo({
-      success: res => {
-        let statusBarHeight = res.statusBarHeight,
-          navTop = menuButtonObject.top,//胶囊按钮与顶部的距离
-          navHeight = statusBarHeight + menuButtonObject.height + (menuButtonObject.top - statusBarHeight) * 2;//导航高度
-        this.globalData.navHeight = navHeight;
-        this.globalData.navTop = navTop;
-        this.globalData.windowHeight = res.windowHeight;
-      },
-      fail(err) {
-        console.log(err);
-      }
-    })
     // 读取用户信息
     if (wx.getStorageSync('school')) {
       this.globalData.school_str = wx.getStorageSync('school')
@@ -35,7 +21,6 @@ App({
     this.globalData.bgColor_str = wx.getStorageSync('bgColor') || '#fff'  // 主题颜色
     console.log('uid:' + this.globalData.uid_int);
     // isAnonymous 是否匿名
-
     // 管理员注册的账号:
     // name: 'coldice',
     // password: 'abcdefg123',

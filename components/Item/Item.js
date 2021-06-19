@@ -138,7 +138,8 @@ Component({
     },
 
     gotoDetail_fun() {
-      let item_str = JSON.stringify(this.properties.item)
+      let temp = this.properties.item
+      let item_str = JSON.stringify(temp)
       wx.navigateTo({
         url: '/pages/detail/index?item=' + item_str + '&isMy=' + this.properties.isMy + '&tagBg=' + this.properties.tagBg,
       });

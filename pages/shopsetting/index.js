@@ -154,53 +154,74 @@ Page({
   setting_fun() {
     if (this.data.setting_str === '修改') {
       this.setData({
-        setting_str: '完成',
+        setting_str: '提交审核',
         isModify_bool: false
       })
     } else {
-      let tag_arr
-      if (this.data.tag_str) {
-        tag_arr = this.data.tag_str.split(/[;；,，、。.!！：:]+/)
-      } else {
-        tag_arr = []
-      }
-      tag_arr = tag_arr.slice(0, 6)
-      tag_arr = tag_arr.filter(item => item)
-      tag_arr = tag_arr.map(item => item.length > 6 ? item.slice(0, 6) : item)
-
-      let tag_str = tag_arr.join(';')
-      this.setData({
-        tag_str
-      })
-      $http({
-        isJson: true, method: 'post', url: '/businessStreet/addOrUpdateShop', data: {
-          id: this.data.id_int,
-          name: this.data.shopName_str,
-          lable: tag_str,
-          category: this.data.shopCategory_arr[this.data.shopCategoryIndex_int],
-          school: this.data.school_arr[this.data.schoolIndex_int],
-          address: this.data.address_str,
-          phone: this.data.phone_str,
-          wechat: this.data.wechat_str,
-          qq: this.data.qq_str,
-          introduction: this.data.desc_str
-        }
-      }).then(res => {
-        console.log(res);
-        if (res.data.code === 200) {
-          if (this.data.isModifyHeadPic_bool) {
-            this.uploadImgHandle_fun(this.data.headPic_str)
-          } else {
-            wx.showToast({ title: '店铺更新成功' })
-            this.setData({
-              setting_str: '修改',
-              isModify_bool: true
-            })
+      let self = this
+      wx.showModal({
+        title: '审核提示',
+        content: '是否提交审核？',
+        showCancel: true,
+        cancelText: '取消',
+        cancelColor: '#000000',
+        confirmText: '确定',
+        confirmColor: '#3CC51F',
+        success: (result) => {
+          if (result.confirm) {
+            fun.call(self)
           }
+        },
+        fail: () => { },
+        complete: () => { }
+      });
+
+      function fun() {
+        let tag_arr
+        if (this.data.tag_str) {
+          tag_arr = this.data.tag_str.split(/[;；,，、。.!！：:]+/)
         } else {
-          wx.showToast({ title: '店铺更新失败', icon: 'error' })
+          tag_arr = []
         }
-      })
+        tag_arr = tag_arr.slice(0, 6)
+        tag_arr = tag_arr.filter(item => item)
+        tag_arr = tag_arr.map(item => item.length > 6 ? item.slice(0, 6) : item)
+
+        let tag_str = tag_arr.join(';')
+        this.setData({
+          tag_str
+        })
+        $http({
+          isJson: true, method: 'post', url: '/businessStreet/addOrUpdateShop', data: {
+            id: this.data.id_int,
+            name: this.data.shopName_str,
+            examined: 0,
+            lable: tag_str,
+            category: this.data.shopCategory_arr[this.data.shopCategoryIndex_int],
+            school: this.data.school_arr[this.data.schoolIndex_int],
+            address: this.data.address_str,
+            phone: this.data.phone_str,
+            wechat: this.data.wechat_str,
+            qq: this.data.qq_str,
+            introduction: this.data.desc_str
+          }
+        }).then(res => {
+          console.log(res);
+          if (res.data.code === 200) {
+            if (this.data.isModifyHeadPic_bool) {
+              this.uploadImgHandle_fun(this.data.headPic_str)
+            } else {
+              wx.showToast({ title: '店铺更新提交成功' })
+              this.setData({
+                setting_str: '修改',
+                isModify_bool: true
+              })
+            }
+          } else {
+            wx.showToast({ title: '店铺更新失败', icon: 'error' })
+          }
+        })
+      }
     }
   },
 

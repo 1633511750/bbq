@@ -11,22 +11,25 @@ Page({
     id_int: 0,  // 店铺id
     goods_arr: [],
     goodsStateIndex_int: 0,
+    goodsStateIndex1_int: 0,
+    number_arr: [0, 0, 0]
   },
 
   goodsStateIndex_fun(e) {
     let index_int = e.currentTarget.dataset.index - 0
-    if (index_int === this.data.goodsStateIndex_int) {
+    if (index_int === this.data.goodsStateIndex1_int) {
       return
     }
     this.setData({ goods_arr: [] })
     this.setData({
-      goodsStateIndex_int: index_int
+      goodsStateIndex_int: index_int,
+      goodsStateIndex1_int: index_int
     })
     this.getGoods_fun(this.data.id_int)
   },
 
   // 获取商品
-  getGoods_fun(shopId) {
+  getGoods_fun(shopId, callback = () => { }, isRender = true) {
     if (this.data.goodsStateIndex_int === 0) {
       $http({
         isJson: true, method: 'post', url: '/businessStreet/getGoods', data: {
@@ -47,9 +50,18 @@ Page({
               item.showPic_str = JSON.stringify(item.showPic_arr)
             }
           })
+          let number_arr = this.data.number_arr
+          let len = res.data.data.streetGoods.length
+          number_arr.splice(this.data.goodsStateIndex_int, 1, len)
           this.setData({
-            goods_arr: res.data.data.streetGoods
+            number_arr
           })
+          if (isRender) {
+            this.setData({
+              goods_arr: res.data.data.streetGoods,
+            })
+          }
+          callback()
         } else {
           wx.showToast({ title: '获取商品失败', icon: 'error' })
         }
@@ -76,9 +88,18 @@ Page({
               item.showPic_str = JSON.stringify(item.showPic_arr)
             }
           })
+          let number_arr = this.data.number_arr
+          let len = res.data.data.streetGoods.length
+          number_arr.splice(this.data.goodsStateIndex_int, 1, len)
           this.setData({
-            goods_arr: res.data.data.streetGoods
+            number_arr
           })
+          if (isRender) {
+            this.setData({
+              goods_arr: res.data.data.streetGoods,
+            })
+          }
+          callback()
         } else {
           wx.showToast({ title: '获取商品失败', icon: 'error' })
         }
@@ -106,9 +127,18 @@ Page({
               item.showPic_str = JSON.stringify(item.showPic_arr)
             }
           })
+          let number_arr = this.data.number_arr
+          let len = res.data.data.streetGoods.length
+          number_arr.splice(this.data.goodsStateIndex_int, 1, len)
           this.setData({
-            goods_arr: res.data.data.streetGoods
+            number_arr
           })
+          if (isRender) {
+            this.setData({
+              goods_arr: res.data.data.streetGoods,
+            })
+          }
+          callback()
         } else {
           wx.showToast({ title: '获取商品失败', icon: 'error' })
         }
@@ -155,6 +185,11 @@ Page({
             }
           }
         })
+        let number_arr = this.data.number_arr
+        number_arr.splice(1, 1, number_arr[1] + 1)
+        this.setData({
+          number_arr
+        })
       } else {
         wx.showToast({ title: '下架失败', icon: error })
       }
@@ -181,9 +216,13 @@ Page({
           if (res.data.code === 200) {
             wx.showToast({ title: '上架成功' })
             this.getGoods_fun(this.data.id_int)
+            let number_arr = this.data.number_arr
+            number_arr.splice(0, 1, number_arr[0] + 1)
+            this.setData({
+              number_arr
+            })
           }
         })
-        wx.showToast({ title: '上架成功' })
         this.getGoods_fun(this.data.id_int)
       } else {
         wx.showToast({ title: '上架失败', icon: error })
@@ -224,6 +263,25 @@ Page({
     this.setData({
       id_int: options.id - 0
     })
+
+    this.setData({
+      goodsStateIndex_int: 0
+    })
+    this.getGoods_fun(this.data.id_int, () => {
+      this.setData({
+        goodsStateIndex_int: 1
+      })
+      this.getGoods_fun(this.data.id_int, () => {
+        this.setData({
+          goodsStateIndex_int: 2
+        })
+        this.getGoods_fun(this.data.id_int, () => {
+          this.setData({
+            goodsStateIndex_int: 0
+          })
+        }, false)
+      }, false)
+    }, false)
   },
 
   /**
@@ -240,7 +298,8 @@ Page({
     if (app.globalData.good_examined_bool) {
       app.globalData.good_examined_bool = false
       this.setData({
-        goodsStateIndex_int: 2
+        goodsStateIndex_int: 2,
+        goodsStateIndex1_int: 2,
       })
     }
     this.getGoods_fun(this.data.id_int)

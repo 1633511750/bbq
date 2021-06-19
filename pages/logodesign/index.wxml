@@ -4,9 +4,9 @@
     <text>￥{{orgPrice_flo}}</text>
     <view class="price">现价：{{nowPrice_flo}}</view>
   </view>
-  <text class="title">{{name_str}}</text>
+  <text user-select class="title">{{name_str}}</text>
   <view bindtap="call_fun" class="lianxi">联系商家</view>
-  <view class="con">{{desc_str}}</view>
+  <text user-select class="con">{{desc_str}}</text>
   <view class="bottom">
     <image catchtap="previewImages_fun" data-cururl="{{item}}" data-urls="{{showPic_arr}}" mode="aspectFill" wx:for="{{showPic_arr}}" wx:key="id" src="{{item}}" class="b1"></image>
   </view>

@@ -7,7 +7,7 @@
   </navigator>
   <navigator url="/pages/goods/index?id={{item.id}}" class="item">
     <view>商品</view>
-    <view>上架</view>
+    <view>管理</view>
   </navigator>
   <view class="item" data-id="{{item.id}}" bindtap="delete_fun">
     <view>删除</view>
@@ -17,6 +17,5 @@
   <view wx:if="{{item.examined === 0}}" class="check-shop">店铺审核中</view>
   <view wx:elif="{{item.examined === 1 && item.business === 1}}" class="check-shop">营业中</view>
   <view wx:else class="check-shop">待上架商品</view>
-  <!--<view wx:if="{{item.examined === 1}}" class="open-shop">营业中</view>-->
 </view>
 <view wx:if="{{shopState_str === '暂无店铺'}}" class="nodata">{{shopState_str}} <navigator url="/pages/openshop/index">创建一个</navigator></view>

@@ -1,11 +1,11 @@
 page button {
   display: block;
   position: fixed;
-  top: 50%;
+  top: calc(50% - 50rpx);
   left: 50%;
   transform: translate(-50%, -50%);
   width: 95vw!important;
-  background-color: #e64452;
+  background-color: #ff7e17;
   color: #fff;
   font-weight: normal;
 }
@@ -17,5 +17,5 @@ page .bottom {
   color: #999;
 }
 page .bottom text {
-  color: red;
+  color: #ff7e17;
 }

@@ -3,9 +3,10 @@ page {
 }
 page .wrap {
   margin-top: 15rpx;
+  padding-top: 20rpx;
   background-color: #fff;
   display: flex;
-  height: 188rpx;
+  height: 168rpx;
   align-items: center;
   position: relative;
 }
@@ -29,8 +30,7 @@ page .wrap .headPic {
   width: 100rpx;
   height: 100rpx;
   border-radius: 15%;
-  margin-left: 50rpx;
-  margin-right: -20rpx;
+  margin: -20rpx -15rpx 0 50rpx;
 }
 page .wrap .check-goods {
   color: #489CD7;
@@ -41,15 +41,14 @@ page .wrap .check-goods {
   left: 350rpx;
   bottom: 70rpx;
 }
-page .wrap .check-shop,
-page .wrap .open-shop {
+page .wrap .check-shop {
   color: #489CD7;
   border: 1px solid #489CD7;
   padding: 0 10rpx;
   border-radius: 20rpx;
   position: absolute;
   left: 550rpx;
-  bottom: 70rpx;
+  bottom: 50rpx;
 }
 page .wrap .open-shop {
   margin-left: 50rpx;

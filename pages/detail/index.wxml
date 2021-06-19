@@ -2,13 +2,14 @@
   <view class="blank"></view>
   <view class="comment clearfix">
     <view class="item clearfix">
-      <image mode="aspectFill" catchtap="previewImage_fun" data-anonymous="{{isAnonymous_int}}" data-cururl="{{avatarUrl_str}}" data-urls="{{[avatarUrl_str]}}" data-add="true" class="headPic" src="{{avatarUrl_str}}"></image>
+      <image wx:if="{{avatarUrl_str}}" mode="aspectFill" catchtap="previewImage_fun" data-anonymous="{{isAnonymous_int}}" data-cururl="{{avatarUrl_str}}" data-urls="{{[avatarUrl_str]}}" data-add="true" class="headPic" src="{{avatarUrl_str}}"></image>
+      <view wx:else class="headPic gray"></view>
       <image mode="aspectFit" class="sex" src="{{sex_str === '1' ? '/img/male.png' : '/img/female.png'}}"></image>
       <view class="info">
         <view class="info-top clearfix">
-          <text class="name">{{name_str}}</text>
+          <text user-select class="name">{{name_str}}</text>
           <image src="/img/dot.png" mode="aspectFit" class="dot" bindtap="showActionDialog_fun"></image>
-          <text style="background-color: {{tagBg}}" class="video">{{category_str}}</text>
+          <!--<text style="background-color: {{tagBg}}" class="video">{{category_str}}</text>-->
         </view>
         <view class="info-bottom">
           <text class="date">{{date_str}}</text>
@@ -16,7 +17,7 @@
         </view>
       </view>
     </view>
-    <view class="desc" user-select>{{content_str}}</view>
+    <text user-select class="desc" user-select>{{content_str}}</text>
     <view wx:if="{{content_str && img_arr.length > 0}}" class="desc-blank"></view>
     <!--<view class="pos">{{location_str}}</view>-->
     <view mode="aspectFill" class="img clearfix" wx:if="{{img_arr.length > 0}}">
@@ -30,7 +31,7 @@
         <image style="width: 32rpx;height: 32rpx;" mode="aspectFit" src="/img/hot.png"></image>
         <text class="heart">{{pageviews_str === 0 ? '' : pageviews_str}}</text>
         
-        <view wx:if="{{isTop_bool}}" class="top">🔥</view>
+        <!--<view wx:if="{{isTop_bool}}" class="top">🔥</view>-->
       </view>
       <view class="f2">
         <image mode="aspectFit" src="/img/chat.png"></image>
@@ -43,7 +44,8 @@
     </view>
     <view class="pl-wrap" wx:if="{{reply_arr.length > 0}}">
       <view class="pl clearfix" wx:for="{{reply_arr}}" wx:key="id">
-        <image mode="aspectFill" class="headPic" src="{{item.avatarUrl_str}}"></image>
+        <!--<image wx:if="{{item.avatarUrl_str}}" mode="aspectFill" class="headPic" src="{{item.avatarUrl_str}}"></image>
+        <view wx:else class="headPic gray"></view>-->
         <view class="info-wrap">
           <view class="info clearfix">
             <text class="name">{{item.nmId_str}}</text>
@@ -61,7 +63,8 @@
           </view>
           <view class="pl-reply-wrap">
             <view class="pl-reply-con clearfix" wx:for="{{item.reply}}" wx:for-item="item1" wx:for-index="index1" wx:key="id">
-              <image mode="aspectFill" class="reply-headPic" src="{{item1.avatarUrl_str}}"></image>
+              <!--<image wx:if="{{item1.avatarUrl_str}}" mode="aspectFill" class="reply-headPic" src="{{item1.avatarUrl_str}}"></image>
+              <view wx:else class="reply-headPic gray"></view>-->
               <view class="reply-info-wrap">
                 <view class="reply-info clearfix">
                   <text class="reply-name">{{item1.nmId_str}}</text>
@@ -94,6 +97,11 @@
     </view>
     <view wx:else class="no-reply">{{replyResult_str}}</view>
   </view>
+  <view wx:if="{{wxTitle_str || wxExtension_arr.length > 0}}" class="wx-extension">
+    <text user-select class="big-v-title">{{wxTitle_str}}</text>
+    <view class="big-v-con" wx:for="{{wxExtension_arr}}" wx:key="index" wx:for-item="itemv"><text user-select>{{itemv}}</text></view>
+  </view>
+  <view wx:else class="extension-bottom"></view>
 
   <view class="write-pl">
     <view class="input" bindtap="showPingLun_fun">写评论......</view>

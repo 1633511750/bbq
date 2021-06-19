@@ -1,6 +1,7 @@
 <view class="wrap">
   <navigator url="/pages/updateMyInfo/index" class="top">
-    <image mode="aspectFill" class="headPic" src="{{avatarUrl_str}}"></image>
+    <image wx:if="{{avatarUrl_str}}" mode="aspectFill" class="headPic" src="{{avatarUrl_str}}"></image>
+    <view wx:else class="headPic blank"></view>
     <view class="name">{{nickName_str}}</view>
     <!--<view class="school">山西传媒学院</view>-->
     <!--<image src="/img/right.png" class="right-arrow"></image>-->
@@ -8,45 +9,45 @@
   <view class="item-wrapper">
     <view class="title">表白墙</view>
     <navigator url="/pages/mywall/index" class="item-wrap">
-      <image src="/img/mine_wall.jpg"/>
+      <image src="/img/mine_wall.png"/>
       <text class="item">墙文</text>
     </navigator>
     <navigator url="/pages/zan/index" class="item-wrap">
-      <image src="/img/mine_zan.jpg"/>
+      <image src="/img/mine_zan.png"/>
       <text class="item">点赞</text>
     </navigator>
     <navigator url="/pages/mychat/index" class="item-wrap">
-      <image src="/img/mine_chat.jpg"/>
+      <image src="/img/mine_chat.png"/>
       <text class="item">评论</text>
     </navigator>
   </view>
   <view class="item-wrapper">
   <view class="title">创业街</view>
     <navigator url="/pages/openshop/index" class="item-wrap">
-      <image src="/img/mine_openshop.jpg"/>
+      <image src="/img/mine_openshop.png"/>
       <text class="item">我要开店</text>
     </navigator>
     <navigator url="/pages/shop/index" class="item-wrap">
-      <image src="/img/mine_shopmgr.jpg"/>
+      <image src="/img/mine_shopmgr.png"/>
       <text class="item">店铺管理</text>
     </navigator>
   </view>
   <view class="item-wrapper">
   <view class="title">帮助与反馈</view>
     <navigator url="/pages/systemmsg/index" class="item-wrap">
-      <image src="/img/mine_msg.jpg"/>
+      <image src="/img/mine_msg.png"/>
       <text class="item">消息</text>
     </navigator>
     <!--<navigator url="/pages/myservice/index" class="item-wrap">
-      <image src="/img/mine_advice.jpg"/>
+      <image src="/img/mine_advice.png"/>
       <text class="item">投诉与建议</text>
     </navigator>-->
     <navigator url="/pages/callus/index" class="item-wrap">
-      <image src="/img/mine_me.jpg"/>
+      <image src="/img/mine_me.png"/>
       <text class="item">关于我们</text>
     </navigator>
-    <button class="kefubtn" open-type="contact" class="item-wrap">
-      <image src="/img/mine_serve.jpg"/>
+    <button open-type="contact" class="item-wrap kefubtn">
+      <image src="/img/mine_serve.png"/>
       <text class="item">客服</text>
     </button>
     <!--<navigator url="/pages/schoolmanagers/index" class="item-wrap">

@@ -16,8 +16,12 @@
       margin-left: 70rpx;
       vertical-align: middle;
       display: inline-block;
-      border-radius: 20rpx;
+      border-radius: 50%;
       background-size: 100% 100%;
+
+      &.blank {
+        background-color: var(--colorGray);
+      }
     }
     .name {
       position: absolute;
@@ -85,6 +89,7 @@
         top: 55rpx;
         content: "";
         background-color: var(--colorGray);
+        border: none;
       }
       .item {
         font-size: 28rpx;

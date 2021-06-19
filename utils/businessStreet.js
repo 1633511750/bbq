@@ -116,5 +116,6 @@ function deleteGood1_fun(id, callback = () => { }) {
 }
 
 module.exports = {
-  getShops_fun, getGoods_fun, addOrUpdateShop_fun, addOrUpdateGood_fun, deleteShop_fun, deleteGood_fun, deleteGood1_fun
+  getShops_fun, getGoods_fun, addOrUpdateShop_fun, addOrUpdateGood_fun, deleteShop_fun,
+  deleteGood_fun, deleteGood1_fun
 }

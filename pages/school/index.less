@@ -28,12 +28,27 @@
       padding: 0 @paddingSide;
       line-height: 86rpx;
       background-color: #fff;
+      margin-bottom: 25rpx;
       .item {
         font-size: 32rpx;
         color: @colorGray2;
         border-bottom: 1px solid var(--colorGray);
+        position: relative;
         &:last-child {
           border-bottom: none;
+        }
+        .dot {
+          position: absolute;
+          right: 0rpx;
+          top: 25rpx;
+          height: 40rpx;
+          padding: 0 15rpx;
+          line-height: 40rpx;
+          display: inline-block;
+          color: #fff;
+          font-size: 20rpx;
+          border-radius: 20rpx;
+          background-color: #ff7e17;
         }
       }
     }

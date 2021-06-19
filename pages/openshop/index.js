@@ -1,4 +1,4 @@
-import { $http, $getAllSchool } from '../../utils/util'
+import { $http, $getAllSchool, $getAllJobLabel } from '../../utils/util'
 let app = getApp()
 // pages/shopsetting/index.js
 Page({
@@ -19,7 +19,7 @@ Page({
     desc_str: '',
     headPic_str: '',
 
-    shopCategory_arr: ['IT', '设计', '美妆', '休闲', '学习'],
+    shopCategory_arr: $getAllJobLabel(false),
     shopCategoryIndex_int: 0,
 
     schoolIndex_int: 0,
@@ -107,7 +107,7 @@ Page({
           var url = curPage.route
           if (url === 'pages/openshop/index') {
             wx.redirectTo({
-              url: '/pages/shop/index',
+              url: '/pages/goods/index?id=' + id,
             });
           }
         }, 1500);

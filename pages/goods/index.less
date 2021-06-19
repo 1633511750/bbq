@@ -12,10 +12,23 @@ page {
       height: 50rpx;
       margin: 0 80rpx;
       text-align: center;
+      position: relative;
 
       &.active {
         color: #02A7F0;
         border-bottom: 6rpx solid #02A7F0;
+      }
+
+      .dot {
+        height: 30rpx;
+        line-height: 30rpx;
+        border-radius: 20rpx;
+        font-size: 20rpx;
+        color: #fff;
+        padding: 0 11rpx;
+        position: absolute;
+        display: inline-block;
+        background-color: #ff7e17;
       }
     }
   }
@@ -64,8 +77,20 @@ page {
       border-radius: 10rpx;
     }
     .btn.del {
-      top: 40rpx;
+      top: 10rpx;
       background-color: red;
+    }
+    .btn.update {
+      top: 140rpx;
+      background-color: #0161F0;
+    }
+    .btn.on {
+      top: 75rpx;
+      background-color: #02A7F0;
+    }
+    .btn.off {
+      top: 75rpx;
+      background-color: #02A7F0;
     }
   }
 

@@ -3,7 +3,8 @@
   <view class="comment">
     <view hover-class="none" bindtap="gotoDetail_fun">
       <view class="item clearfix">
-        <image mode="aspectFill" catchtap="previewImages_fun" data-cururl="{{item.avatarUrl_str}}" data-urls="{{[item.avatarUrl_str]}}" data-add="true" class="headPic" src="{{item.avatarUrl_str}}"></image>
+        <image wx:if="{{item.avatarUrl_str !== null}}" mode="aspectFill" catchtap="previewImages_fun" data-cururl="{{item.avatarUrl_str}}" data-urls="{{[item.avatarUrl_str]}}" data-add="true" class="headPic" src="{{item.avatarUrl_str}}"></image>
+        <view wx:else class="headPic gray"></view>
         <image mode="aspectFit" class="sex" src="{{item.sex_str === '1' ? '/img/male.png' : '/img/female.png'}}"></image>
         <view class="info">
           <view class="info-top clearfix">
@@ -27,7 +28,8 @@
       <view class="f1">
         <image mode="aspectFit" src="/img/hot.png"></image>
         <text class="heart">{{item.pageviews === 0 ? '' : item.pageviews}}</text>
-        <image wx:if="{{item.isTop_bool}}" mode="aspectFit" src="/img/top1.png" class="top">🔥</image>
+        <image wx:if="{{item.isTop === 2}}" mode="aspectFit" src="/img/top1.png" class="top"></image>
+        <!--<image wx:elif="{{item.isTop === 4}}" mode="aspectFit" src="/img/top3.png" class="top"></image>-->
       </view>
       <view class="f2">
         <image mode="aspectFit" src="/img/chat.png"></image>
@@ -39,5 +41,5 @@
       </view>
     </view>
   </view>
-  <view class="blank" wx:if="{{item.isLast}}"></view>
+  <!--<view class="blank" wx:if="{{item.isLast}}"></view>-->
 </view>

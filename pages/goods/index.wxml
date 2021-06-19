@@ -1,7 +1,13 @@
 <view class="top-wrap">
-  <view bindtap="goodsStateIndex_fun" data-index="0" class="item {{goodsStateIndex_int === 0 ? 'active' : ''}}">上架中</view>
-  <view bindtap="goodsStateIndex_fun" data-index="1" class="item {{goodsStateIndex_int === 1 ? 'active' : ''}}">下架中</view>
-  <view bindtap="goodsStateIndex_fun" data-index="2" class="item {{goodsStateIndex_int === 2 ? 'active' : ''}}">审核中</view>
+  <view bindtap="goodsStateIndex_fun" data-index="0" class="item {{goodsStateIndex1_int === 0 ? 'active' : ''}}">上架中
+    <view wx:if="{{number_arr[0] > 0}}" class="dot">{{number_arr[0]}}</view>
+  </view>
+  <view bindtap="goodsStateIndex_fun" data-index="1" class="item {{goodsStateIndex1_int === 1 ? 'active' : ''}}">下架中
+    <view wx:if="{{number_arr[1] > 0}}" class="dot">{{number_arr[1]}}</view>
+  </view>
+  <view bindtap="goodsStateIndex_fun" data-index="2" class="item {{goodsStateIndex1_int === 2 ? 'active' : ''}}">审核中
+    <view wx:if="{{number_arr[2] > 0}}" class="dot">{{number_arr[2]}}</view>
+  </view>
 </view>
 
 <view wx:for="{{goods_arr}}" wx:key="id" class="item-wrap" url="/pages/goodpublic/index?goodId={{item.id}}&shopId={{id_int}}&update=1&headPic={{item.headPic_str}}&showPic={{item.showPic_str}}">
@@ -12,8 +18,9 @@
     <text class="old"></text>
   </view>
   <view wx:if="{{goodsStateIndex_int === 1 || goodsStateIndex_int === 2}}" data-id="{{item.id}}" class="del btn" catchtap="deleteGood_fun">删除</view>
-  <view wx:if="{{goodsStateIndex_int === 0}}" data-id="{{item.id}}" class="btn" catchtap="ofShelf_fun">下架</view>
-  <view wx:elif="{{goodsStateIndex_int === 1}}" data-id="{{item.id}}" class="btn" catchtap="onShelf_fun">上架</view>
+  <view wx:if="{{false}}" data-id="{{item.id}}" class="btn update" catchtap="updateShelf_fun">修改</view>
+  <view wx:if="{{goodsStateIndex_int === 0}}" data-id="{{item.id}}" class="btn off" catchtap="ofShelf_fun">下架</view>
+  <view wx:elif="{{goodsStateIndex_int === 1}}" data-id="{{item.id}}" class="btn on" catchtap="onShelf_fun">上架</view>
 </view>
 
 <navigator url="/pages/goodpublic/index?id={{id_int}}" class="bottom-btn">添加商品</navigator>

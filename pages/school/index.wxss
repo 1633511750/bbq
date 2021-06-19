@@ -25,12 +25,27 @@
   padding: 0 35rpx;
   line-height: 86rpx;
   background-color: #fff;
+  margin-bottom: 25rpx;
 }
 .wrap .main .item-wrap .item {
   font-size: 32rpx;
   color: #555;
   border-bottom: 1px solid var(--colorGray);
+  position: relative;
 }
 .wrap .main .item-wrap .item:last-child {
   border-bottom: none;
+}
+.wrap .main .item-wrap .item .dot {
+  position: absolute;
+  right: 0rpx;
+  top: 25rpx;
+  height: 40rpx;
+  padding: 0 15rpx;
+  line-height: 40rpx;
+  display: inline-block;
+  color: #fff;
+  font-size: 20rpx;
+  border-radius: 20rpx;
+  background-color: #ff7e17;
 }

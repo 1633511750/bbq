@@ -10,7 +10,8 @@ Page({
     avatarUrl_str: '',
     school_str: app.globalData.school_str,
     // 标题栏
-    statusBarHeight: app.globalData.statusBarHeight,
+    statusBarHeight: 20,
+    // statusBarHeight: app.globalData.statusBarHeight,
     windowWidth: 0,
     // 顶部消息
     topMsg_str: '正在努力刷新',
@@ -25,6 +26,8 @@ Page({
     list_arr: [],
 
     isAnonymous_bool: false,
+
+    wxExtension: '',
 
     reNewRotate_int: 0,
     scrollHeight_flo: '',
@@ -55,42 +58,6 @@ Page({
       .then(res => {
         console.log(res);
       })
-  },
-
-  // 获取置顶帖子
-  getTopArticle_fun(callback = () => { }) {
-    $http({ url: '/Article/getTopArticle' }).then(res => {
-      console.log(res);
-      if (res.data.code === 205) {
-        wx.navigateTo({
-          url: '/pages/index/index',
-        });
-        this.setData({
-          topMsg_str: '请下拉刷新后登录',
-          isPullDown_bool: false
-        })
-        return
-      }
-      if (res.data.code === 200) {
-        var list_arr1 = res.data.data
-        list_arr1.articles.forEach(item => {
-          item.isTop_bool = true
-        })
-        list_arr1 = this.handleArticleData_fun(list_arr1, true)
-        console.log(list_arr1);
-        list_arr1.forEach(item => {
-          item.isLast = false
-        })
-        this.setData({
-          list_arr: list_arr1
-        })
-      } else if (res.data.code === 205) {
-        console.log('用户未登录');
-      } else {
-        console.log('error');
-      }
-      callback()
-    })
   },
 
   // 点击了加号
@@ -156,6 +123,7 @@ Page({
     //   });
     // }
     // this.categorySelect_fun()
+    this.scrollHeight_fun()
     app.globalData.backState_int = 0
     this.setData({
       topListIndex_int: 0
@@ -182,16 +150,24 @@ Page({
         topMsgHeight_int: 50,
       })
     }
+    temp_fun(this)
     function temp_fun(self) {
       let category_str = self.data.topList_arr[self.data.topListIndex_int]
       if (self.data.topListIndex_int === 0) {
         category_str = 'all'
       }
-      self.getArticle_fun({ category: category_str, hasLoading: false })
+      self.getArticle_fun({ category: category_str, hasLoading: false }, true)
         .then(res => {
           console.log(res);
           pageTotal_int = res.total_int
           pageNum_int = Math.ceil(res.total_int / 5)
+
+          if (self.data.topListIndex_int !== 0) {
+            res.articleList = res.articleList.filter(item => item.category === self.data.topList_arr[self.data.topListIndex_int])
+          }
+          self.setData({
+            list_arr: res.articleList
+          })
 
           if (pageNum_int > 0) {
             return self.getArticle_fun({ category: category_str, pageNumber: pageNum_int, hasLoading: false })
@@ -237,13 +213,6 @@ Page({
           self.topMsgFinish_fun('刷新失败')
           console.log(res);
         })
-    }
-    if (this.data.topListIndex_int === 0) {
-      this.getTopArticle_fun(() => {
-        temp_fun(this)
-      })
-    } else {
-      temp_fun(this)
     }
   },
   initTemp_fun(isAuto) {
@@ -303,17 +272,27 @@ Page({
   },
 
   // 获取帖子列表
-  getArticle_fun({ category, school = app.globalData.school_str, callback, isShowSuccess, pageNumber = 1, hasLoading = false } = {}) {
+  getArticle_fun({ category, school = app.globalData.school_str, callback, isShowSuccess, pageNumber = 1, hasLoading = false } = {}, isGetTopArticles = false) {
     return new Promise((resolve, reject) => {
       $http({ url: '/Article/getArticlesByCategoryAndSchool', method: 'get', data: { category, school, pageNum: pageNumber, pageSize: 5 }, complete: () => { callback && callback() } }, hasLoading)
         .then((res) => {
-          console.log(pageNum_int);
+          console.log(res);
           var data = res.data.data
+          console.log(data.wxExtension);
+          this.setData({
+            wxExtension: data.wxExtension
+          })
+          if (isGetTopArticles) {
+            var articleList = this.handleArticleData_fun(data, true)
+          } else {
+            var articleList = this.handleArticleData_fun(data, false)
+          }
           if (data.hasOwnProperty('total')) {
-            var articleList = this.handleArticleData_fun(data)
             var total = data.total
           } else {
-            var articleList = []
+            if (!isGetTopArticles) {
+              var articleList = []
+            }
             var total = 0
           }
           resolve({ total_int: total, articleList })
@@ -331,35 +310,28 @@ Page({
     })
   },
 
-  // 获取全部帖子列表
-  getAllArticle_fun({ callback, isShowSuccess, pageNumber = 1, hasLoading = false } = {}) {
-    return new Promise((resolve, reject) => {
-      $http({ url: '/Article/getArticleByKeywords', data: { keywords: '', pageNum: pageNumber, pageSize: 5 }, complete: () => { callback && callback() } }, hasLoading)
-        .then((res) => {
-          var data = res.data.data
-          var articleList = this.handleArticleData_fun(data)
-          resolve({ total_int: data.total, articleList })
-        }).catch((err) => {
-          // wx.showToast({
-          //   title: '刷新失败',
-          //   icon: 'error',
-          // });
-          this.setData({
-            isPullDown_bool: false
-          })
-          console.log(err);
-          reject(err)
-        })
-    })
-  },
-
   // 初步处理获取到帖子的数据
-  handleArticleData_fun(data, isTop_bool = false) {
-    console.log(data);
-    if (isTop_bool) {
-      var articleList = data.articles && data.articles.reverse() || []
+  handleArticleData_fun(data, isGetTopArticles = false, wxExtension) {
+    // if (isTop_bool) {
+    //   var articleList = data.topArticles && data.topArticles.reverse() || []
+    // } else {
+    // }
+    if (isGetTopArticles) {
+      if (data.topArticles) {
+        var articleList = data.topArticles.reverse() || []
+      } else {
+        var articleList = []
+      }
+      console.log(articleList);
     } else {
-      var articleList = data.articleList && data.articleList.list.reverse() || []
+      if (data.articleList) {
+        var articleList = data.articleList.list.reverse() || []
+
+      } else {
+        var articleList = data.articleList.list.reverse() || []
+
+      }
+      articleList = articleList.filter(item => item.isTop !== 2)
     }
     articleList.forEach(item => {
       if (item.commentList.length > 0) {
@@ -367,6 +339,14 @@ Page({
       } else {
         item.commentListNum_int = 'x'
       }
+
+      if (isGetTopArticles) {
+        item.isTop_bool = true
+      } else {
+        item.isTop_bool = false
+      }
+
+      item.wxExtension = this.data.wxExtension
 
       item.idd = item.id + item.isTop_bool
       item.sex_str = item.userList[0] && item.userList[0].sex // 0、未知，1、男，2、女
@@ -399,7 +379,11 @@ Page({
         item.avatarUrl_str = app.globalData.anonymousAvatarUrl_str
       } else {
         item.name_str = item.userList[0] && item.userList[0].name || 'unknown'
-        item.avatarUrl_str = item.userList[0] && item.userList[0].userHeadpoait && (app.globalData.baseUrl + item.userList[0].userHeadpoait.slice(25) + '/' + item.userList[0].pictureName)
+        if (item.userList[0] && item.userList[0].userHeadpoait && item.userList[0].pictureName) {
+          item.avatarUrl_str = item.userList[0] && item.userList[0].userHeadpoait && (app.globalData.baseUrl + item.userList[0].userHeadpoait.slice(25) + '/' + item.userList[0].pictureName)
+        } else {
+          item.avatarUrl_str = null
+        }
       }
 
       item.imgOrg = []
@@ -416,38 +400,10 @@ Page({
       //   item.img.push('')
       // }
     })
-    if (pageNum_int === 1 && articleList.length > 0) {
-      articleList[articleList.length - 1].isLast = true
+    if (!isGetTopArticles && pageNum_int === 1 && articleList.length > 0) {
+      // articleList[articleList.length - 1].isLast = true
     }
     return articleList
-  },
-
-  // 获取分类帖子列表
-  getCategoryArticle_fun({ category, callback, isShowSuccess, pageNumber = 1, hasLoading = false } = {}) {
-    return new Promise((resolve, reject) => {
-      $http({ url: '/Article/getArticlesByCategory', data: { category, pageNum: pageNumber, pageSize: 5 }, complete: () => { callback && callback() } }, hasLoading)
-        .then((res) => {
-          var data = res.data.data
-          if (data.hasOwnProperty('total')) {
-            var articleList = this.handleArticleData_fun(data)
-            var total = data.total
-          } else {
-            var articleList = []
-            var total = 0
-          }
-          resolve({ total_int: total, articleList })
-        }).catch((err) => {
-          // wx.showToast({
-          //   title: '刷新失败',
-          //   icon: 'error',
-          // });
-          this.setData({
-            isPullDown_bool: false
-          })
-          console.log(err);
-          reject(err)
-        })
-    })
   },
 
   // 用户切换
@@ -473,15 +429,16 @@ Page({
 
   // 计算scroll-view的高度
   scrollHeight_fun() {
-    let windowHeight = wx.getSystemInfoSync().windowHeight // 屏幕的高度
-    let windowWidth = wx.getSystemInfoSync().windowWidth // 屏幕的宽度
+    const { windowHeight, windowWidth, statusBarHeight } = wx.getSystemInfoSync() // 屏幕的高度
     this.setData({
+      statusBarHeight,
       windowWidth,
-      scrollHeight_flo: (windowHeight - this.data.statusBarHeight) / windowWidth * 750 - 180
+      // scrollHeight_flo: (windowHeight - 20) / windowWidth * 750 - 195
+      scrollHeight_flo: (windowHeight - statusBarHeight) / windowWidth * 750 - 193
       // scrollHeight_flo: (windowHeight - this.data.statusBarHeight) / windowWidth * 750 - 140
       // scrollHeight_flo: 1016
     })
-    console.log(this.data.scrollHeight_flo);
+    console.log(windowHeight, windowWidth, statusBarHeight);
   },
 
   // 下拉刷新
@@ -577,7 +534,6 @@ Page({
   },
 
   onReady: function () {
-    this.scrollHeight_fun()
   },
   onShow: function () {
     if (app.globalData.backState_int === 1) {

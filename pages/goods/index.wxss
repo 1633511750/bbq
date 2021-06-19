@@ -14,10 +14,22 @@ page .top-wrap .item {
   height: 50rpx;
   margin: 0 80rpx;
   text-align: center;
+  position: relative;
 }
 page .top-wrap .item.active {
   color: #02A7F0;
   border-bottom: 6rpx solid #02A7F0;
+}
+page .top-wrap .item .dot {
+  height: 30rpx;
+  line-height: 30rpx;
+  border-radius: 20rpx;
+  font-size: 20rpx;
+  color: #fff;
+  padding: 0 11rpx;
+  position: absolute;
+  display: inline-block;
+  background-color: #ff7e17;
 }
 page .item-wrap {
   height: 200rpx;
@@ -63,8 +75,20 @@ page .item-wrap .btn {
   border-radius: 10rpx;
 }
 page .item-wrap .btn.del {
-  top: 40rpx;
+  top: 10rpx;
   background-color: red;
+}
+page .item-wrap .btn.update {
+  top: 140rpx;
+  background-color: #0161F0;
+}
+page .item-wrap .btn.on {
+  top: 75rpx;
+  background-color: #02A7F0;
+}
+page .item-wrap .btn.off {
+  top: 75rpx;
+  background-color: #02A7F0;
 }
 page .bottom-btn {
   width: 100%;

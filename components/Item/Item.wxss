@@ -22,6 +22,9 @@
   border-radius: 41rpx;
   background-size: 100% 100%;
 }
+.wrapper .comment .item .headPic.gray {
+  background-color: var(--colorGray);
+}
 .wrapper .comment .item .sex {
   width: 30rpx;
   height: 30rpx;
