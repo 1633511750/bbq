@@ -642,7 +642,7 @@ Page({
       $http({
         url: '/User/publisAnswer', data: {
           commentId: this.data.commentId_int, content: this.data.comment_str, isAnonymous, toUid: this.data.toUid_int,
-          toName: this.data.anony_str, toAnswerId: this.data.toAnswerId_int
+          toName: this.data.anony_str, toAnswerId: this.data.toAnswerId_int, name: getRndName_fun()
         }
       })
         .then(res => {
@@ -669,7 +669,7 @@ Page({
           })
         })
     } else {
-      $http({ url: '/User/publisComment', data: { articleId: this.data.id_str - 0, content: this.data.comment_str, isAnonymous } })
+      $http({ url: '/User/publisComment', data: { articleId: this.data.id_str - 0, content: this.data.comment_str, isAnonymous, name: getRndName_fun() } })
         .then(res => {
           console.log(res);
           if (res.data.success) {

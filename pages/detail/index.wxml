@@ -48,7 +48,7 @@
         <view wx:else class="headPic gray"></view>-->
         <view class="info-wrap">
           <view class="info clearfix">
-            <text class="name">{{item.nmId_str}}</text>
+            <text class="name">{{item.name}}</text>
             <view wx:if="{{item.fromUid === fromUid_int && item.isAnonymous === isAnonymous_int}}" class="house big">作者</view>
             <!--<image mode="aspectFit" src="/img/zan_active.png"/>
             <text class="heart-num">30</text>-->
@@ -58,7 +58,7 @@
             <text class="date">{{item.date_str}}  {{item.time_str}}</text>
             <text class="reply" wx:if="{{!item.isExtendsReply_bool && item.commentListNum_int !== 0}}" data-index="{{index}}" data-id="{{item.id}}" bindtap="getCommentReply_fun">展开{{item.commentListNum_int}}条</text>
             <text class="reply" wx:if="{{item.isExtendsReply_bool}}" data-index="{{index}}" data-id="{{item.id}}" bindtap="getCommentReply_fun">收起</text>
-            <text class="reply-btn" data-index="{{index}}" data-id="{{item.id}}" data-name="{{'null'}}" data-nmid="{{item.nmId_str}}" data-answerid="{{-1}}" data-anony="{{item.isAnonymous}}" data-touid="{{-1}}" bindtap="replyBtn_fun">回复</text>
+            <text class="reply-btn" data-index="{{index}}" data-id="{{item.id}}" data-name="{{'null'}}" data-nmid="{{item.name}}" data-answerid="{{-1}}" data-anony="{{item.isAnonymous}}" data-touid="{{-1}}" bindtap="replyBtn_fun">回复</text>
             <image class="delete" mode="aspectFit" src="/img/cha.png" bindtap="deleteComment_fun" data-item="{{item}}"></image>
           </view>
           <view class="pl-reply-wrap">
@@ -67,25 +67,25 @@
               <view wx:else class="reply-headPic gray"></view>-->
               <view class="reply-info-wrap">
                 <view class="reply-info clearfix">
-                  <text class="reply-name">{{item1.nmId_str}}</text>
+                  <text class="reply-name">{{item1.name}}</text>
                   <view wx:if="{{item1.fromUid === fromUid_int && item1.isAnonymous === isAnonymous_int}}" class="house big">作者</view>
                 </view>
                 <text user-select class="reply-pl-con">{{item1.content}}</text>
                 <view class="reply-pl-foot">
                   <text class="reply-date">{{item1.date_str}}  {{item1.time_str}}</text>
-                  <text class="reply-btn" data-index="{{index}}" data-id="{{item.id}}" data-answerid="{{item1.id}}" data-nmid="{{item1.nmId_str}}" data-anony="{{item1.isAnonymous}}" data-name="{{item1.realyName_str}}" data-touid="{{item1.fromUid}}" bindtap="replyBtn_fun">回复</text>
+                  <text class="reply-btn" data-index="{{index}}" data-id="{{item.id}}" data-answerid="{{item1.id}}" data-nmid="{{item1.name}}" data-anony="{{item1.isAnonymous}}" data-name="{{item1.realyName_str}}" data-touid="{{item1.fromUid}}" bindtap="replyBtn_fun">回复</text>
                   <image mode="aspectFit" src="/img/cha.png" class="delete" bindtap="deleteReply_fun" data-indexz="{{index}}" data-indexo="{{index1}}" data-indext="{{-1}}" data-item="{{item1}}"></image>
                 </view>
               </view>
               <view class="pl-rep-con clearfix" wx:for="{{item1.rep}}" wx:for-index="index2" wx:key="id" wx:for-item="item2">
                 <view class="reply-info-wrap big-width">
                   <view class="reply-pl-con">
-                    <text class="reply-pl-toname">{{item2.nmId_str}}<text wx:if="{{item2.fromUid === fromUid_int && item2.isAnonymous === isAnonymous_int}}" class="house">作者</text><text class="reply-pl-reply"> 回复 </text>{{item2.toName_str}}<text wx:if="{{item2.toUid === fromUid_int && item2.toName - 0 === isAnonymous_int}}" class="house">作者</text>{{' ： '}}</text>
+                    <text class="reply-pl-toname">{{item2.name}}<text wx:if="{{item2.fromUid === fromUid_int && item2.isAnonymous === isAnonymous_int}}" class="house">作者</text><text class="reply-pl-reply"> 回复 </text>{{item2.toName_str}}<text wx:if="{{item2.toUid === fromUid_int && item2.toName - 0 === isAnonymous_int}}" class="house">作者</text>{{' ： '}}</text>
                     <text user-select class="rep-pl-con"> {{item2.content}}</text>
                   </view>
                   <view class="reply-pl-foot">
                     <text class="reply-date">{{item2.date_str}}  {{item2.time_str}}</text>
-                    <text class="reply-btn" data-index="{{index}}" data-id="{{item.id}}" data-answerid="{{item1.id}}" data-nmid="{{item2.nmId_str}}" data-anony="{{item2.isAnonymous}}" data-name="{{item2.realyName_str}}" data-touid="{{item2.fromUid}}" bindtap="replyBtn_fun">回复</text>
+                    <text class="reply-btn" data-index="{{index}}" data-id="{{item.id}}" data-answerid="{{item1.id}}" data-nmid="{{item2.name}}" data-anony="{{item2.isAnonymous}}" data-name="{{item2.realyName_str}}" data-touid="{{item2.fromUid}}" bindtap="replyBtn_fun">回复</text>
                     <image mode="aspectFit" src="/img/cha.png" class="delete" bindtap="deleteReply_fun" data-indexz="{{index}}" data-indexo="{{index1}}" data-indext="{{index2}}" data-item="{{item2}}"></image>
                   </view>
                 </view>
