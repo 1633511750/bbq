@@ -24,6 +24,19 @@
   height: 100%;
   padding: 0 30rpx 0 20rpx;
 }
+.wrap .top .dot {
+  position: absolute;
+  right: 0rpx;
+  top: 10rpx;
+  height: 30rpx;
+  padding: 0 10rpx;
+  line-height: 30rpx;
+  display: inline-block;
+  color: #fff;
+  font-size: 20rpx;
+  border-radius: 20rpx;
+  background-color: #ff7e17;
+}
 .wrap .find-pic {
   width: 34rpx;
   height: 34rpx;

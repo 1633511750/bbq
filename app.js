@@ -20,6 +20,7 @@ App({
     this.globalData.uid_int = wx.getStorageSync('uid') - 0
     this.globalData.bgColor_str = wx.getStorageSync('bgColor') || '#fff'  // 主题颜色
     console.log('uid:' + this.globalData.uid_int);
+
     // isAnonymous 是否匿名
     // 管理员注册的账号:
     // name: 'coldice',
@@ -90,7 +91,7 @@ App({
     country_str: '',    // 国家
     province_str: '',   // 省份
     city_str: '',       // 城市
-    anonymousAvatarUrl_str: '/img/niming.jpg', // 匿名头像
+    anonymousAvatarUrl_str: '/img/logo.png', // 匿名头像
 
     bgColor_str: '',  // 主题颜色
     bgA_str: 'aa',

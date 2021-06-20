@@ -173,10 +173,12 @@ page .desc-wrap .top {
 page .desc-wrap .desc {
   text-indent: 2em;
   overflow-wrap: break-word;
+  white-space: pre-line;
 }
 page .desc-wrap textarea {
   width: 100%;
   border: 1px solid #ccc;
+  white-space: pre-line;
 }
 page .setting {
   text-align: center;

@@ -1,5 +1,5 @@
 <view class="wrap">
-  <Search class="search" bind:schoolevent="inputSchool_fun" bind:allSchoolEvent="allSchoolEvent_fun" prop="请输入学校名称" text="{{btnValue_str}}"></Search>
+  <Search class="search" nums="{{nums}}" bind:schoolevent="inputSchool_fun" bind:allSchoolEvent="allSchoolEvent_fun" prop="请输入学校名称" text="{{btnValue_str}}"></Search>
   <view class="main">
     <view class="find-text">{{info_str}}</view>
     <view class="item-wrap">

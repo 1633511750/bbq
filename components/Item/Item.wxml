@@ -5,10 +5,11 @@
       <view class="item clearfix">
         <image wx:if="{{item.avatarUrl_str !== null}}" mode="aspectFill" catchtap="previewImages_fun" data-cururl="{{item.avatarUrl_str}}" data-urls="{{[item.avatarUrl_str]}}" data-add="true" class="headPic" src="{{item.avatarUrl_str}}"></image>
         <view wx:else class="headPic gray"></view>
-        <image mode="aspectFit" class="sex" src="{{item.sex_str === '1' ? '/img/male.png' : '/img/female.png'}}"></image>
+        <image wx:if="{{item.isAnonymous === 0}}" mode="aspectFit" class="sex" src="{{item.sex_str === '1' ? '/img/male.png' : '/img/female.png'}}"></image>
         <view class="info">
           <view class="info-top clearfix">
-            <view class="name">{{item.name_str}}  </view>
+            <view  wx:if="{{item.isAnonymous === 0}}" class="name">{{item.name_str}}  </view>
+            <view wx:else class="name logo">{{item.name_str}}  </view>
             <text style="background-color: {{tagBg}}" class="video">{{item.category}}</text>
           </view>
           <view class="info-bottom">

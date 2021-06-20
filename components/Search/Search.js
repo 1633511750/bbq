@@ -16,6 +16,10 @@ Component({
     searchValue: {
       type: String,
       default: ''
+    },
+    nums: {
+      type: Number,
+      default: 2
     }
   },
 

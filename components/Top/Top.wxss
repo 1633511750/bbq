@@ -35,12 +35,24 @@
   vertical-align: middle;
 }
 .top-title-wrap .title .school {
+  margin-left: 10rpx;
   vertical-align: middle;
   display: inline-block;
   max-width: 330rpx;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
+}
+.top-title-wrap .title .dot {
+  margin-left: -30rpx;
+  height: 40rpx;
+  padding: 0 15rpx;
+  line-height: 40rpx;
+  display: inline-block;
+  color: #fff;
+  font-size: 20rpx;
+  border-radius: 20rpx;
+  background-color: #ff7e17;
 }
 .top-title-wrap .find {
   width: 60rpx;

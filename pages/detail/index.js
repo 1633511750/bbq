@@ -53,7 +53,7 @@ Page({
       switch (this.data.isTop_int) {
         case 0:
           wx.showActionSheet({
-            itemList: ['匿名此贴', '请推广到全部学校', '请置顶', '删除'],
+            itemList: ['由表白墙代发', '请推广到全部学校', '请置顶', '删除'],
             success: (result) => {
               switch (result.tapIndex) {
                 case 0:
@@ -169,8 +169,19 @@ Page({
       console.log(res);
       if (res.data.code === 200) {
         wx.showToast({
-          title: '匿名成功',
+          title: '发送成功',
         });
+        setTimeout(() => {
+          var pages = getCurrentPages()
+          var curPage = pages[pages.length - 1]
+          var url = curPage && curPage.route
+          if (url === 'pages/detail/index') {
+            wx.navigateBack({
+              delta: 1
+            });
+          }
+        }, 1500);
+        app.globalData.backState_int = 1
       } else {
         wx.showToast({ title: '匿名失败', icon: 'error' })
       }
@@ -492,25 +503,31 @@ Page({
             item.nmId_str = item.userList[0].name
             item.avatarUrl_str = item.userList[0].userHeadpoait && (app.globalData.baseUrl + item.userList[0].userHeadpoait.slice(25) + '/' + item.userList[0].pictureName)
           } else {
-            let nmId_int = this.data.commentUser_arr.indexOf(item.fromUid)
-            if (nmId_int === -1) {
-              let temp_arr = this.data.commentUser_arr
-              temp_arr.push(item.fromUid)
+            // let nmId_int = this.data.commentUser_arr.indexOf(item.fromUid)
+            // if (nmId_int === -1) {
+            //   let temp_arr = this.data.commentUser_arr
+            //   temp_arr.push(item.fromUid)
+            //   this.setData({
+            //     commentUser_arr: temp_arr
+            //   })
+            //   nmId_int = temp_arr.length
+            // } else {
+            //   nmId_int++
+            // }
+            // if (nmId_int < 10) {
+            //   item.nmId_str = '00' + nmId_int
+            // } else if (nmId_int < 100) {
+            //   item.nmId_str = '0' + nmId_int
+            // } else {
+            //   item.nmId_str = nmId_int
+            // }
+            // item.avatarUrl_str = app.globalData.anonymousAvatarUrl_str
+            let index = this.data.commentUser_arr.findIndex(item1 => item1.uid === item.fromUid)
+            if (index === -1) {
               this.setData({
-                commentUser_arr: temp_arr
+                commentUser_arr: this.data.commentUser_arr.concat({ uid: item.fromUid, name: item.name })
               })
-              nmId_int = temp_arr.length
-            } else {
-              nmId_int++
             }
-            if (nmId_int < 10) {
-              item.nmId_str = '00' + nmId_int
-            } else if (nmId_int < 100) {
-              item.nmId_str = '0' + nmId_int
-            } else {
-              item.nmId_str = nmId_int
-            }
-            item.avatarUrl_str = app.globalData.anonymousAvatarUrl_str
           }
         })
         arr_arr = arr_arr.reverse()
@@ -535,25 +552,31 @@ Page({
                     item1.nmId_str = item1.userList[0].name
                     item1.avatarUrl_str = item1.userList[0].userHeadpoait && (app.globalData.baseUrl + item1.userList[0].userHeadpoait.slice(25) + '/' + item1.userList[0].pictureName)
                   } else {
-                    item1.avatarUrl_str = app.globalData.anonymousAvatarUrl_str
+                    // item1.avatarUrl_str = app.globalData.anonymousAvatarUrl_str
 
-                    let nmId_int = this.data.commentUser_arr.indexOf(item1.fromUid)
-                    if (nmId_int === -1) {
-                      let temp_arr = this.data.commentUser_arr
-                      temp_arr.push(item1.fromUid)
+                    // let nmId_int = this.data.commentUser_arr.indexOf(item1.fromUid)
+                    // if (nmId_int === -1) {
+                    //   let temp_arr = this.data.commentUser_arr
+                    //   temp_arr.push(item1.fromUid)
+                    //   this.setData({
+                    //     commentUser_arr: temp_arr
+                    //   })
+                    //   nmId_int = temp_arr.length
+                    // } else {
+                    //   nmId_int++
+                    // }
+                    // if (nmId_int < 10) {
+                    //   item1.nmId_str = '00' + nmId_int
+                    // } else if (nmId_int < 100) {
+                    //   item1.nmId_str = '0' + nmId_int
+                    // } else {
+                    //   item1.nmId_str = nmId_int
+                    // }
+                    let index = this.data.commentUser_arr.findIndex(item2 => item2.uid === item1.fromUid)
+                    if (index === -1) {
                       this.setData({
-                        commentUser_arr: temp_arr
+                        commentUser_arr: this.data.commentUser_arr.concat({ uid: item1.fromUid, name: item1.name })
                       })
-                      nmId_int = temp_arr.length
-                    } else {
-                      nmId_int++
-                    }
-                    if (nmId_int < 10) {
-                      item1.nmId_str = '00' + nmId_int
-                    } else if (nmId_int < 100) {
-                      item1.nmId_str = '0' + nmId_int
-                    } else {
-                      item1.nmId_str = nmId_int
                     }
                   }
                 })
@@ -638,11 +661,12 @@ Page({
     console.log(isAnonymous, 'a');
     console.log(this.data.toAnswerId_int);
 
+    let name = this.getName(app.globalData.uid_int)
     if (this.data.isReply_bool) {
       $http({
         url: '/User/publisAnswer', data: {
           commentId: this.data.commentId_int, content: this.data.comment_str, isAnonymous, toUid: this.data.toUid_int,
-          toName: this.data.anony_str, toAnswerId: this.data.toAnswerId_int, name: getRndName_fun()
+          toName: this.data.anony_str, toAnswerId: this.data.toAnswerId_int, name
         }
       })
         .then(res => {
@@ -669,7 +693,12 @@ Page({
           })
         })
     } else {
-      $http({ url: '/User/publisComment', data: { articleId: this.data.id_str - 0, content: this.data.comment_str, isAnonymous, name: getRndName_fun() } })
+      $http({
+        url: '/User/publisComment', data: {
+          articleId: this.data.id_str - 0,
+          content: this.data.comment_str, isAnonymous, name
+        }
+      })
         .then(res => {
           console.log(res);
           if (res.data.success) {
@@ -731,27 +760,33 @@ Page({
               item.realyName_str = item.userList[0].name
               item.avatarUrl_str = item.userList[0].userHeadpoait && (app.globalData.baseUrl + item.userList[0].userHeadpoait.slice(25) + '/' + item.userList[0].pictureName)
             } else {
-              item.realyName_str = 'null'
-              item.avatarUrl_str = app.globalData.anonymousAvatarUrl_str
+              // item.realyName_str = 'null'
+              // item.avatarUrl_str = app.globalData.anonymousAvatarUrl_str
 
-              let nmId_int = this.data.commentUser_arr.indexOf(item.fromUid)
-              if (nmId_int === -1) {
-                let temp_arr = this.data.commentUser_arr
-                temp_arr.push(item.fromUid)
+              // let nmId_int = this.data.commentUser_arr.indexOf(item.fromUid)
+              // if (nmId_int === -1) {
+              //   let temp_arr = this.data.commentUser_arr
+              //   temp_arr.push(item.fromUid)
+              //   this.setData({
+              //     commentUser_arr: temp_arr
+              //   })
+              //   nmId_int = temp_arr.length
+              // } else {
+              //   nmId_int++
+              // }
+
+              // if (nmId_int < 10) {
+              //   item.nmId_str = '00' + nmId_int
+              // } else if (nmId_int < 100) {
+              //   item.nmId_str = '0' + nmId_int
+              // } else {
+              //   item.nmId_str = nmId_int
+              // }
+              let index = this.data.commentUser_arr.findIndex(item1 => item1.uid === item.fromUid)
+              if (index === -1) {
                 this.setData({
-                  commentUser_arr: temp_arr
+                  commentUser_arr: this.data.commentUser_arr.concat({ uid: item.fromUid, name: item.name })
                 })
-                nmId_int = temp_arr.length
-              } else {
-                nmId_int++
-              }
-
-              if (nmId_int < 10) {
-                item.nmId_str = '00' + nmId_int
-              } else if (nmId_int < 100) {
-                item.nmId_str = '0' + nmId_int
-              } else {
-                item.nmId_str = nmId_int
               }
             }
 
@@ -1004,6 +1039,18 @@ Page({
    */
   onReachBottom: function () {
 
+  },
+
+  getName(uid) {
+    let index = this.data.commentUser_arr.findIndex(item => item.uid === uid)
+    if (index === -1) {
+      let name = getRndName_fun()
+      this.setData({
+        commentUser_arr: this.data.commentUser_arr.concat({ uid, name })
+      })
+      return name
+    }
+    return this.data.commentUser_arr[index].name
   },
 
   /**

@@ -8,6 +8,10 @@ Component({
     school: {
       type: String,
       default: ''
+    },
+    nums: {
+      type: Number,
+      default: 0
     }
   },
 

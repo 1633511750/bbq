@@ -9,7 +9,8 @@ Page({
     history_arr: [],
     info_str: '最近浏览',
     btnValue_str: '全部',
-    newArticleNum_arr: []
+    newArticleNum_arr: [],
+    nums: 0
   },
 
   selectSchool_fun(e) {
@@ -73,6 +74,11 @@ Page({
       if (res.data.code === 200) {
         let arr = res.data.data.countMap
         let temp_arr = []
+        let nums = 0
+        arr.forEach(item => nums += item.nums)
+        this.setData({
+          nums
+        })
         this.data.all_arr.forEach(item => {
           let o = arr.find(item1 => item1.school === item)
           if (o) {

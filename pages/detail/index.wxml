@@ -4,7 +4,7 @@
     <view class="item clearfix">
       <image wx:if="{{avatarUrl_str}}" mode="aspectFill" catchtap="previewImage_fun" data-anonymous="{{isAnonymous_int}}" data-cururl="{{avatarUrl_str}}" data-urls="{{[avatarUrl_str]}}" data-add="true" class="headPic" src="{{avatarUrl_str}}"></image>
       <view wx:else class="headPic gray"></view>
-      <image mode="aspectFit" class="sex" src="{{sex_str === '1' ? '/img/male.png' : '/img/female.png'}}"></image>
+      <image wx:if="{{isAnonymous_int === 0}}" mode="aspectFit" class="sex" src="{{sex_str === '1' ? '/img/male.png' : '/img/female.png'}}"></image>
       <view class="info">
         <view class="info-top clearfix">
           <text user-select class="name">{{name_str}}</text>
@@ -48,8 +48,8 @@
         <view wx:else class="headPic gray"></view>-->
         <view class="info-wrap">
           <view class="info clearfix">
-            <text class="name">{{item.name}}</text>
-            <view wx:if="{{item.fromUid === fromUid_int && item.isAnonymous === isAnonymous_int}}" class="house big">作者</view>
+            <view wx:if="{{item.fromUid === fromUid_int && item.isAnonymous === 1}}" class="house big">作者</view>
+            <text wx:else class="name">{{item.name}}</text>
             <!--<image mode="aspectFit" src="/img/zan_active.png"/>
             <text class="heart-num">30</text>-->
           </view>
@@ -67,8 +67,8 @@
               <view wx:else class="reply-headPic gray"></view>-->
               <view class="reply-info-wrap">
                 <view class="reply-info clearfix">
-                  <text class="reply-name">{{item1.name}}</text>
-                  <view wx:if="{{item1.fromUid === fromUid_int && item1.isAnonymous === isAnonymous_int}}" class="house big">作者</view>
+                  <view wx:if="{{item1.fromUid === fromUid_int && item1.isAnonymous === 1}}" class="house big">作者</view>
+                  <text wx:else class="reply-name">{{item1.name}}</text>
                 </view>
                 <text user-select class="reply-pl-con">{{item1.content}}</text>
                 <view class="reply-pl-foot">
@@ -80,8 +80,12 @@
               <view class="pl-rep-con clearfix" wx:for="{{item1.rep}}" wx:for-index="index2" wx:key="id" wx:for-item="item2">
                 <view class="reply-info-wrap big-width">
                   <view class="reply-pl-con">
-                    <text class="reply-pl-toname">{{item2.name}}<text wx:if="{{item2.fromUid === fromUid_int && item2.isAnonymous === isAnonymous_int}}" class="house">作者</text><text class="reply-pl-reply"> 回复 </text>{{item2.toName_str}}<text wx:if="{{item2.toUid === fromUid_int && item2.toName - 0 === isAnonymous_int}}" class="house">作者</text>{{' ： '}}</text>
-                    <text user-select class="rep-pl-con"> {{item2.content}}</text>
+                    <text class="reply-pl-toname">
+                    <text wx:if="{{item2.fromUid === fromUid_int && item2.isAnonymous === 1}}" class="house">作者</text>
+                    <text wx:else>{{item2.name}}</text>
+                    <text class="reply-pl-reply"> 回复 </text>
+                    <text wx:if="{{item2.toUid === fromUid_int && item2.toName - 0 === 1}}" class="house">作者</text>
+                    <text wx:else>{{item2.name}}</text><!--toName_str-->{{' ： '}}</text><text user-select class="rep-pl-con"> {{item2.content}}</text>
                   </view>
                   <view class="reply-pl-foot">
                     <text class="reply-date">{{item2.date_str}}  {{item2.time_str}}</text>
@@ -139,11 +143,11 @@
         <text class="send" bindtap="chat_fun" data-anonymous="1">发表</text>
         <image class="aavatar" mode="aspectFill" src="{{anonymousAvatarUrl_str}}" />
         <image class="avatar" mode="aspectFill" src="{{avatarUrl_str}}" />-->
-        <view class="left" bindtap="chat_fun" data-anonymous="1">
+        <view class="left" bindtap="chat_fun" data-anonymous="0">
           <!--<image class="avatar" mode="aspectFill" src="{{userAvatarUrl_str}}" />
           <view class="btn send">发表</view>-->
         </view>
-        <view class="right" bindtap="chat_fun" data-anonymous="0">
+        <view class="right" bindtap="chat_fun" data-anonymous="1">
           <!--<image class="avatar" mode="aspectFill" src="{{anonymousAvatarUrl_str}}" />-->
           <view class="btn send">发表</view>
         </view>

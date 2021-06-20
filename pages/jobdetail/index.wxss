@@ -173,9 +173,6 @@ page .main .item2 .bottom-desc {
   display: block;
   font-size: 32rpx;
   color: #333;
-  text-indent: 2em;
   padding: 30rpx 0;
-  margin-left: -60rpx;
-  overflow-wrap: break-word;
   white-space: pre-line;
 }

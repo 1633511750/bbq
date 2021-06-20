@@ -1,7 +1,9 @@
 <view class="top-liuhai-wrap" style="height: {{statusBarHeight}}px;top: 0;"></view>
 <view class="top-title-wrap" style="height: {{45}}px;top: {{statusBarHeight}}px;">
   <navigator hover-class="none" url="/pages/school/index" class="title">
-    <image src="/img/pos.png" mode="aspectFit" />
+    <image mode="aspectFit" />
+    <!--<image src="/img/pos.png" mode="aspectFit" />-->
+    <text class="dot">{{nums}}</text>
     <text class="school">{{school}}</text><image class="arrow" src="/img/right.png"></image>
   </navigator>
   <navigator class="find" url="/pages/search/index">

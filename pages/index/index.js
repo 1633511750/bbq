@@ -5,6 +5,7 @@ var pageNum_int = 1
 var pageTotal_int = 0
 Page({
   data: {
+    nums: 0,  // 所有学校新增帖数
     uid_int: app.globalData.uid_int,
     nickName_str: '',
     avatarUrl_str: '',
@@ -375,7 +376,7 @@ Page({
       }
 
       if (item.isAnonymous) {
-        item.name_str = '用户'
+        item.name_str = '官方表白墙'
         item.avatarUrl_str = app.globalData.anonymousAvatarUrl_str
       } else {
         item.name_str = item.userList[0] && item.userList[0].name || 'unknown'
@@ -536,6 +537,17 @@ Page({
   onReady: function () {
   },
   onShow: function () {
+    $http({ url: '/Article/countArticleBySchool', method: 'post' }).then(res => {
+      console.log(res);
+      if (res.data.code === 200) {
+        let nums = 0
+        res.data.data.countMap.forEach(item => nums += item.nums)
+        this.setData({
+          nums
+        })
+      }
+    })
+
     if (app.globalData.backState_int === 1) {
       app.globalData.backState_int = 0
       this.setData({

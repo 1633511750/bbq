@@ -62,6 +62,9 @@
   left: 0;
   top: 0;
 }
+.wrapper .comment .item .info .info-top .name.logo {
+  color: #ff7e17;
+}
 .wrapper .comment .item .info .info-top .video {
   height: 36rpx;
   line-height: 34rpx;

@@ -62,9 +62,9 @@
   width: 50rpx;
   height: 50rpx;
   padding: 10rpx;
-  margin-right: 10rpx;
+  margin-right: 47rpx;
   position: absolute;
-  top: 52rpx;
+  top: 55rpx;
   right: 16rpx;
 }
 .wrap .comment .item .info .info-top .video {
@@ -295,6 +295,7 @@
   display: inline-block;
   margin-top: 5rpx;
   font-size: 32rpx;
+  word-break: break-all;
 }
 .wrap .do .pl-wrap .pl .info-wrap .pl-foot {
   margin-top: 10rpx;
@@ -389,6 +390,7 @@
   display: inline-block;
   margin-top: 5rpx;
   font-size: 32rpx;
+  word-break: break-word;
 }
 .wrap .do .pl-wrap .pl .info-wrap .pl-reply-wrap .pl-reply-con .reply-info-wrap .reply-pl-con .reply-pl-toname {
   display: inline-block;
@@ -442,12 +444,13 @@
   margin-right: -30rpx;
 }
 .wrap .do .pl-wrap .pl .info-wrap .pl-reply-wrap .pl-reply-con .big-width {
-  width: 537rpx;
+  width: 518rpx;
 }
 .wrap .do .pl-wrap .pl .info-wrap .pl-reply-wrap .pl-reply-con .big-width .reply-pl-con {
   width: 575rpx;
   display: inline-block;
   margin-top: 20rpx;
+  word-break: break-word;
 }
 .wrap .do .pl-wrap .pl .info-wrap .pl-reply-wrap .pl-reply-con .big-width .reply-pl-con .reply-pl-toname {
   margin-top: 0;
@@ -461,7 +464,7 @@
   height: 32rpx;
   line-height: 32rpx;
   padding: 0 15rpx;
-  margin-left: 20rpx;
+  margin-left: -1rpx;
   font-size: 24rpx;
   color: #02A7F0;
   background-color: var(--colorGray);
@@ -473,7 +476,7 @@
   vertical-align: middle;
 }
 .wrap .do .pl-wrap .house.big {
-  margin-left: 15rpx;
+  margin-left: -1rpx;
 }
 .wrap .do .no-reply {
   text-align: center;
